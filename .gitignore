@@ -1,0 +1,16 @@
+# Archivos y carpetas de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Archivos de configuración de proyectos y dependencias
+bin/
+obj/
+
+# Archivos temporales y de sistema operativo
+*.tmp
+*.log
+*.cache
+Thumbs.db
