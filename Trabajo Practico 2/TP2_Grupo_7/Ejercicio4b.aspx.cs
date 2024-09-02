@@ -13,11 +13,8 @@ namespace TP2_Grupo_7
         {
             if (!IsPostBack)
             {
-                string usuario = Request.QueryString["usu"];
-                if (!string.IsNullOrEmpty(usuario))
-                {
-                    lblBienvenido.Text = "<h2><strong>Bienvenido a mi página Sr./a " + usuario + "</h2></strong>";
-                }
+                // Mostrar mensaje de bienvenida
+                lblBienvenido.Text = "<h2><strong>Bienvenido a mi página Sr./a Claudio</h2></strong>";
             }
         }
     }

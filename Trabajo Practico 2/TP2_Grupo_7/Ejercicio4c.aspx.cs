@@ -11,7 +11,11 @@ namespace TP2_Grupo_7
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                // Mostrar mensaje de RECHAZO   
+                lblIncorrecto.Text = "<h2><strong>USUARIO INVALIDO INGRESO NO PERMITIDO</h2></strong>";    
+            }
         }
     }
 }

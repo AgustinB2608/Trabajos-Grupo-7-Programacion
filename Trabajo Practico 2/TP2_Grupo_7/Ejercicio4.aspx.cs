@@ -19,7 +19,8 @@ namespace TP2_Grupo_7
             string UsuarioValido = "claudio";
             string ClaveValida = "casas";
 
-            if(txtUsuario.Text == UsuarioValido && txtClave.Text == ClaveValida)
+            // Verifica si el usuario y la clave coinciden con los valores esperados
+            if (txtUsuario.Text == UsuarioValido && txtClave.Text == ClaveValida)
             {
                 Server.Transfer("Ejercicio4b.aspx");
             }
@@ -27,7 +28,6 @@ namespace TP2_Grupo_7
             {
                 Server.Transfer("Ejercicio4c.aspx");
             }
-
         }
     }
 }
