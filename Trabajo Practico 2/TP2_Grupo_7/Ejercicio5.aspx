@@ -28,24 +28,29 @@
         </p>
             <p style="margin-left: 120px">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="ddlGB" runat="server" Height="16px" Width="122px">
-                    <asp:ListItem>2GB</asp:ListItem>
-                    <asp:ListItem>4GB</asp:ListItem>
-                    <asp:ListItem>6GB</asp:ListItem>
+                <asp:DropDownList ID="ddlGB" runat="server" Height="16px" Width="122px" AutoPostBack="True">
+                    <asp:ListItem Value="200">2GB</asp:ListItem>
+                    <asp:ListItem Value="375">4GB</asp:ListItem>
+                    <asp:ListItem Value="500">6GB</asp:ListItem>
                 </asp:DropDownList>
         </p>
 
         <p class="auto-style1">&nbsp;&nbsp;&nbsp; Seleccione accesorios:</p>
-         <asp:CheckBoxList ID="cblAccesorios" runat="server" CssClass="auto-style2">
+         <asp:CheckBoxList ID="cblAccesorios" runat="server" CssClass="auto-style2" AutoPostBack="True">
              <asp:ListItem Value="2000,50">Monitor LCD</asp:ListItem>
-             <asp:ListItem>HD 500GB</asp:ListItem>
-             <asp:ListItem>Grabador DVD</asp:ListItem>
+             <asp:ListItem Value="550,50">HD 500GB</asp:ListItem>
+             <asp:ListItem Value="1200">Grabador DVD</asp:ListItem>
          </asp:CheckBoxList>
             
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             
-        <asp:Button ID="btnCalculo" runat="server"  Text="Button" OnClick="btnCalculo_Click" />
+        <asp:Button ID="btnCalculo" runat="server"  Text="Calcular Precio" OnClick="btnCalculo_Click" />
+        <br />
+        <br />
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
     </form>
 </body>
 </html>

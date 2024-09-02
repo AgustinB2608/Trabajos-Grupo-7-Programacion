@@ -16,6 +16,8 @@ namespace TP2_Grupo_7
 
         protected void btnCalculo_Click(object sender, EventArgs e)
         {
+            int precioBase = int.Parse(ddlGB.SelectedValue);
+
             float precioExtras = 0;
             foreach (ListItem item in cblAccesorios.Items)
             {
@@ -24,6 +26,9 @@ namespace TP2_Grupo_7
                     precioExtras += float.Parse(item.Value);
                 }
             }
+            float precioFinal = precioBase + precioExtras;
+
+            lblMensaje.Text = "el precio final es " + precioFinal.ToString();
         }
     }
 }
