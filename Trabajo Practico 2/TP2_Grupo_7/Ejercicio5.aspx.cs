@@ -27,8 +27,8 @@ namespace TP2_Grupo_7
                 }
             }
             float precioFinal = precioBase + precioExtras;
-
-            lblMensaje.Text = "el precio final es " + precioFinal.ToString();
+            //N2 significa que se mostrarán 2 decimales- Ej: El precio final es de 2.751,00$
+            lblMensaje.Text = $"El precio final es de {precioFinal.ToString("N2")}$";
         }
     }
 }
