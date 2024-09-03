@@ -13,5 +13,10 @@ namespace TP3_Grupo_7
         {
 
         }
+
+        protected void BtnGuardarLocalidad_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
