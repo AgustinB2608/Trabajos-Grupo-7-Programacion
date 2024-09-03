@@ -24,6 +24,24 @@ namespace TP3_Grupo_7
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control lblLocalidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLocalidades;
+
+        /// <summary>
+        /// Control lblNombreLocalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreLocalidad;
+
+        /// <summary>
         /// Control TxtLocalidades.
         /// </summary>
         /// <remarks>
@@ -60,6 +78,15 @@ namespace TP3_Grupo_7
         protected global::System.Web.UI.WebControls.TextBox txtNombreUsuario;
 
         /// <summary>
+        /// Control rfvUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUsuario;
+
+        /// <summary>
         /// Control txtContraseña.
         /// </summary>
         /// <remarks>
@@ -78,6 +105,15 @@ namespace TP3_Grupo_7
         protected global::System.Web.UI.WebControls.TextBox txtRepetirContraseña;
 
         /// <summary>
+        /// Control cvContraseña.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvContraseña;
+
+        /// <summary>
         /// Control txtCorreo.
         /// </summary>
         /// <remarks>
@@ -94,5 +130,23 @@ namespace TP3_Grupo_7
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
+
+        /// <summary>
+        /// Control btnGuardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
+
+        /// <summary>
+        /// Control btnInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInicio;
     }
 }
