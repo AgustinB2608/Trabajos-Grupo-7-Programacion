@@ -33,13 +33,13 @@ namespace TP3_Grupo_7
         protected global::System.Web.UI.WebControls.TextBox TxtLocalidades;
 
         /// <summary>
-        /// Control RfvLocalidades.
+        /// Control rfvlocalidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RfvLocalidades;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvlocalidades;
 
         /// <summary>
         /// Control BtnGuardarLocalidad.

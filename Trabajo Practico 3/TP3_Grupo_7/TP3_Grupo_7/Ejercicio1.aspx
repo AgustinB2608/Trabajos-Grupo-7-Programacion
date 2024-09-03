@@ -20,7 +20,7 @@
 &nbsp; Nombre de Localidad:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TxtLocalidades" runat="server"></asp:TextBox>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:RequiredFieldValidator ID="RfvLocalidades" runat="server" ControlToValidate="TxtLocalidades">Ingrese</asp:RequiredFieldValidator>
+           <asp:RequiredFieldValidator ID="rfvlocalidades" runat="server" ControlToValidate="TxtLocalidades"></asp:RequiredFieldValidator>
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
