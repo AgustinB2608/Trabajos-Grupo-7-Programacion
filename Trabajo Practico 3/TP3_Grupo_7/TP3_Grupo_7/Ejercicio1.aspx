@@ -60,10 +60,6 @@
             <br />
 &nbsp; Localidades:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
             <asp:DropDownList ID="ddlLocalidades" runat="server" Height="17px" Width="147px" AppendDataBoundItems="True" AutoPostBack="True">
-                <asp:ListItem>Seleccione Localidad</asp:ListItem>
-                <asp:ListItem>Escobar</asp:ListItem>
-                <asp:ListItem>Capital Federal</asp:ListItem>
-                <asp:ListItem>Lujan</asp:ListItem>
             </asp:DropDownList>
             <br />
             <br />
