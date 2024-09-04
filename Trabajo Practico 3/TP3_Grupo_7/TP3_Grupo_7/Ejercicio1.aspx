@@ -43,6 +43,7 @@
             <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtNombreUsuario">*</asp:RequiredFieldValidator>
 &nbsp;<br />
 &nbsp; Contraseña:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="txtContraseña" runat="server" Width="140px" TextMode="Password"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtContraseña">Ingrese una contraseña</asp:RequiredFieldValidator>
             <br />
 &nbsp; Repetir Contraseña:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
             <asp:TextBox ID="txtRepetirContraseña" runat="server" Width="140px" TextMode="Password"></asp:TextBox>
@@ -50,6 +51,7 @@
             <br />
 &nbsp; Correo electrónico:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtCorreo" runat="server" Width="138px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreo">Ingrese un correo</asp:RequiredFieldValidator>
             <br />
 &nbsp; CP:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtCP" runat="server"></asp:TextBox>
@@ -58,7 +60,10 @@
             <br />
 &nbsp; Localidades:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
             <asp:DropDownList ID="ddlLocalidades" runat="server" Height="17px" Width="147px" AppendDataBoundItems="True" AutoPostBack="True">
-                <asp:ListItem></asp:ListItem>
+                <asp:ListItem>Seleccione Localidad</asp:ListItem>
+                <asp:ListItem>Escobar</asp:ListItem>
+                <asp:ListItem>Capital Federal</asp:ListItem>
+                <asp:ListItem>Lujan</asp:ListItem>
             </asp:DropDownList>
             <br />
             <br />
