@@ -44,5 +44,10 @@ namespace TP3_Grupo_7
                 args.IsValid = true; // La localidad no existe, es valida
             }
         }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            lblBienvenido.Text = "Bienvenido/a " + txtNombreUsuario.Text;
+        }
     }
 }

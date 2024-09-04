@@ -136,7 +136,8 @@
                     </div>
                     
                     <div class="form-boton">
-                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar Usuario" CssClass="form-boton" ValidationGroup="Usuarios" />
+                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar Usuario" CssClass="form-boton" OnClick="btnGuardar_Click" ValidationGroup="Usuarios" />
+                        <asp:Label ID="lblBienvenido" runat="server" Font-Bold="True"></asp:Label>
                     </div>
 
                 </div> <!-- Cierre de .form-grupo -->
