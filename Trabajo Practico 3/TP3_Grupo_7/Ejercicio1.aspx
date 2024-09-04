@@ -13,7 +13,7 @@
 
         .container {
             margin:20px;
-            width:50%;
+            width:64%;
             text-align: center;
         }
 
@@ -28,7 +28,6 @@
 
         /* Tamaño para los textbox */
         .textbox-tam {
-            width: 160px;
         }
 
         .container-usuarios {
@@ -38,7 +37,7 @@
         /* Estilos para el formulario de usuarios */
         .container2 {
             margin:20px;
-            width:50%;
+            width:61%;
             text-align: center;
         }
 
@@ -86,11 +85,11 @@
             <div class="container-localidades">
                 <asp:Label ID="Label1" runat="server" Text="Nombre de Localidad:"></asp:Label>&nbsp;&nbsp;
                 <asp:TextBox ID="TxtLocalidades" runat="server" CssClass="textbox-tam"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvlocalidades" runat="server" ControlToValidate="TxtLocalidades">*</asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revLocalidad" runat="server" ControlToValidate="TxtLocalidades" ValidationExpression="^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]+$">Ingreso un valor no permitido</asp:RegularExpressionValidator>
-                <asp:CustomValidator ID="cvLocalidad" runat="server" ControlToValidate="TxtLocalidades" OnServerValidate="cvLocalidad_ServerValidate">La localidad ya existe</asp:CustomValidator>
+                <asp:RequiredFieldValidator ID="rfvlocalidades" runat="server" ControlToValidate="TxtLocalidades" ErrorMessage="Ingrese localidad" ValidationGroup="Localidades"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revLocalidad" runat="server" ControlToValidate="TxtLocalidades" ValidationExpression="^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]+$" ValidationGroup="Localidades">Ingreso un valor no permitido</asp:RegularExpressionValidator>
+                <asp:CustomValidator ID="cvLocalidad" runat="server" ControlToValidate="TxtLocalidades" OnServerValidate="cvLocalidad_ServerValidate" ValidationGroup="Localidades">La localidad ya existe</asp:CustomValidator>
             </div>
-            <asp:Button ID="BtnGuardarLocalidad" runat="server" Text="Guardar Localidad" OnClick="BtnGuardarLocalidad_Click" Width="147px" />
+            <asp:Button ID="BtnGuardarLocalidad" runat="server" Text="Guardar Localidad" OnClick="BtnGuardarLocalidad_Click" Width="147px" ValidationGroup="Localidades" />
         </div>
 
         <div class="container2">        
@@ -102,40 +101,42 @@
                     <div class="form-fila">
                         <label for="txtNombreUsuario">Nombre de Usuario:</label>
                         <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="textbox-tam" />
-                        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtNombreUsuario" >*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtNombreUsuario" ValidationGroup="Usuarios" >*</asp:RequiredFieldValidator>
                     </div>
                     
                     <div class="form-fila">
                         <label for="txtContraseña">Contraseña:</label>
                         <asp:TextBox ID="txtContraseña" runat="server" CssClass="textbox-tam" TextMode="Password"/>
-                        <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtContraseña" >Ingrese una contraseña</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtContraseña" ValidationGroup="Usuarios" >Ingrese una contraseña</asp:RequiredFieldValidator>
                     </div>
                     
                     <div class="form-fila">
                         <label for="txtRepetirContraseña">Repetir Contraseña:</label>
                         <asp:TextBox ID="txtRepetirContraseña" runat="server" CssClass="textbox-tam" TextMode="Password" />
-                        <asp:CompareValidator ID="cvContraseña" runat="server" ControlToCompare="txtContraseña" ControlToValidate="txtRepetirContraseña" >*</asp:CompareValidator>
+                        <asp:CompareValidator ID="cvContraseña" runat="server" ControlToCompare="txtContraseña" ControlToValidate="txtRepetirContraseña" ValidationGroup="Usuarios" >*</asp:CompareValidator>
                     </div>
                     
                     <div class="form-fila">
                         <label for="txtCorreo">Correo electrónico:</label>
                         <asp:TextBox ID="txtCorreo" runat="server" CssClass="textbox-tam" />
-                        <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreo" >Ingrese un correo</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreo" ValidationGroup="Usuarios" >Ingrese un correo</asp:RequiredFieldValidator>
                     </div>
                     
                     <div class="form-fila">
                         <label for="txtCP">CP:</label>
                         <asp:TextBox ID="txtCP" runat="server" CssClass="textbox-tam" />
-                        <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP" ValidationExpression="^\d{4}$" >El CP ingresado no es válido.</asp:RegularExpressionValidator>
+                        <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP" ErrorMessage="*" ValidationGroup="Usuarios"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP" ValidationExpression="^\d{4}$" ValidationGroup="Usuarios" >El CP ingresado no es válido.</asp:RegularExpressionValidator>
                     </div>
                     
                     <div class="form-fila">
                         <label for="ddlLocalidades">Localidades:</label>
-                        <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="textbox-tam" AppendDataBoundItems="True" AutoPostBack="True"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="textbox-tam" AppendDataBoundItems="True" AutoPostBack="True" Height="27px" Width="178px"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvItems" runat="server" ControlToValidate="ddlLocalidades" ErrorMessage="*" ValidationGroup="Usuarios"></asp:RequiredFieldValidator>
                     </div>
                     
                     <div class="form-boton">
-                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar Usuario" CssClass="form-boton" />
+                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar Usuario" CssClass="form-boton" ValidationGroup="Usuarios" />
                     </div>
 
                 </div> <!-- Cierre de .form-grupo -->

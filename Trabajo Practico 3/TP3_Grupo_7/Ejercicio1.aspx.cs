@@ -14,18 +14,19 @@ namespace TP3_Grupo_7
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
         }
 
+      
         protected void BtnGuardarLocalidad_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
                 string localidad = TxtLocalidades.Text.Trim();
-                if (ddlLocalidades.Items.FindByText(localidad) == null)
-                {
+                
                     ddlLocalidades.Items.Add(new ListItem(localidad));
                     TxtLocalidades.Text = "";
-                }
+                
             }
         }
 
