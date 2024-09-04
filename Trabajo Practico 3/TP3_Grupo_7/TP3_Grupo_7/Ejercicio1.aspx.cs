@@ -18,9 +18,15 @@ namespace TP3_Grupo_7
 
         protected void BtnGuardarLocalidad_Click(object sender, EventArgs e)
         {
-            string Localidad = TxtLocalidades.Text;
-            ddlLocalidades.Items.Add(new ListItem(Localidad));
-            TxtLocalidades.Text = "";
+            if (Page.IsValid)
+            {
+                string localidad = TxtLocalidades.Text.Trim();
+                if (ddlLocalidades.Items.FindByText(localidad) == null)
+                {
+                    ddlLocalidades.Items.Add(new ListItem(localidad));
+                    TxtLocalidades.Text = "";
+                }
+            }
         }
 
         protected void cvLocalidad_ServerValidate(object source, ServerValidateEventArgs args)
