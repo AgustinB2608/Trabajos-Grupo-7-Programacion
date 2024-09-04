@@ -22,5 +22,20 @@ namespace TP3_Grupo_7
             ddlLocalidades.Items.Add(new ListItem(Localidad));
             TxtLocalidades.Text = "";
         }
+
+        protected void cvLocalidad_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string localidad = args.Value.Trim();
+
+            // Verifico si la localidad ya existe en el DropDownList
+            if (ddlLocalidades.Items.FindByText(localidad) != null)
+            {
+                args.IsValid = false; // La localidad ya existe
+            }
+            else
+            {
+                args.IsValid = true; // La localidad no existe, es valida
+            }
+        }
     }
 }
