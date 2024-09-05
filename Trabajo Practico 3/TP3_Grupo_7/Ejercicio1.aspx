@@ -144,7 +144,7 @@
 
             </div> <!-- Cierre de .container-usuarios -->
             <div class="btnIr">
-                <asp:Button ID="btnInicio" runat="server" Text="Ir a inicio aspx" />
+                <asp:Button ID="btnInicio" runat="server" Text="Ir a inicio aspx" OnClick="btnInicio_Click" />
             </div>
         </div> <!-- Cierre de .container2 -->
 
