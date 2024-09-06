@@ -101,7 +101,7 @@
                     <div class="form-fila">
                         <label for="txtNombreUsuario">Nombre de Usuario:</label>
                         <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="textbox-tam" />
-                        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtNombreUsuario" ValidationGroup="Usuarios" >*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtNombreUsuario" ValidationGroup="Usuarios" >Ingrese nombre de usuario</asp:RequiredFieldValidator>
                     </div>
                     
                     <div class="form-fila">
@@ -113,7 +113,8 @@
                     <div class="form-fila">
                         <label for="txtRepetirContraseña">Repetir Contraseña:</label>
                         <asp:TextBox ID="txtRepetirContraseña" runat="server" CssClass="textbox-tam" TextMode="Password" />
-                        <asp:CompareValidator ID="cvContraseña" runat="server" ControlToCompare="txtContraseña" ControlToValidate="txtRepetirContraseña" ValidationGroup="Usuarios" >*</asp:CompareValidator>
+                        <asp:CompareValidator ID="cvContraseña" runat="server" ControlToCompare="txtContraseña" ControlToValidate="txtRepetirContraseña" ValidationGroup="Usuarios" >Las contraseñas deben ser iguales</asp:CompareValidator>
+                    &nbsp;<asp:RequiredFieldValidator ID="rfvRepetir" runat="server" ControlToValidate="txtRepetirContraseña">Repita la contraseña</asp:RequiredFieldValidator>
                     </div>
                     
                     <div class="form-fila">
@@ -125,14 +126,14 @@
                     <div class="form-fila">
                         <label for="txtCP">CP:</label>
                         <asp:TextBox ID="txtCP" runat="server" CssClass="textbox-tam" />
-                        <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP" ErrorMessage="*" ValidationGroup="Usuarios"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP" ValidationGroup="Usuarios">Ingrese un codigo postal</asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP" ValidationExpression="^\d{4}$" ValidationGroup="Usuarios" >El CP ingresado no es válido.</asp:RegularExpressionValidator>
                     </div>
                     
                     <div class="form-fila">
                         <label for="ddlLocalidades">Localidades:</label>
                         <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="textbox-tam" AppendDataBoundItems="True" AutoPostBack="True" Height="27px" Width="178px"></asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvItems" runat="server" ControlToValidate="ddlLocalidades" ErrorMessage="*" ValidationGroup="Usuarios"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvItems" runat="server" ControlToValidate="ddlLocalidades" ValidationGroup="Usuarios">Seleccione una localidad</asp:RequiredFieldValidator>
                     </div>
                     
                     <div class="form-boton">

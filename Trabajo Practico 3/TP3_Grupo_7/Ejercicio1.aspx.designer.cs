@@ -132,6 +132,15 @@ namespace TP3_Grupo_7
         protected global::System.Web.UI.WebControls.CompareValidator cvContraseña;
 
         /// <summary>
+        /// Control rfvRepetir.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRepetir;
+
+        /// <summary>
         /// Control txtCorreo.
         /// </summary>
         /// <remarks>
