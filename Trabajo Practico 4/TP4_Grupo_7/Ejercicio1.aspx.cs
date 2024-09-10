@@ -6,33 +6,37 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.EnterpriseServices;
 
 
 namespace TP4_Grupo_7
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
+        private String ruta = "Data Source=localhost\\sqlexpress01;Initial Catalog=Viajes;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
             {
-                SqlConnection cn = new SqlConnection("Data Source=localhost\\sqlexpress;Initial Catalog=Viajes;Integrated Security=True");
+                CargarProvincias();
+            }
+        }
+        private void CargarProvincias()
+        {
+            SqlConnection cn = new SqlConnection(ruta);
+            cn.Open();
 
-                cn.Open();
+            SqlDataAdapter adapt = new SqlDataAdapter("Select IdProvincia, NombreProvincia From Provincias", cn);
 
-                SqlDataAdapter adapt = new SqlDataAdapter("Select * From Provincias", cn); 
+            DataSet ds = new DataSet();
+            adapt.Fill(ds, "TablaProvincias");
 
-                DataSet ds = new DataSet();
-                adapt.Fill(ds, "TablaProvincias");
-
-                ddlProvincias.DataSource = ds.Tables[0]; // 0 = TablaProvincias
-                ddlProvincias.DataTextField = "NombreProvincia";
-                ddlProvincias.DataValueField = "idProvincia";
-
-                ddlProvincias.DataBind();
-
-                cn.Close();
-            }   
+            ddlProvincias.DataSource = ds.Tables[0]; // 0 = TablaProvincias
+            ddlProvincias.DataTextField = "NombreProvincia";
+            ddlProvincias.DataValueField = "IdProvincia";
+            ddlProvincias.DataBind();
+            ddlProvincias.Items.Insert(0, new ListItem("--Seleccionar--"));
+            cn.Close();
         }
     }
 }
