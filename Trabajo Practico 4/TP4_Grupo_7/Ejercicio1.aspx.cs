@@ -36,6 +36,14 @@ namespace TP4_Grupo_7
             ddlProvincias.DataValueField = "IdProvincia";
             ddlProvincias.DataBind();
             ddlProvincias.Items.Insert(0, new ListItem("--Seleccionar--"));
+
+            ddlProvinciaFinal.DataSource = ds.Tables[0]; // 0 = TablaProvincias
+            ddlProvinciaFinal.DataTextField = "NombreProvincia";
+            ddlProvinciaFinal.DataValueField = "IdProvincia";
+            ddlProvinciaFinal.DataBind();
+            ddlProvinciaFinal.Items.Insert(0, new ListItem("--Seleccionar--"));
+
+
             cn.Close();
         }
 
@@ -66,5 +74,7 @@ namespace TP4_Grupo_7
                 
             }
         }
+
+     
     }
 }

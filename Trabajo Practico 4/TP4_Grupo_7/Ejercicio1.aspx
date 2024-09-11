@@ -26,9 +26,15 @@
             </asp:DropDownList>
             <br />
             <br />
-            <span class="auto-style1">Destino Final:<br />
+            <span class="auto-style1">DESTINO FINAL:<br />
             <br />
-            </span><strong>Provincia&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlProvinciaFinal" runat="server">
+            <br />
+            </span><strong>PROVINCIA:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlProvinciaFinal" runat="server" AutoPostBack="True">
+            </asp:DropDownList>
+            <br />
+            <br />
+            LOCALIDAD:&nbsp;&nbsp;
+            <asp:DropDownList ID="DropDownList1" runat="server">
             </asp:DropDownList>
             </strong>
         </div>
