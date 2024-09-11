@@ -18,11 +18,11 @@
             Destino inicial:<br />
             <br />
             Provincia:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlProvincias" runat="server">
+            <asp:DropDownList ID="ddlProvincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged">
             </asp:DropDownList>
             <br />
             Localidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlLocalidadesInicio" runat="server">
+            <asp:DropDownList ID="ddlLocalidadesInicio" runat="server" Height="16px" Width="123px">
             </asp:DropDownList>
             <br />
             <br />
