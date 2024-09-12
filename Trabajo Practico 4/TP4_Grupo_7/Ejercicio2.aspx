@@ -12,6 +12,9 @@
         <div>
             &nbsp;&nbsp;&nbsp; IdProducto:&nbsp;
             <asp:DropDownList ID="ddlProducto" runat="server">
+                <asp:ListItem>Igual a:</asp:ListItem>
+                <asp:ListItem>Mayor a:</asp:ListItem>
+                <asp:ListItem>Menor a:</asp:ListItem>
             </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtProducto" runat="server"></asp:TextBox>
@@ -19,6 +22,9 @@
             <br />
 &nbsp;&nbsp;&nbsp; IdCategoria:
             <asp:DropDownList ID="ddlCategoria"  runat="server" AutoPostBack="true">
+                <asp:ListItem>Igual a:</asp:ListItem>
+                <asp:ListItem>Mayor a:</asp:ListItem>
+                <asp:ListItem>Menor a:</asp:ListItem>
             </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtCategoria" runat="server"></asp:TextBox>

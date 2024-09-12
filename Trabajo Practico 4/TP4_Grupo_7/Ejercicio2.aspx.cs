@@ -22,19 +22,20 @@ namespace TP4_Grupo_7
         }
            private void CargarProducto()
             {
+            /*
                 SqlConnection cn = new SqlConnection(rutaNeptunoSQL);
                 cn.Open();
 
-                SqlDataAdapter adapt = new SqlDataAdapter("Select IdProducto, NombreProducto From ListaDeProductosActual", cn);
+                SqlDataAdapter adapt = new SqlDataAdapter("Select IdProducto, NombreProducto From Productos", cn);
                 DataSet ds = new DataSet();
-                adapt.Fill(ds, "Productos");
+                adapt.Fill(ds,"Productos");
 
             ddlProducto.DataSource = ds.Tables[0];
             ddlProducto.DataTextField = "NombreProducto";
             ddlProducto.DataValueField = "IdProducto";
             ddlProducto.DataBind();
             ddlProducto.Items.Insert(0, new ListItem("--Seleccionar--")); 
-
+            */
         }
         }
     }
