@@ -1,57 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.EnterpriseServices;
-
 
 namespace TP4_Grupo_7
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
-        //private String ruta = "Data Source=localhost\\sqlexpress;Initial Catalog=Viajes;Integrated Security=True";
         private String ruta = "Data Source=localhost\\SQLEXPRESS02;Initial Catalog=Viajes;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+            if (!IsPostBack)
             {
                 CargarProvincias();
             }
         }
+
         private void CargarProvincias()
         {
-            SqlConnection cn = new SqlConnection(ruta);
-            cn.Open();
+            using (SqlConnection cn = new SqlConnection(ruta))
+            {
+                cn.Open();
+                SqlDataAdapter adapt = new SqlDataAdapter("SELECT IdProvincia, NombreProvincia FROM Provincias", cn);
+                DataSet ds = new DataSet();
+                adapt.Fill(ds, "TablaProvincias");
 
-            SqlDataAdapter adapt = new SqlDataAdapter("Select IdProvincia, NombreProvincia From Provincias", cn);
+                ddlProvincias.DataSource = ds.Tables[0];
+                ddlProvincias.DataTextField = "NombreProvincia";
+                ddlProvincias.DataValueField = "IdProvincia";
+                ddlProvincias.DataBind();
+                ddlProvincias.Items.Insert(0, new ListItem("--Seleccionar--"));
 
-            DataSet ds = new DataSet();
-            adapt.Fill(ds, "TablaProvincias");
+                ddlProvinciaFinal.DataSource = ds.Tables[0];
+                ddlProvinciaFinal.DataTextField = "NombreProvincia";
+                ddlProvinciaFinal.DataValueField = "IdProvincia";
+                ddlProvinciaFinal.DataBind();
+                ddlProvinciaFinal.Items.Insert(0, new ListItem("--Seleccionar--"));
 
-            ddlProvincias.DataSource = ds.Tables[0]; // 0 = TablaProvincias
-            ddlProvincias.DataTextField = "NombreProvincia";
-            ddlProvincias.DataValueField = "IdProvincia";
-            ddlProvincias.DataBind();
-            ddlProvincias.Items.Insert(0, new ListItem("--Seleccionar--"));
+                // Guardamos la lista original de provincias en la sesión temporal
+                Session["Provincias"] = ds.Tables[0];
 
-            ddlProvinciaFinal.DataSource = ds.Tables[0]; // 0 = TablaProvincias
-            ddlProvinciaFinal.DataTextField = "NombreProvincia";
-            ddlProvinciaFinal.DataValueField = "IdProvincia";
-            ddlProvinciaFinal.DataBind();
-            ddlProvinciaFinal.Items.Insert(0, new ListItem("--Seleccionar--"));
-
-            // Guardamos la lista original de provincias en la sesión temporal //Nuevo
-            Session["Provincias"] = ds.Tables[0];
-
-            cn.Close();
+                cn.Close();//Podriamos no usar esto, ya que se cierra automaticamente al finalizar el using 
+            }
         }
 
+        protected void ddlProvincias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlProvincias.SelectedIndex > 0)
+            {
+                CargarLocalidadesPorProvincia(Convert.ToInt32(ddlProvincias.SelectedValue));
+                EliminarProvinciaSeleccionada();// Llamamos a la función para eliminar la provincia seleccionada de "Destino Final"
+            }
+        }
 
-        private void EliminarProvinciaSeleccionada()//Nuevo
+        private void EliminarProvinciaSeleccionada()
         {
             // Restauramos las opciones completas de provincias antes de eliminar
             DataTable provincias = (DataTable)Session["Provincias"];
@@ -71,22 +75,11 @@ namespace TP4_Grupo_7
             }
         }
 
-
-        protected void DdlProvincias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlProvincias.SelectedIndex > 0)
-            {
-                CargarLocalidadesPorProvincia(Convert.ToInt32(ddlProvincias.SelectedValue));
-                EliminarProvinciaSeleccionada(); // Llamamos a la funcion para eliminar la provincia seleccionada de "Destino Final"//Nuevo
-            }
-        }
-
         private void CargarLocalidadesPorProvincia(int idProvincia)
         {
             using (SqlConnection cn = new SqlConnection(ruta))
             {
                 cn.Open();
-                
                 SqlDataAdapter adapt = new SqlDataAdapter("SELECT IdLocalidad, NombreLocalidad FROM Localidades WHERE IdProvincia = @IdProvincia", cn);
                 adapt.SelectCommand.Parameters.AddWithValue("@IdProvincia", idProvincia);
 
@@ -97,10 +90,36 @@ namespace TP4_Grupo_7
                 ddlLocalidadesInicio.DataTextField = "NombreLocalidad";
                 ddlLocalidadesInicio.DataValueField = "IdLocalidad";
                 ddlLocalidadesInicio.DataBind();
-                
+                ddlLocalidadesInicio.Items.Insert(0, new ListItem("--Seleccionar--"));
             }
         }
 
-     
+        protected void ddlProvinciaFinal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlProvinciaFinal.SelectedIndex > 0)
+            {
+                CargarLocalidadesPorProvinciaFinal(Convert.ToInt32(ddlProvinciaFinal.SelectedValue));
+            }
+        }
+
+        private void CargarLocalidadesPorProvinciaFinal(int idProvincia)
+        {
+            using (SqlConnection cn = new SqlConnection(ruta))
+            {
+                cn.Open();
+                SqlDataAdapter adapt = new SqlDataAdapter("SELECT IdLocalidad, NombreLocalidad FROM Localidades WHERE IdProvincia = @IdProvincia", cn);
+                adapt.SelectCommand.Parameters.AddWithValue("@IdProvincia", idProvincia);
+
+                DataSet ds = new DataSet();
+                adapt.Fill(ds, "TablaLocalidades");
+
+                ddlLocalidadesFinal.Items.Clear();
+                ddlLocalidadesFinal.DataSource = ds.Tables[0];
+                ddlLocalidadesFinal.DataTextField = "NombreLocalidad";
+                ddlLocalidadesFinal.DataValueField = "IdLocalidad";
+                ddlLocalidadesFinal.DataBind();
+                ddlLocalidadesFinal.Items.Insert(0, new ListItem("--Seleccionar--"));
+            }
+        }
     }
 }
