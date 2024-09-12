@@ -13,7 +13,7 @@ namespace TP4_Grupo_7
 {
     public partial class Ejercicio2 : System.Web.UI.Page
     {
-        private String rutaNeptunoSQL = "Data Source=localhost\\sqlexpress01;Initial Catalog=Neptuno;Integrated Security=True";
+        private String rutaNeptunoSQL = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
