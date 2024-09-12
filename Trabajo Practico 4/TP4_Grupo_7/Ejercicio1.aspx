@@ -21,6 +21,9 @@
             width: 283px;
             height: 35px;
         }
+        .auto-style7 {
+            margin-left: 80px;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +73,14 @@
                 </tr>
             </table>
         </div>
+        <br />
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnConfirmar" runat="server" OnClick="Button1_Click" Text="Aceptar" />
+        <div class="auto-style7">
+            <asp:Label ID="lblMensaje" runat="server" Text="mensaje"></asp:Label>
+        </div>
+        <br />
     </form>
 </body>
 </html>
