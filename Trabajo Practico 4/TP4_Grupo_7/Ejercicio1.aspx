@@ -18,7 +18,7 @@
             Destino inicial:<br />
             <br />
             Provincia:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlProvincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged">
+            <asp:DropDownList ID="ddlProvincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlProvincias_SelectedIndexChanged">
             </asp:DropDownList>
             <br />
             Localidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
