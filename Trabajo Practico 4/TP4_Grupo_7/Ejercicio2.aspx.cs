@@ -58,5 +58,18 @@ namespace TP4_Grupo_7
                 }
             }
         }
+
+        protected void btnQuitar_Click(object sender, EventArgs e)
+        {
+                // Limpiao los campos
+                txtProducto.Text = "";
+                txtCategoria.Text = "";
+                ddlCategoria.SelectedIndex = 0;
+                ddlProducto.SelectedIndex = 0;
+
+                // cargamos prod
+                CargarProductos();
+            
+        }
     }
 }
