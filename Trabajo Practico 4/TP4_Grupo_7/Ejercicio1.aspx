@@ -10,34 +10,65 @@
         .auto-style1 {
             text-decoration: underline;
         }
+        .auto-style2 {
+            width: 47%;
+        }
+        .auto-style5 {
+            width: 153px;
+            height: 35px;
+        }
+        .auto-style6 {
+            width: 283px;
+            height: 35px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            Destino inicial:<br />
-            <br />
-            Provincia:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlProvincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged">
+            &nbsp;<table class="auto-style2">
+                <tr>
+                    <td class="auto-style5"><span class="auto-style1">DESTINO INICIO:</span></td>
+                    <td class="auto-style6"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style5"><strong>PROVINCIA:&nbsp;</strong></td>
+                    <td class="auto-style6">
+            <asp:DropDownList ID="ddlProvincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged" Height="19px">
             </asp:DropDownList>
-            <br />
-            Localidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlLocalidadesInicio" runat="server" Height="16px" Width="123px">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style5"><strong>LOCALIDAD:&nbsp;<br />
+            </strong>
+                    </td>
+                    <td class="auto-style6">
+            <asp:DropDownList ID="ddlLocalidadesInicio" runat="server" Height="19px" Width="111px">
             </asp:DropDownList>
-            <br />
-            <br />
-            <span class="auto-style1">DESTINO FINAL:<br />
-            <br />
-            <br />
-            </span><strong>PROVINCIA:&nbsp;&nbsp;&nbsp;&nbsp; 
-            <asp:DropDownList ID="ddlProvinciaFinal" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaFinal_SelectedIndexChanged">
-            </asp:DropDownList>
-            <br />
-            <br />
-            LOCALIDAD:&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlLocalidadesFinal" runat="server">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style5">
+            <span class="auto-style1">DESTINO FINAL:</span></td>
+                    <td class="auto-style6"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style5"><strong>PROVINCIA:</strong></td>
+                    <td class="auto-style6"><strong> 
+            <asp:DropDownList ID="ddlProvinciaFinal" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaFinal_SelectedIndexChanged" Height="19px">
             </asp:DropDownList>
             </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style5"><strong>LOCALIDAD:</strong></td>
+                    <td class="auto-style6"><strong>
+            <asp:DropDownList ID="ddlLocalidadesFinal" runat="server" Height="19px" Width="112px">
+            </asp:DropDownList>
+            </strong>
+                    </td>
+                </tr>
+            </table>
         </div>
     </form>
 </body>

@@ -8,8 +8,8 @@ namespace TP4_Grupo_7
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
-        //private String ruta = "Data Source = localhost\\sqlexpress;Initial Catalog = Viajes; Integrated Security = True";
-        private String ruta = "Data Source=localhost\\SQLEXPRESS02;Initial Catalog=Viajes;Integrated Security=True";
+        private String ruta = "Data Source = localhost\\sqlexpress;Initial Catalog = Viajes; Integrated Security = True";
+        //private String ruta = "Data Source=localhost\\SQLEXPRESS02;Initial Catalog=Viajes;Integrated Security=True";
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -34,12 +34,14 @@ namespace TP4_Grupo_7
                 ddlProvincias.DataValueField = "IdProvincia";
                 ddlProvincias.DataBind();
                 ddlProvincias.Items.Insert(0, new ListItem("--Seleccionar--"));
+                ddlLocalidadesInicio.Items.Insert(0, new ListItem("--Seleccionar--"));
 
                 ddlProvinciaFinal.DataSource = ds.Tables[0];
                 ddlProvinciaFinal.DataTextField = "NombreProvincia";
                 ddlProvinciaFinal.DataValueField = "IdProvincia";
                 ddlProvinciaFinal.DataBind();
                 ddlProvinciaFinal.Items.Insert(0, new ListItem("--Seleccionar--"));
+                ddlLocalidadesFinal.Items.Insert(0, new ListItem("--Seleccionar--"));
 
                 // Guardamos la lista original de provincias en la sesión temporal
                 Session["Provincias"] = ds.Tables[0];
