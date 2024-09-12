@@ -29,12 +29,12 @@
             <span class="auto-style1">DESTINO FINAL:<br />
             <br />
             <br />
-            </span><strong>PROVINCIA:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlProvinciaFinal" runat="server" AutoPostBack="True">
+            </span><strong>PROVINCIA:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlProvinciaFinal" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLocalidadesFinal_SelectedIndexChanged">
             </asp:DropDownList>
             <br />
             <br />
             LOCALIDAD:&nbsp;&nbsp;
-            <asp:DropDownList ID="DropDownList1" runat="server">
+            <asp:DropDownList ID="ddlLocalidadesFinal" runat="server">
             </asp:DropDownList>
             </strong>
         </div>
