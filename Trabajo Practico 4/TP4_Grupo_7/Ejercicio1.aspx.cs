@@ -8,7 +8,9 @@ namespace TP4_Grupo_7
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
+        //private String ruta = "Data Source = localhost\\sqlexpress;Initial Catalog = Viajes; Integrated Security = True";
         private String ruta = "Data Source=localhost\\SQLEXPRESS02;Initial Catalog=Viajes;Integrated Security=True";
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
