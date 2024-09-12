@@ -13,7 +13,7 @@ namespace TP4_Grupo_7
 {
     public partial class Ejercicio2 : System.Web.UI.Page
     {
-        private String rutaNeptunoSQL = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
+        private String rutaNeptunoSQL = "Data Source=localhost\\sqlexpress01;Initial Catalog=Neptuno;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -30,9 +30,33 @@ namespace TP4_Grupo_7
 
             SqlDataReader dr = cmd.ExecuteReader();
 
-            GvProductos.DataSource =dr;
+            GvProductos.DataSource = dr;
             GvProductos.DataBind();
+           }
 
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            SqlConnection cn = new SqlConnection(rutaNeptunoSQL);
+            cn.Open();
+
+            string consulta = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos ";
+
+            string idProducto = txtProducto.Text;
+            string filtroProducto = ddlProducto.SelectedValue;
+
+            // Si se ingresa valor al textbox de producto lo filtro
+            if (!string.IsNullOrEmpty(idProducto))
+            {
+                switch (filtroProducto)
+                {
+                    case "1":  // Igual a
+                        consulta += " AND IdProducto = @IdProducto";
+                        break;
+                    case "2":  // Mayor a
+                        consulta += " AND IdProducto > @IdProducto";
+                        break;
+                }
+            }
         }
     }
-    }
+}
