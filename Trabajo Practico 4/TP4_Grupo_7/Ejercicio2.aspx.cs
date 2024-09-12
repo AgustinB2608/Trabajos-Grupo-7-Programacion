@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace TP4_Grupo_7
 {
     public partial class Ejercicio2 : System.Web.UI.Page
@@ -17,25 +18,21 @@ namespace TP4_Grupo_7
         {
             if (IsPostBack == false)
             {
-                CargarProducto();
+                CargarProductos();
             }
         }
-           private void CargarProducto()
-            {
-            /*
-                SqlConnection cn = new SqlConnection(rutaNeptunoSQL);
-                cn.Open();
+           private void CargarProductos()
+           { 
+            SqlConnection cn = new SqlConnection(rutaNeptunoSQL);
+            cn.Open();
+            
+            SqlCommand cmd = new SqlCommand("Select * From Productos", cn);
 
-                SqlDataAdapter adapt = new SqlDataAdapter("Select IdProducto, NombreProducto From Productos", cn);
-                DataSet ds = new DataSet();
-                adapt.Fill(ds,"Productos");
+            SqlDataReader dr = cmd.ExecuteReader();
 
-            ddlProducto.DataSource = ds.Tables[0];
-            ddlProducto.DataTextField = "NombreProducto";
-            ddlProducto.DataValueField = "IdProducto";
-            ddlProducto.DataBind();
-            ddlProducto.Items.Insert(0, new ListItem("--Seleccionar--")); 
-            */
+            GvProductos.DataSource =dr;
+            GvProductos.DataBind();
+
         }
-        }
+    }
     }
