@@ -14,7 +14,7 @@
             </asp:DropDownList>
         </p>
         <p>
-            &nbsp;&nbsp;&nbsp; &nbsp;<asp:LinkButton ID="lnkVerLibros" runat="server">Ver Libros</asp:LinkButton>
+            &nbsp;&nbsp;&nbsp; &nbsp;<asp:LinkButton ID="lnkVerLibros" runat="server" OnClick="lnkVerLibros_Click">Ver Libros</asp:LinkButton>
         </p>
     </form>
 </body>

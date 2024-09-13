@@ -50,13 +50,21 @@ namespace TP4_Grupo_7
                 switch (filtroProducto)
                 {
                     case "1":  // Igual a
-                        consulta += " AND IdProducto = @IdProducto";
+                        consulta += " AND idProducto = @IdProducto";
                         break;
                     case "2":  // Mayor a
-                        consulta += " AND IdProducto > @IdProducto";
+                        consulta += " AND idProducto > @IdProducto";
+                        break;
+                    case "3": // Menor a
+                        consulta += " AND idProducto < @IdProducto";
                         break;
                 }
+       
+                    GvProductos.DataSource = consulta;
+                    GvProductos.DataBind();
             }
+           
+            
         }
 
         protected void btnQuitar_Click(object sender, EventArgs e)

@@ -28,6 +28,21 @@ namespace TP4_Grupo_7
             SqlCommand cmd = new SqlCommand("SELECT IdTema, Tema FROM Temas", cn);
 
             SqlDataReader dr = cmd.ExecuteReader();
+          
+            
+            while (dr.Read())
+            {
+                string id = dr["IdTema"].ToString();
+                string nombre = dr["Tema"].ToString();
+                ddlTemas.Items.Add(new ListItem(nombre, id));
+            }
+
+        }
+
+        protected void lnkVerLibros_Click(object sender, EventArgs e)
+        {
+            
         }
     }
+
 }
