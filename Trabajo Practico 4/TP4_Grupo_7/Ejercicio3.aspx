@@ -10,8 +10,11 @@
 <body>
     <form id="form1" runat="server">
         <p>
-            &nbsp;&nbsp;&nbsp;&nbsp; Seleccionar Tema:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="DropDownList1" runat="server">
+            &nbsp;&nbsp;&nbsp;&nbsp; Seleccionar Tema:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="ddlTemas" runat="server">
             </asp:DropDownList>
+        </p>
+        <p>
+            &nbsp;&nbsp;&nbsp; &nbsp;<asp:LinkButton ID="lnkVerLibros" runat="server">Ver Libros</asp:LinkButton>
         </p>
     </form>
 </body>

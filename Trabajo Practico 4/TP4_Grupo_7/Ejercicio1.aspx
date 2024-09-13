@@ -21,10 +21,7 @@
             width: 283px;
             height: 35px;
         }
-        .auto-style7 {
-            margin-left: 80px;
-        }
-    </style>
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -71,15 +68,14 @@
             </strong>
                     </td>
                 </tr>
+            <tr>
+                <td class="auto-style5"></td>
+                <td><asp:Button ID="btnConfirmar" runat="server"  Text="Confirmar Viaje" OnClick="btnConfirmar_Click" />&nbsp; <asp:Label ID="lblMensaje" runat="server"></asp:Label></td>
+            </tr>
             </table>
         </div>
         <br />
-        <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnConfirmar" runat="server" OnClick="Button1_Click" Text="Aceptar" />
-        <div class="auto-style7">
-            <asp:Label ID="lblMensaje" runat="server" Text="mensaje"></asp:Label>
-        </div>
+        <br />      
         <br />
     </form>
 </body>
