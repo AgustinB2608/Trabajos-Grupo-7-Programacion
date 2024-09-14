@@ -1,82 +1,77 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Ejercicio1.aspx.cs" Inherits="TP4_Grupo_7.Ejercicio1" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            text-decoration: underline;
+    <title>Ejercicio 1</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
         }
-        .auto-style2 {
-            width: 47%;
+
+        .contenedor {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 20px;
         }
-        .auto-style5 {
-            width: 153px;
-            height: 35px;
+
+        .seccion {
+            margin-bottom: 20px;
         }
-        .auto-style6 {
-            width: 283px;
-            height: 35px;
+
+        .titulo-seccion {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
         }
-        </style>
+
+        .form-grupo {
+            margin-bottom: 10px;
+        }
+
+        .form-etiqueta {
+            display: inline-block;
+            width: 100px;
+        }
+
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            &nbsp;<table class="auto-style2">
-                <tr>
-                    <td class="auto-style5"><span class="auto-style1">DESTINO INICIO:</span></td>
-                    <td class="auto-style6"></td>
-                </tr>
-                <tr>
-                    <td class="auto-style5"><strong>PROVINCIA:&nbsp;</strong></td>
-                    <td class="auto-style6">
-            <asp:DropDownList ID="ddlProvincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged" Height="19px">
-            </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style5"><strong>LOCALIDAD:&nbsp;<br />
-            </strong>
-                    </td>
-                    <td class="auto-style6">
-            <asp:DropDownList ID="ddlLocalidadesInicio" runat="server" Height="19px" Width="111px">
-            </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style5">
-            <span class="auto-style1">DESTINO FINAL:</span></td>
-                    <td class="auto-style6"></td>
-                </tr>
-                <tr>
-                    <td class="auto-style5"><strong>PROVINCIA:</strong></td>
-                    <td class="auto-style6"><strong> 
-            <asp:DropDownList ID="ddlProvinciaFinal" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaFinal_SelectedIndexChanged" Height="19px">
-            </asp:DropDownList>
-            </strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style5"><strong>LOCALIDAD:</strong></td>
-                    <td class="auto-style6"><strong>
-            <asp:DropDownList ID="ddlLocalidadesFinal" runat="server" Height="19px" Width="112px">
-            </asp:DropDownList>
-            </strong>
-                    </td>
-                </tr>
-            <tr>
-                <td class="auto-style5"></td>
-                <td><asp:Button ID="btnConfirmar" runat="server"  Text="Confirmar Viaje" OnClick="btnConfirmar_Click" />&nbsp; <asp:Label ID="lblMensaje" runat="server"></asp:Label></td>
-            </tr>
-            </table>
+        <div class="contenedor">
+            <div class="seccion">
+                <span class="titulo-seccion">DESTINO INICIO:</span>
+                <div class="form-grupo">
+                    <label class="form-etiqueta">PROVINCIA:</label>
+                    <asp:DropDownList ID="ddlProvincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged"></asp:DropDownList>
+                </div>
+                <div class="form-grupo">
+                    <label class="form-etiqueta">LOCALIDAD:</label>
+                    <asp:DropDownList ID="ddlLocalidadesInicio" runat="server"></asp:DropDownList>
+                </div>
+            </div>
+
+            <div class="seccion">
+                <span class="titulo-seccion">DESTINO FINAL:</span>
+                <div class="form-grupo">
+                    <label class="form-etiqueta">PROVINCIA:</label>
+                    <asp:DropDownList ID="ddlProvinciaFinal" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaFinal_SelectedIndexChanged"></asp:DropDownList>
+                </div>
+                <div class="form-grupo">
+                    <label class="form-etiqueta">LOCALIDAD:</label>
+                    <asp:DropDownList ID="ddlLocalidadesFinal" runat="server"></asp:DropDownList>
+                </div>
+            </div>
+
+            <div class="form-grupo">
+                <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar Viaje" OnClick="btnConfirmar_Click" />
+                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+            </div>
         </div>
-        <br />
-        <br />      
-        <br />
     </form>
 </body>
 </html>

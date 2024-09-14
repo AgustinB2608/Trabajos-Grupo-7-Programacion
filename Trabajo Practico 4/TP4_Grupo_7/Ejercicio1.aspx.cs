@@ -8,8 +8,8 @@ namespace TP4_Grupo_7
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
-        private String ruta = "Data Source = localhost\\sqlexpress01;Initial Catalog = Viajes; Integrated Security = True";
-        //private String ruta = "Data Source=localhost\\SQLEXPRESS02;Initial Catalog=Viajes;Integrated Security=True";
+        //private String ruta = "Data Source = localhost\\sqlexpress01;Initial Catalog = Viajes; Integrated Security = True";
+        private String ruta = "Data Source=localhost\\SQLEXPRESS02;Initial Catalog=Viajes;Integrated Security=True";
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -128,7 +128,22 @@ namespace TP4_Grupo_7
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
-            lblMensaje.Text = "VIAJE CONFIRMADO";
+            // Todas las opciones tienen q estar seleccionadas para confirmar el viaje
+            if (ddlProvincias.SelectedIndex == 0 ||
+                ddlLocalidadesInicio.SelectedIndex == 0 ||
+                ddlProvinciaFinal.SelectedIndex == 0 ||
+                ddlLocalidadesFinal.SelectedIndex == 0)
+            {
+                lblMensaje.Text = "Error: Debe seleccionar todas las opciones.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red; 
+            }
+            else
+            {
+                // Si se selecciono todas las opciones lo confirma
+                lblMensaje.Text = "VIAJE CONFIRMADO";
+                lblMensaje.ForeColor = System.Drawing.Color.Green; 
+            }
         }
+
     }
 }
