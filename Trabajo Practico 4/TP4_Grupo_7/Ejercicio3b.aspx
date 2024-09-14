@@ -13,6 +13,10 @@
         </div>
         <asp:GridView ID="GrdLibros" runat="server">
         </asp:GridView>
+        <br />
+        <br />
+        <asp:LinkButton ID="lkbVolver" runat="server" OnClick="lkbVolver_Click">Consultar otro Tema</asp:LinkButton>
+        <br />
     </form>
 </body>
 </html>

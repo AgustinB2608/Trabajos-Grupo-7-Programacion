@@ -13,5 +13,10 @@ namespace TP4_Grupo_7
         {
 
         }
+
+        protected void lkbVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ejercicio3.aspx");
+        }
     }
 }
