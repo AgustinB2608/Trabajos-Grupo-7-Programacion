@@ -14,14 +14,7 @@ namespace TP4_Grupo_7
             if (!IsPostBack)
             {
                 string IdTema = Request.QueryString["IdTema"];
-                if (!string.IsNullOrEmpty(IdTema))
-                {
-                    MostrarLibros(IdTema);
-                }
-                else
-                {
-                    Response.Write("No se ha seleccionado ningun tema.");
-                }
+                MostrarLibros(IdTema);
             }
         }
         private void MostrarLibros(string IdTema) { 
