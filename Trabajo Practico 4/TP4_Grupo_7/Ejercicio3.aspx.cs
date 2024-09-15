@@ -10,7 +10,7 @@ namespace TP4_Grupo_7
 {
     public partial class Ejercicio3 : System.Web.UI.Page
     {
-        private String ruta = "Data Source=localhost\\sqlexpress;Initial Catalog=Libreria;Integrated Security=True";
+        private String ruta = "Data Source=localhost\\sqlexpress01;Initial Catalog=Libreria;Integrated Security=True";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,7 +41,8 @@ namespace TP4_Grupo_7
 
         protected void lnkVerLibros_Click(object sender, EventArgs e)
         {
-            
+            string temaSeleccionado = ddlTemas.SelectedValue;
+            Response.Redirect($"Ejercicio3b.aspx?IdTema={temaSeleccionado}");
         }
     }
 
