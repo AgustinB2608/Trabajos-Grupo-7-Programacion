@@ -36,13 +36,17 @@ namespace TP4_Grupo_7
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
+          
             SqlConnection cn = new SqlConnection(rutaNeptunoSQL);
             cn.Open();
 
-            string consulta = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos ";
-
             string idProducto = txtProducto.Text;
             string filtroProducto = ddlProducto.SelectedValue;
+
+            string idCategoria = txtCategoria.Text;
+            string filtroCategoria = ddlCategoria.SelectedValue;
+
+            string consulta = "SELECT * FROM Productos WHERE 1=1"; // 1=1 para simplificar
 
             // Si se ingresa valor al textbox de producto lo filtro
             if (!string.IsNullOrEmpty(idProducto))
@@ -50,22 +54,50 @@ namespace TP4_Grupo_7
                 switch (filtroProducto)
                 {
                     case "1":  // Igual a
-                        consulta += " AND idProducto = @IdProducto";
+                        consulta += " AND IdProducto = @IdProducto";
                         break;
                     case "2":  // Mayor a
-                        consulta += " AND idProducto > @IdProducto";
+                        consulta += " AND IdProducto > @IdProducto";
                         break;
-                    case "3": // Menor a
-                        consulta += " AND idProducto < @IdProducto";
+                    case "3":  // Menor a
+                        consulta += " AND IdProducto < @IdProducto";
                         break;
                 }
-       
-                    GvProductos.DataSource = consulta;
-                    GvProductos.DataBind();
             }
-           
-            
+
+            // Si se ingresa valor al textbox de categoria lo filtro
+            if (!string.IsNullOrEmpty(idCategoria))
+            {
+                switch (filtroCategoria)
+                {
+                    case "1":  // Igual a
+                        consulta += " AND IdCategoría = @IdCategoría";
+                        break;
+                    case "2":  // Mayor a
+                        consulta += " AND IdCategoría > @IdCategoría";
+                        break;
+                    case "3":  // Menor a
+                        consulta += " AND IdCategoría < @IdCategoría";
+                        break;
+                }
+            }
+
+            SqlDataAdapter cmd = new SqlDataAdapter(consulta, cn);
+            if (!string.IsNullOrEmpty(idProducto))
+            {
+                cmd.SelectCommand.Parameters.AddWithValue("@IdProducto", idProducto);
+            }
+            if (!string.IsNullOrEmpty(idCategoria))
+            {
+                cmd.SelectCommand.Parameters.AddWithValue("@IdCategoría", idCategoria);
+            }    
+
+            cn.Close();
+
         }
+
+
+
 
         protected void btnQuitar_Click(object sender, EventArgs e)
         {
