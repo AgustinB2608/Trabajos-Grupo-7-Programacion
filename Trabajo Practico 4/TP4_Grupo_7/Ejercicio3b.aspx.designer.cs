@@ -24,13 +24,22 @@ namespace TP4_Grupo_7
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control GrdLibros.
+        /// Control lblListado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GrdLibros;
+        protected global::System.Web.UI.WebControls.Label lblListado;
+
+        /// <summary>
+        /// Control GvLibros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GvLibros;
 
         /// <summary>
         /// Control lkbVolver.
