@@ -10,8 +10,11 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="lblListado" runat="server" Font-Bold="True" Font-Size="Large" Text="Listado de libros:"></asp:Label>
+            <br />
+            <br />
         </div>
-        <asp:GridView ID="GrdLibros" runat="server">
+        <asp:GridView ID="GvLibros" runat="server">
         </asp:GridView>
         <br />
         <br />

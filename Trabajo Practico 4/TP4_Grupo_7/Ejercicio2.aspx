@@ -17,9 +17,9 @@
         <div>
             &nbsp;&nbsp;&nbsp; IdProducto:&nbsp;
             <asp:DropDownList ID="ddlProducto" runat="server">
-                <asp:ListItem>Igual a:</asp:ListItem>
-                <asp:ListItem>Mayor a:</asp:ListItem>
-                <asp:ListItem>Menor a:</asp:ListItem>
+                <asp:ListItem Value="1">Igual a:</asp:ListItem>
+                <asp:ListItem Value="2">Mayor a:</asp:ListItem>
+                <asp:ListItem Value="3">Menor a:</asp:ListItem>
             </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtProducto" runat="server" CssClass="auto-style1" Height="19px" Width="250px"></asp:TextBox>
@@ -27,9 +27,9 @@
             <br />
 &nbsp;&nbsp;&nbsp; IdCategoria:
             <asp:DropDownList ID="ddlCategoria"  runat="server" AutoPostBack="true">
-                <asp:ListItem>Igual a:</asp:ListItem>
-                <asp:ListItem>Mayor a:</asp:ListItem>
-                <asp:ListItem>Menor a:</asp:ListItem>
+                <asp:ListItem Value="1">Igual a:</asp:ListItem>
+                <asp:ListItem Value="2">Mayor a:</asp:ListItem>
+                <asp:ListItem Value="3">Menor a:</asp:ListItem>
             </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtCategoria" runat="server" Height="19px" Width="250px"></asp:TextBox>

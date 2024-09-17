@@ -41,7 +41,8 @@ namespace TP4_Grupo_7
 
         protected void lnkVerLibros_Click(object sender, EventArgs e)
         {
-            
+            string temaSeleccionado = ddlTemas.SelectedValue;
+            Response.Redirect($"Ejercicio3b.aspx?IdTema={temaSeleccionado}");
         }
     }
 
