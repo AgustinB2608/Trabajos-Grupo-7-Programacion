@@ -50,6 +50,7 @@
                 <td class="auto-style6">Nombre Sucursal:</td>
                 <td>
                     <asp:TextBox ID="TxtSucursal" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvNombreSucursal" runat="server" ControlToValidate="TxtSucursal" ErrorMessage="RequiredFieldValidator">Nombre ingresado inválido</asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
