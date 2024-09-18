@@ -22,6 +22,7 @@ namespace TP4_Grupo_7
                 
             }
         }
+
         private void CargarProductos()
         {
             using (SqlConnection cn = new SqlConnection(rutaNeptunoSQL))
@@ -47,10 +48,10 @@ namespace TP4_Grupo_7
             string idCategoria = txtCategoria.Text;
             string filtroCategoria = ddlCategoria.SelectedValue;
 
-            // Ajustar consulta para solo seleccionar columnas necesarias
+            // Ajuste la consulta para solo seleccionar columnas necesarias
             string consulta = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos WHERE 1=1"; 
 
-            // Añadir filtros a la consulta según los valores ingresados
+            // Añadi filtros a la consulta según los valores ingresados
             if (!string.IsNullOrEmpty(idProducto))
             {
                 switch (filtroProducto)
@@ -112,9 +113,6 @@ namespace TP4_Grupo_7
             txtCategoria.Text = "";
         }
 
-
-
-
         protected void btnQuitar_Click(object sender, EventArgs e)
         {
                 // Limpiao los campos
@@ -125,8 +123,6 @@ namespace TP4_Grupo_7
 
                 // cargamos prod
                 CargarProductos();
-            
         }
-
     }
 }
