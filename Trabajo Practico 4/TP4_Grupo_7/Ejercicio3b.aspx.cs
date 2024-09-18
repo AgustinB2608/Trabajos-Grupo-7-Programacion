@@ -10,30 +10,39 @@ namespace TP4_Grupo_7
 {
     public partial class Ejercicio3b : System.Web.UI.Page
     {
-        private String rutaLibreriaSQL = "Data Source=localhost\\sqlexpress;Initial Catalog=Libreria;Integrated Security=True";
+        private string ruta = "Data Source=localhost\\SQLEXPRESS02;Initial Catalog=Libreria;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string IdTema = Request.QueryString["IdTema"];
-                MostrarLibros(IdTema);
+                string idTema = Request.QueryString["IdTema"];
+                if (!string.IsNullOrEmpty(idTema))
+                {
+                    CargarLibros(idTema);
+                }
             }
         }
-        private void MostrarLibros(string IdTema) {
-            SqlConnection cn = new SqlConnection(rutaLibreriaSQL);
-            cn.Open();
 
-            string consulta = "SELECT * FROM Libros";
+        private void CargarLibros(string idTema)
+        {
+            using (SqlConnection cn = new SqlConnection(ruta))
+            {
+                cn.Open();
 
-            SqlCommand cmd = new SqlCommand(consulta, cn);
+                // modifico la consulta para los valores del pdf
+                SqlCommand cmd = new SqlCommand("SELECT IdLibro, IdTema, Titulo, Precio, Autor FROM Libros WHERE IdTema = @IdTema", cn);
+                cmd.Parameters.AddWithValue("@IdTema", idTema);
 
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            GvLibros.DataSource = dr;
-            GvLibros.DataBind();
+                SqlDataReader dr = cmd.ExecuteReader();
+                GvLibros.DataSource = dr;
+                GvLibros.DataBind();
+            }
         }
+
         protected void lkbVolver_Click(object sender, EventArgs e)
         {
+            //Boton para volver a la pagina anterior y elegir otro tema si se quisiera
             Response.Redirect("Ejercicio3.aspx");
         }
     }

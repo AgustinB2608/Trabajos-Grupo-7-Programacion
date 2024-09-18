@@ -10,7 +10,7 @@ namespace TP4_Grupo_7
 {
     public partial class Ejercicio3 : System.Web.UI.Page
     {
-        private String ruta = "Data Source=localhost\\sqlexpress;Initial Catalog=Libreria;Integrated Security=True";
+        private String ruta = "Data Source=localhost\\SQLEXPRESS02;Initial Catalog=Libreria;Integrated Security=True";
 
         protected void Page_Load(object sender, EventArgs e)
         {
