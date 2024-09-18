@@ -79,6 +79,7 @@
     <Compile Include="AgregarSucursal.aspx.designer.cs">
       <DependentUpon>AgregarSucursal.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Conexion.cs" />
     <Compile Include="ListadoSucursales.aspx.cs">
       <DependentUpon>ListadoSucursales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
