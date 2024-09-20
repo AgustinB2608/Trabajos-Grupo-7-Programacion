@@ -27,6 +27,7 @@
             <br />
             Búsqueda ingrese id sucursal&nbsp;
             <asp:TextBox ID="txtSucursal" runat="server"></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Filtrar" />
             <br />
             <br />
             <asp:GridView ID="grvSucursales" runat="server">
