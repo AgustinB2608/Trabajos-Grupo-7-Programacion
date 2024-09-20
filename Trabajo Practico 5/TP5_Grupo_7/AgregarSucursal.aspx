@@ -71,7 +71,7 @@
             <tr>
                 <td class="auto-style6">Provincia:</td>
                 <td>
-                    <asp:DropDownList ID="DdlProvincia" runat="server">
+                    <asp:DropDownList ID="ddlProvincia" runat="server">
                         <asp:ListItem>--Seleccionar--</asp:ListItem>
                     </asp:DropDownList>
                 </td>

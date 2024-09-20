@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,23 @@ namespace TP5_Grupo_7
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                CargarProvincia();
+            }
+        }
 
+        private void CargarProvincia()
+        {
+            Conexion cargaProvincia = new Conexion();
+            DataTable dtProvincias = cargaProvincia.EjecutarConsulta("SELECT Id_Provincia, DescripcionProvincia FROM Provincia");
+            {
+                ddlProvincia.DataSource = dtProvincias;
+                ddlProvincia.DataTextField = "DescripcionProvincia";
+                ddlProvincia.DataValueField = "Id_Provincia";
+                ddlProvincia.DataBind();
+                ddlProvincia.Items.Insert(0, new ListItem("--Selecciona una provincia--", ""));
+            }
         }
     }
 }
