@@ -6,6 +6,16 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+<style>
+    #hyperlinks {
+    text-align: center;
+    }
+
+    #hyperlinks a {
+        display: inline-block;
+        margin: 0 15px;
+    }
+</style>
 </head>
 <body>
     <form id="form1" runat="server">
