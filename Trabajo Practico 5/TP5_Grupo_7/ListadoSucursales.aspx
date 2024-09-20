@@ -9,7 +9,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <div id="hyperlinks">
+            <asp:HyperLink ID="hplAgregarSucursal" runat="server" NavigateUrl="AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
+            <asp:HyperLink ID="hplListarSucursales" runat="server" NavigateUrl="ListadoSucursales.aspx">Listado de sucursales</asp:HyperLink>
+        </div>
         <div>
+            <br />
+            Búsqueda ingrese id sucursal&nbsp;
+            <asp:TextBox ID="txtSucursal" runat="server"></asp:TextBox>
+            <br />
             <br />
             <asp:GridView ID="grvSucursales" runat="server">
             </asp:GridView>
