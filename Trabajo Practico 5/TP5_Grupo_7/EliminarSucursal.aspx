@@ -23,7 +23,7 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td>&nbsp;</td>
+                    <td><strong>ELIMINAR SUCURSAL</strong></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -32,7 +32,7 @@
                     <td class="auto-style3">&nbsp;Ingresar ID sucursal:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
 &nbsp;&nbsp;
-                        <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style2" OnClick="Button1_Click" Text="button" />
+                        <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style2" OnClick="Button1_Click" Text="Eliminar" />
 &nbsp; </td>
                 </tr>
                 <tr>
