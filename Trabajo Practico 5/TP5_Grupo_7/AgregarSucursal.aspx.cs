@@ -31,11 +31,35 @@ namespace TP5_Grupo_7
             }
         }
 
+
         protected void BtnAceptar_Click(object sender, EventArgs e)
         {
-            string consulta = "INSERT INTO Sucursal(IdSucursal, NombreSucursal, DescripcionSucursal, IdProvinciaSucursal, DireccionSucursal) VALUES ('"+ TxtSucursal.Text +" , '"+ TxtDescripcion.Text +"' ,'"+ TxtDireccion.Text +"');";
+            
+            string nombreSucursal = TxtSucursal.Text.Replace("'", "''");
+            string descripcionSucursal = TxtDescripcion.Text.Replace("'", "''");
+            string direccionSucursal = TxtDireccion.Text.Replace("'", "''");
+            string idProvinciaSucursal = ddlProvincia.SelectedValue;
+
+            
+            string consulta = "INSERT INTO Sucursal (NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal) " +
+                              "VALUES ('" + nombreSucursal + "', '" + descripcionSucursal + "', '" + idProvinciaSucursal + "', '" + direccionSucursal + "')";
+
+            // Ejecutar el comando
             Conexion conex = new Conexion();
-            conex.EjecutarComando(consulta);
+            bool resultado = conex.EjecutarComando(consulta); 
+
+            //verificacion
+
+                if (resultado)
+                {
+                    lblMensaje.Text = "Sucursal agregada exitosamente.";
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al agregar la sucursal.";
+                }
+            }
+
+
         }
     }
-}

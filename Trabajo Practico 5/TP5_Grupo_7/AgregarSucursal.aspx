@@ -35,6 +35,9 @@
             display: inline-block;
             margin: 0 15px;
         }
+        .auto-style7 {
+            margin-left: 200px;
+        }
     </style>
 </head>
 <body>
@@ -86,8 +89,22 @@
             </tr>
             <tr>
                 <td class="auto-style6">&nbsp;</td>
-                <td>
+                <td class="auto-style7">
                     <asp:Button ID="BtnAceptar" runat="server" Text="Guardar" OnClick="BtnAceptar_Click" />
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style7">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style7">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </td>
             </tr>
         </table>
