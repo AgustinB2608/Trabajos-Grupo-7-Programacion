@@ -30,5 +30,12 @@ namespace TP5_Grupo_7
                 ddlProvincia.Items.Insert(0, new ListItem("--Selecciona una provincia--", ""));
             }
         }
+
+        protected void BtnAceptar_Click(object sender, EventArgs e)
+        {
+            string consulta = "INSERT INTO Sucursal(IdSucursal, NombreSucursal, DescripcionSucursal, IdProvinciaSucursal, DireccionSucursal) VALUES ('"+ TxtSucursal.Text +" , '"+ TxtDescripcion.Text +"' ,'"+ TxtDireccion.Text +"');";
+            Conexion conex = new Conexion();
+            conex.EjecutarComando(consulta);
+        }
     }
 }
