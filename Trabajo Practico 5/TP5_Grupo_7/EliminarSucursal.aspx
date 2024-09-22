@@ -32,7 +32,7 @@
                     <td class="auto-style3">&nbsp;Ingresar ID sucursal:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
 &nbsp;&nbsp;
-                        <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style2" OnClick="Button1_Click" Text="Eliminar" />
+                        <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style2" OnClick="Button1_Click" Text="button" />
 &nbsp; </td>
                 </tr>
                 <tr>
