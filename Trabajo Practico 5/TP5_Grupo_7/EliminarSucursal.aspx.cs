@@ -13,5 +13,10 @@ namespace TP5_Grupo_7
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            txtID.Text = "";
+        }
     }
 }

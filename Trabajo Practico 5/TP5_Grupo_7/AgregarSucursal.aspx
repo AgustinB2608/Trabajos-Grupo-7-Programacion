@@ -13,6 +13,7 @@
         .auto-style2 {
             font-size: x-large;
             width: 223px;
+            height: 30px;
         }
         .auto-style3 {
             height: 26px;
@@ -38,6 +39,9 @@
         .auto-style7 {
             margin-left: 200px;
         }
+        .auto-style8 {
+            height: 30px;
+        }
     </style>
 </head>
 <body>
@@ -50,7 +54,7 @@
         <table class="auto-style1">
             <tr>
                 <td class="auto-style2" aria-busy="False" aria-orientation="horizontal" style="font-size: x-large; font-weight: bold">GRUPO N°7</td>
-                <td>&nbsp;</td>
+                <td class="auto-style8"></td>
             </tr>
             <tr>
                 <td class="auto-style5">
