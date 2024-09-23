@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EliminarSucursal.aspx.cs" Inherits="TP5_Grupo_7.EliminarSucursal" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EliminarSucursal.aspx.cs" Inherits="TP5_Grupo_7.EliminarSucursal" UnobtrusiveValidationMode="None"%>
 
 <!DOCTYPE html>
 
@@ -41,7 +41,7 @@
                         <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
 &nbsp;&nbsp;
                         <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style2" OnClick="Button1_Click" Text="Eliminar" />
-&nbsp;<asp:RegularExpressionValidator ID="revID" runat="server" ControlToValidate="txtID" ErrorMessage="RegularExpressionValidator" ValidationExpression="^[0-9]*$"></asp:RegularExpressionValidator>
+&nbsp;<asp:RegularExpressionValidator ID="revID" runat="server" ControlToValidate="txtID" ErrorMessage="RegularExpressionValidator" ValidationExpression="^[0-9]*$">error</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
