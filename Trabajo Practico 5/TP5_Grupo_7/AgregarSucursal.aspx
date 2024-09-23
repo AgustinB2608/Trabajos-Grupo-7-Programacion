@@ -4,114 +4,151 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
+    <meta charset="utf-8" />
+    <title>Agregar Sucursal</title>
+
+    <style>
+        body { /*//Quitar margenes y padding predeterminados*/
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif; /*//Fuente de letra mas linda*/
         }
-        .auto-style2 {
-            font-size: x-large;
-            width: 223px;
-            height: 30px;
+
+        #contenedor { /*//Estilos del contenedor (centrado en el medio, con los bordes redondeados y una sombra leve*/
+            width: 60%;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 2px 20px;
         }
-        .auto-style3 {
-            height: 26px;
+
+        #header { /*//Estilos del Titulo GRUPO (Centrado, color gris claro, con un espaciado abajo y una separacion de letras de 2px)*/
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
         }
-        .auto-style4 {
-            font-size: medium;
-        }
-        .auto-style5 {
-            height: 26px;
-            width: 223px;
-        }
-        .auto-style6 {
-            width: 223px;
-        }
-        #hyperlinks {
+
+        #titulo-formulario { /*Titulo Agregar (Color gris claro, centrado y un tamaño mas grande que el Titulo de arriba.*/
+            font-size: 1.4rem;
+            color: #000000;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        #hyperlinks a {
-            display: inline-block;
-            margin: 0 15px;
+        .grupo-formulario { /*//separacion de los campos del formulario*/
+            margin-bottom: 10px;
         }
-        .auto-style7 {
-            margin-left: 200px;
+
+        .grupo-formulario label { /*//Estilos de los labels (negrita, color gris oscuro, tamaño de letra mas chico que el input y un espaciado abajo)*/
+            display: block;
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: #333;
+            margin-bottom: 8px;
         }
-        .auto-style8 {
-            height: 30px;
+
+        .grupo-formulario input[type="text"], /*//Estilos de los inputs (el ancho del 100 para que ocupe todo el contenedor, bordes pred mas chicos, bordes redondeados y tamaño d fuente de 1rem)*/
+        .grupo-formulario select { 
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;   
+        }
+
+        .grupo-formulario input[type="text"]:focus, /*//Aca cambiamos el border pred y ponemos un azul(Al presionar el textbox*/
+        .grupo-formulario select:focus {
+            border-color: #007bff; 
+            outline: none; 
+        }
+
+        #formulario { /*//Estilos del boton (centrado, margen arriba de 20px)*/
+            text-align: center;
+        }
+
+        #formulario #BtnAceptar { /*//Estilos del boton (color de fondo azul, color de letra blanco, padding de 10px arriba y abajo y 20px a los costados, sin borde, bordes redondeados, tamaño de letra de 1rem, cursor d mano )*/
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        #links { /*//Estilos de los links (centrado, margen abajo de 20px)*/
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #links a { /*//Estilos de los links (color azul, tamaño de letra de 1rem, sin subrayado, transicion de color de 0.3s)*/
+            margin: 0 10px;
+            color: #007bff;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #links a:hover { /*//Al presionar se cambia d color a un azul mas oscuro para un estilo mas lindo*/
+            color: #0056b3;
+        }
+
+        #MensajeConfirmacion { /*//El mensaje de confirmacion se muestra en el centro de la pantalla con un margen arriba de 5px y un tamaño de letra de 1rem*/
+            text-align: center;
+            margin-top: 5px;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div id="hyperlinks">
-            <asp:HyperLink ID="hplAgregarSucursal" runat="server" NavigateUrl="AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
-            <asp:HyperLink ID="hplListarSucursales" runat="server" NavigateUrl="ListadoSucursales.aspx">Listado de sucursales</asp:HyperLink>
-            <asp:HyperLink ID="hplEliminarSucursal" runat="server" NavigateUrl="EliminarSucursal.aspx">Eliminar Sucursal</asp:HyperLink>
+<form id="form1" runat="server">
+        <div id="contenedor">
+            <div id="header">GRUPO N°7</div>
+
+            <div id="links">
+                <asp:HyperLink ID="hplAgregarSucursal" runat="server" NavigateUrl="AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
+                <asp:HyperLink ID="hplListarSucursales" runat="server" NavigateUrl="ListadoSucursales.aspx">Listado de sucursales</asp:HyperLink>
+                <asp:HyperLink ID="hplEliminarSucursal" runat="server" NavigateUrl="EliminarSucursal.aspx">Eliminar Sucursal</asp:HyperLink>
+            </div>
+
+            <div id="titulo-formulario">Agregar Sucursal</div>
+
+            <div class="grupo-formulario">
+                <label for="TxtSucursal">Nombre Sucursal:</label>
+                <asp:TextBox ID="TxtSucursal" runat="server" CssClass="error-input" />
+                <asp:RequiredFieldValidator ID="rfvNombreSucursal" runat="server" ControlToValidate="TxtSucursal" ErrorMessage="* Campo obligatorio" ForeColor="Red" />
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="TxtDescripcion">Descripción:</label>
+                <asp:TextBox ID="TxtDescripcion" runat="server" CssClass="error-input" />
+                <asp:RequiredFieldValidator ID="rfvDescripcion" runat="server" ControlToValidate="TxtDescripcion" ErrorMessage="* Campo obligatorio" ForeColor="Red" />
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="ddlProvincia">Provincia:</label>
+                <asp:DropDownList ID="ddlProvincia" runat="server">
+                </asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" InitialValue="" ErrorMessage="* Seleccione una provincia" ForeColor="Red" />
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="TxtDireccion">Dirección:</label>
+                <asp:TextBox ID="TxtDireccion" runat="server" />
+                <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="TxtDireccion" ErrorMessage="* Campo obligatorio" ForeColor="Red" />
+            </div>
+
+            <div id="formulario">
+                <asp:Button ID="BtnAceptar" runat="server" Text="Aceptar" OnClick="BtnAceptar_Click" />
+            </div>
+
+            <div id="MensajeConfirmacion">
+                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+            </div>
         </div>
-        <table class="auto-style1">
-            <tr>
-                <td class="auto-style2" aria-busy="False" aria-orientation="horizontal" style="font-size: x-large; font-weight: bold">GRUPO N°7</td>
-                <td class="auto-style8"></td>
-            </tr>
-            <tr>
-                <td class="auto-style5">
-                    <br />
-                    <strong><span class="auto-style4" style="font-size: large">Agregar Sucursal<br />
-                    </span></strong></td>
-                <td class="auto-style3"></td>
-            </tr>
-            <tr>
-                <td class="auto-style6">Nombre Sucursal:</td>
-                <td>
-                    <asp:TextBox ID="TxtSucursal" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvNombreSucursal" runat="server" ControlToValidate="TxtSucursal" ErrorMessage="* Campo obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style6">Descripcion:</td>
-                <td>
-                    <asp:TextBox ID="TxtDescripcion" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvDescripcion" runat="server" ControlToValidate="TxtDescripcion" ErrorMessage="* Campo obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style6">Provincia:</td>
-                <td>
-                    <asp:DropDownList ID="ddlProvincia" runat="server">
-                        <asp:ListItem>--Seleccionar--</asp:ListItem>
-                    </asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style6">Direccion</td>
-                <td>
-                    <asp:TextBox ID="TxtDireccion" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style6">&nbsp;</td>
-                <td class="auto-style7">
-                    <asp:Button ID="BtnAceptar" runat="server" Text="Guardar" OnClick="BtnAceptar_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style6">&nbsp;</td>
-                <td class="auto-style7">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style6">&nbsp;</td>
-                <td class="auto-style7">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </td>
-            </tr>
-        </table>
     </form>
 </body>
 </html>

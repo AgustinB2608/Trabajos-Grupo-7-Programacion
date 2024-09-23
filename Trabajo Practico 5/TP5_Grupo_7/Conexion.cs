@@ -9,8 +9,10 @@ namespace TP5_Grupo_7
 {
     public class Conexion
     {
-        private String ruta = "Data Source=localhost\\sqlexpress01; Initial Catalog = BDSucursales; Integrated Security = True";
-        
+        private String ruta = "Data Source=localhost\\SQLEXPRESS02; Initial Catalog = BDSucursales; Integrated Security = True";
+        //private String ruta = "Data Source = localhost\\sqlexpress; Initial Catalog = BDSucursales; IntegratedSecurity = True";
+
+
         // Metodo para ejecutar INSERT, DELETE, UPDATE
         public bool EjecutarComando(string consulta)
         {

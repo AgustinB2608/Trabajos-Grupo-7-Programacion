@@ -31,32 +31,39 @@ namespace TP5_Grupo_7
             }
         }
 
-       protected void BtnAceptar_Click(object sender, EventArgs e)
+        protected void BtnAceptar_Click(object sender, EventArgs e)
+        {
+            string nombreSucursal = TxtSucursal.Text.Replace("'", "''");
+            string descripcionSucursal = TxtDescripcion.Text.Replace("'", "''");
+            string direccionSucursal = TxtDireccion.Text.Replace("'", "''");
+            string idProvinciaSucursal = ddlProvincia.SelectedValue;
+
+            string consulta = "INSERT INTO Sucursal (NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal) " +
+                              "VALUES ('" + nombreSucursal + "', '" + descripcionSucursal + "', '" + idProvinciaSucursal + "', '" + direccionSucursal + "')";
+
+            // Ejecutar el comando
+            Conexion conex = new Conexion();
+            bool resultado = conex.EjecutarComando(consulta);
+
+            // Verificación
+            if (resultado)
             {
-
-                string nombreSucursal = TxtSucursal.Text.Replace("'", "''");
-                string descripcionSucursal = TxtDescripcion.Text.Replace("'", "''");
-                string direccionSucursal = TxtDireccion.Text.Replace("'", "''");
-                string idProvinciaSucursal = ddlProvincia.SelectedValue;
-
-
-                string consulta = "INSERT INTO Sucursal (NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal) " +
-                                  "VALUES ('" + nombreSucursal + "', '" + descripcionSucursal + "', '" + idProvinciaSucursal + "', '" + direccionSucursal + "')";
-
-                // Ejecutar el comando
-                Conexion conex = new Conexion();
-                bool resultado = conex.EjecutarComando(consulta);
-
-                //verificacion
-
-                if (resultado)
-                {
-                    lblMensaje.Text = "Sucursal agregada exitosamente.";
-                }
-                else
-                {
-                    lblMensaje.Text = "Error al agregar la sucursal.";
-                }
+                lblMensaje.Text = "Sucursal agregada exitosamente.";
+                LimpiarCampos(); //Añado la funcion de limpiar campos despues de confirmar para evitar cargar repetidas
             }
+            else
+            {
+                lblMensaje.Text = "Error al agregar la sucursal.";
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            TxtSucursal.Text = string.Empty;
+            TxtDescripcion.Text = string.Empty;
+            TxtDireccion.Text = string.Empty;
+            ddlProvincia.SelectedIndex = 0; 
+        }
+
     }
-    }
+}
