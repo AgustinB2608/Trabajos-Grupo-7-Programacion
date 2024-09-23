@@ -156,7 +156,7 @@
             </div>
 
             <div id="MensajeConfirmacion">
-                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                <asp:Label ID="lblMensaje" runat="server" Font-Bold="True"></asp:Label>
             </div>
         </div>
     </form>
