@@ -51,15 +51,6 @@ namespace TP5_Grupo_7
         protected global::System.Web.UI.WebControls.HyperLink hplEliminarSucursal;
 
         /// <summary>
-        /// Control rfvNombreSucursal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreSucursal;
-
-        /// <summary>
         /// Control TxtSucursal.
         /// </summary>
         /// <remarks>
@@ -69,13 +60,13 @@ namespace TP5_Grupo_7
         protected global::System.Web.UI.WebControls.TextBox TxtSucursal;
 
         /// <summary>
-        /// Control rfvDescripcion.
+        /// Control rfvNombreSucursal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescripcion;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreSucursal;
 
         /// <summary>
         /// Control TxtDescripcion.
@@ -87,13 +78,13 @@ namespace TP5_Grupo_7
         protected global::System.Web.UI.WebControls.TextBox TxtDescripcion;
 
         /// <summary>
-        /// Control rfvProvincia.
+        /// Control rfvDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvProvincia;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescripcion;
 
         /// <summary>
         /// Control ddlProvincia.
@@ -105,13 +96,13 @@ namespace TP5_Grupo_7
         protected global::System.Web.UI.WebControls.DropDownList ddlProvincia;
 
         /// <summary>
-        /// Control rfvDireccion.
+        /// Control rfvProvincia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDireccion;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvProvincia;
 
         /// <summary>
         /// Control TxtDireccion.
@@ -121,6 +112,15 @@ namespace TP5_Grupo_7
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtDireccion;
+
+        /// <summary>
+        /// Control rfvDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDireccion;
 
         /// <summary>
         /// Control BtnAceptar.

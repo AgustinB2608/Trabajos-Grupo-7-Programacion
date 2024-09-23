@@ -24,7 +24,7 @@
 
         #header { /*//Estilos del Titulo GRUPO (Centrado, color gris claro, con un espaciado abajo y una separacion de letras de 2px)*/
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #555;
             margin-bottom: 10px;
             letter-spacing: 2px;
@@ -33,7 +33,7 @@
         #titulo-formulario { /*Titulo Agregar (Color gris claro, centrado y un tamaño mas grande que el Titulo de arriba.*/
             font-size: 1.4rem;
             color: #000000;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
         }
 
@@ -49,23 +49,32 @@
             margin-bottom: 8px;
         }
 
-        .grupo-formulario input[type="text"], /*//Estilos de los inputs (el ancho del 100 para que ocupe todo el contenedor, bordes pred mas chicos, bordes redondeados y tamaño d fuente de 1rem)*/
-        .grupo-formulario select { 
+        .grupo-formulario input[type="text"],
+        .grupo-formulario select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 1rem;   
+            font-size: 1rem;
+            box-sizing: border-box;
+            margin: 0; 
         }
 
-        .grupo-formulario input[type="text"]:focus, /*//Aca cambiamos el border pred y ponemos un azul(Al presionar el textbox*/
+
+        .grupo-formulario input[type="text"] {
+            margin: 5px 0; /* Peqmargen arriba y abajo */
+        }
+
+        /* Enfocar input */
+        .grupo-formulario input[type="text"]:focus,
         .grupo-formulario select:focus {
             border-color: #007bff; 
-            outline: none; 
+            outline: none;
         }
 
         #formulario { /*//Estilos del boton (centrado, margen arriba de 20px)*/
             text-align: center;
+            margin-top: 10px;
         }
 
         #formulario #BtnAceptar { /*//Estilos del boton (color de fondo azul, color de letra blanco, padding de 10px arriba y abajo y 20px a los costados, sin borde, bordes redondeados, tamaño de letra de 1rem, cursor d mano )*/
@@ -79,15 +88,16 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+
         #links { /*//Estilos de los links (centrado, margen abajo de 20px)*/
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         #links a { /*//Estilos de los links (color azul, tamaño de letra de 1rem, sin subrayado, transicion de color de 0.3s)*/
             margin: 0 10px;
             color: #007bff;
-            font-size: 1rem;
+            font-size: 0.8rem;
             text-decoration: none;
             transition: color 0.3s ease;
         }
