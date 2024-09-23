@@ -16,6 +16,9 @@
         .auto-style3 {
             height: 33px;
         }
+        .auto-style4 {
+            height: 42px;
+        }
     </style>
 </head>
 <body>
@@ -38,10 +41,11 @@
                         <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
 &nbsp;&nbsp;
                         <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style2" OnClick="Button1_Click" Text="Eliminar" />
-&nbsp; </td>
+&nbsp;<asp:RegularExpressionValidator ID="revID" runat="server" ControlToValidate="txtID" ErrorMessage="RegularExpressionValidator" ValidationExpression="^[0-9]*$"></asp:RegularExpressionValidator>
+                    </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style4">
                         <br />
                         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                     </td>
