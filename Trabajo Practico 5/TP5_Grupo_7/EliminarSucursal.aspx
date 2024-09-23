@@ -40,14 +40,14 @@
                     <td class="auto-style3">&nbsp;Ingresar ID sucursal:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
 &nbsp;&nbsp;
-                        <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style2" OnClick="Button1_Click" Text="Eliminar" />
+                        <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style2"  Text="Eliminar" OnClick="btnEliminar_Click" />
 &nbsp;<asp:RegularExpressionValidator ID="revID" runat="server" ControlToValidate="txtID" ErrorMessage="RegularExpressionValidator" ValidationExpression="^[0-9]*$">error</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
                         <br />
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     </td>
                 </tr>
             </table>
