@@ -22,6 +22,13 @@ namespace TP5_Grupo_7
         {
             string IdSucursal = txtID.Text;
 
+            // Validar si el ID es un número entero
+            if (!int.TryParse(IdSucursal, out int sucursalId))
+            {
+                lblMensaje.Text = "Por favor, ingrese un ID de sucursal válido.";
+                return;
+            }
+
             string consulta = $"SELECT * FROM Sucursal WHERE Id_Sucursal = {IdSucursal}";
             DataTable resultado = conexion.EjecutarConsulta(consulta);
 
@@ -31,12 +38,13 @@ namespace TP5_Grupo_7
                 string eliminar = $"DELETE FROM Sucursal WHERE Id_Sucursal = {IdSucursal}";
                 bool exito = conexion.EjecutarComando(eliminar);
 
-                //agregar if para mostrar mensaje de eliminada con exito o no se pudo eliminar
+                revID.Text = "Sucursal borrada exitosamente.";
             }
             else
             {
-                // Si no existe mostrar mensaje
-                
+
+                revID.Text = "No se puede borrar la sucursal.";
+
             }
         }
     }
