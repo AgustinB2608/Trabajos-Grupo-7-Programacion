@@ -23,7 +23,12 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td><strong>ELIMINAR SUCURSAL</strong></td>
+                    <td>
+                        <asp:HyperLink ID="hlAgregarSucursal" runat="server" NavigateUrl="AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
+                        <br />
+                        <strong>
+                        <br />
+                        ELIMINAR SUCURSAL</strong></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -36,7 +41,10 @@
 &nbsp; </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
+                    <td>
+                        <br />
+                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                    </td>
                 </tr>
             </table>
         </div>
