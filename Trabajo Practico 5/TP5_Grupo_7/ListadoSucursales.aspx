@@ -25,9 +25,15 @@
         </div>
         <div>
             <br />
+            <br />
+            <asp:Label ID="lblListado" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Listado de sucursales"></asp:Label>
+            <br />
+            <br />
             Búsqueda ingrese id sucursal&nbsp;
             <asp:TextBox ID="txtSucursal" runat="server"></asp:TextBox>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Filtrar" />
+            &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnMostrarTodos" runat="server" OnClick="btnMostrarTodos_Click" Text="Mostrar todos" />
             <br />
             <br />
             <asp:GridView ID="grvSucursales" runat="server">

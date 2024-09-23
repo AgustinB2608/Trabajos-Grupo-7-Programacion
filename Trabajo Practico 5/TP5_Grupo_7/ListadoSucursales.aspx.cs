@@ -45,5 +45,18 @@ namespace TP5_Grupo_7
                     grvSucursales.DataBind();
                 }
         }
+
+        protected void btnMostrarTodos_Click(object sender, EventArgs e)
+        {
+            Conexion conex = new Conexion();
+
+            string consulta = "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal FROM Sucursal;";
+
+            DataTable dt = conexion.EjecutarConsulta(consulta);
+           
+                grvSucursales.DataSource = dt;
+                grvSucursales.DataBind();
+            
+        }
     }
 }

@@ -31,24 +31,23 @@ namespace TP5_Grupo_7
             }
         }
 
+       protected void BtnAceptar_Click(object sender, EventArgs e)
+            {
 
-        protected void BtnAceptar_Click(object sender, EventArgs e)
-        {
-            
-            string nombreSucursal = TxtSucursal.Text.Replace("'", "''");
-            string descripcionSucursal = TxtDescripcion.Text.Replace("'", "''");
-            string direccionSucursal = TxtDireccion.Text.Replace("'", "''");
-            string idProvinciaSucursal = ddlProvincia.SelectedValue;
+                string nombreSucursal = TxtSucursal.Text.Replace("'", "''");
+                string descripcionSucursal = TxtDescripcion.Text.Replace("'", "''");
+                string direccionSucursal = TxtDireccion.Text.Replace("'", "''");
+                string idProvinciaSucursal = ddlProvincia.SelectedValue;
 
-            
-            string consulta = "INSERT INTO Sucursal (NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal) " +
-                              "VALUES ('" + nombreSucursal + "', '" + descripcionSucursal + "', '" + idProvinciaSucursal + "', '" + direccionSucursal + "')";
 
-            // Ejecutar el comando
-            Conexion conex = new Conexion();
-            bool resultado = conex.EjecutarComando(consulta); 
+                string consulta = "INSERT INTO Sucursal (NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal) " +
+                                  "VALUES ('" + nombreSucursal + "', '" + descripcionSucursal + "', '" + idProvinciaSucursal + "', '" + direccionSucursal + "')";
 
-            //verificacion
+                // Ejecutar el comando
+                Conexion conex = new Conexion();
+                bool resultado = conex.EjecutarComando(consulta);
+
+                //verificacion
 
                 if (resultado)
                 {
@@ -59,7 +58,5 @@ namespace TP5_Grupo_7
                     lblMensaje.Text = "Error al agregar la sucursal.";
                 }
             }
-
-
-        }
+    }
     }
