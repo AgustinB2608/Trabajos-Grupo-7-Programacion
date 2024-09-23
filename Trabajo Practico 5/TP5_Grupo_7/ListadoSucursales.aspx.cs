@@ -22,13 +22,18 @@ namespace TP5_Grupo_7
                 }
             }
             private void CargarSucursales()
-            {
+        {
+            Conexion conex = new Conexion();
 
+            string consulta = "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal FROM Sucursal;";
 
+            DataTable dt = conex.EjecutarConsulta(consulta);
 
-            }
+            grvSucursales.DataSource = dt;
+            grvSucursales.DataBind();
+        }
 
-            protected void Button1_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
 
             {
                 string IDsucursal = txtSucursal.Text;
@@ -48,15 +53,8 @@ namespace TP5_Grupo_7
 
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
-            Conexion conex = new Conexion();
 
-            string consulta = "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal FROM Sucursal;";
-
-            DataTable dt = conexion.EjecutarConsulta(consulta);
-           
-                grvSucursales.DataSource = dt;
-                grvSucursales.DataBind();
-            
+            CargarSucursales();
         }
     }
 }
