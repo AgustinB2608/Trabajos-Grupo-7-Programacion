@@ -23,20 +23,37 @@ namespace TP5_Grupo_7
         }
         private void CargarSucursales()
         {
-            Conexion conex = new Conexion();
+            // Cambié la consulta para incluir el nombre de la provincia utilice @ para simplificar la consulta
+            string consulta = @" 
+        SELECT 
+            S.Id_Sucursal, 
+            S.NombreSucursal, 
+            S.DescripcionSucursal, 
+            P.DescripcionProvincia,
+            S.DireccionSucursal 
+        FROM 
+            Sucursal S
+        INNER JOIN 
+            Provincia P ON P.Id_Provincia = S.Id_ProvinciaSucursal;";
 
-            string consulta = "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal FROM Sucursal;";
-
-            DataTable dt = conex.EjecutarConsulta(consulta);
-
+            DataTable dt = conexion.EjecutarConsulta(consulta); 
             grvSucursales.DataSource = dt;
             grvSucursales.DataBind();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
-
         {
+
             string IDsucursal = txtSucursal.Text;
+
+            // Validar que no sea una sucursal vacia
+            if (string.IsNullOrEmpty(IDsucursal))
+            {
+                // Mostrar un mensaje de error
+                lblMensaje.Text = "Por favor, ingrese un ID de sucursal.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
 
             string consulta = "SELECT Id_Sucursal, NombreSucursal, DescripcionSucursal, " +
                     "DescripcionProvincia, DireccionSucursal " +
@@ -48,6 +65,7 @@ namespace TP5_Grupo_7
             {
                 grvSucursales.DataSource = dt;
                 grvSucursales.DataBind();
+                lblMensaje.Text = ""; // Limpia el mensaje si se encuentra la sucursal
             }
             txtSucursal.Text = "";
 
