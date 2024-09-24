@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif; /*//Fuente de letra mas linda*/
+            background-color:grey;
         }
 
         #contenedor { /*//Estilos del contenedor (centrado en el medio, con los bordes redondeados y una sombra leve*/
@@ -20,6 +21,7 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             padding: 2px 20px;
+            background-color:white;
         }
 
         #header { /*//Estilos del Titulo GRUPO (Centrado, color gris claro, con un espaciado abajo y una separacion de letras de 2px)*/
