@@ -48,7 +48,7 @@ namespace TP5_Grupo_7
             // Verificación
             if (resultado)
             {
-                lblMensaje.Text = "Sucursal agregada exitosamente.";
+                lblMensaje.Text = "La sucursal se ha agregado con éxito.";
                 LimpiarCampos(); //Añado la funcion de limpiar campos despues de confirmar para evitar cargar repetidas
             }
             else
