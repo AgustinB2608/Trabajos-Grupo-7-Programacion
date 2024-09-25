@@ -118,7 +118,6 @@
             <div class="form-grupo">
                 <label for="txtID">Ingresar ID sucursal:</label>
                 <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="revID" runat="server" ControlToValidate="txtID" ErrorMessage="Ingrese solo números" ValidationExpression="^[0-9]*$" ForeColor="Red"></asp:RegularExpressionValidator>
             </div>
 
             <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click" />

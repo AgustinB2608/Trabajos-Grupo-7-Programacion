@@ -21,8 +21,6 @@ namespace TP5_Grupo_7
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
 
-            revID.AccessKey = ""; // Limpiar el mensaje de validación al intentar eliminar una sucursal
-
             string IdSucursal = txtID.Text;
 
             // Verificar si el TextBox está vacío
@@ -31,6 +29,15 @@ namespace TP5_Grupo_7
                 lblMensaje.Text = "Por favor, ingrese un ID de sucursal.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red; 
                 return; 
+            }
+
+            // Validar si el ID ingresado es un número entero
+            if (!int.TryParse(IdSucursal, out int idNumerico))
+            {
+                lblMensaje.Text = "Por favor, ingrese un ID de sucursal válido (número entero).";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                txtID.Text = "";
+                return;
             }
 
             // Consulta para verificar si la sucursal existe 

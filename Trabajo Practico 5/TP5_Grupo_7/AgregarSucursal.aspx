@@ -8,23 +8,21 @@
     <title>Agregar Sucursal</title>
 
     <style>
-        body { /*//Quitar margenes y padding predeterminados*/
+        body { /* Quitar márgenes y padding predeterminados */
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; /*//Fuente de letra mas linda*/
-            background-color:grey;
+            font-family: Arial, sans-serif; /* Fuente de letra más agradable */
         }
 
-        #contenedor { /*//Estilos del contenedor (centrado en el medio, con los bordes redondeados y una sombra leve*/
-            width: 60%;
+        #contenedor {
+            width: 80%;
             margin: 0 auto;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            padding: 2px 20px;
-            background-color:white;
+            padding: 20px;
         }
 
-        #header { /*//Estilos del Titulo GRUPO (Centrado, color gris claro, con un espaciado abajo y una separacion de letras de 2px)*/
+        #header {
             text-align: center;
             font-size: 1rem;
             color: #555;
@@ -32,18 +30,18 @@
             letter-spacing: 2px;
         }
 
-        #titulo-formulario { /*Titulo Agregar (Color gris claro, centrado y un tamaño mas grande que el Titulo de arriba.*/
+        #titulo-formulario {
             font-size: 1.4rem;
-            color: #000000;
+            color: #000;
             margin-bottom: 10px;
             text-align: center;
         }
 
-        .grupo-formulario { /*//separacion de los campos del formulario*/
+        .grupo-formulario {
             margin-bottom: 10px;
         }
 
-        .grupo-formulario label { /*//Estilos de los labels (negrita, color gris oscuro, tamaño de letra mas chico que el input y un espaciado abajo)*/
+        .grupo-formulario label {
             display: block;
             font-weight: bold;
             font-size: 0.8rem;
@@ -59,27 +57,20 @@
             border-radius: 5px;
             font-size: 1rem;
             box-sizing: border-box;
-            margin: 0; 
         }
 
-
-        .grupo-formulario input[type="text"] {
-            margin: 5px 0; /* Peqmargen arriba y abajo */
-        }
-
-        /* Enfocar input */
         .grupo-formulario input[type="text"]:focus,
         .grupo-formulario select:focus {
-            border-color: #007bff; 
+            border-color: #007bff;
             outline: none;
         }
 
-        #formulario { /*//Estilos del boton (centrado, margen arriba de 20px)*/
+        #formulario {
             text-align: center;
             margin-top: 10px;
         }
 
-        #formulario #BtnAceptar { /*//Estilos del boton (color de fondo azul, color de letra blanco, padding de 10px arriba y abajo y 20px a los costados, sin borde, bordes redondeados, tamaño de letra de 1rem, cursor d mano )*/
+        #BtnAceptar {
             background-color: #007bff;
             color: #fff;
             padding: 10px 20px;
@@ -90,13 +81,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-
-        #links { /*//Estilos de los links (centrado, margen abajo de 20px)*/
+        #links {
             text-align: center;
             margin-bottom: 10px;
         }
 
-        #links a { /*//Estilos de los links (color azul, tamaño de letra de 1rem, sin subrayado, transicion de color de 0.3s)*/
+        #links a {
             margin: 0 10px;
             color: #007bff;
             font-size: 0.8rem;
@@ -104,14 +94,19 @@
             transition: color 0.3s ease;
         }
 
-        #links a:hover { /*//Al presionar se cambia d color a un azul mas oscuro para un estilo mas lindo*/
+        #links a:hover {
             color: #0056b3;
         }
 
-        #MensajeConfirmacion { /*//El mensaje de confirmacion se muestra en el centro de la pantalla con un margen arriba de 5px y un tamaño de letra de 1rem*/
+        #MensajeConfirmacion {
             text-align: center;
             margin-top: 5px;
             font-size: 1rem;
+        }
+
+        .error-text {
+            color: red;
+            font-size: 0.8rem;
         }
     </style>
 </head>
