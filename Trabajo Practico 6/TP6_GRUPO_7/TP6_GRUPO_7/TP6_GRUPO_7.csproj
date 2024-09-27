@@ -74,10 +74,26 @@
     <Compile Include="Ejercicio1.aspx.designer.cs">
       <DependentUpon>Ejercicio1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ejercicio2.aspx.cs">
+      <DependentUpon>Ejercicio2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ejercicio2.aspx.designer.cs">
+      <DependentUpon>Ejercicio2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Ejercicio2.aspx" />
+    <Content Include="Inicio.aspx" />
     <Content Include="web.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
