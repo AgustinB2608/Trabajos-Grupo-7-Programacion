@@ -48,14 +48,20 @@ namespace TP6_GRUPO_7
 
 
 
-        protected void gvProductos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            string producto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lblIdProducto")).Text;
-            string nombreProducto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lblNombreProducto")).Text;
-            string CantPorUnidad = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lblCantidadPorUnidad")).Text;
-            string PrecioUnidad = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lblPrecioUnidad")).Text;
 
-            lblMensaje.Text = "usted selecciono: " + producto + " / " + nombreProducto + " / " + CantPorUnidad + " / " + PrecioUnidad;
+        protected void gvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EventoEdit")
+            {
+                int fila = Convert.ToInt32(e.CommandArgument);
+
+                string producto = ((Label)gvProductos.Rows[fila].FindControl("lblIdProducto")).Text;
+                string nombreProducto = ((Label)gvProductos.Rows[fila].FindControl("lblNombreProducto")).Text;
+                string CantPorUnidad = ((Label)gvProductos.Rows[fila].FindControl("lblCantidadPorUnidad")).Text;
+                string PrecioUnidad = ((Label)gvProductos.Rows[fila].FindControl("lblPrecioUnidad")).Text;
+
+                lblMensaje.Text = "usted selecciono: " + producto + " / " + nombreProducto + " / " + CantPorUnidad + " / " + PrecioUnidad;
+            }
         }
     }
 }

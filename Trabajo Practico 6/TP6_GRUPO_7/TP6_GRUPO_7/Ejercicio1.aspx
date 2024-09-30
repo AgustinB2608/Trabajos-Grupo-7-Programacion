@@ -13,8 +13,9 @@
             <asp:Label ID="lblProductos" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Productos"></asp:Label>
             <br />
             <br />
-            <asp:GridView ID="gvProductos" runat="server" CssClass="grid-view" AllowPaging="True" AutoGenerateColumns="False"  DataKeyNames="IdProducto,NombreProducto,CantidadPorUnidad,PrecioUnidad" AutoGenerateSelectButton="True" OnSelectedIndexChanged="Page_Load" OnSelectedIndexChanging="gvProductos_SelectedIndexChanging" >
+            <asp:GridView ID="gvProductos" runat="server" CssClass="grid-view" AllowPaging="True" AutoGenerateColumns="False"  DataKeyNames="IdProducto,NombreProducto,CantidadPorUnidad,PrecioUnidad" OnRowCommand="gvProductos_RowCommand" style="margin-right: 0px" >
             <Columns>
+                <asp:ButtonField CommandName="EventoEdit" Text="Edit" />
                 <asp:TemplateField HeaderText="Id Producto">
                     <ItemTemplate>
                         <asp:Label ID="lblIdProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
