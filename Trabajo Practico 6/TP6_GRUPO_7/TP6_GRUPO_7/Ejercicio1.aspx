@@ -13,7 +13,7 @@
             <asp:Label ID="lblProductos" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Productos"></asp:Label>
             <br />
             <br />
-            <asp:GridView ID="gvProductos" runat="server" CssClass="grid-view" AllowPaging="True" AutoGenerateColumns="False"  DataKeyNames="IdProducto,NombreProducto,CantidadPorUnidad,PrecioUnidad" >
+            <asp:GridView ID="gvProductos" runat="server" CssClass="grid-view" AllowPaging="True" AutoGenerateColumns="False"  DataKeyNames="IdProducto,NombreProducto,CantidadPorUnidad,PrecioUnidad" AutoGenerateSelectButton="True" OnSelectedIndexChanged="Page_Load" OnSelectedIndexChanging="gvProductos_SelectedIndexChanging" >
             <Columns>
                 <asp:TemplateField HeaderText="Id Producto">
                     <ItemTemplate>
@@ -38,6 +38,9 @@
             </Columns>
         </asp:GridView>
         </div>
+        <br />
+        <br />
+        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
     </form>
 </body>
 </html>

@@ -23,7 +23,7 @@ namespace TP6_GRUPO_7
                 cn.Open();
                 return cn;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return null;
             }

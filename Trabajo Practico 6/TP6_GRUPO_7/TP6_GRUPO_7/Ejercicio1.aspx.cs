@@ -20,10 +20,42 @@ namespace TP6_GRUPO_7
                 cargaProductos();
             }
         }
-        void cargaProductos()
+        protected void cargaProductos()
         {
-            
+            try
+            {
+                Conexion conexion = new Conexion();
+                string query = "SELECT * FROM Productos";
+                DataTable dt = conexion.EjecutarConsulta(query);
+
+                if (dt != null)
+                {
+                    gvProductos.DataSource = dt;
+                    gvProductos.DataBind();
+                }
+                else
+                {
+                    lblMensaje.Text = "No se encontraron productos.";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = "Error al cargar productos: " + ex.Message;
+            }
         }
-        
+
+
+
+
+
+        protected void gvProductos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            string producto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lblIdProducto")).Text;
+            string nombreProducto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lblNombreProducto")).Text;
+            string CantPorUnidad = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lblCantidadPorUnidad")).Text;
+            string PrecioUnidad = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lblPrecioUnidad")).Text;
+
+            lblMensaje.Text = "usted selecciono: " + producto + " / " + nombreProducto + " / " + CantPorUnidad + " / " + PrecioUnidad;
+        }
     }
 }
