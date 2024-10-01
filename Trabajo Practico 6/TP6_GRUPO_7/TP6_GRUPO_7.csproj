@@ -89,12 +89,28 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MostrarProductos.aspx.cs">
+      <DependentUpon>MostrarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MostrarProductos.aspx.designer.cs">
+      <DependentUpon>MostrarProductos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeleccionarProductos.aspx.cs">
+      <DependentUpon>SeleccionarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionarProductos.aspx.designer.cs">
+      <DependentUpon>SeleccionarProductos.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Ejercicio2.aspx" />
     <Content Include="Inicio.aspx" />
+    <Content Include="MostrarProductos.aspx" />
+    <Content Include="SeleccionarProductos.aspx" />
     <Content Include="web.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
