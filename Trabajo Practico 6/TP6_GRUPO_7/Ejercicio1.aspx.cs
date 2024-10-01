@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.EnterpriseServices;
-
 
 namespace TP6_GRUPO_7
 {
@@ -20,6 +14,7 @@ namespace TP6_GRUPO_7
                 cargaProductos();
             }
         }
+
         protected void cargaProductos()
         {
             try
@@ -28,7 +23,7 @@ namespace TP6_GRUPO_7
                 string query = "SELECT * FROM Productos";
                 DataTable dt = conexion.EjecutarConsulta(query);
 
-                if (dt != null)
+                if (dt != null && dt.Rows.Count > 0)
                 {
                     gvProductos.DataSource = dt;
                     gvProductos.DataBind();
@@ -44,24 +39,31 @@ namespace TP6_GRUPO_7
             }
         }
 
-
-
-
-
-
         protected void gvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EventoEdit")
             {
+                // Obtener el índice de la fila seleccionada
                 int fila = Convert.ToInt32(e.CommandArgument);
 
+                // Obtener los valores de los controles de la fila seleccionada
                 string producto = ((Label)gvProductos.Rows[fila].FindControl("lblIdProducto")).Text;
                 string nombreProducto = ((Label)gvProductos.Rows[fila].FindControl("lblNombreProducto")).Text;
-                string CantPorUnidad = ((Label)gvProductos.Rows[fila].FindControl("lblCantidadPorUnidad")).Text;
-                string PrecioUnidad = ((Label)gvProductos.Rows[fila].FindControl("lblPrecioUnidad")).Text;
+                string cantPorUnidad = ((Label)gvProductos.Rows[fila].FindControl("lblCantidadPorUnidad")).Text;
+                string precioUnidad = ((Label)gvProductos.Rows[fila].FindControl("lblPrecioUnidad")).Text;
 
-                lblMensaje.Text = "usted selecciono: " + producto + " / " + nombreProducto + " / " + CantPorUnidad + " / " + PrecioUnidad;
+                // Mostrar el mensaje con los datos seleccionados
+                lblMensaje.Text = $"Usted seleccionó: {producto} / {nombreProducto} / {cantPorUnidad} / {precioUnidad}";
             }
+        }
+
+        protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Cambiar la página actual del GridView
+            gvProductos.PageIndex = e.NewPageIndex;
+
+            // Volver a cargar los productos para que el GridView se actualice con la nueva página
+            cargaProductos();
         }
     }
 }

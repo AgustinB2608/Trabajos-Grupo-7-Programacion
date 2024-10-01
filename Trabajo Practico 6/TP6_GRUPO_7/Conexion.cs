@@ -9,7 +9,7 @@ namespace TP6_GRUPO_7
 {
     public class Conexion
     {
-        string rutaNeptuno = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True"; 
+        string rutaNeptuno = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=Neptuno;Integrated Security=True"; 
 
         public Conexion()
         {
