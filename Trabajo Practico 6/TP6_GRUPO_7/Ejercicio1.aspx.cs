@@ -16,6 +16,7 @@ namespace TP6_GRUPO_7
         {
             if (!IsPostBack)
             {
+                lblMensaje.Text = "Este es un mensaje de prueba";
                 cargaProductos();
             }
         }
@@ -70,5 +71,7 @@ namespace TP6_GRUPO_7
             // Volver a cargar los productos para que el GridView se actualice con la nueva página
             cargaProductos();
         }
+
+        
     }
 }

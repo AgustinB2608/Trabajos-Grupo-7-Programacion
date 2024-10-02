@@ -16,30 +16,50 @@
 
         /* Estilo para centrar el contenido*/
         .contenedor {
-
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         /* Estilo para el título */
         .titulo {
-
+            text-align: left;
+            color: black;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
         /* Estilo para el GridView */
         .grid-view {
-
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
         }
 
         .grid-view th, .grid-view td {
-
+            border: 1px solid #000; 
+            padding: 8px;
         }
 
         .grid-view th {
-
+            background-color: #0033cc;
+            color: white;
+            text-align: center;
+            font-weight: bold;
         }
 
         /* Estilo para el mensaje */
         .mensaje {
-
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #000;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 5px;
         }
     </style>
 </head>
