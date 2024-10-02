@@ -72,6 +72,62 @@ namespace TP6_GRUPO_7
             cargaProductos();
         }
 
-        
+        protected void gvProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+           
+            Label lblIdProducto = (Label)gvProductos.Rows[e.RowIndex].FindControl("lblIdProducto");
+
+            if (lblIdProducto != null)
+            {
+               
+                int idProducto = Convert.ToInt32(lblIdProducto.Text);
+
+                
+                EliminarProdBaseDeDatos(idProducto);
+
+                
+                CargarDatos();
+            }
+        }
+
+      
+        private void EliminarProdBaseDeDatos(int idProducto)
+        {
+            
+            Conexion conexion = new Conexion();
+            string consultaSQL = "DELETE FROM Productos WHERE IdProducto = @IdProducto";
+
+            // Creo el parámetro necesario para el comando SQL
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+        new SqlParameter("@IdProducto", idProducto)
+            };
+
+           
+             
+                int filasAfectadas = conexion.EjecutarConsultaSinRetorno(consultaSQL, parametros);
+
+                if (filasAfectadas > 0)
+                {
+                    lblMensaje.Text = "Producto eliminado correctamente.";
+                }
+                else
+                {
+                    lblMensaje.Text = "No se encontró el producto para eliminar.";
+                }
+            
+            
+        }
+
+        // Cargo de nuevo los datos en la gridview
+        private void CargarDatos()
+        {
+            Conexion conexion = new Conexion();
+            DataTable dtProductos = conexion.EjecutarConsulta("SELECT * FROM Productos");
+            gvProductos.DataSource = dtProductos;
+            gvProductos.DataBind();
+        }
+
+       
     }
 }

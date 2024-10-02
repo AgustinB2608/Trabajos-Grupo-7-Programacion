@@ -9,7 +9,7 @@ namespace TP6_GRUPO_7
 {
     public class Conexion
     {
-        string rutaNeptuno = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=Neptuno;Integrated Security=True"; 
+        string rutaNeptuno = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=Neptuno;Integrated Security=True";
 
         public Conexion()
         {
@@ -23,7 +23,7 @@ namespace TP6_GRUPO_7
                 cn.Open();
                 return cn;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return null;
             }
@@ -38,6 +38,25 @@ namespace TP6_GRUPO_7
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 return dt;
+            }
+        }
+        // Nueva función para ejecutar comandos como DELETE, INSERT, UPDATE
+        public int EjecutarConsultaSinRetorno(string consulta, SqlParameter[] parametros = null)
+        {
+            using (SqlConnection conexion = new SqlConnection(rutaNeptuno))
+            {
+                conexion.Open();
+                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                {
+                
+                    if (parametros != null)
+                    {
+                        cmd.Parameters.AddRange(parametros);
+                    }
+
+                    
+                    return cmd.ExecuteNonQuery();
+                }
             }
         }
     }
