@@ -74,8 +74,15 @@
                 AutoGenerateColumns="False" DataKeyNames="IdProducto" 
                 OnRowCommand="gvProductos_RowCommand" OnPageIndexChanging="gvProductos_PageIndexChanging" 
                 PageSize="10">
+
                 <Columns>
-                    <asp:ButtonField CommandName="EventoEdit" Text="Edit" />
+                    <asp:TemplateField>
+                       <ItemTemplate>
+                            <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="EventoEdit" />
+                             <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="EventoDelete" />
+                       </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Id Producto">
                         <ItemTemplate>
                             <asp:Label ID="lblIdProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
