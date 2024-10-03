@@ -114,7 +114,7 @@
                 <div class="mensaje">
                     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 </div>
-                <a href="~/Inicio.aspx" class="btn-volver">Volver al Inicio</a>
+                
             </div>
         </div>
     </form>
