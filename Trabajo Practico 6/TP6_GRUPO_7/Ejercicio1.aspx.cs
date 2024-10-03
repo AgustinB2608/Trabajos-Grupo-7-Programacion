@@ -128,6 +128,16 @@ namespace TP6_GRUPO_7
             gvProductos.DataBind();
         }
 
-       
+        protected void gvProductos_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvProductos.EditIndex = e.NewEditIndex;
+            CargarDatos();
+        }
+
+        protected void gvProductos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvProductos.EditIndex = -1;
+            CargarDatos();
+        }
     }
 }
