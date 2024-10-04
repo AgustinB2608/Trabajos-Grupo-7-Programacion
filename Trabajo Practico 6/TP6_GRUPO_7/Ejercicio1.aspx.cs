@@ -16,7 +16,6 @@ namespace TP6_GRUPO_7
         {
             if (!IsPostBack)
             {
-                lblMensaje.Text = "Este es un mensaje de prueba";
                 cargaProductos();
             }
         }

@@ -82,8 +82,8 @@
         <div class="contenedor">
 
             <asp:GridView ID="gvProductos" runat="server" CssClass="grid-view" AllowPaging="True" 
-                AutoGenerateColumns="False" DataKeyNames="IdProducto" OnPageIndexChanging="gvProductos_PageIndexChanging" 
-                PageSize="14"  OnRowDeleting="gvProductos_RowDeleting" AutoGenerateSelectButton="True">
+                AutoGenerateColumns="False" DataKeyNames="IdProducto,NombreProducto,CantidadPorUnidad,PrecioUnidad"
+                PageSize="14"   AutoGenerateSelectButton="True" >
                 <Columns>
 
                     <asp:TemplateField HeaderText="Id Producto">
@@ -113,11 +113,8 @@
                 <div class="mensaje">
                     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 </div>
-                
+                <asp:HyperLink ID="HLVolverInicio" runat="server" CssClass="btn-volver" NavigateUrl="~/Inicio.aspx">Volver al Inicio</asp:HyperLink>
             </div>
-            <p style="width: 103px; height: 25px; margin-left: 320px">
-                <asp:HyperLink ID="HLVolverInicio" runat="server" NavigateUrl="~/Inicio.aspx">Volver al Inicio</asp:HyperLink>
-            </p>
         </div>
     </form>
 </body>
