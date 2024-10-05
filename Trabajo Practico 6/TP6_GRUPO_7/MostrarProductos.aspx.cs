@@ -13,5 +13,10 @@ namespace TP6_GRUPO_7
         {
 
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
