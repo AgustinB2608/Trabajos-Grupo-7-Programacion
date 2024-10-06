@@ -83,7 +83,7 @@
 
             <asp:GridView ID="gvProductos" runat="server" CssClass="grid-view" AllowPaging="True" 
                 AutoGenerateColumns="False" DataKeyNames="IdProducto,NombreProducto,CantidadPorUnidad,PrecioUnidad"
-                PageSize="14"   AutoGenerateSelectButton="True" >
+                PageSize="14"   AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvProductos_SelectedIndexChanged" >
                 <Columns>
 
                     <asp:TemplateField HeaderText="Id Producto">

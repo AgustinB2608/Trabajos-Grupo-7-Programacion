@@ -41,5 +41,17 @@ namespace TP6_GRUPO_7
             }
         }
 
+        protected void gvProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = gvProductos.SelectedRow;
+
+            Label lblNombreProducto = (Label)row.FindControl("lblNombreProducto");
+
+            string nombreProducto = lblNombreProducto.Text;
+
+           
+            lblMensaje.Text = "Producto agregado: " + nombreProducto;
+
+        }
     }
 }
