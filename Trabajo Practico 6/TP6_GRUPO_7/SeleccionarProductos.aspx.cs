@@ -43,15 +43,53 @@ namespace TP6_GRUPO_7
 
         protected void gvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             GridViewRow row = gvProductos.SelectedRow;
 
-            Label lblNombreProducto = (Label)row.FindControl("lblNombreProducto");
+            // Extraer información del producto
+            string idProducto = row.Cells[1].Text; 
+            string nombreProducto = row.Cells[2].Text; 
+            string cantidadPorUnidad = row.Cells[3].Text;
+            string precioUnidad = row.Cells[4].Text; 
 
-            string nombreProducto = lblNombreProducto.Text;
+            // Crear un DataTable para almacenar la selección si no existe en la sesión
+            DataTable dtProductosSeleccionados;
+            if (Session["ProductosSeleccionados"] == null)
+            {
+                dtProductosSeleccionados = new DataTable();
+                dtProductosSeleccionados.Columns.Add("IdProducto");
+                dtProductosSeleccionados.Columns.Add("NombreProducto");
+                dtProductosSeleccionados.Columns.Add("CantidadPorUnidad");
+                dtProductosSeleccionados.Columns.Add("PrecioUnidad");
+            }
+            else
+            {
+                dtProductosSeleccionados = (DataTable)Session["ProductosSeleccionados"];
+            }
 
-           
-            lblMensaje.Text = "Producto agregado: " + nombreProducto;
+            // Verificar si el producto ya está en el DataTable para evitar duplicados
+            bool productoYaSeleccionado = dtProductosSeleccionados.AsEnumerable()
+                .Any(r => r.Field<string>("IdProducto") == idProducto);
 
+            if (!productoYaSeleccionado)
+            {
+                // Añadir la selección al DataTable
+                DataRow dr = dtProductosSeleccionados.NewRow();
+                dr["IdProducto"] = idProducto;
+                dr["NombreProducto"] = nombreProducto;
+                dr["CantidadPorUnidad"] = cantidadPorUnidad;
+                dr["PrecioUnidad"] = precioUnidad;
+                dtProductosSeleccionados.Rows.Add(dr);
+
+                // Guardar el DataTable en la sesión
+                Session["ProductosSeleccionados"] = dtProductosSeleccionados;
+
+                lblMensaje.Text = "Producto agregado: " + nombreProducto;
+            }
+            else
+            {
+                lblMensaje.Text = "El producto ya ha sido seleccionado.";
+            }
         }
     }
 }

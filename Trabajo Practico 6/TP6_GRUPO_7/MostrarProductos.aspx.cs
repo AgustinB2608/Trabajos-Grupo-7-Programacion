@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,9 +12,8 @@ namespace TP6_GRUPO_7
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+         
         }
-
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 

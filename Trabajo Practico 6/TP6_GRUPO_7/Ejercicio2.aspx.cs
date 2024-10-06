@@ -13,5 +13,10 @@ namespace TP6_GRUPO_7
         {
 
         }
+
+        protected void LBEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
