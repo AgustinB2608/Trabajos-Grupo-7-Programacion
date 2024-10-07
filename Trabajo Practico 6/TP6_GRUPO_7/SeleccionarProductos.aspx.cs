@@ -46,21 +46,27 @@ namespace TP6_GRUPO_7
             
             GridViewRow row = gvProductos.SelectedRow;
 
-            // Extraer información del producto
-            string idProducto = row.Cells[1].Text; 
-            string nombreProducto = row.Cells[2].Text; 
-            string cantidadPorUnidad = row.Cells[3].Text;
-            string precioUnidad = row.Cells[4].Text; 
+
+            Label lblIdProducto = (Label)row.FindControl("lblIdProducto");
+            Label lblNombreProducto = (Label)row.FindControl("lblNombreProducto");
+            Label lblCantidadPorUnidad = (Label)row.FindControl("lblCantidadPorUnidad");
+            Label lblPrecioUnidad = (Label)row.FindControl("lblPrecioUnidad");
+
+            int idProducto = Convert.ToInt32(lblIdProducto.Text);
+            string nombreProducto = lblNombreProducto.Text;
+            string cantidadPorUnidad = lblCantidadPorUnidad.Text;
+            decimal precioUnidad = Convert.ToDecimal(lblPrecioUnidad.Text);
 
             // Crear un DataTable para almacenar la selección si no existe en la sesión
             DataTable dtProductosSeleccionados;
+
             if (Session["ProductosSeleccionados"] == null)
             {
                 dtProductosSeleccionados = new DataTable();
-                dtProductosSeleccionados.Columns.Add("IdProducto");
-                dtProductosSeleccionados.Columns.Add("NombreProducto");
-                dtProductosSeleccionados.Columns.Add("CantidadPorUnidad");
-                dtProductosSeleccionados.Columns.Add("PrecioUnidad");
+                dtProductosSeleccionados.Columns.Add("IdProducto", typeof (int));
+                dtProductosSeleccionados.Columns.Add("NombreProducto", typeof(string));
+                dtProductosSeleccionados.Columns.Add("CantidadPorUnidad", typeof(string));
+                dtProductosSeleccionados.Columns.Add("PrecioUnidad", typeof(decimal));
             }
             else
             {
@@ -69,16 +75,21 @@ namespace TP6_GRUPO_7
 
             // Verificar si el producto ya está en el DataTable para evitar duplicados
             bool productoYaSeleccionado = dtProductosSeleccionados.AsEnumerable()
-                .Any(r => r.Field<string>("IdProducto") == idProducto);
+                .Any(r => r.Field<int>("IdProducto") == idProducto);
+
+           
 
             if (!productoYaSeleccionado)
             {
                 // Añadir la selección al DataTable
                 DataRow dr = dtProductosSeleccionados.NewRow();
+               
+
                 dr["IdProducto"] = idProducto;
                 dr["NombreProducto"] = nombreProducto;
                 dr["CantidadPorUnidad"] = cantidadPorUnidad;
                 dr["PrecioUnidad"] = precioUnidad;
+
                 dtProductosSeleccionados.Rows.Add(dr);
 
                 // Guardar el DataTable en la sesión
@@ -90,6 +101,12 @@ namespace TP6_GRUPO_7
             {
                 lblMensaje.Text = "El producto ya ha sido seleccionado.";
             }
+        }
+
+        protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProductos.PageIndex = e.NewPageIndex;
+            cargaProductos();
         }
     }
 }

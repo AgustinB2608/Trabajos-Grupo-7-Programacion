@@ -20,7 +20,7 @@
         <div>
         </div>
         <p class="auto-style1">
-            <strong>INICIO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
+            <strong style="color: #000000; font-size: xx-large; font-weight: bold; font-family: 'Bodoni MT';">Inicio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
         </p>
         <p class="auto-style2">
             <asp:HyperLink ID="HLSeleccionar" runat="server" NavigateUrl="~/SeleccionarProductos.aspx">Seleccionar Productos</asp:HyperLink>

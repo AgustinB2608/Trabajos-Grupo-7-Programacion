@@ -11,11 +11,16 @@
     <form id="form1" runat="server">
         <div>
             Productos seleccionados por el usuario:<br />
-            <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <asp:GridView ID="GridView1" runat="server">
             </asp:GridView>
+            <br />
+            <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+            <br />
             <br />
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Inicio.aspx">Volver al inicio</asp:HyperLink>
         </div>
     </form>
 </body>
 </html>
+
+
