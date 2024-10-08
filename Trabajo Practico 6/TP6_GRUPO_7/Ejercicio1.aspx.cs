@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.EnterpriseServices;
 
 namespace TP6_GRUPO_7
 {
@@ -64,61 +60,40 @@ namespace TP6_GRUPO_7
 
         protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            // Cambiar la página actual del GridView
             gvProductos.PageIndex = e.NewPageIndex;
-
-            // Volver a cargar los productos para que el GridView se actualice con la nueva página
             cargaProductos();
         }
 
         protected void gvProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-           
             Label lblIdProducto = (Label)gvProductos.Rows[e.RowIndex].FindControl("lblIdProducto");
 
             if (lblIdProducto != null)
             {
-               
                 int idProducto = Convert.ToInt32(lblIdProducto.Text);
-
-                
                 EliminarProdBaseDeDatos(idProducto);
-
-                
                 CargarDatos();
             }
         }
 
-      
         private void EliminarProdBaseDeDatos(int idProducto)
         {
-            
             Conexion conexion = new Conexion();
             string consultaSQL = "DELETE FROM Productos WHERE IdProducto = @IdProducto";
+            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("@IdProducto", idProducto) };
 
-            // Creo el parámetro necesario para el comando SQL
-            SqlParameter[] parametros = new SqlParameter[]
+            int filasAfectadas = conexion.EjecutarConsultaSinRetorno(consultaSQL, parametros);
+
+            if (filasAfectadas > 0)
             {
-        new SqlParameter("@IdProducto", idProducto)
-            };
-
-           
-             
-                int filasAfectadas = conexion.EjecutarConsultaSinRetorno(consultaSQL, parametros);
-
-                if (filasAfectadas > 0)
-                {
-                    lblMensaje.Text = "Producto eliminado correctamente.";
-                }
-                else
-                {
-                    lblMensaje.Text = "No se encontró el producto para eliminar.";
-                }
-            
-            
+                lblMensaje.Text = "Producto eliminado correctamente.";
+            }
+            else
+            {
+                lblMensaje.Text = "No se encontró el producto para eliminar.";
+            }
         }
 
-        // Cargo de nuevo los datos en la gridview
         private void CargarDatos()
         {
             Conexion conexion = new Conexion();
@@ -137,6 +112,72 @@ namespace TP6_GRUPO_7
         {
             gvProductos.EditIndex = -1;
             CargarDatos();
+        }
+
+        private void ActualizarProducto(int idProducto, string nombreProducto, string cantPorUnidad, decimal precioUnidad)
+        {
+            Conexion conexion = new Conexion();
+            string consultaSQL = "UPDATE Productos SET NombreProducto = @NombreProducto, CantidadPorUnidad = @CantidadPorUnidad, PrecioUnidad = @PrecioUnidad WHERE IdProducto = @IdProducto";
+            SqlParameter[] parametros = new SqlParameter[] {
+                new SqlParameter("@IdProducto", idProducto),
+                new SqlParameter("@NombreProducto", nombreProducto),
+                new SqlParameter("@CantidadPorUnidad", cantPorUnidad),
+                new SqlParameter("@PrecioUnidad", precioUnidad)
+            };
+
+            int filasAfectadas = conexion.EjecutarConsultaSinRetorno(consultaSQL, parametros);
+
+            if (filasAfectadas > 0)
+            {
+                lblMensaje.Text = "Producto actualizado correctamente.";
+            }
+            else
+            {
+                lblMensaje.Text = "No se encontró el producto para actualizar.";
+            }
+        }
+
+        protected void gvProductos_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            try
+            {
+                // Obtener el ID del producto de los DataKeys
+                int idProducto = Convert.ToInt32(gvProductos.DataKeys[e.RowIndex].Value);
+
+                // Obtener los controles
+                TextBox txtNombreProducto = (TextBox)gvProductos.Rows[e.RowIndex].FindControl("txt_eit_NombreProducto");
+                TextBox txtCantidadPorUnidad = (TextBox)gvProductos.Rows[e.RowIndex].FindControl("txt_eit_CantidadPorUnidad");
+                TextBox txtPrecioUnidad = (TextBox)gvProductos.Rows[e.RowIndex].FindControl("txt_eit_PrecioUnidad");
+
+                if (txtNombreProducto != null && txtPrecioUnidad != null && txtCantidadPorUnidad != null)
+                {
+                    string nombreProducto = txtNombreProducto.Text;
+                    string cantPorUnidad = txtCantidadPorUnidad.Text;
+
+                    if (decimal.TryParse(txtPrecioUnidad.Text, out decimal precioUnidad))
+                    {
+                        // Actualizar el producto
+                        ActualizarProducto(idProducto, nombreProducto, cantPorUnidad, precioUnidad);
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "El precio debe ser un número válido.";
+                        return;
+                    }
+                }
+                else
+                {
+                    lblMensaje.Text = "No se pudieron encontrar todos los controles necesarios.";
+                    return;
+                }
+
+                gvProductos.EditIndex = -1;
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = "Error al actualizar el producto: " + ex.Message;
+            }
         }
     }
 }

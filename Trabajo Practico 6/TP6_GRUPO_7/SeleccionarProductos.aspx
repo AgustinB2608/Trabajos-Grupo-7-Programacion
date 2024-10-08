@@ -16,14 +16,14 @@
         /* Estilo para centrar el contenido*/
         .contenedor {
             width: 80%;
-            margin: 50px auto;
+            margin: 0 auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        
+
 
         /* Estilo para el GridView */
         .grid-view {
@@ -82,32 +82,37 @@
         <div class="contenedor">
 
             <asp:GridView ID="gvProductos" runat="server" CssClass="grid-view" AllowPaging="True" 
-                AutoGenerateColumns="False" DataKeyNames="IdProducto,NombreProducto,CantidadPorUnidad,PrecioUnidad"
-                PageSize="14"   AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvProductos_SelectedIndexChanged" OnPageIndexChanging="gvProductos_PageIndexChanging" >
-                <Columns>
+    AutoGenerateColumns="False" DataKeyNames="IdProducto,NombreProducto,IdProveedor,PrecioUnidad"
+    PageSize="14" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvProductos_SelectedIndexChanged" OnPageIndexChanging="gvProductos_PageIndexChanging">
+    <Columns>
 
-                    <asp:TemplateField HeaderText="Id Producto">
-                        <ItemTemplate>
-                            <asp:Label ID="lblIdProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Nombre Producto">
-                        <ItemTemplate>
-                            <asp:Label ID="lblNombreProducto" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Cantidad Por Unidad">
-                        <ItemTemplate>
-                            <asp:Label ID="lblCantidadPorUnidad" runat="server" Text='<%# Bind("CantidadPorUnidad") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Precio Unidad">
-                        <ItemTemplate>
-                            <asp:Label ID="lblPrecioUnidad" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
+        <asp:TemplateField HeaderText="Id Producto">
+            <ItemTemplate>
+                <asp:Label ID="lblIdProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Nombre Producto">
+            <ItemTemplate>
+                <asp:Label ID="lblNombreProducto" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Id Proveedor">
+            <ItemTemplate>
+                <asp:Label ID="lblIdProveedor" runat="server" Text='<%# Bind("IdProveedor") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Precio Unidad">
+            <ItemTemplate>
+                <asp:Label ID="lblPrecioUnidad" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+    </Columns>
+</asp:GridView>
+
 
            <div class="mensaje-container">
                 <div class="mensaje">
