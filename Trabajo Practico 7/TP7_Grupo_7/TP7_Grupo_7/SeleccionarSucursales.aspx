@@ -69,6 +69,16 @@
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="auto-style1" />
             </div>
             <br />
+            <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2">
+                <ItemTemplate>
+                    <br />
+                    <asp:Button ID="BtnNombreProv" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Width="200px" />
+                </ItemTemplate>
+            </asp:DataList>
+            <br />
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString2 %>" ProviderName="<%$ ConnectionStrings:BDSucursalesConnectionString2.ProviderName %>" SelectCommand="SELECT [DescripcionProvincia] FROM [Provincia]"></asp:SqlDataSource>
+            <br />
+            <br />
             <asp:ListView ID="lvSucursales" runat="server" DataKeyNames="Id_Sucursal" DataSourceID="SqlDataSource1" GroupItemCount="3" style="font-size: small">
                 <AlternatingItemTemplate>
                     <td runat="server" style="background-color: #FFFFFF;color: #284775;">Id_Sucursal:
