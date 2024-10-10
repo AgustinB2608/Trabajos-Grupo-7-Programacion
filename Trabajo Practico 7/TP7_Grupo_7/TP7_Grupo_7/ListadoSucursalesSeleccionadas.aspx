@@ -10,6 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:HyperLink ID="hklListadoSucu" runat="server" NavigateUrl="ListadoSucursalesSeleccionadas.aspx">Lisatado de sucursales</asp:HyperLink>
+&nbsp;&nbsp;
+            <asp:HyperLink ID="hkMostrarSucu" runat="server" NavigateUrl="SeleccionarSucursales.aspx">Mostrar sucursales seleccionadas</asp:HyperLink>
         </div>
     </form>
 </body>
