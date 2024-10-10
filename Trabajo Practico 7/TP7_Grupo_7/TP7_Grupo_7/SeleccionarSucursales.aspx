@@ -147,7 +147,7 @@
                         <br />
                         <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
                         <br />
-                        <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" />
+                        <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" OnClick="btnSeleccionar_Click"/>
                         <br />
                     </td>
                 </ItemTemplate>

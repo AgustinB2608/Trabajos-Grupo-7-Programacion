@@ -35,6 +35,9 @@ namespace TP7_Grupo_7
             }
         }
 
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
