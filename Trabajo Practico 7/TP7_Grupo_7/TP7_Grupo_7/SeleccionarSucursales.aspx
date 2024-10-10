@@ -78,34 +78,21 @@
             <br />
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString2 %>" ProviderName="<%$ ConnectionStrings:BDSucursalesConnectionString2.ProviderName %>" SelectCommand="SELECT [DescripcionProvincia] FROM [Provincia]"></asp:SqlDataSource>
             <br />
-            <br />
-            <asp:ListView ID="lvSucursales" runat="server" DataKeyNames="Id_Sucursal" DataSourceID="SqlDataSource1" GroupItemCount="3" style="font-size: small">
-                <AlternatingItemTemplate>
-                    <td runat="server" style="background-color: #FFFFFF;color: #284775;">Id_Sucursal:
-                        <asp:Label ID="Id_SucursalLabel" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                        <br />NombreSucursal:
+            <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource3" GroupItemCount="3">
+               <%-- <AlternatingItemTemplate>
+                    <td runat="server" style="background-color:#FFF8DC;">NombreSucursal:
                         <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
                         <br />DescripcionSucursal:
                         <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                        <br />Id_ProvinciaSucursal:
-                        <asp:Label ID="Id_ProvinciaSucursalLabel" runat="server" Text='<%# Eval("Id_ProvinciaSucursal") %>' />
-                        <br />DireccionSucursal:
-                        <asp:Label ID="DireccionSucursalLabel" runat="server" Text='<%# Eval("DireccionSucursal") %>' />
                         <br />URL_Imagen_Sucursal:
                         <asp:Label ID="URL_Imagen_SucursalLabel" runat="server" Text='<%# Eval("URL_Imagen_Sucursal") %>' />
                         <br /></td>
-                </AlternatingItemTemplate>
+                </AlternatingItemTemplate>--%>
                 <EditItemTemplate>
-                    <td runat="server" style="background-color: #999999;">Id_Sucursal:
-                        <asp:Label ID="Id_SucursalLabel1" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                        <br />NombreSucursal:
+                    <td runat="server" style="background-color:#008A8C;color: #FFFFFF;">NombreSucursal:
                         <asp:TextBox ID="NombreSucursalTextBox" runat="server" Text='<%# Bind("NombreSucursal") %>' />
                         <br />DescripcionSucursal:
                         <asp:TextBox ID="DescripcionSucursalTextBox" runat="server" Text='<%# Bind("DescripcionSucursal") %>' />
-                        <br />Id_ProvinciaSucursal:
-                        <asp:TextBox ID="Id_ProvinciaSucursalTextBox" runat="server" Text='<%# Bind("Id_ProvinciaSucursal") %>' />
-                        <br />DireccionSucursal:
-                        <asp:TextBox ID="DireccionSucursalTextBox" runat="server" Text='<%# Bind("DireccionSucursal") %>' />
                         <br />URL_Imagen_Sucursal:
                         <asp:TextBox ID="URL_Imagen_SucursalTextBox" runat="server" Text='<%# Bind("URL_Imagen_Sucursal") %>' />
                         <br />
@@ -134,10 +121,6 @@
                         <asp:TextBox ID="NombreSucursalTextBox" runat="server" Text='<%# Bind("NombreSucursal") %>' />
                         <br />DescripcionSucursal:
                         <asp:TextBox ID="DescripcionSucursalTextBox" runat="server" Text='<%# Bind("DescripcionSucursal") %>' />
-                        <br />Id_ProvinciaSucursal:
-                        <asp:TextBox ID="Id_ProvinciaSucursalTextBox" runat="server" Text='<%# Bind("Id_ProvinciaSucursal") %>' />
-                        <br />DireccionSucursal:
-                        <asp:TextBox ID="DireccionSucursalTextBox" runat="server" Text='<%# Bind("DireccionSucursal") %>' />
                         <br />URL_Imagen_Sucursal:
                         <asp:TextBox ID="URL_Imagen_SucursalTextBox" runat="server" Text='<%# Bind("URL_Imagen_Sucursal") %>' />
                         <br />
@@ -147,16 +130,10 @@
                         <br /></td>
                 </InsertItemTemplate>
                 <ItemTemplate>
-                    <td runat="server" style="background-color: #E0FFFF;color: #333333;">Id_Sucursal:
-                        <asp:Label ID="Id_SucursalLabel" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                        <br />NombreSucursal:
+                    <td runat="server" style="background-color:#DCDCDC;color: #000000;">NombreSucursal:
                         <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
                         <br />DescripcionSucursal:
                         <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                        <br />Id_ProvinciaSucursal:
-                        <asp:Label ID="Id_ProvinciaSucursalLabel" runat="server" Text='<%# Eval("Id_ProvinciaSucursal") %>' />
-                        <br />DireccionSucursal:
-                        <asp:Label ID="DireccionSucursalLabel" runat="server" Text='<%# Eval("DireccionSucursal") %>' />
                         <br />URL_Imagen_Sucursal:
                         <asp:Label ID="URL_Imagen_SucursalLabel" runat="server" Text='<%# Eval("URL_Imagen_Sucursal") %>' />
                         <br /></td>
@@ -172,7 +149,7 @@
                             </td>
                         </tr>
                         <tr runat="server">
-                            <td runat="server" style="text-align: center;background-color: #5D7B9D;font-family: Verdana, Arial, Helvetica, sans-serif;color: #FFFFFF">
+                            <td runat="server" style="text-align: center;background-color: #CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif;color: #000000;">
                                 <asp:DataPager ID="DataPager1" runat="server" PageSize="12">
                                     <Fields>
                                         <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
@@ -185,24 +162,25 @@
                     </table>
                 </LayoutTemplate>
                 <SelectedItemTemplate>
-                    <td runat="server" style="background-color: #E2DED6;font-weight: bold;color: #333333;">Id_Sucursal:
-                        <asp:Label ID="Id_SucursalLabel" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                        <br />NombreSucursal:
+                    <td runat="server" style="background-color:#008A8C;font-weight: bold;color: #FFFFFF;">NombreSucursal:
                         <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
                         <br />DescripcionSucursal:
                         <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                        <br />Id_ProvinciaSucursal:
-                        <asp:Label ID="Id_ProvinciaSucursalLabel" runat="server" Text='<%# Eval("Id_ProvinciaSucursal") %>' />
-                        <br />DireccionSucursal:
-                        <asp:Label ID="DireccionSucursalLabel" runat="server" Text='<%# Eval("DireccionSucursal") %>' />
                         <br />URL_Imagen_Sucursal:
                         <asp:Label ID="URL_Imagen_SucursalLabel" runat="server" Text='<%# Eval("URL_Imagen_Sucursal") %>' />
                         <br /></td>
                 </SelectedItemTemplate>
             </asp:ListView>
             <br />
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_ProvinciaSucursal], [DireccionSucursal], [URL_Imagen_Sucursal] FROM [Sucursal]"></asp:SqlDataSource>
+            <br />
         </div>
+<connectionStrings>
+    <add name="BDSucursalesConnectionString3" 
+         connectionString="Server=tu_servidor;Database=tu_base_de_datos;User Id=tu_usuario;Password=tu_contraseña;"
+         providerName="System.Data.SqlClient" />
+</connectionStrings>
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString1 %>" ProviderName="<%$ ConnectionStrings:BDSucursalesConnectionString1.ProviderName %>" SelectCommand="SELECT [NombreSucursal], [DescripcionSucursal], [URL_Imagen_Sucursal] FROM [Sucursal]"></asp:SqlDataSource>
     </form>
 </body>
 </html>
+

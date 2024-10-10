@@ -7,13 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace TP7_Grupo_7
 {
-    public partial class SeleccionarSucursales : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-    
+        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
