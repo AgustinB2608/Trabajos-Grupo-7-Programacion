@@ -4,194 +4,243 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listado de Sucursales</title>
     <style>
+        /*Selector Root para hacer variables globales, */
+        :root {
+            --color-principal: #FF6F61; 
+            --color-secundario: #6B5B93; 
+            --color-acento: #88B04B; 
+            --color-fondo: #F7F7F7; 
+            --color-texto: #333333; 
+            --color-header: #F2F2F2; 
+            --color-boton: #FF6F61; 
+            --color-boton-hover: #E65C50; 
+            --color-fondo-tarjeta: #FFFFFF;
+            --color-borde-tarjeta: #E0E0E0;
+            --color-enlace: #6B5B93;
+            --color-enlace-hover: #5A4E7E; 
+            --color-enlace-nav: #6B5B93; 
+            --color-enlace-nav-hover: #5A4E7E; 
+            --color-h2: #333333; 
+            --color-boton-busqueda: #FF6F61; 
+            --color-boton-busqueda-hover: #E65C50; 
+            --color-boton-provincia: #6B5B93;
+            --color-boton-provincia-hover: #5A4E7E; 
+            --color-tarjeta-sucursal: #FFFFFF; 
+            --color-texto-tarjeta-sucursal: #333333;
+            --color-boton-seleccionar: #FF6F61; 
+            --color-boton-seleccionar-hover: #E65C50; 
+            /*Para usar las variables es "var(nombre de la variable)*/
+        }
+
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
-        .links {
-            text-align: center; 
-            margin-bottom: 20px; 
+
+        header {
+            background-color: var(--color-header); 
+            padding: 10px 0; 
+            box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3); /*una sombra leve que aparece abajo del encabezado*/
         }
-        .links a {
-            margin: 0 15px;
-            text-decoration: none; 
-            color: #007bff; 
-            font-weight: bold; 
-        }
-        .links a:hover {
-            text-decoration: underline;
-        }
-        h2 {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: left;
-        }
-        .search-container {
+
+        .nav-links { /*Para manejar los links a los otros ejercicios, centrado horizontal y le sacamos todos los margenes */
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
             display: flex;
-            align-items: center;
+            justify-content: center; 
         }
-        #txtBuscar {
-            margin-left: 10px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            width: 200px;
+
+        .nav-links li {
+            margin: 0 40px; 
         }
-        #btnBuscar {
-            margin-left: 10px;
-            padding: 5px 10px;
-            font-size: 14px;
-            background-color: #007bff;
+
+        .nav-links a { /*Para manejar los links a los otros ejercicios, color, tamaño, negrita y transicion de color*/
+            color: var(--color-enlace-nav); 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: bold; 
+            transition: color 0.3s; 
+        }
+
+        .nav-links a:hover {
+            color: var(--color-enlace-nav-hover); 
+        }
+
+        h2 {
+            text-align: center;
+            margin: 15px 0; 
+            color: var(--color-h2); 
+        }
+
+        .search-container {     /*Para el contenedor de busqueda, centrado horizontal y margen*/
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-container input[type="text"] { /*Para el input de busqueda, tamaño, padding, borde y radio de esquinas*/
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px; 
+            border: 1px solid #ccc; 
+        }
+
+        .search-container .btn-search { /*Para el boton de busqueda, tamaño, padding, color, borde, radio de esquinas y cursor*/
+            padding: 10px 20px;
+            background-color: var(--color-boton-busqueda); 
             color: white;
             border: none;
+            border-radius: 5px; 
             cursor: pointer;
+            transition: background-color 0.3s;
         }
-        #btnBuscar:hover {
-            background-color: #0056b3;
+
+        .search-container .btn-search:hover {
+            background-color: var(--color-boton-busqueda-hover); 
+        }
+
+        .provinces { /*Para el contenedor de provincias, centrado horizontal y margen*/
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            justify-content: space-around;
+        }
+
+        .provinces .btn-province {  /*Para los botones de provincias, tamaño, padding, color, borde, radio de esquinas y cursor*/
+            padding: 10px 20px;
+            background-color: var(--color-boton-provincia); 
+            color: white;
+            border: none;
+            border-radius: 5px; 
+            cursor: pointer; /*Pointer hace que aparezca la manito al estar arriba de un boton*/
+            transition: background-color 0.3s;
+        }
+
+        .provinces .btn-province:hover {
+            background-color: var(--color-boton-provincia-hover); /*Cambia de color al pasar por arriba al boton d provincias*/
+        }
+
+        .sucursales-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Crea columnas que se ajustan al tamaño del contenedor. autofit determina automáticamente cuántas columnas caben según el espacio disponible. minmax(200px, 1fr) hace que cada columna tenga un ancho mínimo de 200 píxeles  y un ancho máximo que puede crecer hasta ocupar una fracción del espacio q qda dispobible. */
+            gap: 20px;
+            padding: 20px;
+            background-color: #e1e1e1;
+            border-radius: 10px; 
+            border: 1px solid var(--color-borde-tarjeta);
+        }
+
+        .sucursal-card { /*Para las tarjetas de sucursales, tamaño, padding, color, borde, radio de esquinas, sombra y transicion de movimiento*/
+            background-color: var(--color-tarjeta-sucursal); 
+            color: var(--color-texto-tarjeta-sucursal); 
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+            border: 1px solid var(--color-borde-tarjeta); 
+            transition: transform 0.2s; 
+        }
+
+        .sucursal-card:hover {
+            transform: translateY(-5px); /*hace que el contenedor se mueva -5px para arriba, si se pone numero positivo va para abajo*/
+            /*hace un efecto de movimiento*/
+        }
+
+        .sucursal-card img { /*Para ajustar bien las imagenes.*/
+            max-width: 80%; 
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px; 
+        }
+
+        .sucursal-card h3 {
+            margin: 10px 0; 
+        }
+
+        .sucursal-card p {
+            font-size: 14px; 
+            margin-bottom: 15px; 
+        }
+
+        .sucursal-card .btn-select { /*Para los botones de seleccionar, tamaño, padding, color, borde, radio de esquinas y cursor*/
+            padding: 10px 20px;
+            background-color: var(--color-boton-seleccionar); 
+            color: white;
+            border: none;
+            border-radius: 5px; 
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sucursal-card .btn-select:hover {
+            background-color: var(--color-boton-seleccionar-hover); 
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="links">
-            <asp:HyperLink ID="hkListadoSucursales" runat="server" NavigateUrl="~/SeleccionarSucursales.aspx">Listado de sucursales</asp:HyperLink>
-            <asp:HyperLink ID="hkMostrarSucursales" runat="server" NavigateUrl="~/ListadoSucursalesSeleccionadas.aspx">Mostrar sucursales seleccionadas</asp:HyperLink>
-        </div>
+       <%-- Header con los links a los otros ejercicios--%>
+        <header>
+        <ul class="nav-links"> 
+            <li>
+                <asp:HyperLink ID="hkListadoSucursales" runat="server" NavigateUrl="~/SeleccionarSucursales.aspx">Listado de Sucursales</asp:HyperLink>
+            </li>
+            <li>
+                <asp:HyperLink ID="hkMostrarSucursales" runat="server" NavigateUrl="~/ListadoSucursalesSeleccionadas.aspx">Sucursales Seleccionadas</asp:HyperLink>
+            </li>
+        </ul>
+</header>
         
-        <div>
+        <main class="container">
             <h2>Listado de sucursales</h2>
-            <div class="search-container">
-                <label for="txtBuscar">Búsqueda por nombre de sucursal:</label>
-                <asp:TextBox ID="txtBuscar" runat="server"></asp:TextBox>
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="auto-style1" />
-            </div>
-            <br />
-            <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2">
-                <ItemTemplate>
-                    <br />
-                    <asp:Button ID="BtnNombreProv" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Width="200px" />
-                </ItemTemplate>
-            </asp:DataList>
-            <br />
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString2 %>" ProviderName="<%$ ConnectionStrings:BDSucursalesConnectionString2.ProviderName %>" SelectCommand="SELECT [DescripcionProvincia] FROM [Provincia]"></asp:SqlDataSource>
-            <br />
-            <asp:ListView ID="lvSucursales" runat="server" GroupItemCount="3" DataKeyNames="Id_Sucursal" >
-                <%--<AlternatingItemTemplate>
-                    <td runat="server" style="background-color:#FFF8DC;">NombreSucursal:
-                        <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
-                        <br />
-                        DescripcionSucursal:
-                        <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                        <br />
-                        URL_Imagen_Sucursal:
-                        <asp:Label ID="URL_Imagen_SucursalLabel" runat="server" Text='<%# Eval("URL_Imagen_Sucursal") %>' />
-                        <br />
-                        Id_Sucursal:
-                        <asp:Label ID="Id_SucursalLabel" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                        <br />
-                    </td>
-                </AlternatingItemTemplate>--%>
-                <EditItemTemplate>
-                    <td runat="server" style="background-color:#008A8C;color: #FFFFFF;">NombreSucursal:
-                        <asp:TextBox ID="NombreSucursalTextBox" runat="server" Text='<%# Bind("NombreSucursal") %>' />
-                        <br />DescripcionSucursal:
-                        <asp:TextBox ID="DescripcionSucursalTextBox" runat="server" Text='<%# Bind("DescripcionSucursal") %>' />
-                        <br />URL_Imagen_Sucursal:
-                        <asp:TextBox ID="URL_Imagen_SucursalTextBox" runat="server" Text='<%# Bind("URL_Imagen_Sucursal") %>' />
-                        <br />
-                        Id_Sucursal:
-                        <asp:Label ID="Id_SucursalLabel1" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                        <br />
-                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Actualizar" />
-                        <br />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancelar" />
-                        <br />
-                    </td>
-                </EditItemTemplate>
-                <EmptyDataTemplate>
-                    <table runat="server" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;">
-                        <tr>
-                            <td>No se han devuelto datos.</td>
-                        </tr>
-                    </table>
-                </EmptyDataTemplate>
-                <EmptyItemTemplate>
-<td runat="server" />
-                </EmptyItemTemplate>
-                <GroupTemplate>
-                    <tr id="itemPlaceholderContainer" runat="server">
-                        <td id="itemPlaceholder" runat="server"></td>
-                    </tr>
-                </GroupTemplate>
-                <InsertItemTemplate>
-                    <td runat="server" style="">NombreSucursal:
-                        <asp:TextBox ID="NombreSucursalTextBox" runat="server" Text='<%# Bind("NombreSucursal") %>' />
-                        <br />DescripcionSucursal:
-                        <asp:TextBox ID="DescripcionSucursalTextBox" runat="server" Text='<%# Bind("DescripcionSucursal") %>' />
-                        <br />URL_Imagen_Sucursal:
-                        <asp:TextBox ID="URL_Imagen_SucursalTextBox" runat="server" Text='<%# Bind("URL_Imagen_Sucursal") %>' />
-                        <br />
-                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insertar" />
-                        <br />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Borrar" />
-                        <br /></td>
-                </InsertItemTemplate>
-                <ItemTemplate>
-                    <td runat="server" style="background-color:#DCDCDC;color: #000000;">
-                        <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
-                        <br />
-                        <asp:Image ID="ImagenSucursal" runat="server" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' AlternateText='<%# Eval("NombreSucursal") %>' Width="150px" Height="100px" />
-                        <br />
-                        <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                        <br />
-                        <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" OnClick="btnSeleccionar_Click"/>
-                        <br />
-                    </td>
-                </ItemTemplate>
+
+            <section class="search-container">
+                <asp:TextBox ID="txtBuscar" runat="server" placeholder="Búsqueda por nombre de sucursal"></asp:TextBox>
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn-search" />
+            </section>
+
+            <section class="provinces">
+                <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <ItemTemplate>
+                        <asp:Button ID="BtnNombreProv" runat="server" Text='<%# Eval("DescripcionProvincia") %>' CssClass="btn-province" />
+                    </ItemTemplate>
+                </asp:DataList>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString2 %>" SelectCommand="SELECT [DescripcionProvincia] FROM [Provincia]"></asp:SqlDataSource>
+            </section>
+
+            <asp:ListView ID="lvSucursales" runat="server" GroupItemCount="3" DataKeyNames="Id_Sucursal">
                 <LayoutTemplate>
-                    <table runat="server">
-                        <tr runat="server">
-                            <td runat="server">
-                                <table id="groupPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
-                                    <tr id="groupPlaceholder" runat="server">
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr runat="server">
-                            <td runat="server" style="text-align: center;background-color: #CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif;color: #000000;">
-                                <asp:DataPager ID="DataPager1" runat="server" PageSize="12">
-                                    <Fields>
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
-                                        <asp:NumericPagerField />
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
-                                    </Fields>
-                                </asp:DataPager>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="sucursales-grid">
+                        <asp:PlaceHolder ID="groupPlaceholder" runat="server"></asp:PlaceHolder>
+                    </div>
+                    <asp:DataPager ID="DataPager1" runat="server" PageSize="12">
+                        <Fields>
+                            <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                            <asp:NumericPagerField />
+                            <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                        </Fields>
+                    </asp:DataPager>
                 </LayoutTemplate>
-                <SelectedItemTemplate>
-                    <td runat="server" style="background-color:#008A8C;font-weight: bold;color: #FFFFFF;">NombreSucursal:
-                        <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
-                        <br />DescripcionSucursal:
-                        <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                        <br />URL_Imagen_Sucursal:
-                        <asp:Label ID="URL_Imagen_SucursalLabel" runat="server" Text='<%# Eval("URL_Imagen_Sucursal") %>' />
-                        <br />Id_Sucursal:
-                        <asp:Label ID="Id_SucursalLabel" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                        <br />
-                    </td>
-                </SelectedItemTemplate>
+                <GroupTemplate>
+                    <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
+                </GroupTemplate>
+                <ItemTemplate>
+                    <div class="sucursal-card">
+                        <asp:Image ID="ImagenSucursal" runat="server" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' AlternateText='<%# Eval("NombreSucursal") %>' />
+                        <h3><asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' /></h3>
+                        <p><asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' /></p>
+                        <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" OnClick="btnSeleccionar_Click" CssClass="btn-select" />
+                    </div>
+                </ItemTemplate>
             </asp:ListView>
+
             <asp:Label ID="lblMensaje" runat="server"></asp:Label>
-            <br />
-            <br />
-        </div>
+        </main>
     </form>
 </body>
 </html>
-
