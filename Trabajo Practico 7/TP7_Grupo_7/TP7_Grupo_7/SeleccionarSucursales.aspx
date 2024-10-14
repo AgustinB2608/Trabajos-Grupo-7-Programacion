@@ -194,7 +194,7 @@
                 <asp:HyperLink ID="hkMostrarSucursales" runat="server" NavigateUrl="~/ListadoSucursalesSeleccionadas.aspx">Sucursales Seleccionadas</asp:HyperLink>
             </li>
         </ul>
-</header>
+        </header>
         
         <main class="container">
             <h2>Listado de sucursales</h2>
@@ -204,14 +204,23 @@
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn-search" />
             </section>
 
-            <section class="provinces">
-                <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2" RepeatDirection="Horizontal" RepeatLayout="Flow">
-                    <ItemTemplate>
-                        <asp:Button ID="BtnNombreProv" runat="server" Text='<%# Eval("DescripcionProvincia") %>' CssClass="btn-province" />
-                    </ItemTemplate>
-                </asp:DataList>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString2 %>" SelectCommand="SELECT [DescripcionProvincia] FROM [Provincia]"></asp:SqlDataSource>
-            </section>
+                <section class="provinces">
+                    <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2" 
+                        RepeatDirection="Horizontal" RepeatLayout="Flow">
+                        <ItemTemplate>
+                            <asp:Button ID="BtnNombreProv" runat="server" Text='<%# Eval("DescripcionProvincia") %>' CssClass="btn-province" CommandArgument='<%# Eval("ID_Provincia") %>' OnCommand="BtnNombreProv_Command" />
+                        </ItemTemplate>
+                    </asp:DataList>
+
+                        <!-- Botón para mostrar todas las sucursales -->
+                        <asp:Button ID="btnMostrarTodasSucursales" runat="server" Text="Todo" CssClass="btn-province" OnClick="btnMostrarTodasSucursales_Click" />
+
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString2 %>" 
+                        SelectCommand="SELECT [ID_Provincia], [DescripcionProvincia] FROM [Provincia]">
+                        </asp:SqlDataSource>
+                </section>
+
 
             <asp:ListView ID="lvSucursales" runat="server" GroupItemCount="3" DataKeyNames="Id_Sucursal">
                 <LayoutTemplate>

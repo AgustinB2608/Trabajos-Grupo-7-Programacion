@@ -19,16 +19,32 @@ namespace TP7_Grupo_7
             }
         }
 
-        private void CargarSucursales()
+        private void CargarSucursales(string idProvincia = null)
         {
             try
             {
                 Conexion conexion = new Conexion();
                 string consulta = "SELECT Id_Sucursal, NombreSucursal, URL_Imagen_Sucursal, DescripcionSucursal FROM Sucursal";
-                DataTable dtSucursales = conexion.EjecutarConsulta(consulta);
 
+                if (!string.IsNullOrEmpty(idProvincia))
+                {
+                    consulta += " WHERE Id_ProvinciaSucursal = " + idProvincia;
+                }
+
+                DataTable dtSucursales = conexion.EjecutarConsulta(consulta);
                 lvSucursales.DataSource = dtSucursales;
                 lvSucursales.DataBind();
+
+                // Si no hay sucursales cargadas en la provincia seleccionada se muestra el mensaje, sino se limpia el mensaje
+                if (dtSucursales.Rows.Count == 0)
+                {
+                    lblMensaje.Text = "No hay sucursales en esta provincia."; 
+                }
+                else
+                {
+                    lblMensaje.Text = ""; 
+                }
+
             }
             catch (Exception ex)
             {
@@ -67,6 +83,26 @@ namespace TP7_Grupo_7
                 lblMensaje.Text = "Error al seleccionar la sucursal. Por favor, inténtelo de nuevo.";
             }
         }
+
+        protected void BtnNombreProv_Command(object sender, CommandEventArgs e)
+        {
+            string idProvinciaSeleccionada = e.CommandArgument.ToString();
+            CargarSucursales(idProvinciaSeleccionada);
+
+
+        }
+
+        protected void btnMostrarTodasSucursales_Click(object sender, EventArgs e)
+        {
+            // Llamar al método para cargar todas las sucursales
+            CargarSucursales();
+        }
+
+
+
+
+
+
 
 
 
