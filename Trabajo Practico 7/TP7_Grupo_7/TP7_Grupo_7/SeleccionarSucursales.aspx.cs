@@ -38,11 +38,11 @@ namespace TP7_Grupo_7
                 // Si no hay sucursales cargadas en la provincia seleccionada se muestra el mensaje, sino se limpia el mensaje
                 if (dtSucursales.Rows.Count == 0)
                 {
-                    lblMensaje.Text = "No hay sucursales en esta provincia."; 
+                    lblMensaje.Text = "No hay sucursales en esta provincia.";
                 }
                 else
                 {
-                    lblMensaje.Text = ""; 
+                    lblMensaje.Text = "";
                 }
 
             }
@@ -98,15 +98,59 @@ namespace TP7_Grupo_7
             CargarSucursales();
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string textoBusqueda = txtBuscar.Text.Trim().ToLower();
 
+            // Si el TextBox está vacío, mostramos todas las sucursales
+            if (string.IsNullOrEmpty(textoBusqueda))
+            {
+                CargarSucursales();
+            }
+            else
+            {
+                try
+                {
+                    // Cargar todas las sucursales para filtrar
+                    Conexion conexion = new Conexion();
+                    string consulta = "SELECT Id_Sucursal, NombreSucursal, URL_Imagen_Sucursal, DescripcionSucursal FROM Sucursal";
+                    DataTable dtSucursales = conexion.EjecutarConsulta(consulta);
 
+                    // Filtrar las sucursales que contienen el texto ingresado
+                    var sucursalesFiltradas = dtSucursales.AsEnumerable()
+                        .Where(row => row.Field<string>("NombreSucursal").ToLower().Contains(textoBusqueda))
+                        .CopyToDataTable();
 
+                    // Guardar las sucursales filtradas en la sesión
+                    if (sucursalesFiltradas.Rows.Count > 0)
+                    {
+                        Session["SucursalesFiltradas"] = sucursalesFiltradas;
+                    }
+                    else
+                    {
+                        Session.Remove("SucursalesFiltradas"); // Limpiar sesión si no hay resultados
+                    }
 
+                    // Cargar las sucursales filtradas en el ListView
+                    lvSucursales.DataSource = sucursalesFiltradas;
+                    lvSucursales.DataBind();
 
-
-
-
-
+                    // Verificar si hay sucursales filtradas
+                    if (sucursalesFiltradas.Rows.Count == 0)
+                    {
+                        lblMensaje.Text = "No hay sucursales que coincidan con la búsqueda.";
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lblMensaje.Text = "Error al buscar sucursales: " + ex.Message;
+                }
+            }
+        }
 
     }
 }
