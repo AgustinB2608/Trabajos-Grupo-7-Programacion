@@ -38,11 +38,11 @@ namespace TP7_Grupo_7
                 // Si no hay sucursales cargadas en la provincia seleccionada se muestra el mensaje, sino se limpia el mensaje
                 if (dtSucursales.Rows.Count == 0)
                 {
-                    lblMensaje.Text = "No hay sucursales en esta provincia."; 
+                    lblMensaje.Text = "No hay sucursales en esta provincia.";
                 }
                 else
                 {
-                    lblMensaje.Text = ""; 
+                    lblMensaje.Text = "";
                 }
 
             }

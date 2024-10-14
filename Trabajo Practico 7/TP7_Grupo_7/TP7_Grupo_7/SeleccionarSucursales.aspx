@@ -201,7 +201,7 @@
 
             <section class="search-container">
                 <asp:TextBox ID="txtBuscar" runat="server" placeholder="Búsqueda por nombre de sucursal"></asp:TextBox>
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn-search" />
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn-search" OnClick="btnBuscar_Click" />
             </section>
 
                 <section class="provinces">
