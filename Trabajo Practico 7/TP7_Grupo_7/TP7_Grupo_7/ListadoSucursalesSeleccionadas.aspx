@@ -57,7 +57,35 @@
             color: var(--color-h2); 
         }
 
-        
+        /* Estilo para el GridView */
+        #gvSucursalesSeleccionadas {
+            width: 80%; /* Ancho de la tabla */
+            margin: 20px auto; /* Centrar la tabla en la página */
+            border-collapse: collapse; /* Colapsar bordes */
+        }
+
+        #gvSucursalesSeleccionadas th, #gvSucursalesSeleccionadas td {
+            border: 1px solid var(--color-borde); /* Borde de las celdas */
+            padding: 10px; /* Espaciado interno */
+            text-align: left; /* Alinear texto a la izquierda */
+        }
+
+        #gvSucursalesSeleccionadas th {
+            background-color: var(--color-header); /* Color de fondo para encabezados */
+            color: var(--color-h2); /* Color de texto para encabezados */
+        }
+
+        #gvSucursalesSeleccionadas tr:nth-child(even) {
+            background-color: var(--color-fila-par); /* Color de fondo para filas pares */
+        }
+
+        #gvSucursalesSeleccionadas tr:nth-child(odd) {
+            background-color: var(--color-fila-impar); /* Color de fondo para filas impares */
+        }
+
+        #gvSucursalesSeleccionadas tr:hover {
+            background-color: #E0E0E0; /* Color de fondo al pasar el mouse */
+        }
     </style>
 </head>
 <body>
@@ -75,11 +103,13 @@
 
         <h2 class="title" >Sucursales Seleccionadas: </h2>
 
-        <%--falta--%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:GridView ID="gvSucursalesSeleccionadas" runat="server" BackColor="#B9B9FF" BorderColor="Black" Height="16px" Width="531px">
-            <EditRowStyle Font-Bold="True" Font-Size="X-Large" />
-        </asp:GridView>
-
+        <%--falta--%>
+        <div style="text-align:center;">
+            <asp:Label ID="lblMensaje" runat="server" Text="" ForeColor="Red"></asp:Label>
+            <asp:GridView ID="gvSucursalesSeleccionadas" runat="server"  BorderColor="Black" Height="16px" Width="531px">
+                <EditRowStyle Font-Bold="True" Font-Size="X-Large" />
+            </asp:GridView>
+        </div>
     </form>
 </body>
 </html>
