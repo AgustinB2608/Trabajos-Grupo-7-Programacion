@@ -66,22 +66,13 @@ namespace TP7_Grupo_7
             // Obtener el control que muestra la descripción de la sucursal
             Label lblDescripcionSucursal = (Label)item.FindControl("DescripcionSucursalLabel");
 
-            // Verificar que los controles de nombre y descripción no sean nulos
-            if (lblNombreSucursal != null && lblDescripcionSucursal != null)
-            {
-                // Guardar el ID y los datos de la sucursal en la sesión
-                Session["ID_SUCURSAL"] = idSucursal; // Guardar ID de sucursal
-                Session["NOMBRE"] = lblNombreSucursal.Text; // Guardar nombre de la sucursal
-                Session["DESCRIPCION"] = lblDescripcionSucursal.Text; // Guardar descripción de la sucursal
 
-                // Mensaje de confirmacion
-                lblMensaje.Text = "Sucursal seleccionada: " + lblNombreSucursal.Text;
-            }
-            else
+            if (Session["tabla"] == null)
             {
-                // Mensaje de error 
-                lblMensaje.Text = "Error al seleccionar la sucursal. Por favor, inténtelo de nuevo.";
+                Session["tabla"] = crearTablaSucursales();
             }
+
+            agregarSucursalesSeleccionadas((DataTable)Session["tabla"], idSucursal, lblNombreSucursal.Text, lblDescripcionSucursal.Text);
         }
 
         protected void BtnNombreProv_Command(object sender, CommandEventArgs e)
@@ -98,15 +89,29 @@ namespace TP7_Grupo_7
             CargarSucursales();
         }
 
+        public DataTable crearTablaSucursales()
+        {
+            DataTable dt = new DataTable();
+            DataColumn columna = new DataColumn("ID Sucursal", System.Type.GetType("System.String"));
+            dt.Columns.Add(columna);
 
+            columna = new DataColumn("Nombre Sucursal", System.Type.GetType("System.String"));
+            dt.Columns.Add(columna);
 
+            columna = new DataColumn("Descripcion", System.Type.GetType("System.String"));
+            dt.Columns.Add(columna);
 
+            return dt;
+        }
 
-
-
-
-
-
+        public void agregarSucursalesSeleccionadas(DataTable tabla, String idSucursal, String NombreSucursal, string DescripcionSucursal)
+        {
+            DataRow dr = tabla.NewRow();
+            dr["ID Sucursal"] = idSucursal;
+            dr["Nombre Sucursal"] = NombreSucursal;
+            dr["Descripcion"] = DescripcionSucursal;
+            tabla.Rows.Add(dr);
+        }
 
     }
 }

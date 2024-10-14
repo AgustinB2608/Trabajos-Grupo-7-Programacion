@@ -222,7 +222,7 @@
                 </section>
 
 
-            <asp:ListView ID="lvSucursales" runat="server" GroupItemCount="3" DataKeyNames="Id_Sucursal">
+            <asp:ListView ID="lvSucursales" runat="server" GroupItemCount="3" DataKeyNames="Id_Sucursal" OnSelectedIndexChanged="btnSeleccionar_Click">
                 <LayoutTemplate>
                     <div class="sucursales-grid">
                         <asp:PlaceHolder ID="groupPlaceholder" runat="server"></asp:PlaceHolder>

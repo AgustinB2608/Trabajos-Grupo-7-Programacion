@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace TP7_Grupo_7
 {
@@ -11,7 +12,11 @@ namespace TP7_Grupo_7
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["tabla"] != null)
+            {
+                gvSucursalesSeleccionadas.DataSource = (DataTable)Session["tabla"];
+                gvSucursalesSeleccionadas.DataBind();
+            }
         }
     }
 }
