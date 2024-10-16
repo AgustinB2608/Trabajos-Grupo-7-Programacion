@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarSucursal.aspx.cs" Inherits="VISTA.AgregarSucursal" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarSucursal.aspx.cs" Inherits="VISTA.AgregarSucursal" UnobtrusiveValidationMode="None"%>
 
 <!DOCTYPE html>
 
