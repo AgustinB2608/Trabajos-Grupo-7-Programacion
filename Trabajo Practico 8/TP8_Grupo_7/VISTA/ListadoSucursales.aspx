@@ -6,22 +6,55 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            margin-bottom: 0px;
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        #contenedor {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            min-width:800px;
+
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            Listado de sucursales<br />
-            Ingrese ID sucursal:&nbsp;&nbsp;
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="auto-style1"></asp:TextBox>
-&nbsp;&nbsp;
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-&nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" Text="Button" />
+        <div id="contenedor"> 
+            <div id="titulo-grupo">GRUPO N°7</div>
+            <h1>Listado de sucursales</h1> 
+
+            <div id="links">
+                <asp:HyperLink ID="hplAgregarSucursal" runat="server" NavigateUrl="AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
+                <asp:HyperLink ID="hplListarSucursales" runat="server" NavigateUrl="ListadoSucursales.aspx">Listado de sucursales</asp:HyperLink>
+                <asp:HyperLink ID="hplEliminarSucursal" runat="server" NavigateUrl="EliminarSucursal.aspx">Eliminar Sucursal</asp:HyperLink>
+            </div>
+            <div class="form-grupo"> 
+                <label for="txtSucursal">Sucursal:</label>
+                <asp:TextBox ID="txtSucursal" runat="server"></asp:TextBox>
+                <asp:Button ID="btnFiltrar" runat="server" CssClass="btn"  Text="Filtrar" OnClick="btnFiltrar_Click"   />
+                <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" />
+                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+
+            </div>
+            <div class="grid-container">
+                <asp:GridView ID="grvSucursales" runat="server"></asp:GridView>
+            </div>
+
+
+
         </div>
     </form>
 </body>

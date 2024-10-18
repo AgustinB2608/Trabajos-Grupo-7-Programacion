@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,30 +15,30 @@ namespace Datos
         /// 
             private Conexion ds = new Conexion();
 
-            
-            public Sucursal ObtenerSucursal(int SucursalElegida)
+
+            public DataTable ObtenerSucursal(int idSucursal)
             {
-                
-                string consulta = $"SELECT id_Sucursal, NombreSucursal, DescripcionSucursal, DireccionSucursal FROM Sucursal WHERE id_Sucursal = {SucursalElegida}";
+                string consulta = "SELECT S.Id_Sucursal, S.NombreSucursal, S.DescripcionSucursal, P.DescripcionProvincia, S.DireccionSucursal " +
+                                  "FROM Sucursal S " +
+                                  "INNER JOIN Provincia P ON P.Id_Provincia = S.Id_ProvinciaSucursal " +
+                                  "WHERE S.Id_Sucursal = @IdSucursal";
 
-                DataTable dt = ds.EjecutarConsulta(consulta);
-
-                if (dt.Rows.Count == 0)
+                SqlParameter[] parametros = new SqlParameter[]
                 {
-                    return null; // Si no hay resultados devuelve null 
-                }
-
-                DataRow row = dt.Rows[0];  // obtengo la única fila
-                Sucursal sucursal = new Sucursal
-                {
-                id_sucursal = (int)row["id_Sucursal"],
-                NombreSucursal = row["NombreSucursal"].ToString(),
-                DescripcionSucursal = row["DescripcionSucursal"].ToString(),
-                DireccionSucursal = row["DireccionSucursal"].ToString()
+                new SqlParameter("@IdSucursal", idSucursal)
                 };
 
-                return sucursal;
+                return ds.EjecutarConsultaConParametros(consulta, parametros);
             }
         
+            // Metodo para obtener las tablas con todas las sucursales y la provincia
+            public DataTable getTablaSucursal()
+            {
+                DataTable tabla = ds.ObtenerTabla("Sucursal",
+                    "SELECT S.Id_Sucursal, S.NombreSucursal, S.DescripcionSucursal, P.DescripcionProvincia, S.DireccionSucursal " +
+                    "FROM Sucursal S " +
+                    "INNER JOIN Provincia P ON P.Id_Provincia = S.Id_ProvinciaSucursal");
+                return tabla;
+            }
     }
 }
