@@ -24,5 +24,12 @@ namespace NEGOCIO
             return dao.getTablaSucursal();
         }
 
+        //Metodo que obtiene la fila con los datos de una sucursal en concreto
+        public DataTable getSucursalPorId(int idSucursal)
+        {
+            return dao.ObtenerSucursal(idSucursal);
+
+
+        }
     }
 }

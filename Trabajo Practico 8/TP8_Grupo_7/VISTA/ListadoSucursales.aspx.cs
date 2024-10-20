@@ -32,12 +32,25 @@ namespace VISTA
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
+            int SucursalSeleccionada;
 
+            if (int.TryParse(txtSucursal.Text, out SucursalSeleccionada))
+            {
+                NegocioSucursal negocioSucursal = new NegocioSucursal();
+                DataTable dt = negocioSucursal.getSucursalPorId(SucursalSeleccionada);
+                grvSucursales.DataSource = dt;
+                grvSucursales.DataBind();
+
+            }
+            else
+            {
+                ///Posible mensaje de error si lo ingresado no pudo convertirse en int
+            }
         }
 
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
-
+            CargarSucursales();
         }
     }
 }

@@ -27,6 +27,8 @@ namespace Datos
                 {
                 new SqlParameter("@IdSucursal", idSucursal)
                 };
+                
+
 
                 return ds.EjecutarConsultaConParametros(consulta, parametros);
             }
