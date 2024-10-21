@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EliminarSucursal.aspx.cs" Inherits="VISTA.EliminarSucursal" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EliminarSucursal.aspx.cs" Inherits="VISTA.EliminarSucursal" UnobtrusiveValidationMode="None" %>
 
 <!DOCTYPE html>
 

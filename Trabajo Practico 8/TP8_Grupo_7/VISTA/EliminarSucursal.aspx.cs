@@ -20,23 +20,29 @@ namespace VISTA
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            Boolean estado = false;
-
-
-
-            estado = neg.eliminarSucursal(int.Parse(txtID.Text));
-
-            if (estado == true)
+            int id;
+           
+            if (int.TryParse(txtID.Text, out id))
             {
-                lblMensaje.Text = "Sucursal eliminada con exito";
+               
+                Boolean estado = neg.eliminarSucursal(id);
 
-                txtID.Text = " ";
+                if (estado)
+                {
+                    lblMensaje.Text = "Sucursal eliminada con éxito";
+                    txtID.Text = ""; 
+                }
+                else
+                {
+                    lblMensaje.Text = "No se pudo eliminar la sucursal";
+                    txtID.Text = ""; 
+                }
             }
             else
             {
-                lblMensaje.Text = "No se puedo eliminar la sucursal";
-
-                txtID.Text = " ";
+               
+                lblMensaje.Text = "Por favor, ingrese un número válido.";
+                txtID.Text = ""; 
             }
         }
     }
