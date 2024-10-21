@@ -58,23 +58,31 @@ namespace VISTA
                     lblMensaje.Text = dt.Rows.Count > 0
                         ? ""
                         : "No se encontraron sucursales con ese ID.";
+                    
                 }
                 catch (Exception ex)
                 {
                     lblMensaje.Text = "Ocurrió un error al filtrar la sucursal.";
                     // Log del error: Console.WriteLine(ex.Message);
+                    
                 }
             }
             else
             {
                 lblMensaje.Text = "El ID ingresado debe ser un número entero.";
+                
             }
+
+            txtSucursal.Text = " ";
         }
 
         // Evento del botón "Mostrar Todos"
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             CargarSucursales();
+
+            txtSucursal.Text = " ";
         }
+
     }
 }

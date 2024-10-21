@@ -125,14 +125,19 @@
                 <asp:HyperLink ID="hplAgregarSucursal" runat="server" NavigateUrl="AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
                 <asp:HyperLink ID="hplListarSucursales" runat="server" NavigateUrl="ListadoSucursales.aspx">Listado de sucursales</asp:HyperLink>
                 <asp:HyperLink ID="hplEliminarSucursal" runat="server" NavigateUrl="EliminarSucursal.aspx">Eliminar Sucursal</asp:HyperLink>
+                <br />
+                <br />
             </div>
 
             <div class="form-grupo">
-                <label for="txtSucursal">Sucursal:</label>
+                <label for="txtSucursal" style="font-size: x-large; font-style: inherit; color: #000000; font-weight: 100">Sucursal:</label>
                 <asp:TextBox ID="txtSucursal" runat="server"></asp:TextBox>
                 <asp:Button ID="btnFiltrar" runat="server" CssClass="btn" Text="Filtrar" OnClick="btnFiltrar_Click" />
                 <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" />
+                <br />
+                <br />
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                <br />
             </div>
 
             <div class="grid-container">
