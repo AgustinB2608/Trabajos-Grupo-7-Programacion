@@ -113,13 +113,32 @@
       <div id="links">
       
       </div>
+              <div id="EliminarSucu" style="font-size: xx-large">
+          <asp:Label ID="lblEliminarSucursal" runat="server" Font-Bold="True">Eliminar Sucursal</asp:Label>
+
+                  <br />
+
+          <br />
+      
+      </div>
+
+    <div id="IDSucu">
+          <asp:Label ID="lblEliminar" runat="server" Font-Bold="True">Ingresar ID Sucursal</asp:Label>
+      
+          :
+
+          <br />
+
+          <br />
+      
+      </div>
 
       <div class="form-grupo">
          
           <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
       </div>
 
-      <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" />
+      <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click" />
 
       <div id="mensaje">
           <asp:Label ID="lblMensaje" runat="server"></asp:Label>

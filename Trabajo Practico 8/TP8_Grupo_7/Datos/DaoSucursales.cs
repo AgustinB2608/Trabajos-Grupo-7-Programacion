@@ -42,5 +42,23 @@ namespace Datos
                     "INNER JOIN Provincia P ON P.Id_Provincia = S.Id_ProvinciaSucursal");
                 return tabla;
             }
+        public bool eliminarSucursal(int sucuid)
+        {
+            SqlCommand sc = new SqlCommand();
+
+            string eliminar = $"DELETE FROM Sucursal WHERE Id_Sucursal = {sucuid}";
+
+            int exito = ds.EjecutarConsultaSinRetorno(eliminar);
+
+            if (exito > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+       
     }
 }

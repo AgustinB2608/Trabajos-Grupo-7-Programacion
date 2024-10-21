@@ -31,5 +31,17 @@ namespace NEGOCIO
 
 
         }
+        
+        public bool eliminarSucursal(int id)
+        {
+            DaoSucursales dao = new DaoSucursales();
+            Sucursal sucu = new Sucursal();
+            ///sucu.setIdSucursal(id);
+            bool exito = dao.eliminarSucursal(id);
+            if (exito)
+                return true;
+            else
+                return false;
+        }
     }
 }
