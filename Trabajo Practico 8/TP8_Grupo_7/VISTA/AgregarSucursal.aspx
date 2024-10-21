@@ -160,7 +160,7 @@
                     CssClass="error-text" Display="Dynamic" />
             </div>
 
-            <asp:Button ID="BtnAceptar" runat="server" Text="Aceptar" Height="56px" />
+            <asp:Button ID="BtnAceptar" runat="server" Text="Aceptar" Height="56px" OnClick="BtnAceptar_Click" />
 
             <div id="MensajeConfirmacion">
                 <asp:Label ID="lblMensaje" runat="server" Font-Bold="True"></asp:Label>

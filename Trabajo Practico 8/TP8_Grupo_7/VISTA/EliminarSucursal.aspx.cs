@@ -24,11 +24,11 @@ namespace VISTA
             estado = neg.eliminarSucursal(int.Parse(txtID.Text));
             if (estado == true)
             {
-                lblMensaje.Text = "Sucursal eliminada con exito";
+               
             }
             else
             {
-                lblMensaje.Text = "No se puedo eliminar la sucursal";
+                
             }
         }
     }

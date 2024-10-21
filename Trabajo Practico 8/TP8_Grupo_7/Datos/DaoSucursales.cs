@@ -44,11 +44,28 @@ namespace Datos
             }
         public bool eliminarSucursal(int sucuid)
         {
-            SqlCommand sc = new SqlCommand();
 
             string eliminar = $"DELETE FROM Sucursal WHERE Id_Sucursal = {sucuid}";
 
             int exito = ds.EjecutarConsultaSinRetorno(eliminar);
+
+            if (exito > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool agregarSucursal(Sucursal sucu)
+        {
+
+            string agregar = "INSERT INTO Sucursal (NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal) " +
+                              "VALUES ('" + sucu.getNombreSucursal() + "', '" + sucu.getDescripcionSucursal() + "', '" + sucu.getProvinciaSucursal() + "', '" + sucu.getDireccionSucursal() + "')";
+
+            int exito = ds.EjecutarConsultaSinRetorno(agregar);
 
             if (exito > 0)
             {

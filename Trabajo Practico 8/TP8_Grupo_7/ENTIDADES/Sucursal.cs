@@ -11,6 +11,7 @@ namespace ENTIDADES
         private int Id_Sucursal;
         private String NombreSucursal;
         private String DescripcionSucursal;
+        private String ProvinciaSucursal;
         private String DireccionSucursal;
 
         public Sucursal()
@@ -39,9 +40,17 @@ namespace ENTIDADES
         {
             DescripcionSucursal = descripcionSucursal;
         }
+        public String getProvinciaSucursal()
+        {
+            return ProvinciaSucursal;
+        }
+        public void setProvinciaSucursal(String provincia_sucursal)
+        {
+            ProvinciaSucursal = provincia_sucursal;
+        }
         public String getDireccionSucursal()
         {
-            return DescripcionSucursal;
+            return DireccionSucursal;
         }
         public void setDireccionSucursal(String direccionSucursal)
         {

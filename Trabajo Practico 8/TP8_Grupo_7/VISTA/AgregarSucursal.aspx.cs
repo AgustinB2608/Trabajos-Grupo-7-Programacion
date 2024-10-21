@@ -26,5 +26,10 @@ namespace VISTA
                 ddlProvincia.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
             }
         }
+
+        protected void BtnAceptar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
