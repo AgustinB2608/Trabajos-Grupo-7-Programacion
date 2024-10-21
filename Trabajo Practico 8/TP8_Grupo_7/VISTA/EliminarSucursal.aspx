@@ -102,6 +102,9 @@
         #links a:hover {
             color: #0056b3;
         }
+        .auto-style1 {
+            margin-left: 40px;
+        }
     </style>
 </head>
 <body>
@@ -110,7 +113,13 @@
           <div id="contenedor">
      
 
-      <div id="links">
+      <div id="links" class="auto-style1">
+      
+          <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ListadoSucursales.aspx">Listado De Sucursales</asp:HyperLink>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/EliminarSucursal.aspx">Eliminar Sucursal</asp:HyperLink>
       
       </div>
               <div id="EliminarSucu" style="font-size: xx-large">
