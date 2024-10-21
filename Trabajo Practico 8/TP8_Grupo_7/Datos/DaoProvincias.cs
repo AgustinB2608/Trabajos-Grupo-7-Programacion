@@ -29,7 +29,7 @@ namespace Datos
                 Provincias provincia = new Provincias
                 {
                     Id_Provincia = (int)row["Id_Provincia"], 
-                    DescripcionProvincia1 = row["DescripcionProvincia"].ToString().ToCharArray() 
+                    DescripcionProvincia1 = row["DescripcionProvincia"].ToString()
                 };
 
                 // Agrega la provincia a la lista.

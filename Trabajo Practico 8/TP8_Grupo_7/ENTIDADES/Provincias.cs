@@ -9,13 +9,13 @@ namespace ENTIDADES
     public class Provincias
     {
         private int id_Provincia;
-        private char[] DescripcionProvincia;
+        private string DescripcionProvincia;
 
         public Provincias() { 
         
         }
 
         public int Id_Provincia { get => id_Provincia; set => id_Provincia = value; }
-        public char[] DescripcionProvincia1 { get => DescripcionProvincia; set => DescripcionProvincia = value; }
+        public string DescripcionProvincia1 { get => DescripcionProvincia; set => DescripcionProvincia = value; }
     }
 }
