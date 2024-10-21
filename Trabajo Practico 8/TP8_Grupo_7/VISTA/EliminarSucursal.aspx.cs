@@ -25,7 +25,7 @@ namespace VISTA
             if (int.TryParse(txtID.Text, out id))
             {
                
-                Boolean estado = neg.eliminarSucursal(id);
+               bool estado = neg.eliminarSucursal(id);
 
                 if (estado)
                 {

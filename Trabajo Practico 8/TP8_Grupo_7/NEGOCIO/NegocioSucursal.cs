@@ -43,5 +43,18 @@ namespace NEGOCIO
             else
                 return false;
         }
+
+        public bool agregarSucursal(Sucursal sucu)
+        {
+            DaoSucursales dao = new DaoSucursales();
+
+            bool exito = dao.agregarSucursal(sucu);
+
+            if (exito) 
+                return true;
+            else 
+                return false;
+       
+        }
     }
 }
