@@ -21,14 +21,22 @@ namespace VISTA
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             Boolean estado = false;
+
+
+
             estado = neg.eliminarSucursal(int.Parse(txtID.Text));
+
             if (estado == true)
             {
                 lblMensaje.Text = "Sucursal eliminada con exito";
+
+                txtID.Text = " ";
             }
             else
             {
                 lblMensaje.Text = "No se puedo eliminar la sucursal";
+
+                txtID.Text = " ";
             }
         }
     }

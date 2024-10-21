@@ -145,6 +145,10 @@
       <div class="form-grupo">
          
           <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
+          <br />
+          <br />
+          <asp:RequiredFieldValidator ID="rfvSucursalEliminar" runat="server" ControlToValidate="txtID" ErrorMessage="* Ingrese ID Sucursal" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
+          <br />
       </div>
 
       <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click" />
