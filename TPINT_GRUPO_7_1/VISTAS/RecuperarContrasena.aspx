@@ -5,8 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Iniciar Sesión</title>
     <style>
-
-
         * {
             margin: 0;
             padding: 0;
@@ -124,13 +122,13 @@
             <div class="login">
                 <div class="logo">Logo</div>
                 
-                <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control" placeholder="Ingrese su legajo" />
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingrese su contraseña" />
-                <asp:Button ID="btnLogin" runat="server" Text="Iniciar sesión" CssClass="btn-iniciar" />
+                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Ingrese su DNI" />
+                <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control" placeholder="Ingrese su Legajo" />
+                <asp:TextBox ID="txtContrasenaRecuperada" runat="server" CssClass="form-control" TextMode="SingleLine" placeholder="Contraseña" ReadOnly="True" />
+                <asp:Button ID="btnRecuperar" runat="server" Text="Recuperar" CssClass="btn-iniciar" /> <%--Evento para verificar datos--%>
                 
                 <div class="links">
-                    <asp:HyperLink ID="OlvidoContrasena" runat="server" NavigateUrl="~/RecuperarContrasena.aspx" CssClass="hyperlink">¿Olvidaste tu contraseña?</asp:HyperLink>
-                    <asp:HyperLink ID="OlvidoLegajo" runat="server" NavigateUrl="~/RecuperarLegajo.aspx" CssClass="hyperlink">¿Olvidaste tu legajo?</asp:HyperLink>
+                    <asp:HyperLink ID="VolverInicio" runat="server" NavigateUrl="~/Login.aspx" CssClass="hyperlink">Volver a iniciar sesion.</asp:HyperLink>
                 </div>
             </div>
         </div>

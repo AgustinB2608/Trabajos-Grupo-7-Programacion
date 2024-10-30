@@ -1,0 +1,20 @@
+Color fondo (celeste):#6CB2EB
+Color Header (azul):#2C3E50
+Color fuentes: Blanco o Negro
+Color botones: #3490dc
+Configuración botones generales(Aceptar, Atrás, Confirmar, etc) :
+        .btn-iniciar {
+            width: 100%;
+            padding: 12px;
+            background-color: #3490dc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 15px 0;
+        }
+
+        .btn-iniciar:hover {
+            background-color: #2779bd;
+        }
