@@ -67,7 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMLMedicos.aspx" />
+    <Content Include="ABMLPacientes.aspx" />
     <Content Include="imgs\doctor.jpg" />
+    <Content Include="imgs\engranaje.png" />
     <Content Include="imgs\personal_injury_24dp_5F6368.jpg" />
     <Content Include="imgs\prescripcion-medica.jpg" />
     <Content Include="imgs\turno-nocturno.jpg" />
@@ -78,6 +81,20 @@
     <Content Include="RecuperarContrasena.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMLMedicos.aspx.cs">
+      <DependentUpon>ABMLMedicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMLMedicos.aspx.designer.cs">
+      <DependentUpon>ABMLMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMLPacientes.aspx.cs">
+      <DependentUpon>ABMLPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMLPacientes.aspx.designer.cs">
+      <DependentUpon>ABMLPacientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

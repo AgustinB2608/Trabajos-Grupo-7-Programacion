@@ -92,11 +92,11 @@
             <div class="menu-box">
                 <div class="menu-item">
                     <img src="Imgs/personal_injury_24dp_5F6368.jpg" alt="Paciente"/>
-                    <asp:HyperLink ID="hlkAbmlPacientes" runat="server">Altas Bajas Modificaciones Y Listado de Pacientes</asp:HyperLink>
+                    <asp:HyperLink ID="hlkAbmlPacientes" runat="server" NavigateUrl="~/ABMLPacientes.aspx">Altas Bajas Modificaciones Y Listado de Pacientes</asp:HyperLink>
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/doctor.jpg" alt="Medico" />
-                    <asp:HyperLink ID="hlkAbmlMedicos" runat="server">Altas Bajas Modificaciones Y Listado de Medicos</asp:HyperLink>
+                    <asp:HyperLink ID="hlkAbmlMedicos" runat="server" NavigateUrl="~/ABMLMedicos.aspx">Altas Bajas Modificaciones Y Listado de Medicos</asp:HyperLink>
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/turno-nocturno.jpg" alt="Turno" />
