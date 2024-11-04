@@ -107,10 +107,10 @@
 
             <div class="menu-box">
                 <div class="menu-item">
-                    <asp:HyperLink ID="hlkComparativoMensual" runat="server">Estadísticas de Asistencia y Ausencia: Comparativo Mensual</asp:HyperLink>
+                    <asp:HyperLink ID="hlkComparativoMensual" runat="server" NavigateUrl="~/EstadisticaMensual.aspx">Estadísticas de Asistencia y Ausencia: Comparativo Mensual</asp:HyperLink>
                 </div>
                 <div class="menu-item">
-                    <asp:HyperLink ID="hlkEspecialidad" runat="server">Estadística Mensual de Asistencia y Ausencia: Especialidad</asp:HyperLink>
+                    <asp:HyperLink ID="hlkEspecialidad" runat="server" NavigateUrl="~/EstadisticaEspecialidad.aspx">Estadística Mensual de Asistencia y Ausencia: Especialidad</asp:HyperLink>
                 </div>
                 <div class="menu-item">
                     <asp:HyperLink ID="hlkDemandaMensual" runat="server">Análisis Mensual de Demanda por Especialidad</asp:HyperLink>
