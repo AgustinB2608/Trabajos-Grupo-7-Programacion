@@ -6,7 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-        <style>
+    <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -30,8 +30,8 @@
             padding: 20px;
         }
 
-        h1{
-            color:white;
+        h1 {
+            color: white;
         }
 
         /* Menu Box */
@@ -45,7 +45,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Menu Item */
         .menu-item {
             display: flex;
             align-items: center;
@@ -65,7 +64,6 @@
             font-weight: bold;
         }
 
-        /* Logout Button */
         .logout-button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -74,10 +72,10 @@
             border: 1px solid #808080;
             border-radius: 10px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
-        .auto-style1 {
-            text-decoration: underline;
-        }
+
     </style>
 </head>
 <body>
@@ -88,7 +86,7 @@
         </div>
 
         <div class="container">
-            <h1 class="auto-style1">Sistema de Administración</h1>
+            <h1>Sistema de Administración</h1>
             <div class="menu-box">
                 <div class="menu-item">
                     <img src="Imgs/personal_injury_24dp_5F6368.jpg" alt="Paciente"/>
@@ -104,11 +102,11 @@
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/prescripcion-medica.jpg" alt="Informe" />
-                    <asp:HyperLink ID="hlkInforme" runat="server">Realizar Informe</asp:HyperLink>
+                    <asp:HyperLink ID="hlkInforme" runat="server" NavigateUrl="~/RealizarInformes.aspx">Realizar Informe</asp:HyperLink>
                 </div>
             </div>
 
-            <button class="logout-button">Cerrar Sesión</button>
+            <asp:HyperLink ID="hlkCerrarSesion" runat="server" NavigateUrl="~/Login.aspx" CssClass="logout-button">Cerrar sesión</asp:HyperLink>
         </div>
     </form>
 </body>

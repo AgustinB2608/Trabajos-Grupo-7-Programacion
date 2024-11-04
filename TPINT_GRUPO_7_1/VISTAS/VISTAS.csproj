@@ -71,12 +71,14 @@
     <Content Include="ABMLPacientes.aspx" />
     <Content Include="imgs\doctor.jpg" />
     <Content Include="imgs\engranaje.png" />
+    <Content Include="imgs\flecha-izquierda.png" />
     <Content Include="imgs\personal_injury_24dp_5F6368.jpg" />
     <Content Include="imgs\prescripcion-medica.jpg" />
     <Content Include="imgs\turno-nocturno.jpg" />
     <Content Include="Inicio.aspx" />
     <Content Include="InicioAdministrador.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="RealizarInformes.aspx" />
     <Content Include="Web.config" />
     <Content Include="RecuperarContrasena.aspx" />
   </ItemGroup>
@@ -117,6 +119,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealizarInformes.aspx.cs">
+      <DependentUpon>RealizarInformes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RealizarInformes.aspx.designer.cs">
+      <DependentUpon>RealizarInformes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RecuperarContrasena.aspx.cs">
       <DependentUpon>RecuperarContrasena.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
