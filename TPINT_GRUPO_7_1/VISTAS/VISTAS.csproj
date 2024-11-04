@@ -77,6 +77,7 @@
     <Content Include="imgs\turno-nocturno.jpg" />
     <Content Include="Inicio.aspx" />
     <Content Include="InicioAdministrador.aspx" />
+    <Content Include="ListadoTurnos.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="RealizarInformes.aspx" />
     <Content Include="Web.config" />
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="InicioAdministrador.aspx.designer.cs">
       <DependentUpon>InicioAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoTurnos.aspx.cs">
+      <DependentUpon>ListadoTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoTurnos.aspx.designer.cs">
+      <DependentUpon>ListadoTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
