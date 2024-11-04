@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="ABMLMedicos.aspx" />
     <Content Include="ABMLPacientes.aspx" />
+    <Content Include="EstadisticaDemanda.aspx" />
     <Content Include="EstadisticaEspecialidad.aspx" />
     <Content Include="EstadisticaMensual.aspx" />
     <Content Include="imgs\doctor.jpg" />
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="ABMLPacientes.aspx.designer.cs">
       <DependentUpon>ABMLPacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EstadisticaDemanda.aspx.cs">
+      <DependentUpon>EstadisticaDemanda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EstadisticaDemanda.aspx.designer.cs">
+      <DependentUpon>EstadisticaDemanda.aspx</DependentUpon>
     </Compile>
     <Compile Include="EstadisticaEspecialidad.aspx.cs">
       <DependentUpon>EstadisticaEspecialidad.aspx</DependentUpon>

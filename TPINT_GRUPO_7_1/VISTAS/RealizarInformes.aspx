@@ -113,7 +113,7 @@
                     <asp:HyperLink ID="hlkEspecialidad" runat="server" NavigateUrl="~/EstadisticaEspecialidad.aspx">Estadística Mensual de Asistencia y Ausencia: Especialidad</asp:HyperLink>
                 </div>
                 <div class="menu-item">
-                    <asp:HyperLink ID="hlkDemandaMensual" runat="server">Análisis Mensual de Demanda por Especialidad</asp:HyperLink>
+                    <asp:HyperLink ID="hlkDemandaMensual" runat="server" NavigateUrl="~/EstadisticaDemanda.aspx">Análisis Mensual de Demanda por Especialidad</asp:HyperLink>
                 </div>
                 <div class="menu-item">
                     <asp:HyperLink ID="hlkCancelaciones" runat="server">Análisis de Pacientes con Alta Tasa de Cancelaciones</asp:HyperLink>
