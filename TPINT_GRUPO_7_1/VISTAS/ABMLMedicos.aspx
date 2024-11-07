@@ -166,7 +166,8 @@
                     <div class="form-column">
                         <div class="form-group">
                             <asp:Label ID="lblSexo" runat="server" Text="Sexo:"></asp:Label>
-                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control">
+                            </asp:DropDownList>
                         </div>
 
                         <div class="form-group">
@@ -203,6 +204,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lblHorario" runat="server" Text="Horario:"></asp:Label>
                                 <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                             </div>
                         </div>
 
@@ -210,7 +212,11 @@
                         <div class="right-buttons">
                             <div class="config-button">
                                 <asp:Button ID="btnConfigUsuario" runat="server" Text="Configurar Usuario" CssClass="config-button"></asp:Button>
-                                <asp:Button ID="btnConfigContrasena" runat="server" Text="Configurar Contraseña" CssClass="config-button"></asp:Button>
+
+                                <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
+                                <asp:HyperLink ID="hlkListar" runat="server">Listar</asp:HyperLink>
+                                <asp:HyperLink ID="hlkEliminar" runat="server">Eliminar</asp:HyperLink>
+
                             </div>
                         </div>
                     </div>
