@@ -1,0 +1,49 @@
+( BOTON ) 
+
+.btn-iniciar {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-boton);
+    color: var(--color-texto);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.btn-iniciar:hover {
+    background-color: var(--color-boton-hover);
+}
+-----------------------------------------------
+
+
+(HEADER) siempre tiene que estar, mas adelante le agregamos para que se muestre el nombre del usuario
+
+header {
+    background-color: var(--color-header);
+    padding: 20px;
+    color: white;
+}
+
+.titulo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+-----------------------------------------------
+
+( ROOT -Pegar siempre arriba del .aspx-)
+
+:root {
+    --color-fondo: #6CB2EB; /* Color Fondo */
+    --color-header: #2C3E50; /* Color fondo encabezado*/
+    --color-boton: #3490dc; /* Color boton*/
+    --color-boton-hover: #2779bd; /* Color boton 2 hover */
+    --color-textbox:#ddd;
+
+    --radio-borde: 8px; /* Radio de borde general */
+
+}
+
+para usar es utilizando var: var(--color-fondo)

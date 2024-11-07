@@ -5,7 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Iniciar Sesión</title>
     <style>
+        :root {
+            --color-fondo: #6CB2EB; /* Color Fondo */
+            --color-header: #2C3E50; /* Color fondo encabezado*/
+            --color-boton: #3490dc; /* Color boton*/
+            --color-boton-hover: #2779bd; /* Color boton 2 hover */
+            --color-textbox:#ddd;
 
+            --radio-borde: 8px; /* Radio de borde general */
+
+        }
 
         * {
             margin: 0;
@@ -19,13 +28,13 @@
         }
 
         body {
-            background-color: #6CB2EB;
+            background-color: var(--color-fondo);
             display: flex;
             flex-direction: column;
         }
 
         header {
-            background-color: #2C3E50;
+            background-color: var(--color-header);
             padding: 20px;
             color: white;
         }
@@ -47,7 +56,7 @@
             width: 400px;
             background: white;
             padding: 30px;
-            border-radius: 8px;
+            border-radius: var(--radio-borde);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
@@ -68,7 +77,7 @@
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 1px solid #ddd;
+            border: 1px solid var(--color-textbox);
             border-radius: 4px;
             font-size: 14px;
         }
@@ -76,7 +85,7 @@
         .btn-iniciar {
             width: 100%;
             padding: 12px;
-            background-color: #3490dc;
+            background-color: var(--color-boton);
             color: white;
             border: none;
             border-radius: 4px;
@@ -86,7 +95,7 @@
         }
 
         .btn-iniciar:hover {
-            background-color: #2779bd;
+            background-color: var(--color-boton-hover);
         }
 
         .links {
@@ -98,7 +107,7 @@
         }
 
         .hyperlink {
-            color: #3490dc;
+            color: var(--color-boton);
             text-decoration: none;
             display: block; 
         }

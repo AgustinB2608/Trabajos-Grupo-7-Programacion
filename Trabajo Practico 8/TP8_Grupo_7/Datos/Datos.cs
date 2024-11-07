@@ -11,7 +11,7 @@ namespace Datos
 {
     class Conexion
     {
-        private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = BDSucursales; Integrated Security = True";
+        private String ruta = "Data Source=localhost\\sqlexpress; Initial Catalog = BDSucursales; Integrated Security = True";
 
         public Conexion()
         {
