@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="VISTAS.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="VISTAS.Login" UnobtrusiveValidationMode="None" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -136,7 +136,28 @@
                 <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control" placeholder="Ingrese su legajo" />
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingrese su contraseña" />
                 <asp:Button ID="btnLogin" runat="server" Text="Iniciar sesión" CssClass="btn-iniciar" />
-                
+
+              <asp:RegularExpressionValidator
+               ID="revLegajo"
+               runat="server"
+               ControlToValidate="txtLegajo"
+               ValidationExpression="^\d{6}$" 
+               ErrorMessage="Debe ingresar 6 dígitos numéricos."
+               ForeColor="Red"
+               Display="Dynamic" />
+
+                <asp:RegularExpressionValidator
+                ID="revContraseña"
+                runat="server"
+                ControlToValidate="txtPassword"
+                ValidationExpression="^.{6,8}$"
+                ErrorMessage="Debe ingresar entre 6 y 8 caracteres."
+                ForeColor="Red"
+                Display="Dynamic" />
+
+
+  
+             
                 <div class="links">
                     <asp:HyperLink ID="OlvidoContrasena" runat="server" NavigateUrl="~/RecuperarContrasena.aspx" CssClass="hyperlink">¿Olvidaste tu contraseña?</asp:HyperLink>
                     <asp:HyperLink ID="OlvidoLegajo" runat="server" NavigateUrl="~/RecuperarLegajo.aspx" CssClass="hyperlink">¿Olvidaste tu legajo?</asp:HyperLink>

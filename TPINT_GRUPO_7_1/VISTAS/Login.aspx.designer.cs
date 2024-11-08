@@ -51,6 +51,24 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.Button btnLogin;
 
         /// <summary>
+        /// Control revLegajo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revLegajo;
+
+        /// <summary>
+        /// Control revContraseña.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revContraseña;
+
+        /// <summary>
         /// Control OlvidoContrasena.
         /// </summary>
         /// <remarks>

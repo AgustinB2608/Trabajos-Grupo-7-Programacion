@@ -122,16 +122,75 @@
             text-decoration: none;
             font-size: 14px;
             border-radius: 4px;
-            position: absolute;
             bottom: 20px;
             right: 20px;
             cursor: pointer;
             text-align: center;
+            display: inline-block; 
+            margin-top: px;
+            float: right;
         }
 
         .volver-menu:hover {
             background-color: #1A252F;
         }
+
+        .presente-button,
+        .ausente-button {
+           padding: 5px 10px; 
+           font-size: 12px; 
+           background-color: #2C3E50;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+           margin-right: 5px;
+        }
+
+        .presente-button:hover,
+        .ausente-button:hover {
+            background-color: #1A252F;
+
+        }
+
+        .gridview .pager {
+            background-color: #2C3E50; /* Azul oscuro */
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .gridview .pager a {
+            color: white; /* Números en blanco */
+            padding: 8px 12px;
+            margin: 0 4px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .gridview .pager a:hover {
+            background-color: #1A252F; /* Azul aún más oscuro para el hover */
+        }
+        
+        .gridview .pager span {
+            color: white; /* Color blanco para el número de la página activa */
+            padding: 8px 12px;
+            margin: 0 4px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .gridview th {
+             text-align: center;
+        }
+
+        /* Centrar el contenido de las columnas */
+        .gridview td {
+             text-align: center;
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -153,22 +212,35 @@
                     </div>
                     <div class="filter-container">
                         <asp:DropDownList ID="ddlFiltro1" runat="server" CssClass="form-control">
-                            <asp:ListItem Text="Filtro 1" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Fecha" Value=""></asp:ListItem>
                         </asp:DropDownList>
                         <asp:DropDownList ID="ddlFiltro2" runat="server" CssClass="form-control">
-                            <asp:ListItem Text="Filtro 2" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Estado" Value=""></asp:ListItem>
                         </asp:DropDownList>
                         <asp:DropDownList ID="ddlFiltro3" runat="server" CssClass="form-control">
-                            <asp:ListItem Text="Filtro 3" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Especialidad" Value=""></asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
 
                
                 <div class="gridview-container">
-                    <asp:GridView ID="gvTurnos" runat="server" CssClass="gridview" />
+                    <asp:GridView ID="gvTurnos" runat="server" CssClass="gridview" AutoGenerateColumns="False" AllowPaging="True" PageSize="10"  >
+                        <Columns>
+                              <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                              <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                              <asp:BoundField DataField="Medico" HeaderText="Médico" />
+                              <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" />
+                              <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                              <asp:TemplateField HeaderText="Presentismo">
+                                 <ItemTemplate>
+                                    <asp:Button ID="btnPresente" runat="server" Text="Presente" CommandName="MarcarPresente" CommandArgument='<%# Container.DataItemIndex %>' CssClass="presente-button" />
+                                    <asp:Button ID="btnAusente" runat="server" Text="Ausente" CommandName="MarcarAusente" CommandArgument='<%# Container.DataItemIndex %>' CssClass="ausente-button" />
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
                 </div>
-
                 
                 <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~/Menu.aspx" CssClass="volver-menu">Volver al menú</asp:HyperLink>
             </div>
