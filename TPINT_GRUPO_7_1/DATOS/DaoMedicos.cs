@@ -18,10 +18,31 @@ namespace DATOS
         {
             //Consulta SQL para insertar un nuevo medico a la tabla Medicos
                 string agregar = "INSERT INTO Medicos (Legajo_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, FechaNacimiento_ME, Direccion_ME, Localidad_ME, Provincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME, Dias_ME, HorarioAtencion_ME) " +
-                                 "VALUES (@Legajo, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion)";
+                                 "VALUES (@Legajo, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Estado)";
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado(solo verifica exito o fracaso)
                 int exito = ds.EjecutarConsultaSinRetorno(agregar);
+
+            if (exito > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool eliminarMedico(string CODMEDICO)
+        {
+            //Consulta SQL para dar de baja un medico en la tabla Medicos
+
+            //ejecuta un procedimiento almacenado enviando el codigo del medico a dar de baja
+
+            string eliminar = "EXEC SP_bajaMedico @CODMEDICO";
+
+            //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado(solo verifica exito o fracaso)
+            int exito = ds.EjecutarConsultaSinRetorno(eliminar);
 
             if (exito > 0)
             {

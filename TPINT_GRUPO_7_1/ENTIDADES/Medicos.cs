@@ -8,6 +8,7 @@ namespace ENTIDADES
 {
     public class Medico
     {
+        public string codMedico { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Dni { get; set; }
@@ -22,5 +23,6 @@ namespace ENTIDADES
         public string Especialidad { get; set; }
         public string DiasAtencion { get; set; }
         public string Horario { get; set; }
+        public bool Estado { get; set; }
     }
 }
