@@ -212,10 +212,9 @@
                         <div class="right-buttons">
                             <div class="config-button">
                                 <asp:Button ID="btnConfigUsuario" runat="server" Text="Configurar Usuario" CssClass="config-button"></asp:Button>
-
-                                <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
-                                <asp:HyperLink ID="hlkListar" runat="server">Listar</asp:HyperLink>
-                                <asp:HyperLink ID="hlkEliminar" runat="server">Eliminar</asp:HyperLink>
+                                <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" CssClass="config-button" />
+                                <asp:HyperLink ID="hlkListar" runat="server" CssClass="config-button">Listar</asp:HyperLink>
+                                <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="config-button">Eliminar</asp:HyperLink>
 
                             </div>
                         </div>

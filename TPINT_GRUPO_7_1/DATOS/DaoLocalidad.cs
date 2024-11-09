@@ -31,7 +31,7 @@ namespace DATOS
                 Localidades localidad = new Localidades
                 {
                     Id_Localidad = (int)row["CodLocalidad_LL"],
-                    DescripcionLocalidad = row["Nombre"].ToString(),
+                    DescripcionLocalidad1 = row["Nombre"].ToString(),
                     Id_Provincia = Convert.ToInt32(row["CodProvincia_LL"])
                 };
 
