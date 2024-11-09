@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NEGOCIOS;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,11 +13,15 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarTurnos();
+            if (!IsPostBack)
+            {
+                CargarTurnos();
+                CargarEspecialidades();
+            }
         }
         protected void CargarTurnos()
         {
-            // Crear una DataTable para almacenar los datos de prueba
+           
             DataTable dt = new DataTable();
             dt.Columns.Add("Fecha", typeof(string));
             dt.Columns.Add("Nombre", typeof(string));
@@ -25,7 +30,7 @@ namespace VISTAS
             dt.Columns.Add("Estado", typeof(string));
             dt.Columns.Add("Presentismo", typeof(string));
 
-            // Agregar filas de datos de prueba
+            
             dt.Rows.Add("2024-11-01", "Juan Pérez", "Dr. López", "Cardiología", "Activo", "");
             dt.Rows.Add("2024-11-02", "Ana Gómez", "Dr. Ramírez", "Dermatología", "Activo", "");
             dt.Rows.Add("2024-11-03", "Carlos Díaz", "Dra. Fernández", "Pediatría", "Inactivo", "");
@@ -37,9 +42,22 @@ namespace VISTAS
             dt.Rows.Add("2024-11-09", "Sofía Torres", "Dra. Molina", "Reumatología", "Activo", "");
             dt.Rows.Add("2024-11-10", "Miguel Vargas", "Dr. Sánchez", "Endocrinología", "Inactivo", "");
 
-            // Asignar la DataTable como origen de datos del GridView
+           
             gvTurnos.DataSource = dt;
             gvTurnos.DataBind();
+        }
+
+        protected void CargarEspecialidades()
+        {
+            NegocioEspecialidades negocioEspecialidades = new NegocioEspecialidades();
+
+            ddlEspecialidad.DataSource = negocioEspecialidades.ObtenerNombresEspecialidades();
+            ddlEspecialidad.DataTextField = "NombreEspecialidad_ES"; // la columna del nombre
+            ddlEspecialidad.DataValueField = "NombreEspecialidad_ES";
+            ddlEspecialidad.DataBind();
+
+            
+            ddlEspecialidad.Items.Insert(0, new ListItem("Especialidad"));
         }
 
     }

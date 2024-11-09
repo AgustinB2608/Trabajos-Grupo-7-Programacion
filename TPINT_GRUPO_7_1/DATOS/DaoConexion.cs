@@ -34,7 +34,7 @@ namespace DATOS
             }
 
             // Ejecuta una consulta SQL (SELECT) y devuelve los resultados en un DataTable.
-            public DataTable EjecutarConsulta(string consulta)
+            public DataTable EjecutarConsulta(string consulta) //
             {
                 using (SqlConnection conexion = new SqlConnection(ruta))
                 {

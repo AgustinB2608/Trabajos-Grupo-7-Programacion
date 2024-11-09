@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListadoTurnos.aspx.cs" Inherits="VISTAS.ListadoTurnos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListadoTurnos.aspx.cs" Inherits="VISTAS.ListadoTurnos" UnobtrusiveValidationMode="None" %>
 
 <!DOCTYPE html>
 
@@ -217,7 +217,7 @@
                         <asp:DropDownList ID="ddlFiltro2" runat="server" CssClass="form-control">
                             <asp:ListItem Text="Estado" Value=""></asp:ListItem>
                         </asp:DropDownList>
-                        <asp:DropDownList ID="ddlFiltro3" runat="server" CssClass="form-control">
+                        <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-control">
                             <asp:ListItem Text="Especialidad" Value=""></asp:ListItem>
                         </asp:DropDownList>
                     </div>

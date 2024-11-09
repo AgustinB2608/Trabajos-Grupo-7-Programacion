@@ -60,13 +60,13 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.DropDownList ddlFiltro2;
 
         /// <summary>
-        /// Control ddlFiltro3.
+        /// Control ddlEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
 
         /// <summary>
         /// Control gvTurnos.
