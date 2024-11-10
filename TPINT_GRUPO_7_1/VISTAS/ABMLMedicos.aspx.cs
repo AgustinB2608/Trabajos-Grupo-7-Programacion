@@ -14,6 +14,8 @@ namespace VISTAS
         NegocioProvincia negP = new NegocioProvincia();
         NegocioLocalidades negL = new NegocioLocalidades();
         NegocioEspecialidades negE = new NegocioEspecialidades();
+        NegocioDiasAtencion negD = new NegocioDiasAtencion();
+        NegocioHorarios negH = new NegocioHorarios();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,6 +53,20 @@ namespace VISTAS
             ddlEspecialidad.DataValueField = "NombreEspecialidad_ES";
             ddlEspecialidad.DataBind();
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "0"));
+
+            // Configuración de ddlDiasAtencion
+            ddlDiasAtencion.DataSource = negD.ObtenerDiasAtencion();
+            ddlDiasAtencion.DataTextField = "Dias";
+            ddlDiasAtencion.DataValueField = "IdDia";
+            ddlDiasAtencion.DataBind();
+            ddlDiasAtencion.Items.Insert(0, new ListItem("Seleccione un dia de atencion", "0"));
+
+            // Configuración de ddlHorario
+            ddlHorario.DataSource = negH.ObtenerHorarios();
+            ddlHorario.DataTextField = "Horario";
+            ddlHorario.DataValueField = "IdHorario";
+            ddlHorario.DataBind();
+            ddlHorario.Items.Insert(0, new ListItem("Seleccione un horario de atencion", "0"));
         }
 
 

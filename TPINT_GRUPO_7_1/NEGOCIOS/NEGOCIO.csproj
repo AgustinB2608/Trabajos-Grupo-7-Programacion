@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NegocioDiasAtencion.cs" />
     <Compile Include="NegocioEspecialidades.cs" />
+    <Compile Include="NegocioHorarios.cs" />
     <Compile Include="NegocioLocalidades.cs" />
     <Compile Include="NegocioMedico.cs" />
     <Compile Include="NegocioPacientes.cs" />
