@@ -18,6 +18,8 @@ namespace ENTIDADES
         public string Localidad { get; set; }
         public string Email { get; set; }
         public string Celular { get; set; }
+        public string Sexo { get; set; }         
+        public string Nacionalidad { get; set; } 
         public bool Estado { get; set; }
 
     }

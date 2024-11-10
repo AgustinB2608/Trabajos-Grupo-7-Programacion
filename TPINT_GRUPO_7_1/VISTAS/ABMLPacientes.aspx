@@ -1,107 +1,126 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ABMLPacientes.aspx.cs" Inherits="VISTAS.ABMLPacientes" UnobtrusiveValidationMode="none" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ABMLPacientes.aspx.cs" Inherits="VISTAS.ABMLPacientes" %>
+
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Gestión de Personal Médico</title>
     <style>
-            body {
-                margin: 0;
-                font-family: Arial, sans-serif;
-                background-color: #6CB2EB;
-            }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #6CB2EB;
+        }
 
-            .header {
-                background-color: #2C3E50;
-                color: white;
-                display: flex;
-                justify-content: space-between;
-                padding: 15px 20px;
-                font-weight: bold;
-                align-items: center;
-            }
-                     
-            .container {
-                width: 80%; 
-                max-width: 600px; 
-                margin: 0 auto; 
-                padding: 20px;
-                box-sizing: border-box;
-            }
+        .header {
+            background-color: #2C3E50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            font-weight: bold;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #E1EFFF;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Formulario */
+        .form-container {
+            background-color: #4296E0;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contenedor de formulario con dos columnas */
+        .form-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-column {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        /* Seccion inferior */
+        .lower-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .lower-section .left-form {
+            width: 65%; 
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .lower-section .right-buttons { 
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: stretch; 
             
-            .form-container {
-                background-color: #4296E0;
-                padding: 15px;
-                border-radius: 8px;
-                width: 300px; 
-                color: white;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
+            margin-top: 50px; 
+        }
 
-            .form-container h1 {
-                text-align: center;
-                margin-bottom: 15px;
-                font-size: 18px; 
-            }
+        .config-button {
+            background-color: #2C3E50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
 
-            .form-group {
-                margin-bottom: 10px;
-            }
-
-            .form-group label {
-                display: block;
-                font-weight: bold;
-                font-size: 12px; 
-                margin-bottom: 5px;
-            }
-
-            .form-group input[type="text"],
-            .form-group input[type="email"],
-            .form-group select {
-                width: 100%;
-                padding: 6px; 
-                font-size: 12px; 
-                border: none;
-                border-radius: 4px;
-            }
-
-            .gender-group {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-                font-size: 12px; 
-            }
-
-            .gender-group input[type="radio"] {
-                margin-right: 5px;
-            }
-
-            .button-group .button-group {
-                background-color: #2C3E50;
-                color: white; 
-                border: none;
-                padding: 8px;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 12px; 
-                width: 80px;
-            }
-            
-            .button-groupdos .button-groupdos {
-                background-color: #2C3E50;
-                color: white;
-                border: none;
-                padding: 8px;
-                margin-top: 5px;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 12px; 
-                width: 80px;
-            }
-
-
+        .config-button:hover {
+            background-color: #1A252F;
+        }
+        <system.webServer>
+    <directoryBrowse enabled="true" />
+</system.webServer>
+        .auto-style1 {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -110,97 +129,101 @@
             <span>Menu Administrador</span>
             <span>Nombre Administrador</span>
         </div>
+
         <div class="container">
             <div class="form-container">
-                <h1>Gestión de Pacientes</h1>
-                
-                <div class="form-group">
-                    <label for="dni">DNI:</label>
-                    <input type="text" id="txtDni" runat="server" />
-                    <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDni">Ingrese dni</asp:RequiredFieldValidator>
-                </div>
-                
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="txtNombre" runat="server" />
-                    <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre">Ingrese Nombre</asp:RequiredFieldValidator>
-                </div>
-                
-                <div class="form-group">
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="txtApellido" runat="server" />
-                    <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido">Ingrese Apellido</asp:RequiredFieldValidator>
-                </div>
-                
-                <div class="form-group">
-                    <label for="mail">Mail:</label>
-                    <input type="email" id="txtMail" runat="server" />
-                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtMail">Ingrese Apellido</asp:RequiredFieldValidator>
-                </div>
-                
-                <div class="gender-group">
-                    <label>Sexo:</label>
-                    <asp:RadioButtonList ID="rblSexo" runat="server" RepeatDirection="Horizontal">
-                        <asp:ListItem Text="Femenino" Value="Femenino"></asp:ListItem>
-                        <asp:ListItem Text="Masculino" Value="Masculino"></asp:ListItem>
-                    </asp:RadioButtonList>
-                    <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="rblSexo" InitialValue="" ErrorMessage="Seleccione una opción" Display="Dynamic"></asp:RequiredFieldValidator>
+                <h1>Gestión de Personal Médico</h1>
+                <div class="form-content"> 
+                    <!-- Columna izquierda -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="lblApellido" runat="server" Text="Apellido:"></asp:Label>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" AutoPostBack="True"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="lblDni" runat="server" Text="DNI:"></asp:Label>
+                            <asp:TextBox ID="txtDni" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group">
+                            Direccion:<asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="lblEmail" runat="server" Text="E-mail:"></asp:Label>
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="lblCelular" runat="server" Text="Tel/Celular:"></asp:Label>
+                            <asp:TextBox ID="txtCelular" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad:"></asp:Label>
+                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <asp:Label ID="lblSexo" runat="server" Text="Sexo:"></asp:Label>
+                            <br />
+                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="auto-style1" Height="29px" Width="546px">
+                                <asp:ListItem>Femenino</asp:ListItem>
+                                <asp:ListItem>Masculino</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="lblProvincia" runat="server" Text="Provincia:"></asp:Label>
+                            <br />
+                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control">
+                                <asp:ListItem>arg</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:"></asp:Label>
+                            <br />
+                            <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-control">
+                                <asp:ListItem>dawd</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaNacimiento">Fecha Nacimiento:</label>&nbsp;
+                      &nbsp;
+                        </div>
+                        <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                        <br />
+                        <br />
+                        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click1" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnListar" runat="server" Text="Listar" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnListar0" runat="server" Text="Cancelar" />
+                    </div>
                 </div>
 
-
-                <div class="form-group">
-                    <label for="fechaNacimiento">Fecha Nacimiento:</label>
-                    <input type="date" id="fechaNacimiento" runat="server" />
-                    <asp:RequiredFieldValidator ID="rfvFechaNacimiento" ControlToValidate="fechaNacimiento" runat="server">Ingrese fecha de nacimiento</asp:RequiredFieldValidator>
-                </div>
-
-                <div class="form-group">
-                    <label for="nacionalidad">Nacionalidad:</label>
-                    <select id="ddlNacionalidad" runat="server">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="ddlNacionalidad">Seleccione una nacionalidad</asp:RequiredFieldValidator>
-                </div>
-
-                <div class="form-group">
-                    <label for="provincia">Provincia:</label>
-                    <select id="ddlProvincia" runat="server">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia">Seleccione Provincia</asp:RequiredFieldValidator>
-                </div>
-
-                <div class="form-group">
-                    <label for="localidad">Localidad:</label>
-                    <select id="ddlLocalidad" runat="server">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad">Seleccione Localidad</asp:RequiredFieldValidator>
-                </div>
-
-                <div class="form-group">
-                    <label for="direccion">Dirección:</label>
-                    <input type="text" id="txtDireccion" runat="server" />
-                    <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion">Ingrese Direccion</asp:RequiredFieldValidator>
-                </div>
-
-                <div class="form-group">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" id="txtTelefono" runat="server" />
-                    <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono">Ingrese Telefono</asp:RequiredFieldValidator>
-                </div>
-
-                <div class="button-group">
-                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="button-group" />
-                    <asp:Button ID="btnListar" runat="server" Text="Listar" CssClass="button-group" />
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="button-group" />
-                </div>
-                <div class="button-groupdos">
-                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="button-groupdos" />
-                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="button-groupdos" />
+                <!-- Seccion inferior con dos columnas -->
                 </div>
             </div>
-        </div>
     </form>
 </body>
 </html>
+
+

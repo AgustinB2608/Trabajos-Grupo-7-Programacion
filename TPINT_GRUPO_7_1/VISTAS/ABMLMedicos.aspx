@@ -128,7 +128,8 @@
                     <div class="form-column">
                         <div class="form-group">
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                            <br />
+                            <asp:TextBox ID="TextNombre" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
 
                         <div class="form-group">
