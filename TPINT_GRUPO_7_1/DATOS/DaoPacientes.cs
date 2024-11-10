@@ -106,23 +106,25 @@ namespace DATOS
 
         public DataTable listarPacientes()
         {
-
+            // Consulta SQL para ejecutar el procedimiento almacenado que trae todos los registros
             string consulta = "SELECT CodPaciente_PA, Dni_PA, Nombre_PA, Apellido_PA, FechaNacimiento_PA, Direccion_PA" +
             "Localidad_PA, Provincia_PA, Email_PA, Telefono_PA FROM Paciente WHERE Estado = 1";
 
+            //retorna el datatable del metodo de Conexion
             return ds.EjecutarConsulta(consulta);
 
         }
         public DataTable listarPacienteEspecifico(string codPaciente)
         {
-
+            // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
             string consulta = "EXEC SP_retornarRegistro @CodPaciente";
 
+            // envia el valor del codpaciente como parametro
             SqlParameter[] parametros = new SqlParameter[]
                 {
                      new SqlParameter("@CodPaciente", codPaciente)
                 };
-
+            //retorna el datatable del metodo de Conexion
             return ds.EjecutarConsultaConParametros(consulta, parametros); 
 
         }

@@ -46,8 +46,11 @@ namespace NEGOCIOS
 
         public bool modificarPaciente(Pacientes Paciente)
         {
+            // Instancia de la clase DaoPacientes para acceder a la base de datos
             dao = new DaoPacientes();
 
+
+            // Llama al metodo modificarPaciente de DaoPacientes y almacena el resultado bool
             bool exito = dao.modificarPaciente(Paciente);
 
             // Retorno true si fue exitoso si no false
@@ -59,15 +62,18 @@ namespace NEGOCIOS
 
         public DataTable listarPacientes()
         {
+            // Instancia de la clase DaoPacientes para acceder a la base de datos
             dao = new DaoPacientes();
-
+            //retorna el datatable del metodo listarPacientes de DaoPacientes
             return dao.listarPacientes();
         }
 
         public DataTable listarPacienteEspecifico(string CodPaciente)
         {
+            // Instancia de la clase DaoPacientes para acceder a la base de datos
             dao = new DaoPacientes();
 
+            //retorna el datatable del metodo listarPacienteEspecificp de DaoPacientes
             return dao.listarPacienteEspecifico(CodPaciente);
         }
 
