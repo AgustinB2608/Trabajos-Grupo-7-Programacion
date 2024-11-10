@@ -69,6 +69,6 @@ namespace VISTAS
             ddlHorario.Items.Insert(0, new ListItem("Seleccione un horario de atencion", "0"));
         }
 
-
+      
     }
 }
