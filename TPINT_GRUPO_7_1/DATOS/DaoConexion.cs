@@ -11,10 +11,9 @@ namespace DATOS
 {
         class Conexion
         {
-        private String ruta = "Data Source=localhost\\sqlexpress; Initial Catalog = BDSucursales; Integrated Security = True";
+            private String ruta = "Data Source=localhost\\sqlexpress01; Initial Catalog = Clinica; Integrated Security = True";
 
-
-        public Conexion()
+            public Conexion()
             {
                 //Contructor
             }
@@ -35,7 +34,7 @@ namespace DATOS
             }
 
             // Ejecuta una consulta SQL (SELECT) y devuelve los resultados en un DataTable.
-            public DataTable EjecutarConsulta(string consulta) //
+            public DataTable EjecutarConsulta(string consulta)
             {
                 using (SqlConnection conexion = new SqlConnection(ruta))
                 {
@@ -88,8 +87,8 @@ namespace DATOS
                 }
             }
 
-            // Crea un adaptador para llenar un DataSet con los resultados de una consulta SQL.
-            private SqlDataAdapter ObtenerAdaptador(String consultaSql, SqlConnection cn)
+        // Crea un adaptador para llenar un DataSet con los resultados de una consulta SQL.
+        private SqlDataAdapter ObtenerAdaptador(String consultaSql, SqlConnection cn)
             {
                 SqlDataAdapter adaptador;
                 try
@@ -127,6 +126,7 @@ namespace DATOS
                 }
                 return estado;
             }
+
         }
 }
 

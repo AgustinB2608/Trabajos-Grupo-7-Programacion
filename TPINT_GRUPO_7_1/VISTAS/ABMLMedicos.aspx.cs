@@ -11,11 +11,14 @@ namespace VISTAS
 {
     public partial class ABMLMedicos : System.Web.UI.Page
     {
+        NegocioMedico negM = new NegocioMedico();
+        NegocioSexo negS = new NegocioSexo();
         NegocioProvincia negP = new NegocioProvincia();
         NegocioLocalidades negL = new NegocioLocalidades();
         NegocioEspecialidades negE = new NegocioEspecialidades();
         NegocioDiasAtencion negD = new NegocioDiasAtencion();
         NegocioHorarios negH = new NegocioHorarios();
+        Medico reg = new Medico();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,13 +29,51 @@ namespace VISTAS
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            // asignar los valores txt
+            reg.setNombre(txtNombre.Text.Trim());
+            reg.setApellido(txtApellido.Text.Trim());
+            reg.setDni(txtDni.Text.Trim());
+            reg.setLegajo(txtLegajo.Text.Trim());
+            reg.setEmail(txtEmail.Text.Trim());
+            reg.setCelular(txtCelular.Text.Trim());
+            reg.setNacionalidad(txtNacionalidad.Text.Trim());
+            reg.setDireccion(txtDireccion.Text.Trim());
 
-           
+            // Asignar valores de ddl
+            reg.setProvincia(ddlProvincia.SelectedValue);
+            reg.setLocalidad(ddlLocalidad.SelectedValue);
+            reg.setSexo(ddlSexo.SelectedValue);
+            reg.setEspecialidad(ddlEspecialidad.SelectedValue);
+            reg.setHorario(ddlHorario.SelectedValue);
+            reg.setDiasAtencion(ddlDiasAtencion.SelectedValue);
+
+            // Llamar al metodo para guardar el registro
+            bool exito = negM.agregarMedico(reg);
+
+            if (exito)
+            {
+                lblMensaje.Text = "Médico añadido con éxito.";
+            }
+            else
+            {
+                lblMensaje.Text = "No se pudo añadir el médico.";
+            }
+
+            limpiarCampos();
         }
 
-        
+
+
         private void InicializarDropDownLists()
         {
+            // Configuración de ddlSexo
+            ddlSexo.DataSource = negS.ObtenerSexo();
+            ddlSexo.DataTextField = "descripcionSexo";
+            ddlSexo.DataValueField = "codSexo";
+            ddlSexo.DataBind();
+            ddlSexo.Items.Insert(0, new ListItem("Seleccione sexo del medico", "0"));
+
+
             // Configuración de ddlProvincia
             ddlProvincia.DataSource = negP.ObtenerProvincias();
             ddlProvincia.DataTextField = "DescripcionProvincia1";
@@ -69,6 +110,25 @@ namespace VISTAS
             ddlHorario.Items.Insert(0, new ListItem("Seleccione un horario de atencion", "0"));
         }
 
-      
+        private void limpiarCampos()
+        {
+            // Limpiar TextBox
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtDni.Text = "";
+            txtLegajo.Text = "";
+            txtEmail.Text = "";
+            txtCelular.Text = "";
+            txtNacionalidad.Text = "";
+            txtDireccion.Text = "";
+
+            // Limpiar DropDownList
+            ddlProvincia.SelectedIndex = 0;
+            ddlLocalidad.SelectedIndex = 0;
+            ddlSexo.SelectedIndex = 0;
+            ddlEspecialidad.SelectedIndex = 0;
+            ddlHorario.SelectedIndex = 0;
+            ddlDiasAtencion.SelectedIndex = 0;
+        }
     }
 }

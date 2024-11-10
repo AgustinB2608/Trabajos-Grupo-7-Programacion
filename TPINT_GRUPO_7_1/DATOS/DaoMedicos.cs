@@ -32,26 +32,5 @@ namespace DATOS
                 return false;
             }
         }
-
-        public bool eliminarMedico(string CODMEDICO)
-        {
-            //Consulta SQL para dar de baja un medico en la tabla Medicos
-
-            //ejecuta un procedimiento almacenado enviando el codigo del medico a dar de baja
-
-            string eliminar = "EXEC SP_bajaMedico @CODMEDICO";
-
-            //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado(solo verifica exito o fracaso)
-            int exito = ds.EjecutarConsultaSinRetorno(eliminar);
-
-            if (exito > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }

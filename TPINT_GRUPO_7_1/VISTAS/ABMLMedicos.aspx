@@ -129,7 +129,7 @@
                         <div class="form-group">
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
                             <br />
-                            <asp:TextBox ID="TextNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
 
                         <div class="form-group">
@@ -179,6 +179,11 @@
                         <div class="form-group">
                             <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:"></asp:Label>
                             <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="lblDireccion" runat="server" Text="Direccion:"></asp:Label>
+                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
 
                         <div class="form-group">
