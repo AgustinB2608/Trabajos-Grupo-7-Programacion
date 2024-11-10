@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using ENTIDADES;
+using System.Data;
 
 namespace DATOS
 {
@@ -15,6 +16,7 @@ namespace DATOS
     // Metodo para agregar un nuevo paciente a la base de datos, retorna true si el registro fue agregado con exito, o false en caso contrario.
     public bool agregarPaciente(Pacientes paciente)
         {
+
             // Consulta SQL para insertar un nuevo paciente en la tabla Paciente
             string agregar = "INSERT INTO Paciente (CodPaciente_PA, Dni_PA, Nombre_PA, Apellido_PA, FechaNacimiento_PA, Direccion_PA, Localidad_PA, Provincia_PA, Email_PA, Telefono_PA, Sexo_PA, Nacionalidad_PA, Estado) " +
                              "VALUES (@CodigoPaciente, @Dni, @Nombre, @Apellido, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @Sexo, @Nacionalidad, @Estado)";
@@ -40,7 +42,14 @@ namespace DATOS
             // Ejecutar la consulta con los parámetros
             int exito = ds.EjecutarConsultaSinRetorno(agregar, parametros.ToArray());
 
-            return exito > 0;
+            if (exito > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool eliminarPaciente(string CODPACIENTE)
@@ -50,6 +59,12 @@ namespace DATOS
             //ejecuta un procedimiento almacenado enviando el codigo del paciente a dar de baja
 
             string eliminar = "EXEC SP_bajaPaciente @CODPACIENTE";
+
+            // envia mi string codPaciente como parametro
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@CODPACIENTE", CODPACIENTE)
+            };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
             int exito = ds.EjecutarConsultaSinRetorno(eliminar);
@@ -63,6 +78,55 @@ namespace DATOS
                 return false;
             }
         }
+
+        public bool modificarPaciente(Pacientes Paciente)
+        {
+
+            // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
+            string modificar = "EXEC SP_modificarPaciente @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodPaciente";
+
+            // envia los valores de mi obj paciente como parametro
+
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@Direccion", Paciente.Direccion),
+                new SqlParameter("@Localidad", Paciente.Localidad),
+                new SqlParameter("@Provincia", Paciente.Provincia),
+                new SqlParameter("@Email", Paciente.Email),
+                new SqlParameter("@Telefono", Paciente.Celular),
+                new SqlParameter("@CodPaciente", Paciente.codPaciente)
+            };
+
+            //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
+            int exito = ds.EjecutarConsultaSinRetorno(modificar);
+
+            if (exito > 0) return true;
+                return false;   
+        }
+
+        public DataTable listarPacientes()
+        {
+
+            string consulta = "SELECT CodPaciente_PA, Dni_PA, Nombre_PA, Apellido_PA, FechaNacimiento_PA, Direccion_PA" +
+            "Localidad_PA, Provincia_PA, Email_PA, Telefono_PA FROM Paciente WHERE Estado = 1";
+
+            return ds.EjecutarConsulta(consulta);
+
+        }
+        public DataTable listarPacienteEspecifico(string codPaciente)
+        {
+
+            string consulta = "EXEC SP_retornarRegistro @CodPaciente";
+
+            SqlParameter[] parametros = new SqlParameter[]
+                {
+                     new SqlParameter("@CodPaciente", codPaciente)
+                };
+
+            return ds.EjecutarConsultaConParametros(consulta, parametros); 
+
+        }
+
 
     }
 }
