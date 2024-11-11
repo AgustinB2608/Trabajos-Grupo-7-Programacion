@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="ABMLMedicos.aspx" />
     <Content Include="ABMLPacientes.aspx" />
+    <Content Include="EliminarMedico.aspx" />
     <Content Include="EstadisticaDemanda.aspx" />
     <Content Include="EstadisticaEspecialidad.aspx" />
     <Content Include="EstadisticaMensual.aspx" />
@@ -82,6 +83,7 @@
     <Content Include="InicioAdministrador.aspx" />
     <Content Include="InicioLogin.aspx" />
     <Content Include="ListadoTurnos.aspx" />
+    <Content Include="ListarMedico.aspx" />
     <Content Include="RealizarInformes.aspx" />
     <Content Include="Web.config" />
     <Content Include="RecuperarContrasena.aspx" />
@@ -100,6 +102,13 @@
     </Compile>
     <Compile Include="ABMLPacientes.aspx.designer.cs">
       <DependentUpon>ABMLPacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarMedico.aspx.cs">
+      <DependentUpon>EliminarMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EliminarMedico.aspx.designer.cs">
+      <DependentUpon>EliminarMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="EstadisticaDemanda.aspx.cs">
       <DependentUpon>EstadisticaDemanda.aspx</DependentUpon>
@@ -149,6 +158,13 @@
     </Compile>
     <Compile Include="ListadoTurnos.aspx.designer.cs">
       <DependentUpon>ListadoTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListarMedico.aspx.cs">
+      <DependentUpon>ListarMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarMedico.aspx.designer.cs">
+      <DependentUpon>ListarMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealizarInformes.aspx.cs">
