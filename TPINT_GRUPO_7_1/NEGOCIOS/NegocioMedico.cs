@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DATOS;
 using ENTIDADES;
+using System.Data;
 
 namespace NEGOCIOS
 {
@@ -20,7 +21,7 @@ namespace NEGOCIOS
         public bool agregarMedico(Medico medico)
         {
             // Instancia de la clase DaoMedicos para acceder a la base de datos
-            DaoMedicos dao = new DaoMedicos();
+             dao = new DaoMedicos();
 
             // Llama al metodo agregarMedico de DaoMedicos y almacena el resultado
             bool exito = dao.agregarMedico(medico);
@@ -33,6 +34,47 @@ namespace NEGOCIOS
 
         }
 
-        
+        public bool eliminarMedico(Medico medico)
+        {
+            // Instancia de la clase DaoMedicos para acceder a la base de datos
+            dao = new DaoMedicos();
+
+            // Llama al metodo eliminarMedico de DaoMedicos y almacena el resultado bool
+            bool exito = dao.eliminarMedico(medico.getLegajo());
+
+            // Retorno true si fue exitoso si no false
+            return exito;
+
+        }
+
+        public bool modificarMedico(Medico medico)
+        {
+            // Instancia de la clase DaoMedicos para acceder a la base de datos
+            dao = new DaoMedicos();
+           
+
+            // Llama al metodo modificarMedicos de DaoMedicos y almacena el resultado bool
+            bool exito = dao.modificarMedico(medico);
+
+            // Retorno true si fue exitoso si no false
+            return exito;
+        }
+
+        public DataTable listarMedicos()
+        {
+            // Instancia de la clase DaoMedicos para acceder a la base de datos
+            dao = new DaoMedicos();
+            //retorna el datatable del metodo listarMedicos de DaoMedicos
+            return dao.listarMedicos();
+        }
+
+        public DataTable listarMedicoEspecifico(string CodMedico)
+        {
+            // Instancia de la clase DaoMedicos para acceder a la base de datos
+            dao = new DaoMedicos();
+
+            //retorna el datatable del metodo listarMedicoEspecificp de DaoMedicos
+            return dao.listarMedicoEspecifico(CodMedico);
+        }
     }
 }

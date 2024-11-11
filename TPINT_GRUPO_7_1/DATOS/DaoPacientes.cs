@@ -106,7 +106,7 @@ namespace DATOS
 
         public DataTable listarPacientes()
         {
-            // Consulta SQL para ejecutar el procedimiento almacenado que trae todos los registros
+            // Consulta SQL para ejecutar y traer todos los registros
             string consulta = "SELECT CodPaciente_PA, Dni_PA, Nombre_PA, Apellido_PA, FechaNacimiento_PA, Direccion_PA" +
             "Localidad_PA, Provincia_PA, Email_PA, Telefono_PA FROM Paciente WHERE Estado = 1";
 

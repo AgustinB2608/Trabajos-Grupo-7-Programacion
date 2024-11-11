@@ -24,6 +24,9 @@ namespace ENTIDADES
         private string Especialidad;
         private string DiasAtencion;
         private string Horario;
+        private string Usuario;
+        private string Contraseña;
+
 
         public Medico() { }
 
@@ -185,6 +188,26 @@ namespace ENTIDADES
         public void setHorario(string horario)
         {
             Horario = horario;
+        }
+
+        public void setUsuario(string usuario)
+        {
+            Usuario = usuario;
+        }
+
+        public string getUsuario()
+        {
+            return Usuario;
+        }
+
+        public void setContraseña(string contraseña)
+        {
+            Contraseña = contraseña;
+        }
+
+        public string getContraseña()
+        {
+            return Contraseña;
         }
     }
 

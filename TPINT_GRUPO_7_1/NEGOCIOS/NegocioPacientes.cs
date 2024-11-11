@@ -54,10 +54,7 @@ namespace NEGOCIOS
             bool exito = dao.modificarPaciente(Paciente);
 
             // Retorno true si fue exitoso si no false
-            if (exito)
-                return true;
-            else
-                return false;
+            return exito;
         }
 
         public DataTable listarPacientes()

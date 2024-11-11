@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ENTIDADES;
+using System.Data;
 
 namespace DATOS
 {
@@ -17,11 +18,34 @@ namespace DATOS
         public bool agregarMedico(Medico medic)
         {
             //Consulta SQL para insertar un nuevo medico a la tabla Medicos
-                string agregar = "INSERT INTO Medicos (Legajo_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, FechaNacimiento_ME, Direccion_ME, Localidad_ME, Provincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME, Dias_ME, HorarioAtencion_ME, Estado) " +
-                                 "VALUES (@Legajo, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Estado)";
+                string agregar = "INSERT INTO Medicos (CodMedicos_ME, Legajo_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, FechaNacimiento_ME, Direccion_ME, Localidad_ME, Provincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME, Dias_ME, HorarioAtencion_ME, Estado) " +
+                                 "VALUES (@Matricula, @Legajo, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Estado)";
+
+            // Crea el array de parametros con los valores obtenidos de los get y set 
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Matricula", medic.getCodMedico()),
+                new SqlParameter("@Legajo", medic.getLegajo()),
+                new SqlParameter("@Dni", medic.getDni()),
+                new SqlParameter("@Nombre", medic.getNombre()),
+                new SqlParameter("@Apellido", medic.getApellido()),
+                new SqlParameter("@Sexo", medic.getSexo()),
+                new SqlParameter("@Nacionalidad", medic.getNacionalidad()),
+                new SqlParameter("@FechaNacimiento", medic.getFechaNacimiento()),
+                new SqlParameter("@Direccion", medic.getDireccion()),
+                new SqlParameter("@Localidad", medic.getLocalidad()),
+                new SqlParameter("@Provincia", medic.getProvincia()),
+                new SqlParameter("@Email", medic.getEmail()),
+                new SqlParameter("@Telefono", medic.getCelular()),
+                new SqlParameter("@CodEspecialidad", medic.getEspecialidad()),
+                new SqlParameter("@Dias", medic.getDiasAtencion()),
+                new SqlParameter("@HorarioAtencion", medic.getHorario()),
+                new SqlParameter("@Estado", 1)
+            };
+
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado(solo verifica exito o fracaso)
-                int exito = ds.EjecutarConsultaSinRetorno(agregar);
+            int exito = ds.EjecutarConsultaSinRetorno(agregar);
 
             if (exito > 0)
             {
@@ -31,6 +55,91 @@ namespace DATOS
             {
                 return false;
             }
+        }
+
+
+        public bool eliminarMedico(string Legajo)
+        {
+            //Consulta SQL para dar de baja un medico en la tabla Medicos
+
+            //ejecuta un procedimiento almacenado enviando el legajo del medico a dar de baja
+
+            string eliminar = "EXEC SP_bajaMedico @Legajo";
+
+            // envia mi string codPaciente como parametro
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Legajo", Legajo)
+            };
+
+            //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
+            int exito = ds.EjecutarConsultaSinRetorno(eliminar, parametros);
+
+            return exito > 0;
+            
+        }
+
+        public bool modificarMedico(Medico medico)
+        {
+
+            // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
+            string modificar = "EXEC SP_modificarMedico @Legajo, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento" +
+            "@Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Usuario, @Contraseña";
+
+            // envia los valores de mi obj medico como parametro
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Legajo", medico.getLegajo()),
+                new SqlParameter("@Nombre", medico.getNombre()),
+                new SqlParameter("@Apellido", medico.getApellido()),
+                new SqlParameter("@Sexo", medico.getSexo()),
+                new SqlParameter("@Nacionalidad", medico.getNacionalidad()),
+                new SqlParameter("@FechaNacimiento", medico.getFechaNacimiento()),
+                new SqlParameter("@Direccion", medico.getDireccion()),
+                new SqlParameter("@Localidad", medico.getLocalidad()),
+                new SqlParameter("@Provincia", medico.getProvincia()),
+                new SqlParameter("@Email", medico.getEmail()),
+                new SqlParameter("@Telefono", medico.getCelular()),
+                new SqlParameter("@CodEspecialidad", medico.getEspecialidad()), 
+                new SqlParameter("@Dias", medico.getDiasAtencion()),
+                new SqlParameter("@HorarioAtencion", medico.getHorario()), 
+                new SqlParameter("@Usuario", medico.getUsuario()),
+                new SqlParameter("@Contraseña", medico.getContraseña())
+            };
+
+            //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
+            int exito = ds.EjecutarConsultaSinRetorno(modificar, parametros);
+
+            if (exito > 0) return true;
+            return false;
+        }
+
+        public DataTable listarMedicos()
+        {
+            // Consulta SQL para ejecutar el procedimiento almacenado que trae todos los registros
+            string consulta = "SELECT CodMedicos_ME, Legajo_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME," +
+               "FechaNacimiento_ME, Direccion_ME, Localidad_ME, Provincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME," +
+               "Dias_ME, HorarioAtencion_ME FROM Medicos WHERE Estado = 1";
+
+            //retorna el datatable del metodo de Conexion
+            return ds.EjecutarConsulta(consulta);
+
+        }
+
+        public DataTable listarMedicoEspecifico(string codMedico)
+        {
+            // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
+            string consulta = "EXEC SP_retornarRegistro @CodMedico";
+
+            // envia el valor del codpaciente como parametro
+            SqlParameter[] parametros = new SqlParameter[]
+                {
+                     new SqlParameter("@CodMedico", codMedico)
+                };
+            //retorna el datatable del metodo de Conexion
+            return ds.EjecutarConsultaConParametros(consulta, parametros);
+
         }
     }
 }
