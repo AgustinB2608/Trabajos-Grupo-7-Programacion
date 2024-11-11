@@ -40,7 +40,7 @@ namespace NEGOCIOS
             dao = new DaoMedicos();
 
             // Llama al metodo eliminarMedico de DaoMedicos y almacena el resultado bool
-            bool exito = dao.eliminarMedico(medico.getLegajo());
+            bool exito = dao.eliminarMedico(medico.getCodMedico());
 
             // Retorno true si fue exitoso si no false
             return exito;
@@ -73,7 +73,7 @@ namespace NEGOCIOS
             // Instancia de la clase DaoMedicos para acceder a la base de datos
             dao = new DaoMedicos();
 
-            //retorna el datatable del metodo listarMedicoEspecificp de DaoMedicos
+            //retorna el datatable del metodo listarMedicoEspecifico de DaoMedicos
             return dao.listarMedicoEspecifico(CodMedico);
         }
     }

@@ -58,18 +58,18 @@ namespace DATOS
         }
 
 
-        public bool eliminarMedico(string Legajo)
+        public bool eliminarMedico(string CodMedico)
         {
             //Consulta SQL para dar de baja un medico en la tabla Medicos
 
-            //ejecuta un procedimiento almacenado enviando el legajo del medico a dar de baja
+            //ejecuta un procedimiento almacenado enviando el codigo del medico a dar de baja
 
-            string eliminar = "EXEC SP_bajaMedico @Legajo";
+            string eliminar = "EXEC SP_bajaMedico @codMedico";
 
-            // envia mi string codPaciente como parametro
+            // envia mi string codMedico como parametro
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Legajo", Legajo)
+                new SqlParameter("@CodMedico", CodMedico)
             };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
@@ -132,7 +132,7 @@ namespace DATOS
             // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
             string consulta = "EXEC SP_retornarRegistro @CodMedico";
 
-            // envia el valor del codpaciente como parametro
+            // envia el valor del codMedico como parametro
             SqlParameter[] parametros = new SqlParameter[]
                 {
                      new SqlParameter("@CodMedico", codMedico)
