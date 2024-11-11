@@ -44,6 +44,7 @@
     <Compile Include="DiasAtencion.cs" />
     <Compile Include="Horarios.cs" />
     <Compile Include="Localidades.cs" />
+    <Compile Include="Login.cs" />
     <Compile Include="Medicos.cs" />
     <Compile Include="Pacientes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

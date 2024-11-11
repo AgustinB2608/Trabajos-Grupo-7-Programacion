@@ -11,24 +11,23 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            // Verificar si el usuario está logueado y traer los datos de la session
+            if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null)
             {
-                MostrarMensajeInicial();
+                string legajo = Session["UsuarioLegajo"].ToString();//Legajo
+                string nombre = Session["UsuarioNombre"].ToString();//Nombre
+                string apellido = Session["UsuarioApellido"].ToString();//Apellido
+                string tipoUsuario = Session["UsuarioTipo"].ToString();//Tipo de usuario
+
+                lblInicio.Text = $"Bienvenido {nombre} {apellido} {tipoUsuario}";
+            }
+            else
+            {
+                // Si la session es null o sea no hay nadie registrado devolver al Login.
+                Response.Redirect("InicioLogin.aspx");
             }
         }
 
-        protected void MostrarMensajeInicial()
-        {
-            contentPlaceholder.Controls.Clear();
-            Label lblInicio = new Label
-            {
-                Text = "Bienvenido al Sistema de Gestión Clínica",
-                CssClass = "mensaje-inicial"
-            };
-            lblInicio.Text = Server.HtmlEncode(lblInicio.Text);
-            contentPlaceholder.Controls.Add(lblInicio);
-        }
 
-        
     }
 }

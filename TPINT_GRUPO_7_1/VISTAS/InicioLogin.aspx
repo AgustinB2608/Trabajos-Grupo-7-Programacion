@@ -1,19 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="VISTAS.Login" UnobtrusiveValidationMode="None" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioLogin.aspx.cs" Inherits="VISTAS.InicioLogin" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Iniciar Sesión</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Inicio de sesión</title>
     <style>
         :root {
             --color-fondo: #6CB2EB; /* Color Fondo */
             --color-header: #2C3E50; /* Color fondo encabezado*/
             --color-boton: #3490dc; /* Color boton*/
             --color-boton-hover: #2779bd; /* Color boton 2 hover */
-            --color-textbox:#ddd;
-
+            --color-textbox: #ddd;
+            --color-error: #ff6347; /* Color de texto de error */
+            --color-fondo-error: #f8d7da; /* Fondo del error */
             --radio-borde: 8px; /* Radio de borde general */
-
         }
 
         * {
@@ -103,13 +104,13 @@
             font-size: 14px;
             display: flex;
             flex-direction: column;
-            gap: 10px;  
+            gap: 10px;
         }
 
         .hyperlink {
             color: var(--color-boton);
             text-decoration: none;
-            display: block; 
+            display: block;
         }
 
         .hyperlink:hover {
@@ -120,6 +121,13 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+        }
+
+
+        .error-message {
+            color: var(--color-error);
+            border-radius: 4px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -135,29 +143,13 @@
                 
                 <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control" placeholder="Ingrese su legajo" />
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingrese su contraseña" />
-                <asp:Button ID="btnLogin" runat="server" Text="Iniciar sesión" CssClass="btn-iniciar" />
+                
+                <asp:Button ID="btnLogin" runat="server" Text="Iniciar sesión" CssClass="btn-iniciar" OnClick="btnLogin_Click" />
 
-              <asp:RegularExpressionValidator
-               ID="revLegajo"
-               runat="server"
-               ControlToValidate="txtLegajo"
-               ValidationExpression="^\d{6}$" 
-               ErrorMessage="Debe ingresar 6 dígitos numéricos."
-               ForeColor="Red"
-               Display="Dynamic" />
+                <div class="error-message">
+                    <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" />
+                </div>
 
-                <asp:RegularExpressionValidator
-                ID="revContraseña"
-                runat="server"
-                ControlToValidate="txtPassword"
-                ValidationExpression="^.{6,8}$"
-                ErrorMessage="Debe ingresar entre 6 y 8 caracteres."
-                ForeColor="Red"
-                Display="Dynamic" />
-
-
-  
-             
                 <div class="links">
                     <asp:HyperLink ID="OlvidoContrasena" runat="server" NavigateUrl="~/RecuperarContrasena.aspx" CssClass="hyperlink">¿Olvidaste tu contraseña?</asp:HyperLink>
                     <asp:HyperLink ID="OlvidoLegajo" runat="server" NavigateUrl="~/RecuperarLegajo.aspx" CssClass="hyperlink">¿Olvidaste tu legajo?</asp:HyperLink>

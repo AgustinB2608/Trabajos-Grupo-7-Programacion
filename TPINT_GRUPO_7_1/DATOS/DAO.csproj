@@ -46,6 +46,7 @@
     <Compile Include="DaoEspecialidad.cs" />
     <Compile Include="DaoHorario.cs" />
     <Compile Include="DaoLocalidad.cs" />
+    <Compile Include="DaoLogin.cs" />
     <Compile Include="DaoMedicos.cs" />
     <Compile Include="DaoPacientes.cs" />
     <Compile Include="DaoProvincia.cs" />

@@ -11,7 +11,7 @@ namespace VISTAS
 {
 
 
-    public partial class Login
+    public partial class InicioLogin
     {
 
         /// <summary>
@@ -51,22 +51,13 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.Button btnLogin;
 
         /// <summary>
-        /// Control revLegajo.
+        /// Control lblError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revLegajo;
-
-        /// <summary>
-        /// Control revContraseña.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revContraseña;
+        protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
         /// Control OlvidoContrasena.
