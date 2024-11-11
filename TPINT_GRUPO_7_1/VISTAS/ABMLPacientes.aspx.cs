@@ -14,12 +14,14 @@ namespace VISTAS
         //instancia negociopaciente
     {
         private NegocioPacientes negocioPacientes = new NegocioPacientes();
+        NegocioProvincia negP = new NegocioProvincia();
+        NegocioLocalidades negL = new NegocioLocalidades();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                
+                InicializarDropDownLists();
             }
         }
         // El boton guardar se encarga de recopilar toda la informacion escrita por el usuario para asi guardarla en la base de datos.
@@ -72,6 +74,28 @@ namespace VISTAS
             ddlProvincia.SelectedIndex = 0;
             txtEmail.Text = ""; 
             txtCelular.Text = ""; 
+        }
+
+
+        private void InicializarDropDownLists()
+        {
+            
+            // Configuración de ddlProvincia
+            ddlProvincia.DataSource = negP.ObtenerProvincias();
+            ddlProvincia.DataTextField = "DescripcionProvincia1";
+            ddlProvincia.DataValueField = "Id_Provincia";
+            ddlProvincia.DataBind();
+            ddlProvincia.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
+
+            // Configuración de ddlLocalidad
+            ddlLocalidad.DataSource = negL.ObtenerLocalidad();
+            ddlLocalidad.DataTextField = "descripcionLocalidad1";
+            ddlLocalidad.DataValueField = "id_Localidad";
+            ddlLocalidad.DataBind();
+            ddlLocalidad.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
+
+          
+            
         }
     }
 }
