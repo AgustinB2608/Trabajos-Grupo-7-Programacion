@@ -123,12 +123,16 @@
             <span>Menu Administrador</span>
             <span>Nombre Administrador</span>
         </div>
+        <div class="contenedor">
         <div id=".container">
             <h1>Eliminar Médico</h1>
+            </div>
+            </div>
 
             <div class="form-group">
-                <asp:Label ID="lblEliminar" runat="server" Text="Ingresar Legajo del Médico:"></asp:Label>
-                <asp:TextBox ID="txtLegajo" runat="server"></asp:TextBox>
+                <asp:Label ID="lblEliminar" runat="server" Text="Ingresar Legajo del Médico:" Font-Bold="True" Font-Size="Large"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="txtLegajo" runat="server" Width="219px"></asp:TextBox>
                
             </div>
 
@@ -142,9 +146,16 @@
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 <br />
                 <br />
+
+                <asp:GridView ID="gvMedicoInfo" runat="server">
+                </asp:GridView>
+
                 <br />
                 <br />
                 <asp:Label ID="lblMensaje2" runat="server"></asp:Label>
+                <br />
+                <br />
+                <asp:Button ID="btnConfirmarEliminar" runat="server" OnClick="btnConfirmarEliminar_Click" Text="Confirmar" />
                 <br />
                 <br />
             </div>
