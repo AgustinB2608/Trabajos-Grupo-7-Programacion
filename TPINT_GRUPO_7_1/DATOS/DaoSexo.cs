@@ -30,9 +30,8 @@ namespace DATOS
                 // Crea un nuevo objeto sexo y asigna los valores de la fila actual
                 Sexo sex = new Sexo
                 {
-                    codSexo = (int)row["CodSexo_SX"],
-                    descripcionSexo = row["DescripcionSexo_SX"].ToString(),
-
+                    CodSexo_SX = row["CodSexo_SX"].ToString(),
+                    DescripcionSexo_SX = row["DescripcionSexo_SX"].ToString()
                 };
 
                 // Agrega el objeto sexo  a la lista

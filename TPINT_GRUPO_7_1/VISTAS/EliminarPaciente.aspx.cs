@@ -29,7 +29,7 @@ namespace VISTAS
                 ///avisos sobre si se pudo o no eliminar
                 if (SeElimino)
                 {
-                    lblEliminar.Text = 'Se eliminó correctramente';
+                    lblEliminar.Text = "Se eliminó correctramente";
 
                 }
                 else {
