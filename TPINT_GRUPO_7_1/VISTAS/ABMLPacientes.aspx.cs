@@ -13,14 +13,16 @@ namespace VISTAS
     public partial class ABMLPacientes : System.Web.UI.Page
         //instancia negociopaciente
     {
-        private NegocioPacientes negocioPacientes = new NegocioPacientes();
+        NegocioPacientes negocioPacientes = new NegocioPacientes();
         NegocioProvincia negP = new NegocioProvincia();
         NegocioLocalidades negL = new NegocioLocalidades();
+        NegocioSexo ngSx = new NegocioSexo();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+
                 InicializarDropDownLists();
             }
         }
@@ -28,7 +30,7 @@ namespace VISTAS
         protected void btnGuardar_Click1(object sender, EventArgs e)
         {
             // Genera un código único para el paciente
-            string codPaciente = "o" + DateTime.Now.ToString("yyMMdd");
+            string codPaciente = "m" + DateTime.Now.ToString("yyMMdd");
 
             // Crear una instancia de Pacientes y asignar los valores de los controles del formulario
             Pacientes nuevoPaciente = new Pacientes
@@ -49,16 +51,21 @@ namespace VISTAS
             };
 
             // Llamar al método de negocio para agregar el paciente
+
             bool exito = negocioPacientes.AgregarPaciente(nuevoPaciente);
 
             if (exito)
             {
-                lblMensaje.Text = "Paciente agregado exitosamente.";
                 LimpiarCampos();
+                lblMensajeConfirmacion.Text = "¡Paciente agregado exitosamente!";
+                lblMensajeConfirmacion.CssClass = "mensaje-exito";
+                lblMensajeConfirmacion.Visible = true;
             }
             else
             {
-                lblMensaje.Text = "Error al agregar el paciente.";
+                lblMensajeConfirmacion.Text = "Error al agregar el paciente.";
+                lblMensajeConfirmacion.CssClass = "mensaje-error";
+                lblMensajeConfirmacion.Visible = true;
             }
         }
 
@@ -94,8 +101,15 @@ namespace VISTAS
             ddlLocalidad.DataBind();
             ddlLocalidad.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
 
-          
-            
+            // Configuración de sexo
+            ddlSexo.DataSource = ngSx.ObtenerSexo();
+            ddlSexo.DataTextField = "DescripcionSexo_SX";
+            ddlSexo.DataValueField = "CodSexo_SX";
+            ddlSexo.DataBind();
+            ddlSexo.Items.Insert(0, new ListItem("Seleccione un se", "0"));
+
+
+
         }
     }
 }

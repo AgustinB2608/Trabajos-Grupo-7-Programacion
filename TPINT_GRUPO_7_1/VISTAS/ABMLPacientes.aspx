@@ -1,11 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ABMLPacientes.aspx.cs" Inherits="VISTAS.ABMLPacientes" UnobtrusiveValidationMode="None" %>
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Gestión de Personal Médico</title>
     <style>
         body {
@@ -79,19 +78,18 @@
         }
 
         .lower-section .left-form {
-            width: 65%; 
+            width: 65%;
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        .lower-section .right-buttons { 
+        .lower-section .right-buttons {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            align-items: stretch; 
-            
-            margin-top: 50px; 
+            align-items: stretch;
+            margin-top: 50px;
         }
 
         .config-button {
@@ -112,57 +110,50 @@
         .config-button:hover {
             background-color: #1A252F;
         }
-        <system.webServer>
-    <directoryBrowse enabled="true" />
-</system.webServer>
-        .auto-style1 {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
 
         .btn {
-          display: inline-block;
-          background-color: #2C3E50;
-          color: white;
-          border: none;
-          padding: 10px 20px;
-          margin: 0 5px;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 14px;
+            display: inline-block;
+            background-color: #2C3E50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none; /* Para el hipervínculo */
         }
 
-.btn:hover {
-    background-color: #1A252F;
-}
-
+        .btn:hover {
+            background-color: #1A252F;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="header">
+
             <span>Menu Administrador</span>
             <span>Nombre Administrador</span>
         </div>
-
+        
         <div class="container">
             <div class="form-container">
-                <h1>Gestión de Personal Médico</h1>
+                <h1>Gestión de Personal Paciente</h1>
                 <div class="form-content"> 
                     <!-- Columna izquierda -->
                     <div class="form-column">
                         <div class="form-group">
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-                             <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" 
+                            <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" 
                               ErrorMessage="El nombre es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblApellido" runat="server" Text="Apellido:"></asp:Label>
-                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" AutoPostBack="True"></asp:TextBox>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RfvApellido" runat="server" ControlToValidate="txtApellido" 
                              ErrorMessage="El apellido es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
@@ -170,29 +161,32 @@
                         <div class="form-group">
                             <asp:Label ID="lblDni" runat="server" Text="DNI:"></asp:Label>
                             <asp:TextBox ID="txtDni" runat="server" CssClass="form-control"></asp:TextBox>
-                             <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDni" 
+                            <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDni" 
                              ErrorMessage="El DNI es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
-                            Direccion:<asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
-                             <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" 
-                             ErrorMessage="La direccion es obligatoria" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:Label ID="lblDireccion" runat="server" Text="Direccion:"></asp:Label>
+                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" 
+                             ErrorMessage="La dirección es obligatoria" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblEmail" runat="server" Text="E-mail:"></asp:Label>
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" 
-                            ErrorMessage="El Email es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
+                            ErrorMessage="El email es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblCelular" runat="server" Text="Tel/Celular:"></asp:Label>
                             <asp:TextBox ID="txtCelular" runat="server" CssClass="form-control"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvCelular" runat="server" ControlToValidate="txtCelular" 
-                            ErrorMessage="El numero de celular es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
+                            ErrorMessage="El número de celular es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
+                       
+
 
                         <div class="form-group">
                             <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad:"></asp:Label>
@@ -206,58 +200,41 @@
                     <div class="form-column">
                         <div class="form-group">
                             <asp:Label ID="lblSexo" runat="server" Text="Sexo:"></asp:Label>
-                            <br />
-                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="auto-style1" Height="29px" Width="546px">
-                                <asp:ListItem>Femenino</asp:ListItem>
-                                <asp:ListItem>Masculino</asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblProvincia" runat="server" Text="Provincia:"></asp:Label>
-                            <br />
-                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control">
-                                <asp:ListItem>arg</asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control"></asp:DropDownList>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:"></asp:Label>
-                            <br />
-                            <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-control">
-                                <asp:ListItem>dawd</asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-control"></asp:DropDownList>
                         </div>
 
                         <div class="form-group">
-                            <label for="fechaNacimiento">Fecha Nacimiento:</label>&nbsp;
-                      &nbsp;
+                            <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha Nacimiento:"></asp:Label>
+                            <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+                            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
-                        <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                        <br />
-                        <br />
-                        <br />
-
-        
                     </div>
                 </div>
 
-                <!-- Seccion inferior con dos columnas -->
+                <!-- Seccion inferior con botones alineados -->
+                <div class="form-group" style="text-align: center; margin-top: 20px;">
+                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click1" CssClass="btn" />
+                    <asp:Button ID="btnListar" runat="server" Text="Listar" CssClass="btn" />
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" />
+                    <asp:HyperLink ID="btnAtras" runat="server" NavigateUrl="~/InicioAdministrador.aspx" CssClass="btn">Atrás</asp:HyperLink>
 
-                         <div class="form-group" style="text-align: center; margin-top: 20px;">
-                             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click1" CssClass="btn" />
-                             <asp:Button ID="btnListar" runat="server" Text="Listar" CssClass="btn" />
-                             <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn" />
-                             <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" />
-                             <asp:HyperLink ID="btnAtras" runat="server" NavigateUrl="~/InicioAdministrador.aspx" CssClass="btn">Atrás</asp:HyperLink>
-                        </div>
+                    <asp:Label ID="lblMensajeConfirmacion" runat="server" Visible="False" CssClass="mensaje-exito"></asp:Label>
+                    
                 </div>
             </div>
-       
+        </div>
     </form>
 </body>
 </html>
-
-

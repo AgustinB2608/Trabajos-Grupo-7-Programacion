@@ -8,14 +8,23 @@ namespace ENTIDADES
 {
     public class Sexo
     {
-        private int CodSexo;
-        private string DescripcionSexo;
+        private string codSexo;
+        private string descripcionSexo;
+
         public Sexo()
         {
-
         }
 
-        public int codSexo { get => CodSexo; set => CodSexo = value; }
-        public string descripcionSexo { get => DescripcionSexo; set => DescripcionSexo = value; }
+        public string CodSexo_SX
+        {
+            get => codSexo;
+            set => codSexo = value;
+        }
+
+        public string DescripcionSexo_SX
+        {
+            get => descripcionSexo;
+            set => descripcionSexo = value;
+        }
     }
 }
