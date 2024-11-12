@@ -61,7 +61,7 @@ namespace DATOS
             string eliminar = "EXEC SP_bajaPaciente @CODPACIENTE";
 
             // envia mi string codPaciente como parametro
-            List<SqlParameter> parametros = new List<SqlParameter>
+            SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@CODPACIENTE", CODPACIENTE)
             };
@@ -87,7 +87,7 @@ namespace DATOS
 
             // envia los valores de mi obj paciente como parametro
 
-            List<SqlParameter> parametros = new List<SqlParameter>
+            SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@Direccion", Paciente.Direccion),
                 new SqlParameter("@Localidad", Paciente.Localidad),
