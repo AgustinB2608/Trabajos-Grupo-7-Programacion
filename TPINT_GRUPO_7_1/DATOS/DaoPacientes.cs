@@ -22,7 +22,7 @@ namespace DATOS
                              "VALUES (@CodigoPaciente, @Dni, @Nombre, @Apellido, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @Sexo, @Nacionalidad, @Estado)";
 
             // Crear los parámetros y asignar los valores
-            List<SqlParameter> parametros = new List<SqlParameter>
+            SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@CodigoPaciente", paciente.codPaciente),
                 new SqlParameter("@Dni", paciente.Dni),
