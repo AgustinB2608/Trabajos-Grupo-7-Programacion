@@ -123,12 +123,16 @@
             <span>Menu Administrador</span>
             <span>Nombre Administrador</span>
         </div>
+        <div class="contenedor">
         <div id=".container">
             <h1>Eliminar Médico</h1>
+            </div>
+            </div>
 
             <div class="form-group">
-                <asp:Label ID="lblEliminar" runat="server" Text="Ingresar Legajo del Médico:"></asp:Label>
-                <asp:TextBox ID="txtLegajo" runat="server"></asp:TextBox>
+                <asp:Label ID="lblEliminar" runat="server" Text="Ingresar Legajo del Médico:" Font-Bold="True" Font-Size="Large"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="txtLegajo" runat="server" Width="219px"></asp:TextBox>
                
             </div>
 
