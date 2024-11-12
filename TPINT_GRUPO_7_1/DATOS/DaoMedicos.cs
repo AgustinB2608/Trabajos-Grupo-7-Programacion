@@ -118,9 +118,13 @@ namespace DATOS
         public DataTable listarMedicos()
         {
             // Consulta SQL para ejecutar el procedimiento almacenado que trae todos los registros
-            string consulta = "SELECT CodMedicos_ME, Legajo_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME," +
-               "FechaNacimiento_ME, Direccion_ME, Localidad_ME, Provincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME," +
-               "Dias_ME, HorarioAtencion_ME FROM Medicos WHERE Estado = 1";
+            string consulta = "SELECT CodMedicos_ME AS CodigoMedico, Dni_ME AS Dni, Nombre_ME AS Nombre, Apellido_ME AS Apellido," +
+               "Sexo_ME AS Sexo, Nacionalidad_ME AS Nacionalidad, FechaNacimiento_ME AS 'Fecha de Nacimiento'," +
+               "Direccion_ME AS Direccion, Localidad_ME AS Localidad, Provincia_ME AS Provincia, Email_ME AS Email," +
+               "CodEspecialidad_ME AS CodigoEspecialidad, NombreEspecialidad_ES AS 'Nombre Especialidad'," +
+               "Dias_ME AS 'Dias de Atención', HorarioAtencion_ME AS 'Horarios de Atención' FROM Medicos INNER JOIN Especialidad " +
+               "ON (CodEspecialidad_ME = CodEspecialidad_ES) WHERE Estado = 1";
+
 
             //retorna el datatable del metodo de Conexion
             return ds.EjecutarConsulta(consulta);

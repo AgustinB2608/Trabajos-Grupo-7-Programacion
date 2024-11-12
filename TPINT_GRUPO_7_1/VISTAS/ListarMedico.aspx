@@ -37,7 +37,7 @@
                 <label for="txtMedicos" style="font-size: x-large; font-style: inherit; color: #000000; font-weight: 100">Medicos:</label>
                 <asp:TextBox ID="txtSucursal" runat="server"></asp:TextBox>
                 <asp:Button ID="btnFiltrar" runat="server" CssClass="btn" Text="Filtrar" />
-                <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos" />
+                <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" />
                 <br />
                 <br />
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
@@ -46,6 +46,9 @@
 
             <div class="grid-container">
                 <asp:GridView ID="grvMedicos" runat="server"></asp:GridView>
+                <br />
+                <br />
+                <asp:Label ID="lblMensaje1" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
             </div>
         </div>
     </form>
