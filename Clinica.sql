@@ -334,3 +334,11 @@ FROM Medicos
 WHERE CodMedicos_ME = @CodMedico AND Estado = 1
 END
 GO
+
+--12/11
+CREATE PROCEDURE SP_bajaPacienteDNI
+@DNI CHAR(11)
+AS
+UPDATE Paciente SET Estado = 0
+WHERE Dni_PA = @DNI
+GO

@@ -79,6 +79,34 @@ namespace DATOS
             }
         }
 
+        public bool eliminarPacienteDNI(int DNI)
+        {
+
+            //ejecuta un procedimiento almacenado, envia DNI del paciente como parametro
+
+            string eliminar = "EXEC SP_bajaPacienteDNI @DNI";
+
+            
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DNI", DNI)
+            };
+
+           //Verifica si hubo exito
+            int exito = ds.EjecutarConsultaSinRetorno(eliminar);
+
+            if (exito > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
         public bool modificarPaciente(Pacientes Paciente)
         {
 

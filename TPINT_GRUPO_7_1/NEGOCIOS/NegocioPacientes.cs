@@ -44,6 +44,24 @@ namespace NEGOCIOS
 
         }
 
+        public bool eliminarPacienteDNI(int DNI)
+        {
+            
+            dao = new DaoPacientes();
+
+            // Llama al metodo eliminarPacienteDNI
+            bool exito = dao.eliminarPacienteDNI(DNI);
+
+            // Retorno true si fue exitoso
+            if (exito)
+                return true;
+            else
+                return false;
+
+        }
+
+
+
         public bool modificarPaciente(Pacientes Paciente)
         {
             // Instancia de la clase DaoPacientes para acceder a la base de datos

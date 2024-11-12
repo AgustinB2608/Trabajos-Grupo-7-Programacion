@@ -19,6 +19,24 @@ namespace VISTAS
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             NegocioPacientes negocioPaciente = new NegocioPacientes();
+
+            if(txtEliminar.Text.Length == 8 && int.TryParse(txtEliminar.Text, out int DNIPaciente))
+            {
+                ///hablariamos de que se ingresó un DNI
+
+                bool SeElimino = negocioPaciente.eliminarPacienteDNI(DNIPaciente);
+
+                ///avisos sobre si se pudo o no eliminar
+                if (SeElimino)
+                {
+                    lblEliminar.Text = 'Se eliminó correctramente';
+
+                }
+                else {
+
+                }
+            }
+
         }
     }
 }
