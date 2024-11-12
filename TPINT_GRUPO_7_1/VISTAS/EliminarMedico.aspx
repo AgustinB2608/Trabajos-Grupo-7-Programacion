@@ -108,6 +108,13 @@
         #links a:hover {
             color: var(--color-boton-hover);
         }
+
+        #label {
+            font-size: 10rem;
+            color:red;
+            background-color: white;
+        }
+
     </style>
 </head>
 <body>
@@ -122,20 +129,26 @@
             <div class="form-group">
                 <asp:Label ID="lblEliminar" runat="server" Text="Ingresar Legajo del Médico:"></asp:Label>
                 <asp:TextBox ID="txtLegajo" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvEliminarMedico" runat="server" ControlToValidate="txtLegajo"
-                    ErrorMessage="* Ingrese Legajo del Médico" ForeColor="Red" Font-Bold="True"></asp:RequiredFieldValidator>
+               
             </div>
 
             <div class="config-button">
-                <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar"  />
-                 <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="btn">Volver Atras</asp:HyperLink>
+                <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click"  />
+                 <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="btn" NavigateUrl="~/ABMLMedicos.aspx">Volver Atras</asp:HyperLink>
 
             </div>
 
             <div id="mensaje">
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                <br />
+                <br />
+                <br />
+                <br />
+                <asp:Label ID="lblMensaje2" runat="server"></asp:Label>
+                <br />
+                <br />
             </div>
-        </div>
+        </div>      
     </form>
 </body>
 </html>

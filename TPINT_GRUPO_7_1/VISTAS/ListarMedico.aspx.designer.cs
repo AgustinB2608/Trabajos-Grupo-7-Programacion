@@ -11,7 +11,7 @@ namespace VISTAS
 {
 
 
-    public partial class ListarMedicos
+    public partial class ListarMedico
     {
 
         /// <summary>

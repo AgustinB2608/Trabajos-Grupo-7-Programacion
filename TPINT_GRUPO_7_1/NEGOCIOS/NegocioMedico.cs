@@ -34,13 +34,13 @@ namespace NEGOCIOS
 
         }
 
-        public bool eliminarMedico(Medico medico)
+        public bool eliminarMedico(string codmedico)
         {
             // Instancia de la clase DaoMedicos para acceder a la base de datos
             dao = new DaoMedicos();
 
             // Llama al metodo eliminarMedico de DaoMedicos y almacena el resultado bool
-            bool exito = dao.eliminarMedico(medico.getCodMedico());
+            bool exito = dao.eliminarMedico(codmedico);
 
             // Retorno true si fue exitoso si no false
             return exito;
