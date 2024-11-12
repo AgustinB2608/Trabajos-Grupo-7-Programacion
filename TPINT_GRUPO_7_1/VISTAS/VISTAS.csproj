@@ -70,6 +70,7 @@
     <Content Include="ABMLMedicos.aspx" />
     <Content Include="ABMLPacientes.aspx" />
     <Content Include="EliminarMedico.aspx" />
+    <Content Include="EliminarPaciente.aspx" />
     <Content Include="EstadisticaDemanda.aspx" />
     <Content Include="EstadisticaEspecialidad.aspx" />
     <Content Include="EstadisticaMensual.aspx" />
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="EliminarMedico.aspx.designer.cs">
       <DependentUpon>EliminarMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarPaciente.aspx.cs">
+      <DependentUpon>EliminarPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EliminarPaciente.aspx.designer.cs">
+      <DependentUpon>EliminarPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="EstadisticaDemanda.aspx.cs">
       <DependentUpon>EstadisticaDemanda.aspx</DependentUpon>

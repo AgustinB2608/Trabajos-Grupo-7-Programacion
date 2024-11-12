@@ -1,12 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EliminarMedico.aspx.cs" Inherits="VISTAS.EliminarMedico" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EliminarPaciente.aspx.cs" Inherits="VISTAS.EliminarPaciente" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Eliminar Médico</title>
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Eliminar Paciente</title>
     <style>
         /* Definición de variables de CSS */
         :root {
@@ -33,6 +32,11 @@
             padding: 15px 20px;
             font-weight: bold;
             align-items: center;
+        }
+       
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
         }
 
         .container {
@@ -114,7 +118,13 @@
             color:red;
             background-color: white;
         }
-
+        .contenedor {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -123,32 +133,22 @@
             <span>Menu Administrador</span>
             <span>Nombre Administrador</span>
         </div>
+        <div class="contenedor">
         <div id=".container">
-            <h1>Eliminar Médico</h1>
+            <h1>Eliminar Paciente</h1>
+        </div>
+         </div>
+        <div class="contenedor">
+       <h1>
+        <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el código del Paciente o DNI:"></asp:Label>
+       &nbsp;&nbsp;&nbsp;
+       <asp:TextBox ID="txtEliminar" runat="server" Width="198px" Height="26px"></asp:TextBox>
+       <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Height="37px" Width="89px " OnClick="btnEliminar_Click" />
+        
+       </h1>
+           </div>
+        
 
-            <div class="form-group">
-                <asp:Label ID="lblEliminar" runat="server" Text="Ingresar Legajo del Médico:"></asp:Label>
-                <asp:TextBox ID="txtLegajo" runat="server"></asp:TextBox>
-               
-            </div>
-
-            <div class="config-button">
-                <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click"  />
-                 <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="btn" NavigateUrl="~/ABMLMedicos.aspx">Volver Atras</asp:HyperLink>
-
-            </div>
-
-            <div id="mensaje">
-                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                <br />
-                <br />
-                <br />
-                <br />
-                <asp:Label ID="lblMensaje2" runat="server"></asp:Label>
-                <br />
-                <br />
-            </div>
-        </div>      
     </form>
 </body>
 </html>
