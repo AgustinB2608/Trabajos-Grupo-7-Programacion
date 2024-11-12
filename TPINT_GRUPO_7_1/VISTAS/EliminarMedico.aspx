@@ -142,9 +142,16 @@
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 <br />
                 <br />
+
+                <asp:GridView ID="gvMedicoInfo" runat="server">
+                </asp:GridView>
+
                 <br />
                 <br />
                 <asp:Label ID="lblMensaje2" runat="server"></asp:Label>
+                <br />
+                <br />
+                <asp:Button ID="btnConfirmarEliminar" runat="server" OnClick="btnConfirmarEliminar_Click" Text="Confirmar" />
                 <br />
                 <br />
             </div>
