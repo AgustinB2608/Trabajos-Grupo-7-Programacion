@@ -270,7 +270,8 @@
                                 <asp:ListItem>-</asp:ListItem>
                             </asp:DropDownList>
                             </label>
-&nbsp;</div>
+&nbsp;<asp:Label ID="lblMensajeFecha" runat="server"></asp:Label>
+                        </div>
                     </div>
                 </div>
 

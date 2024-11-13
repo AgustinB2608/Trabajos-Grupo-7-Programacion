@@ -57,8 +57,8 @@ namespace VISTAS
             }
             else
             {
-                
-                lblMensaje.Text = "Por favor, seleccione una fecha completa.";
+
+                lblMensajeFecha.Text = "Por favor, seleccione una fecha completa.";
             }
             
             limpiarCampos();
