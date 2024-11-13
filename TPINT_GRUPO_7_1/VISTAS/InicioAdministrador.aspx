@@ -94,7 +94,7 @@
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/doctor.jpg" alt="Medico" />
-                    <asp:HyperLink ID="hlkAbmlMedicos" runat="server" NavigateUrl="~/ABMLMedicos.aspx">Altas Bajas Modificaciones Y Listado de Medicos</asp:HyperLink>
+                    <asp:HyperLink ID="hlkAbmlMedicos" runat="server" NavigateUrl="~/AddMedico.aspx">Altas Bajas Modificaciones Y Listado de Medicos</asp:HyperLink>
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/turno-nocturno.jpg" alt="Turno" />
