@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AsignarTurnos.aspx.cs" Inherits="AsignarTurnos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AsignarTurno.aspx.cs" Inherits="AsignarTurnos" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

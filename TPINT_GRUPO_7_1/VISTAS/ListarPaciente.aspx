@@ -146,7 +146,7 @@
        <asp:TextBox ID="txtListar" runat="server" Width="203px" Height="26px"></asp:TextBox>
       
        &nbsp;&nbsp;&nbsp;
-             <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" />
+             <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" OnClick="btnFiltrar_Click" />
 &nbsp;<asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" />
       
        </h1>
