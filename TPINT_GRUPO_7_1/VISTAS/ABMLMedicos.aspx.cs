@@ -39,7 +39,7 @@ namespace VISTAS
             reg.setNacionalidad(txtNacionalidad.Text.Trim());
             reg.setDireccion(txtDireccion.Text.Trim());
 
-            // Asignar valores de DropDownList
+            // Asigna valores de DropDownList
             reg.setProvincia(ddlProvincia.SelectedValue);
             reg.setLocalidad(ddlLocalidad.SelectedValue);
             reg.setSexo(ddlSexo.SelectedValue);
@@ -47,33 +47,20 @@ namespace VISTAS
             reg.setHorario(ddlHorario.SelectedValue);
             reg.setDiasAtencion(ddlDiasAtencion.SelectedValue);
 
-            //MIRAR ESTO DE LA FECHA PORQUE NO SE GUARDA!!!!!!
-            string fechaNacimientoStr = fechaNacimiento.Value;
-            fechaNacimientoStr = fechaNacimientoStr.Trim();
-            DateTime fechaNacimientoParsed;
-            string formatoFecha = "dd/MM/yyyy";
-
-            if (DateTime.TryParseExact(fechaNacimientoStr, formatoFecha, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out fechaNacimientoParsed))
+            if (!string.IsNullOrEmpty(ddlDia.SelectedValue) &&
+                !string.IsNullOrEmpty(ddlMes.SelectedValue) &&
+                !string.IsNullOrEmpty(ddlAño.SelectedValue))
             {
-                reg.setFechaNacimiento(fechaNacimientoParsed.ToString("dd/MM/yyyy"));
+                string fecha = ddlDia.SelectedValue + "/" + ddlMes.SelectedValue + "/" + ddlAño.SelectedValue;
+                
+                reg.setFechaNacimiento(fecha);
             }
             else
             {
-                lblMensaje.Text = "Fecha de nacimiento no válida. Usa el formato dd/MM/yyyy.";
+                
+                lblMensaje.Text = "Por favor, seleccione una fecha completa.";
             }
-
-            // Llamar al método para guardar el registro
-            bool exito = negM.agregarMedico(reg);
-
-            if (exito)
-            {
-                lblMensaje.Text = "Médico añadido con éxito.";
-            }
-            else
-            {
-                lblMensaje.Text = "No se pudo añadir el médico.";
-            }
-
+            
             limpiarCampos();
         }
 
@@ -125,6 +112,16 @@ namespace VISTAS
             ddlHorario.DataValueField = "IdHorario";
             ddlHorario.DataBind();
             ddlHorario.Items.Insert(0, new ListItem("Seleccione un horario de atencion", "0"));
+
+           //carga los ddl de la fecha
+
+            //año asigna
+            ddlAño.Items.Clear();
+            ddlAño.Items.Add(new ListItem("-", "0"));
+            for (int año = 2024; año >= 1924; año--)
+            {
+                ddlAño.Items.Add(new ListItem(año.ToString(), año.ToString()));
+            }
         }
 
         private void limpiarCampos()
