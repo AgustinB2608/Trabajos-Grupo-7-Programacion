@@ -49,6 +49,9 @@
                 <br />
                 <br />
                 <asp:Label ID="lblMensaje1" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br />
+&nbsp;<asp:Button ID="btnVolver" runat="server" PostBackUrl="~/ABMLMedicos.aspx" Text="Volver a atras" />
             </div>
         </div>
     </form>

@@ -91,7 +91,7 @@
                     <asp:HyperLink ID="hlkEliminarMedico" runat="server" NavigateUrl="~/EliminarMedico.aspx">Eliminar Medico</asp:HyperLink>
                 </div>
                 <div class="menu-item">
-                    <asp:HyperLink ID="hlkModificarMedico" runat="server">Modificar Medico</asp:HyperLink>
+                    <asp:HyperLink ID="hlkModificarMedico" runat="server" NavigateUrl="~/ModificarMedico.aspx">Modificar Medico</asp:HyperLink>
                 </div>
                 <div class="menu-item">
                     <asp:HyperLink ID="hlkInforme" runat="server" NavigateUrl="~/ListarMedico.aspx">Listar Medicos</asp:HyperLink>
