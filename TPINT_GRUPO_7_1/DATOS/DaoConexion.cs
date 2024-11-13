@@ -12,7 +12,7 @@ namespace DATOS
     // Cambié 'internal' a 'public' para que la clase sea accesible desde otros proyectos o clases
     public class Conexion
     {
-        private String ruta = "Data Source=localhost\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
+        private String ruta = "Data Source=JUANMA\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
 
         public Conexion()
         {
