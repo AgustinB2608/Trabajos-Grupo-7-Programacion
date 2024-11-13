@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EliminarPaciente.aspx.cs" Inherits="VISTAS.EliminarPaciente" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListarPaciente.aspx.cs" Inherits="VISTAS.ListarPaciente" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Eliminar Paciente</title>
+    <title>Listar Paciente</title>
     <style>
         /* Definición de variables de CSS */
         :root {
@@ -134,45 +134,45 @@
             <span>Nombre Administrador</span>
         </div>
         <div class="contenedor">
-        <div id=".container">
-            <h1>Eliminar Paciente</h1>
-        </div>
-         </div>
+            <div id=".container">
+                <h1>Listar Paciente</h1>
+                </div>
+            </div>
+            
         <div class="contenedor">
-       <h1>
-        <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el código del Paciente o DNI:"></asp:Label>
+         <h1>
+        <asp:Label ID="lblListar" runat="server" Text="Ingrese el Paciente:"></asp:Label>
+       &nbsp;
+       <asp:TextBox ID="txtListar" runat="server" Width="203px" Height="26px"></asp:TextBox>
+      
        &nbsp;&nbsp;&nbsp;
-       <asp:TextBox ID="txtEliminar" runat="server" Width="198px" Height="26px"></asp:TextBox>
-       <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Height="37px" Width="89px " OnClick="btnEliminar_Click" />
-        
-       &nbsp;<asp:Button ID="btnAtras" runat="server" Text="Atrás" Height="37px" Width="89px " OnClick="btnEliminar_Click" PostBackUrl="~/ABMLPacientes.aspx" />
-           
-        
+             <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" />
+&nbsp;<asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" />
+      
        </h1>
-            <p>
-                &nbsp;</p>
-
-            <div>
-
-
-
-                <asp:GridView ID="gvPacienteInfo" runat="server">
-                </asp:GridView>
-
-
-
-            </div>
-
-           </div>
-        <div class="contenedor">
+            
         <div>
-            <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" ></asp:Label>
-        &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnConfirmarEliminar" runat="server" Text="Confirmar" OnClick="btnConfirmarEliminar_Click" />
         </div>
-            </div>
-        
+            <asp:GridView ID="gvPaciente" runat="server">
+            </asp:GridView>
 
+            <br />
+
+        </div>
+            <div class="contenedor">
+                <div>
+
+                    <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
+
+                </div>
+                </div>
+                <div class="contenedor">
+                <div>
+
+                    <asp:Button ID="btnAtras" runat="server" PostBackUrl="~/ABMLPacientes.aspx" Text="Atrás" />
+
+                </div>
+                    </div>
     </form>
 </body>
 </html>

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NEGOCIOS;
 using ENTIDADES;
+using System.Data;
 
 namespace VISTAS
 {
@@ -13,30 +14,71 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            btnConfirmarEliminar.Visible = false;
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             NegocioPacientes negocioPaciente = new NegocioPacientes();
 
-            if(txtEliminar.Text.Length == 8 && int.TryParse(txtEliminar.Text, out int DNIPaciente))
+            if (string.IsNullOrWhiteSpace(txtEliminar.Text))
             {
-                ///hablariamos de que se ingresó un DNI
+                // si el TextBox esta vacío o solo tiene espacios en blanco
+                lblMensaje.Text = "Por favor, ingrese un Dni.";
+            }
+            else
+            { 
+                
+            if (txtEliminar.Text.Length == 8)
+            {
+                    ///hablariamos de que se ingresó un DNI
+                    string dniN = txtEliminar.Text;
 
-                bool SeElimino = negocioPaciente.eliminarPacienteDNI(DNIPaciente);
+                    DataTable reg = negocioPaciente.listarPacienteEspecificoDni(dniN);
 
-                ///avisos sobre si se pudo o no eliminar
-                if (SeElimino)
-                {
-                    lblEliminar.Text = "Se eliminó correctramente";
+                    if (reg != null && reg.Rows.Count > 0)
+                    {
+                        gvPacienteInfo.DataSource = reg;
+                        gvPacienteInfo.DataBind();
 
-                }
-                else {
+                        lblMensaje.Text = "¿Está seguro de que desea eliminar este médico?";
 
-                }
+                        btnConfirmarEliminar.Visible = true;
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "No se encontraron resultados para el paciente.";
+                    }
+
+                    
             }
 
+            }
         }
+
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            NegocioPacientes neg = new NegocioPacientes();
+            string dniN = txtEliminar.Text; 
+
+            bool SeElimino = neg.eliminarPacienteDni(dniN);
+
+            ///avisos sobre si se pudo o no eliminar
+            if (SeElimino)
+            {
+                lblMensaje.Text = "Paciente eliminado correctramente";
+                gvPacienteInfo.DataSource = null;
+                gvPacienteInfo.DataBind();
+            }
+            else
+            {
+                lblMensaje.Text = "Hubo un error al intentar eliminar el paciente.";
+                
+            }
+            // Oculta el boton de confirmacion y limpia el mensaje
+            lblMensaje.Text = " ";
+            btnConfirmarEliminar.Visible = false;
+        }
+          
     }
 }

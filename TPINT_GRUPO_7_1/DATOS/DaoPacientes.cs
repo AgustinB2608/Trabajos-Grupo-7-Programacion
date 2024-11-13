@@ -79,17 +79,17 @@ namespace DATOS
             }
         }
 
-        public bool eliminarPacienteDNI(int DNI)
+        public bool eliminarPacienteDNI(string Dni)
         {
 
             //ejecuta un procedimiento almacenado, envia DNI del paciente como parametro
 
-            string eliminar = "EXEC SP_bajaPacienteDNI @DNI";
+            string eliminar = "EXEC SP_bajaPacienteDni @Dni";
 
             
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@DNI", DNI)
+                new SqlParameter("@Dni", Dni)
             };
 
            //Verifica si hubo exito
@@ -135,8 +135,9 @@ namespace DATOS
         public DataTable listarPacientes()
         {
             // Consulta SQL para ejecutar y traer todos los registros
-            string consulta = "SELECT CodPaciente_PA, Dni_PA, Nombre_PA, Apellido_PA, FechaNacimiento_PA, Direccion_PA" +
-            "Localidad_PA, Provincia_PA, Email_PA, Telefono_PA FROM Paciente WHERE Estado = 1";
+            string consulta = "SELECT CodPaciente_PA AS CodPaciente, Dni_PA AS Dni, Nombre_PA AS Nombre, Apellido_PA AS Apellido,"+
+                "FechaNacimiento_PA AS 'Fecha de Nacimiento', Direccion_PA AS Direccion, Localidad_PA AS Localidad, "+
+                "Provincia_PA AS Provincia, Email_PA AS Email, Telefono_PA AS Telefono FROM Paciente WHERE Estado = 1";
 
             //retorna el datatable del metodo de Conexion
             return ds.EjecutarConsulta(consulta);
@@ -154,6 +155,21 @@ namespace DATOS
                 };
             //retorna el datatable del metodo de Conexion
             return ds.EjecutarConsultaConParametros(consulta, parametros); 
+
+        }
+
+        public DataTable listarPacienteEspecificoDni(string dni)
+        {
+            // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado segun dni
+            string consulta = "EXEC SP_retornarRegistroPacienteDni @Dni";
+
+            // envia el valor del codpaciente como parametro
+            SqlParameter[] parametros = new SqlParameter[]
+                {
+                     new SqlParameter("@Dni", dni)
+                };
+            //retorna el datatable del metodo de Conexion
+            return ds.EjecutarConsultaConParametros(consulta, parametros);
 
         }
 

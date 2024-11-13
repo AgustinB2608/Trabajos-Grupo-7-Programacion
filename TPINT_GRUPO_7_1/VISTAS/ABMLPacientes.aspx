@@ -1,11 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ABMLPacientes.aspx.cs" Inherits="VISTAS.ABMLPacientes" UnobtrusiveValidationMode="None" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ABMLPacientes.aspx.cs" Inherits="VISTAS.ABMLPacientes1" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Gestión de Personal Médico</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
     <style>
         body {
             margin: 0;
@@ -13,6 +14,7 @@
             background-color: #6CB2EB;
         }
 
+        /* Header */
         .header {
             background-color: #2C3E50;
             color: white;
@@ -23,217 +25,83 @@
             align-items: center;
         }
 
+        /* Container */
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 30px;
-            background-color: #E1EFFF;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
         }
 
-        /* Formulario */
-        .form-container {
-            background-color: #4296E0;
-            padding: 20px;
-            border-radius: 10px;
+        h1 {
             color: white;
+        }
+
+        /* Menu Box */
+        .menu-box {
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid gray;
+            padding: 20px;
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Contenedor de formulario con dos columnas */
-        .form-content {
-            display: flex;
-            gap: 20px;
+        .menu-item {
+            margin-bottom: 20px;
+            text-align: center; /* Asegura que los elementos dentro estén centrados */
         }
 
-        .form-column {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .form-group label {
-            display: block;
+        .menu-item a {
+            text-decoration: none;
+            color: #1565C0;
+            font-size: 18px;
             font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
-
-        /* Seccion inferior */
-        .lower-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-top: 20px;
-        }
-
-        .lower-section .left-form {
-            width: 65%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .lower-section .right-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: stretch;
-            margin-top: 50px;
-        }
-
-        .config-button {
-            background-color: #2C3E50;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .config-button:hover {
-            background-color: #1A252F;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #2C3E50;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            margin: 5px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
+            display: inline-block; /* Asegura que los enlaces se comporten como bloques alineados */
             text-align: center;
-            text-decoration: none; /* Para el hipervínculo */
         }
 
-        .btn:hover {
-            background-color: #1A252F;
+        .logout-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: white;
+            color: #4A90E2;
+            border: 1px solid #808080;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
     </style>
+    
+
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="header">
-
+         <div class="header">
             <span>Menu Administrador</span>
             <span>Nombre Administrador</span>
         </div>
+            <asp:Label ID="lblUsuario" runat="server" Text="" />
         
         <div class="container">
-            <div class="form-container">
-                <h1>Gestión de Personal Paciente</h1>
-                <div class="form-content"> 
-                    <!-- Columna izquierda -->
-                    <div class="form-column">
-                        <div class="form-group">
-                            <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" 
-                              ErrorMessage="El nombre es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblApellido" runat="server" Text="Apellido:"></asp:Label>
-                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RfvApellido" runat="server" ControlToValidate="txtApellido" 
-                             ErrorMessage="El apellido es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblDni" runat="server" Text="DNI:"></asp:Label>
-                            <asp:TextBox ID="txtDni" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDni" 
-                             ErrorMessage="El DNI es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblDireccion" runat="server" Text="Direccion:"></asp:Label>
-                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" 
-                             ErrorMessage="La dirección es obligatoria" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblEmail" runat="server" Text="E-mail:"></asp:Label>
-                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" 
-                            ErrorMessage="El email es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblCelular" runat="server" Text="Tel/Celular:"></asp:Label>
-                            <asp:TextBox ID="txtCelular" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvCelular" runat="server" ControlToValidate="txtCelular" 
-                            ErrorMessage="El número de celular es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </div>
-                       
-
-
-                        <div class="form-group">
-                            <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad:"></asp:Label>
-                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="txtNacionalidad" 
-                            ErrorMessage="La nacionalidad es obligatoria" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-
-                    <!-- Columna derecha -->
-                    <div class="form-column">
-                        <div class="form-group">
-                            <asp:Label ID="lblSexo" runat="server" Text="Sexo:"></asp:Label>
-                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblProvincia" runat="server" Text="Provincia:"></asp:Label>
-                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control"></asp:DropDownList>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:"></asp:Label>
-                            <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-control"></asp:DropDownList>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha Nacimiento:"></asp:Label>
-                            <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
-                            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div>
+            <h1>Sistema de Administración</h1>
+            <div class="menu-box">
+                <div class="menu-item">
+                    <asp:HyperLink ID="hlkAñadirPaciente" runat="server" NavigateUrl="~/AñadirPaciente.aspx">Agregar Paciente</asp:HyperLink>
                 </div>
-
-                <!-- Seccion inferior con botones alineados -->
-                <div class="form-group" style="text-align: center; margin-top: 20px;">
-                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click1" CssClass="btn" />
-                    <asp:Button ID="btnListar" runat="server" Text="Listar" CssClass="btn" />
-                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn" />
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" />
-                    <asp:HyperLink ID="btnAtras" runat="server" NavigateUrl="~/InicioAdministrador.aspx" CssClass="btn">Atrás</asp:HyperLink>
-
-                    <asp:Label ID="lblMensajeConfirmacion" runat="server" Visible="False" CssClass="mensaje-exito"></asp:Label>
-                    
+                <div class="menu-item">
+                    <asp:HyperLink ID="hlkEliminarPaciente" runat="server" NavigateUrl="~/EliminarPaciente.aspx">Eliminar Paciente</asp:HyperLink>
+                </div>
+                <div class="menu-item">
+                    <asp:HyperLink ID="hlkModificarPaciente" runat="server" NavigateUrl="~/ModificarPaciente.aspx">Modificar Paciente</asp:HyperLink>
+                </div>
+                <div class="menu-item">
+                    <asp:HyperLink ID="hlkListarPaciente" runat="server" NavigateUrl="~/ListarPaciente.aspx">Listar Paciente</asp:HyperLink>
                 </div>
             </div>
+
+            <asp:HyperLink ID="hlkVolverAtras" runat="server" NavigateUrl="~/InicioAdministrador.aspx" CssClass="logout-button">Volver Atras</asp:HyperLink>
         </div>
     </form>
 </body>

@@ -324,7 +324,7 @@
                             <div class="config-button">
                                 <asp:Button ID="btnConfigUsuario" runat="server" Text="Configurar Usuario" CssClass="config-button"></asp:Button>
                                 <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" CssClass="config-button" />
-                                <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="auto-style1" NavigateUrl="~/ABMLMedicos.aspx">Volver Atras</asp:HyperLink>
+                                <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="auto-style1" NavigateUrl="~/ABMLMedicos.aspx">Atrás</asp:HyperLink>
 
                             </div>
                         </div>

@@ -50,7 +50,7 @@ namespace VISTAS
                     ? ""
                     : "No se encontraron médicos.";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // En caso de excepcion mostrar un mensaje de error
                 lblMensaje.Text = "Ocurrió un error al cargar los médicos.";
@@ -90,7 +90,7 @@ namespace VISTAS
                         ? ""
                         : "No se encontraron médicos con ese CODIGO.";
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // En caso de excepcion, mostrar un mensaje de error
                     lblMensaje.Text = "Ocurrió un error al filtrar el médico.";

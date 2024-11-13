@@ -44,7 +44,7 @@ namespace NEGOCIOS
 
         }
 
-        public bool eliminarPacienteDNI(int DNI)
+        public bool eliminarPacienteDni(string DNI)
         {
             
             dao = new DaoPacientes();
@@ -83,13 +83,21 @@ namespace NEGOCIOS
             return dao.listarPacientes();
         }
 
-        public DataTable listarPacienteEspecifico(string CodPaciente)
+        public DataTable listarPacienteEspecificoCod(string CodPaciente)
         {
             // Instancia de la clase DaoPacientes para acceder a la base de datos
             dao = new DaoPacientes();
 
-            //retorna el datatable del metodo listarPacienteEspecificp de DaoPacientes
+            //retorna el datatable del metodo listarPacienteEspecifico de DaoPacientes
             return dao.listarPacienteEspecifico(CodPaciente);
+        }
+        public DataTable listarPacienteEspecificoDni(string dni)
+        {
+            // Instancia de la clase DaoPacientes para acceder a la base de datos
+            dao = new DaoPacientes();
+
+            //retorna el datatable del metodo listarPacienteEspecificoDni de DaoPacientes
+            return dao.listarPacienteEspecificoDni(dni);
         }
 
     }
