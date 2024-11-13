@@ -75,12 +75,12 @@ namespace NEGOCIOS
             return exito;
         }
 
-        public DataTable listarPacientes()
+        public DataTable listarPacientes(string contenido = "")
         {
             // Instancia de la clase DaoPacientes para acceder a la base de datos
             dao = new DaoPacientes();
             //retorna el datatable del metodo listarPacientes de DaoPacientes
-            return dao.listarPacientes();
+            return dao.listarPacientes(contenido);
         }
 
         public DataTable listarPacienteEspecificoCod(string CodPaciente)

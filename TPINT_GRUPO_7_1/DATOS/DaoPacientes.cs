@@ -132,17 +132,27 @@ namespace DATOS
                 return false;   
         }
 
-        public DataTable listarPacientes()
+        public DataTable listarPacientes(string contenido = "")
         {
-            // Consulta SQL para ejecutar y traer todos los registros
-            string consulta = "SELECT CodPaciente_PA AS CodPaciente, Dni_PA AS Dni, Nombre_PA AS Nombre, Apellido_PA AS Apellido,"+
-                "FechaNacimiento_PA AS 'Fecha de Nacimiento', Direccion_PA AS Direccion, Localidad_PA AS Localidad, "+
-                "Provincia_PA AS Provincia, Email_PA AS Email, Telefono_PA AS Telefono FROM Paciente WHERE Estado = 1";
+            // Consulta SQL para traer todos los registros de pacientes activos
+            string consulta = "SELECT CodPaciente_PA AS CodPaciente, Dni_PA AS Dni, Nombre_PA AS Nombre, Apellido_PA AS Apellido, " +
+                              "FechaNacimiento_PA AS 'Fecha de Nacimiento', Direccion_PA AS Direccion, Localidad_PA AS Localidad, " +
+                              "Provincia_PA AS Provincia, Email_PA AS Email, Telefono_PA AS Telefono " +
+                              "FROM Paciente WHERE Estado = 1";
 
-            //retorna el datatable del metodo de Conexion
-            return ds.EjecutarConsulta(consulta);
+            // Si se proporciona un término de búsqueda, agrega condiciones de filtrado
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            if (!string.IsNullOrEmpty(contenido))
+            {
+                consulta += " AND (Nombre_PA LIKE @Contenido OR Apellido_PA LIKE @Contenido OR Dni_PA LIKE @Contenido)";
+                parametros.Add(new SqlParameter("@Contenido", "%" + contenido + "%"));
+            }
 
+            // Retorna el DataTable utilizando el método EjecutarConsultaConParametros de Conexion
+            return ds.EjecutarConsultaConParametros(consulta, parametros.ToArray());
         }
+
+
         public DataTable listarPacienteEspecifico(string codPaciente)
         {
             // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado

@@ -33,5 +33,24 @@ namespace VISTAS
                 lblMensaje.Text = "No se encontraron registros de pacientes.";
             }
         }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            NegocioPacientes negP = new NegocioPacientes();
+            string contenido = txtListar.Text.Trim();
+
+            DataTable lista = negP.listarPacientes(contenido);
+
+            if (lista != null && lista.Rows.Count > 0)
+            {
+                gvPaciente.DataSource = lista;
+                gvPaciente.DataBind();
+            }
+            else
+            {
+                lblMensaje.Text = "No se encontraron registros de pacientes.";
+            }
+        }
+
     }
 }

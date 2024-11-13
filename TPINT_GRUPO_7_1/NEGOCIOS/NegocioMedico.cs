@@ -76,5 +76,10 @@ namespace NEGOCIOS
             //retorna el datatable del metodo listarMedicoEspecifico de DaoMedicos
             return dao.listarMedicoEspecifico(CodMedico);
         }
+
+        public List<Medico> ObtenerMedico()
+        {
+            return dao.ObtenerMedico();
+        }
     }
 }

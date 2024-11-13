@@ -132,5 +132,32 @@ namespace DATOS
             return ds.EjecutarConsultaConParametros(consulta, parametros);
 
         }
+
+        // Metodo para obtener lista de todos los medicos desde la base de datos.
+        public List<Medico> ObtenerMedico()
+        {
+            // Consulta SQL para seleccionar datos de la tabla Medicos
+            string consulta = "SELECT CodMedico_ME, Nombre_ME FROM Medicos";
+
+            // Ejecuta la consulta y obtiene los resultados en un DataTable
+            DataTable dt = ds.EjecutarConsulta(consulta);
+
+            // Crea una lista de objetos de Medicos para almacenar los resultados
+            List<Medico> medicos = new List<Medico>();
+
+            // Recorre cada fila del DataTable.
+            foreach (DataRow row in dt.Rows)
+            {
+                // Crea un nuevo objeto de Medico y asigna los valores de la fila actual
+                Medico medico = new Medico();
+                medico.setCodMedico(row["CodMedico_ME"].ToString());
+                medico.setNombre(row["Nombre_ME"].ToString());
+
+                // Agrega el objeto Medico a la lista
+                medicos.Add(medico);
+            }
+            return medicos;
+        }
+
     }
 }
