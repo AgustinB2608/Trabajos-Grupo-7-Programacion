@@ -68,8 +68,8 @@ namespace VISTAS
         {
             // Configuración de ddlSexo
             ddlSexo.DataSource = negS.ObtenerSexo();
-            ddlSexo.DataTextField = "descripcionSexo";
-            ddlSexo.DataValueField = "codSexo";
+            ddlSexo.DataTextField = "DescripcionSexo_SX";
+            ddlSexo.DataValueField = "CodSexo_SX";
             ddlSexo.DataBind();
             ddlSexo.Items.Insert(0, new ListItem("Seleccione sexo del medico", "0"));
 
