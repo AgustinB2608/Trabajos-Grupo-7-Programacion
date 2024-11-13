@@ -72,14 +72,14 @@ namespace DATOS
         {
 
             // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
-            string modificar = "EXEC SP_modificarMedico @Legajo, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento" +
-            "@Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Usuario, @Contraseña";
+            string modificar = "EXEC SP_modificarMedico @Matricula, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento" +
+            "@Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion,";
 
             // envia los valores de mi obj medico como parametro
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Legajo", medico.getLegajo()),
+                new SqlParameter("@Matricula", medico.getCodMedico()),
                 new SqlParameter("@Nombre", medico.getNombre()),
                 new SqlParameter("@Apellido", medico.getApellido()),
                 new SqlParameter("@Sexo", medico.getSexo()),
@@ -93,8 +93,6 @@ namespace DATOS
                 new SqlParameter("@CodEspecialidad", medico.getEspecialidad()), 
                 new SqlParameter("@Dias", medico.getDiasAtencion()),
                 new SqlParameter("@HorarioAtencion", medico.getHorario()), 
-                new SqlParameter("@Usuario", medico.getUsuario()),
-                new SqlParameter("@Contraseña", medico.getContraseña())
             };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)

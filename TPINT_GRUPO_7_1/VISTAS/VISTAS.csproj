@@ -87,6 +87,7 @@
     <Content Include="InicioLogin.aspx" />
     <Content Include="ListadoTurnos.aspx" />
     <Content Include="ListarMedico.aspx" />
+    <Content Include="ModificarMedico.aspx" />
     <Content Include="RealizarInformes.aspx" />
     <Content Include="Web.config" />
     <Content Include="RecuperarContrasena.aspx" />
@@ -189,6 +190,13 @@
     </Compile>
     <Compile Include="ListarMedico.aspx.designer.cs">
       <DependentUpon>ListarMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarMedico.aspx.cs">
+      <DependentUpon>ModificarMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarMedico.aspx.designer.cs">
+      <DependentUpon>ModificarMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealizarInformes.aspx.cs">
