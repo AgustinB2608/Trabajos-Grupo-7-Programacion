@@ -17,15 +17,12 @@ namespace DATOS
 
         public bool agregarMedico(Medico medic)
         {
-            //Consulta SQL para insertar un nuevo medico a la tabla Medicos
-                string agregar = "INSERT INTO Medicos (CodMedicos_ME, Legajo_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, FechaNacimiento_ME, Direccion_ME, Localidad_ME, Provincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME, Dias_ME, HorarioAtencion_ME, Estado) " +
-                                 "VALUES (@Matricula, @Legajo, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Estado)";
+            string agregar = "INSERT INTO Medicos (CodMedicos_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, FechaNacimiento_ME, Direccion_ME, Localidad_ME, Provincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME, Dias_ME, HorarioAtencion_ME, Estado) " +
+                             "VALUES (@Matricula, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Estado)";
 
-            // Crea el array de parametros con los valores obtenidos de los get y set 
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@Matricula", medic.getCodMedico()),
-                new SqlParameter("@Legajo", medic.getLegajo()),
                 new SqlParameter("@Dni", medic.getDni()),
                 new SqlParameter("@Nombre", medic.getNombre()),
                 new SqlParameter("@Apellido", medic.getApellido()),
@@ -43,19 +40,11 @@ namespace DATOS
                 new SqlParameter("@Estado", 1)
             };
 
+            int exito = ds.EjecutarConsultaSinRetorno(agregar, parametros);
 
-            //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado(solo verifica exito o fracaso)
-            int exito = ds.EjecutarConsultaSinRetorno(agregar);
-
-            if (exito > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return exito > 0;
         }
+
 
 
         public bool eliminarMedico(string CodMedico)

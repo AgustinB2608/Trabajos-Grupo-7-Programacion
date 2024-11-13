@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ABMLMedicos.aspx.cs" Inherits="VISTAS.ABMLMedicos"   %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ABMLMedicos.aspx.cs" Inherits="VISTAS.ABMLMedicos"  UnobtrusiveValidationMode="None" %>
 
 <!DOCTYPE html>
 
@@ -130,36 +130,53 @@
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
                             <br />
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+
+                            <br />
+                            <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" 
+                              ErrorMessage="El nombre es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
+
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblApellido" runat="server" Text="Apellido:"></asp:Label>
                             <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" 
+                            ErrorMessage="El apellido es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblDni" runat="server" Text="DNI:"></asp:Label>
                             <asp:TextBox ID="txtDni" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="txtDni" 
+                            ErrorMessage="El dni es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
-                            <asp:Label ID="lblLegajo" runat="server" Text="Legajo:"></asp:Label>
-                            <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:Label ID="lblMatricula" runat="server" Text="Matricula:"></asp:Label>
+                            <asp:TextBox ID="txtMatricula" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvMatricula" runat="server" ControlToValidate="txtMatricula" 
+                            ErrorMessage="La matricula es obligatoria" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblEmail" runat="server" Text="E-mail:"></asp:Label>
-                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>                            
+                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" 
+                            ErrorMessage="El email es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblCelular" runat="server" Text="Tel/Celular:"></asp:Label>
                             <asp:TextBox ID="txtCelular" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvCelular" runat="server" ControlToValidate="txtCelular" 
+                            ErrorMessage="El telefono es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad:"></asp:Label>
                             <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="txtNacionalidad" 
+                            ErrorMessage="La nacionalidad es obligatoria" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -169,21 +186,29 @@
                             <asp:Label ID="lblSexo" runat="server" Text="Sexo:"></asp:Label>
                             <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control">
                             </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="ddlSexo" 
+                            ErrorMessage="Seleccione un sexo" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblProvincia" runat="server" Text="Provincia:"></asp:Label>
                             <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control"></asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" 
+                            ErrorMessage="Seleccione una provincia" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:"></asp:Label>
                             <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-control"></asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" 
+                            ErrorMessage="Seleccione una Localidad" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
                             <asp:Label ID="lblDireccion" runat="server" Text="Direccion:"></asp:Label>
                             <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" 
+                            ErrorMessage="La direccion es obligatoria" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-group">
@@ -200,18 +225,24 @@
                             <div class="form-group">
                                 <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad:"></asp:Label>
                                 <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddlEspecialidad" 
+                                ErrorMessage="Seleccione una Especialidad" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
 
                             <div class="form-group">
                                 <asp:Label ID="lblDiasAtencion" runat="server" Text="Días de Atención:"></asp:Label>
                                 <asp:DropDownList ID="ddlDiasAtencion" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvDiasAtencion" runat="server" ControlToValidate="ddlDiasAtencion" 
+                                ErrorMessage="Seleccione un Dia de Atencion" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
 
                             <div class="form-group">
                                 <asp:Label ID="lblHorario" runat="server" Text="Horario:"></asp:Label>
                                 <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-control"></asp:DropDownList>
-                                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                                <asp:RequiredFieldValidator ID="rfvHorario" runat="server" ControlToValidate="ddlHorario" 
+                                 ErrorMessage="Seleccione un Horario" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
+                            <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                         </div>
 
                         <!-- Parte derecha: Botones -->
