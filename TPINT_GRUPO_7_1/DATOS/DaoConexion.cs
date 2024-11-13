@@ -14,7 +14,8 @@ namespace DATOS
     {
         //private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = Clinica; Integrated Security = True";
         //"Data Source=JUANMA\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
-        private String ruta = "Data Source=localhost\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
+        //"Data Source=localhost\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
+        private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = Clinica; Integrated Security = True";
         public Conexion()
         {
             // Constructor

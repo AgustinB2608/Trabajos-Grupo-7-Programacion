@@ -122,8 +122,8 @@ namespace VISTAS
             // Si hubo cambios, llamamos al metodo de modificacion
             if (cambios)
             {
-                //FALTA QUE TOME MODIFICARMEDICO
-                bool exito = modificarMedico(reg);
+                
+                bool exito = regM.modificarMedico(reg);
                 lblMensaje.Text = exito ? "Modificado con éxito." : "Hubo un error al modificar los datos.";
                 lblMensaje.ForeColor = exito ? System.Drawing.Color.Green : System.Drawing.Color.Red;
             }
