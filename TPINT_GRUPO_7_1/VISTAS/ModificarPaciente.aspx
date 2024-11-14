@@ -277,9 +277,11 @@
                         <div class="right-buttons">
                             <div class="config-button">
                                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="config-button" OnClick="btnModificar_Click" />
+
                                 <asp:HyperLink ID="hlkVolverAtras" runat="server" CssClass="auto-style1" NavigateUrl="~/ABMLMedicos.aspx">Volver Atras</asp:HyperLink>
 
                             </div>
+                            <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                         </div>
                     </div>
                 </div>
