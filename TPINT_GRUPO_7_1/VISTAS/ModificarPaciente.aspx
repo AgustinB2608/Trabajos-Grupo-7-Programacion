@@ -128,6 +128,9 @@
             gap: 8px;
             text-decoration: none;
         }
+        .auto-style2 {
+            width: 779px;
+        }
     </style>
 </head>
 <body>
@@ -139,7 +142,12 @@
 
         <div class="container">
             <div class="form-container">
-                <h1>Modificar Paciente</h1>
+                <h1 class="auto-style2">Modificar Paciente&nbsp;&nbsp; |
+                    <asp:Label ID="lblBuscar" runat="server" Font-Size="Medium" Text="Ingrese CodPaciente o Dni"></asp:Label>
+&nbsp;
+                    <asp:TextBox ID="txtBuscar" runat="server"></asp:TextBox>
+&nbsp;<asp:Button ID="btnBuscar" runat="server" Height="21px" OnClick="btnBuscar_Click" Text="Ok" Width="30px" />
+                </h1>
                 <div class="form-content"> 
                     <!-- Columna izquierda -->
                     <div class="form-column">

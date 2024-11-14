@@ -8,6 +8,9 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace VISTAS
 {
@@ -22,7 +25,14 @@ namespace VISTAS
                 CargarProvincias();
                 CargarLocalidades();
             }
+            else
+            {
+                //
+            }
+            
         }
+
+        //hacer una funcion cargar ddl dia, mes, año
 
         public void CargarProvincias()
         {
@@ -185,6 +195,57 @@ namespace VISTAS
         private bool SoloDigitos(string str) //Parametro a checkear
         {
             return str.All(Char.IsDigit); //La funcion usa el metodo All para validar que todos los caracteres sean digitos con IsDigit
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            NegocioPacientes reg = new NegocioPacientes();
+            Pacientes obj = new Pacientes();
+
+            if (txtBuscar.Text.Length == 8)
+            {
+                DataTable paciente = reg.listarPacienteEspecificoDni(txtBuscar.Text);
+
+                obj.Nombre = paciente.Rows[0]["Nombre"].ToString();
+                obj.Apellido = paciente.Rows[0]["Apellido"].ToString();
+                obj.Dni = paciente.Rows[0]["Dni"].ToString();
+                obj.Email = paciente.Rows[0]["Email"].ToString();
+                obj.Celular = paciente.Rows[0]["Telefono"].ToString();
+                obj.Provincia = paciente.Rows[0]["Provincia"].ToString();
+                obj.Localidad = paciente.Rows[0]["Localidad"].ToString();
+                obj.Direccion = paciente.Rows[0]["Direccion"].ToString();
+                obj.Sexo = paciente.Rows[0]["Sexo"].ToString();
+                obj.FechaNacimiento = paciente.Rows[0]["Fecha de Nacimiento"].ToString();
+
+                txtNombre.Text = obj.Nombre;
+                txtApellido.Text = obj.Apellido;
+                txtDNI.Text = obj.Dni;
+                txtEmail.Text = obj.Email;
+                txtCelular.Text = obj.Celular;
+                txtDireccion.Text = obj.Direccion;
+                                       
+                ddlSexo.DataTextField = obj.Sexo.ToString(); 
+                ddlProvincia.DataTextField = obj.Provincia.ToString();
+                ddlLocalidad.DataTextField = obj.Localidad.ToString();
+
+                string[] fechaComponentes = obj.FechaNacimiento.Split('/');
+
+                // Obtener los valores individuales
+                string dia = fechaComponentes[0];
+                string mes = fechaComponentes[1];
+                string año = fechaComponentes[2];
+
+                ddlDia.SelectedValue = dia;
+                ddlMes.SelectedValue = mes;
+                ddlAño.SelectedValue = año;
+
+                //funciones para los ddl
+
+            }
+            else if (txtBuscar.Text.Length == 4)
+            {
+                //
+            }
         }
     }
 }
