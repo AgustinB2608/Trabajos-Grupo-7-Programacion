@@ -25,20 +25,20 @@ namespace VISTAS
             if (!IsPostBack)
             {
 
-                // Verificar si el usuario está logueado y traer los datos de la session(Administrador)
-                // ---->
-                //if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
-                //{
-                //    string nombre = Session["UsuarioNombre"].ToString();//Nombre
-                //    string apellido = Session["UsuarioApellido"].ToString();//Apellido
-                //    string tipoUsuario = Session["UsuarioTipo"].ToString();//Tipo de usuario
+                 //Verificar si el usuario está logueado y traer los datos de la session(Administrador)
+        
+                if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
+                {
+                    string nombre = Session["UsuarioNombre"].ToString();//Nombre
+                    string apellido = Session["UsuarioApellido"].ToString();//Apellido
+                    string tipoUsuario = Session["UsuarioTipo"].ToString();//Tipo de usuario
 
-                //    lblUsuario.Text = $"{nombre} {apellido}";
-                //}
-                //else
-                //{
-                //    Response.Redirect("InicioLogin.aspx");
-                //} <----
+                    lblUsuario.Text = $"{nombre} {apellido}";
+                }
+                else
+                {
+                    Response.Redirect("InicioLogin.aspx");
+                } 
                 // VALIDACION DE USUARIO LOGUEADO (ADMINISTRADOR)
 
                 InicializarDropDownLists();

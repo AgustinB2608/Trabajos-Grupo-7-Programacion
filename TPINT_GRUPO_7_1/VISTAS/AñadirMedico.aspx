@@ -148,13 +148,14 @@
     <form id="form1" runat="server">
 
         <header>
-            <div class="titulo">Añadir Medico</div>
+            <div class="titulo">ABML</div>
             <asp:Label ID="lblUsuario" runat="server" Text="" /> <%--Nombre de usuario--%>
         </header>
         <%--Contenedor Principal--%>
         <div class="contenedor">
             <%--Contenedor 2--%>
             <div class="formulario-contenedor">
+               <h1>Añadir Medico</h1>
                 <%--Columnas--%>
                 <div class="form-columns">
                     <!-- Columna Izquierda -->
