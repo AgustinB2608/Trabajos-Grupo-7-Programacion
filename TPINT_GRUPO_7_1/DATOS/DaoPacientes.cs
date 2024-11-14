@@ -157,7 +157,7 @@ namespace DATOS
         public DataTable listarPacienteEspecifico(string codPaciente)
         {
             // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
-            string consulta = "EXEC SP_retornarRegistro @CodPaciente";
+            string consulta = "EXEC SP_retornarRegistroPacienteCod @CodPaciente";
 
             // envia el valor del codpaciente como parametro
             SqlParameter[] parametros = new SqlParameter[]

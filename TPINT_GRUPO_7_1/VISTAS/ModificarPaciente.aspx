@@ -129,7 +129,7 @@
             text-decoration: none;
         }
         .auto-style2 {
-            width: 779px;
+            width: 809px;
         }
     </style>
 </head>
@@ -147,6 +147,7 @@
 &nbsp;
                     <asp:TextBox ID="txtBuscar" runat="server"></asp:TextBox>
 &nbsp;<asp:Button ID="btnBuscar" runat="server" Height="21px" OnClick="btnBuscar_Click" Text="Ok" Width="30px" />
+                    <asp:Label ID="lblCampo" runat="server" Font-Bold="True" Font-Size="XX-Small" ForeColor="Red"></asp:Label>
                 </h1>
                 <div class="form-content"> 
                     <!-- Columna izquierda -->
