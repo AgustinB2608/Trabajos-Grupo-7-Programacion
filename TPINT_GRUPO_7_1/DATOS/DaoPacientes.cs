@@ -111,18 +111,19 @@ namespace DATOS
         {
 
             // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
-            string modificar = "EXEC SP_modificarPaciente @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodPaciente";
+            string modificar = "EXEC SP_modificarPaciente @CodPaciente, @Direccion, @Localidad, @Provincia, @Email, @Telefono";
 
             // envia los valores de mi obj paciente como parametro
 
             SqlParameter[] parametros = new SqlParameter[]
             {
+                new SqlParameter("@CodPaciente", Paciente.Direccion),
                 new SqlParameter("@Direccion", Paciente.Direccion),
                 new SqlParameter("@Localidad", Paciente.Localidad),
                 new SqlParameter("@Provincia", Paciente.Provincia),
                 new SqlParameter("@Email", Paciente.Email),
                 new SqlParameter("@Telefono", Paciente.Celular),
-                new SqlParameter("@CodPaciente", Paciente.codPaciente)
+                
             };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
