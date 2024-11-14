@@ -20,18 +20,18 @@ namespace VISTAS
         private void InicializarDropDownLists()
         {
             // Configuración de ddlMedico
-            //ddlMedico.DataSource = negM.ObtenerMedico();
-            //ddlMedico.DataTextField = "CodMedico";
-            //ddlMedico.DataValueField = "Nombre";
-            //ddlMedico.DataBind();
-            //ddlMedico.Items.Insert(0, new ListItem("Seleccione un medico para asignar turno", "0"));
+            ddlMedico.DataSource = negM.ObtenerMedico();
+            ddlMedico.DataTextField = "CodMedico";
+            ddlMedico.DataValueField = "Nombre";
+            ddlMedico.DataBind();
+            ddlMedico.Items.Insert(0, new ListItem("Seleccione un medico para asignar turno", "0"));
 
             // Configuración de ddlHorario
-            //ddlHorario.DataSource = negH.ObtenerHorarios();
-            //ddlHorario.DataTextField = "Horario";
-            //ddlHorario.DataValueField = "IdHorario";
-            //ddlHorario.DataBind();
-            //ddlHorario.Items.Insert(0, new ListItem("Seleccione un horario para turno", "0"));
+            ddlHorario.DataSource = negH.ObtenerHorarios();
+            ddlHorario.DataTextField = "Horario";
+            ddlHorario.DataValueField = "IdHorario";
+            ddlHorario.DataBind();
+            ddlHorario.Items.Insert(0, new ListItem("Seleccione un horario para turno", "0"));
         }
     }
 }

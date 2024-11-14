@@ -92,6 +92,7 @@
     <Content Include="ModificarMedico.aspx" />
     <Content Include="ModificarPaciente.aspx" />
     <Content Include="RealizarInformes.aspx" />
+    <Content Include="UsuarioMedico.aspx" />
     <Content Include="Web.config" />
     <Content Include="RecuperarContrasena.aspx" />
   </ItemGroup>
@@ -236,6 +237,13 @@
     </Compile>
     <Compile Include="RecuperarContrasena.aspx.designer.cs">
       <DependentUpon>RecuperarContrasena.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioMedico.aspx.cs">
+      <DependentUpon>UsuarioMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioMedico.aspx.designer.cs">
+      <DependentUpon>UsuarioMedico.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
