@@ -1,10 +1,6 @@
 ﻿using NEGOCIOS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using System;
 
 namespace VISTAS
 {
@@ -12,6 +8,7 @@ namespace VISTAS
     {
         NegocioMedico negM = new NegocioMedico();
         NegocioHorarios negH = new NegocioHorarios();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -28,7 +25,6 @@ namespace VISTAS
             //ddlMedico.DataValueField = "Nombre";
             //ddlMedico.DataBind();
             //ddlMedico.Items.Insert(0, new ListItem("Seleccione un medico para asignar turno", "0"));
-
 
             // Configuración de ddlHorario
             //ddlHorario.DataSource = negH.ObtenerHorarios();
