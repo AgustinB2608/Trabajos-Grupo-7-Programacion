@@ -100,6 +100,11 @@ namespace NEGOCIOS
             return dao.listarPacienteEspecificoDni(dni);
         }
 
+        // Obtengo la lista de pacientes llamando al metodo ObtenerPacientes de DaoPacientes
+        public List<Pacientes> ObtenerPacientes()
+        {
+            return dao.ObtenerPaciente();
+        }
     }
 }
 

@@ -137,7 +137,7 @@ namespace DATOS
         public List<Medico> ObtenerMedico()
         {
             // Consulta SQL para seleccionar datos de la tabla Medicos
-            string consulta = "SELECT CodMedico_ME, Nombre_ME FROM Medicos";
+            string consulta = "SELECT CodMedicos_ME, Nombre_ME FROM Medicos";
 
             // Ejecuta la consulta y obtiene los resultados en un DataTable
             DataTable dt = ds.EjecutarConsulta(consulta);
