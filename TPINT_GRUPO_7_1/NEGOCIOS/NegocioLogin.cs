@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient; 
-using DATOS; 
-using ENTIDADES; 
+using System.Data.SqlClient;
+using DATOS;
+using ENTIDADES;
 
 namespace NEGOCIO
 {
@@ -18,6 +18,11 @@ namespace NEGOCIO
         public Login ValidarLogin(string legajo, string contrasena)
         {
             return daoLogin.ValidarLogin(legajo, contrasena);
+        }
+
+        public void GuardarUsuario(Login usuario)
+        {
+            daoLogin.InsertUsuario(usuario);
         }
     }
 }

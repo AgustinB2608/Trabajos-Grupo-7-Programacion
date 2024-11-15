@@ -1,11 +1,13 @@
-﻿using ENTIDADES;
-using NEGOCIOS;
+﻿using NEGOCIOS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ENTIDADES;
+using NEGOCIO;
+using System.ComponentModel;
 
 namespace VISTAS
 {
@@ -20,13 +22,15 @@ namespace VISTAS
         NegocioHorarios negH = new NegocioHorarios();
         Medico reg = new Medico();
 
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
 
-                 //Verificar si el usuario está logueado y traer los datos de la session(Administrador)
-        
+                //Verificar si el usuario está logueado y traer los datos de la session(Administrador)
+
                 if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
                 {
                     string nombre = Session["UsuarioNombre"].ToString();//Nombre
@@ -37,13 +41,13 @@ namespace VISTAS
                 }
                 else
                 {
-                    Response.Redirect("InicioLogin.aspx");
-                } 
+                    //Response.Redirect("InicioLogin.aspx");
+                }
                 // VALIDACION DE USUARIO LOGUEADO (ADMINISTRADOR)
 
                 InicializarDropDownLists();
 
-            } 
+            }
         }
 
         private void InicializarDropDownLists()
@@ -134,15 +138,7 @@ namespace VISTAS
                 return;
             }
 
-            // Validación de fecha de nacimiento
-            DateTime fechaNacimiento = ValidarFechaNacimiento();
-            if (fechaNacimiento == DateTime.MinValue)
-            {
-                lblError.Text = "La fecha de nacimiento es inválida.";
-                return;
-            }
-
-            // Si todas las validaciones pasan guardamos todos los datos
+            // Creación del médico
             reg.setNombre(txtNombre.Text.Trim());
             reg.setApellido(txtApellido.Text.Trim());
             reg.setDni(txtDni.Text.Trim());
@@ -158,19 +154,25 @@ namespace VISTAS
             reg.setHorario(ddlHorario.SelectedValue);
             reg.setDiasAtencion(ddlDiasAtencion.SelectedValue);
 
-            // Convertir la fecha de nacimiento a string antes de guardar
-            string fechaString = fechaNacimiento.ToString("dd/MM/yyyy");
-            reg.setFechaNacimiento(fechaString);
+            colums.Style.Add("display", "none");
+            Confirmacion.Style.Add("display", "block");
 
-            if (negM.agregarMedico(reg))
+        }
+
+        // Método para crear un usuario
+        private void CrearUsuario(ENTIDADES.Login usuario)
+        {
+            try
             {
-                LimpiarCampos(); //Limpiar campos despues de añadir
+                LoginNegocio negU = new LoginNegocio();
+                negU.GuardarUsuario(usuario);
             }
-            else
+            catch (Exception ex)
             {
-                lblError.Text = "Error al guardar el médico";
+                lblError.Text = "Error al crear el usuario: " + ex.Message;
             }
         }
+
 
         //Funcion para validar el correo electronico, retorna true si es valido, false si no lo es (Correos validos como ejemplo@ejemplo.com) 
         private bool CorreoValido(string email)
@@ -286,5 +288,32 @@ namespace VISTAS
                      string.IsNullOrWhiteSpace(txtMatricula.Text));
         } // Valida que los campos no estén vacíos
 
+        protected void Confirmar_Click(object sender, EventArgs e)
+        {
+
+            if (negM.agregarMedico(reg))
+            {
+                // Crear usuario asociado
+                CrearUsuario(new ENTIDADES.Login
+                {
+                    Legajo = txtDni.Text,
+                    Contraseña = txtDni.Text,
+                    TipoUsuario = "M",
+                    Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text
+                });
+                LimpiarCampos();
+            }
+            Confirmacion.Style.Add("display", "none");
+            h1.Style.Add("display", "none");
+            mensajeConfirmacion.Style.Add("display", "block");
+
+        }
+
+        protected void Cancelar_Click(object sender, EventArgs e)
+        {
+            colums.Style.Add("display", "column");
+            Confirmacion.Style.Add("display", "none");
+        }
     }
 }

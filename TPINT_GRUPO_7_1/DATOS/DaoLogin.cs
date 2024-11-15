@@ -62,5 +62,40 @@ namespace DATOS
                 return null;
             }
         }
+
+        public void InsertUsuario(Login usuario)
+        {
+            try
+            {
+
+                string consulta = "INSERT INTO Usuarios (Legajo_US, Contraseña_US, TipoUsuario_US, Nombre, Apellido) " +
+                               "VALUES (@Legajo, @Contraseña, @TipoUsuario, @Nombre, @Apellido)";
+
+
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                new SqlParameter("@Legajo", SqlDbType.NVarChar) { Value = usuario.Legajo },
+                new SqlParameter("@Contraseña", SqlDbType.NVarChar) { Value = usuario.Contraseña },
+                new SqlParameter("@TipoUsuario", SqlDbType.NVarChar) { Value = usuario.TipoUsuario },
+                new SqlParameter("@Nombre", SqlDbType.NVarChar) { Value = usuario.Nombre },
+                new SqlParameter("@Apellido", SqlDbType.NVarChar) { Value = usuario.Apellido }
+                };
+
+                DataTable resultado = conexion.EjecutarConsultaConParametros(consulta, parametros);
+
+                if (resultado.Rows.Count > 0)
+                {
+                    Console.WriteLine("Usuario guardado correctamente.");
+                }
+                else
+                {
+                    Console.WriteLine("Error al guardar el usuario.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al insertar usuario: " + ex.Message);
+            }
+        }
     }
 }
