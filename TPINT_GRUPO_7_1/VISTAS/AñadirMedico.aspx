@@ -216,8 +216,7 @@
                         <%--Sexo--%>
                         <div class="form-group">
                             <asp:Label ID="lblSexo" runat="server" Text="Sexo:" CssClass="form-label"></asp:Label>
-                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control">
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
                         </div>
                         <%--Provincia--%>
                         <div class="form-group">
