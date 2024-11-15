@@ -184,6 +184,31 @@ namespace DATOS
 
         }
 
+        // Metodo para obtener lista de todos los pacientes desde la base de datos.
+        public List<Pacientes> ObtenerPaciente()
+        {
+            // Consulta SQL para seleccionar datos de la tabla Pacientes
+            string consulta = "SELECT CodPaciente_PA, Nombre_PA FROM Paciente";
 
+            // Ejecuta la consulta y obtiene los resultados en un DataTable
+            DataTable dt = ds.EjecutarConsulta(consulta);
+
+            // Crea una lista de objetos de Pacientes para almacenar los resultados
+            List<Pacientes> pacientes = new List<Pacientes>();
+
+            // Recorre cada fila del DataTable.
+            foreach (DataRow row in dt.Rows)
+            {
+                // Crea un nuevo objeto de Pacientes y asigna los valores de la fila actual
+                Pacientes paciente = new Pacientes();
+                paciente.codPaciente = row["CodPaciente_PA"].ToString();
+                paciente.Nombre = row["Nombre_PA"].ToString();
+
+
+                // Agrega el objeto Pacientes a la lista
+                pacientes.Add(paciente);
+            }
+            return pacientes;
+        }
     }
 }

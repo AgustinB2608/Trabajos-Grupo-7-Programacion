@@ -51,6 +51,7 @@
     <Compile Include="DaoPacientes.cs" />
     <Compile Include="DaoProvincia.cs" />
     <Compile Include="DaoSexo.cs" />
+    <Compile Include="DaoTurnos.cs" />
     <Compile Include="DaoUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
