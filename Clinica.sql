@@ -342,3 +342,45 @@ AS
 UPDATE Paciente SET Estado = 0
 WHERE Dni_PA = @DNI
 GO
+
+--MOD 13/11
+CREATE PROCEDURE SP_retornarRegistroPacienteCod
+@CodPaciente CHAR(4)
+AS
+
+SELECT 
+CodPaciente_PA AS CodPaciente, Dni_PA AS Dni, Nombre_PA AS Nombre, Apellido_PA AS Apellido, FechaNacimiento_PA AS 'Fecha de Nacimiento',
+Direccion_PA AS Direccion, Localidad_PA AS Localidad, Provincia_PA AS Provincia, Email_PA AS Email, Telefono_PA AS Telefono,
+Sexo_PA AS Sexo
+FROM Paciente
+WHERE CodPaciente_PA = @CodPaciente AND Estado = 1 
+GO
+
+CREATE PROCEDURE SP_retornarRegistroPacienteDni
+@Dni CHAR(8)
+AS
+BEGIN
+SELECT 
+CodPaciente_PA AS CodPaciente, Dni_PA AS Dni, Nombre_PA AS Nombre, Apellido_PA AS Apellido, FechaNacimiento_PA AS 'Fecha de Nacimiento',
+Direccion_PA AS Direccion, Localidad_PA AS Localidad, Provincia_PA AS Provincia, Email_PA AS Email, Telefono_PA AS Telefono,
+Sexo_PA AS Sexo
+FROM Paciente
+WHERE Dni_PA = @Dni AND Estado = 1 
+END
+GO
+
+--16/11
+
+CREATE TABLE Usuarios(
+Legajo_US Int identity (1000,1) NOT NULL,
+Contraseña_US varchar(20) NOT NULL,
+Tipousuariio_US varchar(20)NOT NULL,
+Nombre_US varchar(20) NOT NULL,
+Apellido_US varchar(20) NOT NULL,
+CodAdmin_US varchar(10) NOT NULL,
+CodMedicos_US varchar(10) NOT NULL,
+CONSTRAINT PK_Usuarios PRIMARY KEY (Legajo_US),
+CONSTRAINT FK_Usuarios_Administrador FOREIGN KEY (CodAdmin_US) REFERENCES Administrador(CodAdmin_AD),
+CONSTRAINT FK_Usuarios_Medicos FOREIGN KEY (CodMedicos_US) REFERENCES Medicos(CodMedicos_ME)
+)
+GO
