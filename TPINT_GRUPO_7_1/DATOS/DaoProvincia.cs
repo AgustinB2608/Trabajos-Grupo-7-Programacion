@@ -16,7 +16,7 @@ namespace DATOS
         public List<Provincias> ObtenerProvincias()
         {
             // Consulta SQL para seleccionar datos de la tabla Localidades
-            string consulta = "SELECT CodProvincia_PR, Nombre FROM Provincias";
+            string consulta = "SELECT CodProvincia_PR, Descripcion_PR FROM Provincias";
 
             // Crea una lista de objetos Localidades para almacenar los resultados
             DataTable dt = ds.EjecutarConsulta(consulta);
@@ -30,8 +30,8 @@ namespace DATOS
                 // Creo un nuevo objeto Provincia y asigna los valores de la fila actual.
                 Provincias provincia = new Provincias
                 {
-                    Id_Provincia = (int)row["CodProvincia_PR"],
-                    DescripcionProvincia1 = row["Nombre"].ToString()
+                    Id_Provincia = row["CodProvincia_PR"].ToString(),
+                    DescripcionProvincia1 = row["Descripcion_PR"].ToString()
                 };
 
                 // Agrega la provincia a la lista.

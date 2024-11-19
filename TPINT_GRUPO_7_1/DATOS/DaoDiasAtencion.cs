@@ -16,7 +16,7 @@ namespace DATOS
         public List<DiasAtencion> ObtenerDiasAtencion()
         {
             // Consulta SQL para seleccionar datos de la tabla DiasAtencion
-            string consulta = "SELECT IdDia, Nombre FROM DiasAtencion";
+            string consulta = "SELECT CodAtencion_DA, Descripcion_DA FROM DiasAtencion";
 
             // Ejecuta la consulta y obtiene los resultados en un DataTable
             DataTable dt = ds.EjecutarConsulta(consulta);
@@ -30,8 +30,8 @@ namespace DATOS
                 // Crea un nuevo objeto Dias de Atencion y asigna los valores de la fila actual
                 DiasAtencion dias = new DiasAtencion
                 {
-                    IdDia = (int)row["IdDia"],
-                    Dias = row["Nombre"].ToString(),
+                    IdDia = row["CodAtencion_DA"].ToString(),
+                    Dias = row["Descripcion_DA"].ToString(),
                     
                 };
 

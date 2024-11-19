@@ -17,7 +17,7 @@ namespace DATOS
 
         public bool agregarMedico(Medico medic)
         {
-            string agregar = "INSERT INTO Medicos (CodMedicos_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, FechaNacimiento_ME, Direccion_ME, Localidad_ME, Provincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME, Dias_ME, HorarioAtencion_ME, Estado) " +
+            string agregar = "INSERT INTO Medicos (CodMedico_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, FechaNacimiento_ME, Direccion_ME, CodLocalidad_ME, CodProvincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME, CodDiasAtencion_ME, CodHorariosAtencion_ME, Estado) " +
                              "VALUES (@Matricula, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Estado)";
 
             SqlParameter[] parametros = new SqlParameter[]

@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using ENTIDADES;
 using NEGOCIO;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 
 namespace VISTAS
 {
@@ -95,6 +96,9 @@ namespace VISTAS
             ddlHorario.DataBind();
             ddlHorario.Items.Insert(0, new ListItem("Selecciona Horario de atencion", "0"));
 
+            // Cargar días, meses y años para la fecha de nacimiento
+            CargarFechaNacimiento();
+
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -138,6 +142,37 @@ namespace VISTAS
                 return;
             }
 
+            // Validación de la fecha de nacimiento
+            int dia = 0, mes = 0, año = 0;
+
+            // Obtener valores seleccionados de los DropDownLists de fecha
+            if (!int.TryParse(ddlDia.SelectedValue, out dia) || dia == 0)
+            {
+                lblError.Text = "Debe seleccionar un día válido.";
+                return;
+            }
+
+            if (!int.TryParse(ddlMes.SelectedValue, out mes) || mes == 0)
+            {
+                lblError.Text = "Debe seleccionar un mes válido.";
+                return;
+            }
+
+            if (!int.TryParse(ddlAño.SelectedValue, out año) || año == 0)
+            {
+                lblError.Text = "Debe seleccionar un año válido.";
+                return;
+            }
+
+            // Crear la fecha a partir de los valores seleccionados
+            SqlDateTime fechaNacimiento = new DateTime(año, mes, dia);
+
+            // Validar que la fecha esté dentro de los rangos permitidos
+            if (fechaNacimiento < new DateTime(1900, 1, 1) || fechaNacimiento > DateTime.Now)
+            {
+                lblError.Text = "La fecha de nacimiento debe estar entre el 1/1/1900 y la fecha actual.";
+                return;
+            }
             // Creación del médico
             reg.setNombre(txtNombre.Text.Trim());
             reg.setApellido(txtApellido.Text.Trim());
@@ -145,6 +180,7 @@ namespace VISTAS
             reg.setEmail(txtEmail.Text.Trim());
             reg.setCelular(txtCelular.Text.Trim());
             reg.setNacionalidad(txtNacionalidad.Text.Trim());
+            reg.setFechaNacimiento(fechaNacimiento);
             reg.setDireccion(txtDireccion.Text.Trim());
             reg.setCodMedico(txtMatricula.Text.Trim());
             reg.setProvincia(ddlProvincia.SelectedValue);
@@ -196,57 +232,70 @@ namespace VISTAS
 
         protected DateTime ValidarFechaNacimiento()
         {
-            if (string.IsNullOrEmpty(txtFechaNacimiento.Text))
+            // 1) Validar que se haya seleccionado un día, mes y año
+            if (ddlDia.SelectedValue == "0" || ddlMes.SelectedValue == "0" || ddlAño.SelectedValue == "0")
             {
-                lblError.Text = "La fecha de nacimiento es requerida";
+                lblError.Text = "La fecha de nacimiento es incompleta.";
                 return DateTime.MinValue;
-            } //1) Validar que la fecha de nacimiento sea válida(no vacía)
+            }
 
-            DateTime fechaNacimiento;
-            if (!DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento))
+            try
             {
-                lblError.Text = "El formato de fecha no es válido";
-                return DateTime.MinValue;
-            } //2) Validar que la fecha de nacimiento sea válida (formato)
+                // 2) Crear la fecha a partir de los valores seleccionados
+                int dia = int.Parse(ddlDia.SelectedValue);
+                int mes = int.Parse(ddlMes.SelectedValue);
+                int año = int.Parse(ddlAño.SelectedValue);
 
-            // Validar que no sea fecha futura
-            if (fechaNacimiento > DateTime.Now)
+                DateTime fechaNacimiento = new DateTime(año, mes, dia);
+
+                // 3) Validar que la fecha no sea futura
+                if (fechaNacimiento > DateTime.Now)
+                {
+                    lblError.Text = "La fecha de nacimiento no puede ser futura.";
+                    return DateTime.MinValue;
+                }
+
+                // 4) Calcular la edad
+                int edad = DateTime.Now.Year - fechaNacimiento.Year;
+                if (DateTime.Now.DayOfYear < fechaNacimiento.DayOfYear)
+                    edad--;
+
+                // 5) Validar edad mínima (18 años)
+                if (edad < 18)
+                {
+                    lblError.Text = "El médico debe ser mayor de 18 años.";
+                    return DateTime.MinValue;
+                }
+
+                // 6) Validar edad máxima (120 años)
+                if (edad > 120)
+                {
+                    lblError.Text = "La edad ingresada no es válida.";
+                    return DateTime.MinValue;
+                }
+
+                // 7) Validar que la fecha no sea muy antigua
+                if (fechaNacimiento.Year < 1900)
+                {
+                    lblError.Text = "La fecha de nacimiento no puede ser tan antigua.";
+                    return DateTime.MinValue;
+                }
+
+                // Si todas las validaciones son correctas, devolver la fecha de nacimiento
+                return fechaNacimiento;
+            }
+            catch (Exception ex)
             {
-                lblError.Text = "La edad ingresada no es válida";
+                lblError.Text = "Error al validar la fecha de nacimiento: " + ex.Message;
                 return DateTime.MinValue;
-            } //3) Validar que la fecha de nacimiento no sea futura
-
-            // Calcular edad 
-            int edad = DateTime.Now.Year - fechaNacimiento.Year;
-            if (DateTime.Now.DayOfYear < fechaNacimiento.DayOfYear)
-                edad--;
-
-            // Validar edad mínima (18 años)
-            if (edad < 18)
-            {
-                lblError.Text = "El médico debe ser mayor de 18 años";
-                return DateTime.MinValue;
-            } //4) Validar que la edad sea mayor a 18 años
-
-            // Validar edad máxima (120 años)
-            if (edad > 120)
-            {
-                lblError.Text = "La edad ingresada no es válida";
-                return DateTime.MinValue;
-            } //5) Validar que la edad sea menor a 120 años
-
-            // Validar que la fecha no sea muy antigua
-            if (fechaNacimiento.Year < 1900)
-            {
-                lblError.Text = "La edad ingresada no es válida";
-                return DateTime.MinValue;
-            } //6) Validar que la fecha no sea muy antigua para el año
-
-            return fechaNacimiento; // Devuelve la fecha de nacimiento si pasa todas las validaciones
+            }
         }
+
+
 
         protected void LimpiarCampos()
         {
+            // Limpiar los campos de texto
             txtNombre.Text = "";
             txtApellido.Text = "";
             txtDni.Text = "";
@@ -254,15 +303,19 @@ namespace VISTAS
             txtCelular.Text = "";
             txtNacionalidad.Text = "";
             txtDireccion.Text = "";
-            txtFechaNacimiento.Text = "";
 
+            // Limpiar los DropDownLists
             ddlProvincia.SelectedIndex = 0;
             ddlLocalidad.SelectedIndex = 0;
             ddlSexo.SelectedIndex = 0;
             ddlEspecialidad.SelectedIndex = 0;
             ddlHorario.SelectedIndex = 0;
             ddlDiasAtencion.SelectedIndex = 0;
+            ddlDia.SelectedIndex = 0;
+            ddlMes.SelectedIndex = 0;
+            ddlAño.SelectedIndex = 0;
         }
+
 
         // Función para validar DropDownList
         private bool ValidarSeleccionDropDown(DropDownList ddl, string mensajeError)
@@ -287,6 +340,40 @@ namespace VISTAS
                      string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                      string.IsNullOrWhiteSpace(txtMatricula.Text));
         } // Valida que los campos no estén vacíos
+
+        private void CargarFechaNacimiento()
+        {
+            // Cargar días
+            for (int i = 1; i <= 31; i++)
+            {
+                ddlDia.Items.Add(new ListItem(i.ToString(), i.ToString()));
+            }
+
+            // Cargar meses
+            ddlMes.Items.Add(new ListItem("Enero", "1"));
+            ddlMes.Items.Add(new ListItem("Febrero", "2"));
+            ddlMes.Items.Add(new ListItem("Marzo", "3"));
+            ddlMes.Items.Add(new ListItem("Abril", "4"));
+            ddlMes.Items.Add(new ListItem("Mayo", "5"));
+            ddlMes.Items.Add(new ListItem("Junio", "6"));
+            ddlMes.Items.Add(new ListItem("Julio", "7"));
+            ddlMes.Items.Add(new ListItem("Agosto", "8"));
+            ddlMes.Items.Add(new ListItem("Septiembre", "9"));
+            ddlMes.Items.Add(new ListItem("Octubre", "10"));
+            ddlMes.Items.Add(new ListItem("Noviembre", "11"));
+            ddlMes.Items.Add(new ListItem("Diciembre", "12"));
+
+            // Cargar años
+            int currentYear = DateTime.Now.Year;
+            for (int i = currentYear; i >= 1900; i--)
+            {
+                ddlAño.Items.Add(new ListItem(i.ToString(), i.ToString()));
+            }
+
+            ddlDia.Items.Insert(0, new ListItem("Seleccionar Día", "0"));
+            ddlMes.Items.Insert(0, new ListItem("Seleccionar Mes", "0"));
+            ddlAño.Items.Insert(0, new ListItem("Seleccionar Año", "0"));
+        }
 
         protected void Confirmar_Click(object sender, EventArgs e)
         {

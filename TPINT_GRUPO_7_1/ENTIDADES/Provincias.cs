@@ -8,7 +8,7 @@ namespace ENTIDADES
 {
     public class Provincias
     {
-        private int id_Provincia;
+        private string id_Provincia;
         private string DescripcionProvincia;
 
         public Provincias()
@@ -16,7 +16,7 @@ namespace ENTIDADES
 
         }
 
-        public int Id_Provincia { get => id_Provincia; set => id_Provincia = value; }
+        public string Id_Provincia { get => id_Provincia; set => id_Provincia = value; }
         public string DescripcionProvincia1 { get => DescripcionProvincia; set => DescripcionProvincia = value; }
     }
 }

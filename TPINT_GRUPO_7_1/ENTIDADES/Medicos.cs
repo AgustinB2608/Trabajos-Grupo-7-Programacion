@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace ENTIDADES
         private string Provincia;
         private string Localidad;
         private string Direccion;
-        private string FechaNacimiento;
+        private SqlDateTime FechaNacimiento;
         private string Especialidad;
         private string DiasAtencion;
         private string Horario;
@@ -150,12 +151,12 @@ namespace ENTIDADES
             Direccion = direccion;
         }
 
-        public string getFechaNacimiento()
+        public SqlDateTime getFechaNacimiento()
         {
             return FechaNacimiento;
         }
 
-        public void setFechaNacimiento(string fechaNacimiento)
+        public void setFechaNacimiento(SqlDateTime fechaNacimiento)
         {
             FechaNacimiento = fechaNacimiento;
         }

@@ -16,7 +16,7 @@ namespace DATOS
         public List<Localidades> ObtenerLocalidad()
         {
             // Consulta SQL para seleccionar datos de la tabla Localidades
-            string consulta = "SELECT CodLocalidad_LL, Nombre, CodProvincia_LL FROM Localidades";
+            string consulta = "SELECT CodLocalidad_LO, Descripcion_LO, CodProvincia_LO FROM Localidades";
 
             // Ejecuta la consulta y obtiene los resultados en un DataTable
             DataTable dt = ds.EjecutarConsulta(consulta);
@@ -30,9 +30,9 @@ namespace DATOS
                 // Crea un nuevo objeto Localidades y asigna los valores de la fila actual
                 Localidades localidad = new Localidades
                 {
-                    Id_Localidad = (int)row["CodLocalidad_LL"],
-                    DescripcionLocalidad1 = row["Nombre"].ToString(),
-                    Id_Provincia = Convert.ToInt32(row["CodProvincia_LL"])
+                    Id_Localidad = row["CodLocalidad_LO"].ToString(),
+                    DescripcionLocalidad1 = row["Descripcion_LO"].ToString(),
+                    Id_Provincia = Convert.ToString(row["CodProvincia_LO"])
                 };
 
                 // Agrega el objeto Localidades a la lista

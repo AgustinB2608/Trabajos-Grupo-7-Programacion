@@ -15,7 +15,7 @@ namespace NEGOCIO
             daoLogin = new DaoLogin(); // Inicializa DaoLogin para interactuar con la base de datos
         }
 
-        public Login ValidarLogin(string legajo, string contrasena)
+       public Login ValidarLogin(string legajo, string contrasena)
         {
             return daoLogin.ValidarLogin(legajo, contrasena);
         }

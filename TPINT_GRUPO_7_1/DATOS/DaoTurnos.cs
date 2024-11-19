@@ -14,8 +14,8 @@ namespace DATOS
 
         public bool agregarTurno(Turnos turno)
         {
-            string consulta = "INSERT INTO Turnos (Especialidad_TU, Dia_TU, Paciente_TU, Medico_TU, Duracion_TU, CodEstadoTurno_TU, Estado)" +
-                               " VALUES (@Especialidad, @Dia, @Paciente, @Medico, @Duracion, @CodEstadoTurno, @Estado)";
+            string consulta = "INSERT INTO Turnos (CodEspecialidades_TU, Dia_TU, CodPaciente_TU, CodMedico_TU, Horario_TU, CodEstadoTurno_TU)" +
+                               " VALUES (@Especialidad, @Dia, @Paciente, @Medico, @horario, @CodEstadoTurno)";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -23,9 +23,8 @@ namespace DATOS
                     new SqlParameter("@Dia", turno.getDia()),
                     new SqlParameter("@Paciente", turno.getPaciente()),
                     new SqlParameter("@Medico", turno.getMedico()),
-                    new SqlParameter("@Duracion", turno.getDuracion()),
+                    new SqlParameter("@horario", turno.getDuracion()),
                     new SqlParameter("@CodEstadoTurno", turno.getCodEstadoTurno()),
-                    new SqlParameter("@Estado", turno.getEstado())
             };
 
             int exito = ds.EjecutarConsultaSinRetorno(consulta, parametros);

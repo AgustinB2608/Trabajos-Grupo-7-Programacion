@@ -108,9 +108,14 @@ namespace VISTAS
                 !string.IsNullOrEmpty(ddlAño.SelectedValue))
             {
                 string fecha = ddlDia.SelectedValue + "/" + ddlMes.SelectedValue + "/" + ddlAño.SelectedValue;
-                if (fecha != reg.getFechaNacimiento())
+
+                // Convertir el string 'fecha' a DateTime
+                DateTime fechaSeleccionada = DateTime.ParseExact(fecha, "d/M/yyyy", null);
+
+                // Comparar con la fecha de nacimiento del objeto 'reg'
+                if (fechaSeleccionada != reg.getFechaNacimiento())
                 {
-                    reg.setFechaNacimiento(fecha);
+                    reg.setFechaNacimiento(fechaSeleccionada); // Asumimos que setFechaNacimiento acepta DateTime
                     cambios = true;
                 }
             }

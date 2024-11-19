@@ -259,7 +259,25 @@
                         <%--Fecha de Nacimiento--%>
                         <div class="form-group">
                             <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" TextMode="Date" ></asp:TextBox>
+                            <div class="form-columns">
+                                <!-- Día -->
+                                <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-control">
+                                    <asp:ListItem Text="Día" Value="0" />
+                                    <%-- Aquí cargarás los días del 1 al 31 --%>
+                                </asp:DropDownList>
+
+                                <!-- Mes -->
+                                <asp:DropDownList ID="ddlMes" runat="server" CssClass="form-control">
+                                    <asp:ListItem Text="Mes" Value="0" />
+                                    <%-- Aquí cargarás los meses, por ejemplo Enero a Diciembre --%>
+                                </asp:DropDownList>
+
+                                <!-- Año -->
+                                <asp:DropDownList ID="ddlAño" runat="server" CssClass="form-control">
+                                    <asp:ListItem Text="Año" Value="0" />
+                                    <%-- Aquí cargarás los años, por ejemplo del 1900 al año actual --%>
+                                </asp:DropDownList>
+                            </div>
                         </div>
                         <%--Label para los mensajes d error--%>
                         <div class="error-message">
