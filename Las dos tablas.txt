@@ -1,0 +1,37 @@
+--Creacion Tabla Usuarios
+
+CREATE TABLE Usuarios (
+    Legajo INT IDENTITY(1000,1) PRIMARY KEY,
+    Contraseña VARCHAR(20) NOT NULL,
+    TipoUsuario CHAR(1) NOT NULL,
+    CodAdmin_AD CHAR(4) NULL,
+    CodMedicos_ME CHAR(4) NULL,
+    Nombre_US VARCHAR(50) NOT NULL,
+    Apellido_US VARCHAR(50) NOT NULL,
+    FOREIGN KEY (CodAdmin_AD) REFERENCES Admins(CodAdmin_AD),
+    FOREIGN KEY (CodMedicos_ME) REFERENCES Medicos(CodMedico_ME)
+);
+GO
+--Datos
+INSERT INTO Usuarios (Contraseña, TipoUsuario, CodAdmin_AD, CodMedicos_ME, Nombre_US, Apellido_US)
+VALUES 
+('contraseña', 'A', 'A001', NULL, 'Agustin', 'Bernal')  -- Usuario con administrador
+--('ejempllo', 'M', NULL, 'M001', 'X', 'X')      -- Usuario con médico
+GO
+
+--Creacion Tabla Admins
+CREATE TABLE Admins (
+    CodAdmin_AD CHAR(4) PRIMARY KEY,                  
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    Nombre_AD varchar(20) NOT NULL,
+	Apellido_AD VARCHAR(20) NOT NULL
+);
+GO
+INSERT INTO Admins (CodAdmin_AD, Nombre_AD, Apellido_AD)
+VALUES 
+('A001', 'Agustin', 'Bernal') --Este y pongan el de tu ustedes
+--('A002', 'Ori', '')
+--('A002', 'Maxi', '')
+--('A003', 'Aby', '')
+--('A004', 'Juanma', '')
+GO

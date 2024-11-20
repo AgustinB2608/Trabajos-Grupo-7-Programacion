@@ -19,18 +19,18 @@ namespace DATOS
         }
 
         // Método que valida el login y retorna el usuario si es válido, o null si no lo es
-        public Login ValidarLogin(string legajo, string contrasena)
+        public Login ValidarLogin(int legajo, string contrasena)
         {
             try
             {
                 // Consulta SQL para obtener el usuario y su contraseña
-                string consulta = "SELECT Legajo_US, Contraseña_US, TipoUsuario_US, Nombre, Apellido " +
-                                  "FROM Usuarios WHERE Legajo_US = @Legajo AND Contraseña_US = @Contrasena";
+                string consulta = "SELECT Legajo, Contraseña, TipoUsuario, Nombre_US, Apellido_US " +
+                                  "FROM Usuarios WHERE Legajo = @Legajo AND Contraseña = @Contrasena";
 
                 // Parametrización de la consulta
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-                    new SqlParameter("@Legajo", SqlDbType.NVarChar) { Value = legajo },
+                    new SqlParameter("@Legajo", SqlDbType.Int) { Value = legajo },
                     new SqlParameter("@Contrasena", SqlDbType.NVarChar) { Value = contrasena }
                 };
 
@@ -43,11 +43,10 @@ namespace DATOS
                     // Crea un objeto Login con los datos obtenidos
                     Login usuario = new Login()
                     {
-                        Legajo = resultado.Rows[0]["Legajo_US"].ToString(),
-                        Contraseña = resultado.Rows[0]["Contraseña_US"].ToString(),
-                        TipoUsuario = resultado.Rows[0]["TipoUsuario_US"].ToString(),
-                        Nombre = resultado.Rows[0]["Nombre"]?.ToString(),
-                        Apellido = resultado.Rows[0]["Apellido"]?.ToString()
+                        Contraseña = resultado.Rows[0]["Contraseña"].ToString(),
+                        TipoUsuario = resultado.Rows[0]["TipoUsuario"].ToString(),
+                        Nombre = resultado.Rows[0]["Nombre_US"]?.ToString(),
+                        Apellido = resultado.Rows[0]["Apellido_US"]?.ToString()
                     };
 
                     return usuario; // Retorna el usuario encontrado
@@ -63,27 +62,26 @@ namespace DATOS
             }
         }
 
+
         public void InsertUsuario(Login usuario)
         {
             try
             {
-
-                string consulta = "INSERT INTO Usuarios (Legajo_US, Contraseña_US, TipoUsuario_US, Nombre, Apellido) " +
-                               "VALUES (@Legajo, @Contraseña, @TipoUsuario, @Nombre, @Apellido)";
-
+                string consulta = "INSERT INTO Usuarios (Contraseña, TipoUsuario, CodAdmin_AD, CodMedicos_ME, Nombre_US, Apellido_US) " +
+                                  "VALUES (@Contraseña, @TipoUsuario, @CodAdmin, @CodMedicos, @Nombre, @Apellido)";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-                new SqlParameter("@Legajo", SqlDbType.NVarChar) { Value = usuario.Legajo },
-                new SqlParameter("@Contraseña", SqlDbType.NVarChar) { Value = usuario.Contraseña },
-                new SqlParameter("@TipoUsuario", SqlDbType.NVarChar) { Value = usuario.TipoUsuario },
-                new SqlParameter("@Nombre", SqlDbType.NVarChar) { Value = usuario.Nombre },
-                new SqlParameter("@Apellido", SqlDbType.NVarChar) { Value = usuario.Apellido }
+                    new SqlParameter("@Contraseña", SqlDbType.NVarChar) { Value = usuario.Contraseña },
+                    new SqlParameter("@TipoUsuario", SqlDbType.Char) { Value = usuario.TipoUsuario }, 
+                    new SqlParameter("@CodMedicos", SqlDbType.Char) { Value = usuario.CodigoMedico }, 
+                    new SqlParameter("@Nombre", SqlDbType.NVarChar) { Value = usuario.Nombre },
+                    new SqlParameter("@Apellido", SqlDbType.NVarChar) { Value = usuario.Apellido }
                 };
 
-                DataTable resultado = conexion.EjecutarConsultaConParametros(consulta, parametros);
-
-                if (resultado.Rows.Count > 0)
+                // Ejecuta la consulta
+                int filasAfectadas = conexion.EjecutarConsultaSinRetorno(consulta, parametros);
+                if (filasAfectadas > 0)
                 {
                     Console.WriteLine("Usuario guardado correctamente.");
                 }
@@ -97,5 +95,7 @@ namespace DATOS
                 Console.WriteLine("Error al insertar usuario: " + ex.Message);
             }
         }
+
+
     }
 }

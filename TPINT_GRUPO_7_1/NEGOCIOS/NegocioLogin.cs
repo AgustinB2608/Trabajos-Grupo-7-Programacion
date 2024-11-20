@@ -17,7 +17,8 @@ namespace NEGOCIO
 
        public Login ValidarLogin(string legajo, string contrasena)
         {
-            return daoLogin.ValidarLogin(legajo, contrasena);
+            int legajoInt = int.Parse(legajo);
+            return daoLogin.ValidarLogin(legajoInt, contrasena);
         }
 
         public void GuardarUsuario(Login usuario)

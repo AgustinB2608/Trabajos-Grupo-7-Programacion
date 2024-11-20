@@ -3,7 +3,7 @@ CREATE TABLE Administradores(
     Legajo_AD CHAR(4) NOT NULL,
     Nombre_AD VARCHAR(15) NOT NULL,
     Apellido_AD VARCHAR(15) NOT NULL,
-    ContraseÒa_AD VARCHAR(15) NOT NULL,
+    Contrase√±a_AD VARCHAR(15) NOT NULL,
     CONSTRAINT PK_ADMINISTRADORES PRIMARY KEY (Legajo_AD)
 );
 --
@@ -82,7 +82,7 @@ CREATE TABLE Medicos(
 	Email_ME VARCHAR(50) NOT NULL,
 	Telefono_ME VARCHAR(50) NOT NULL,
 	Usuario_ME VARCHAR(20) NOT NULL,
-	ContraseÒa_ME VARCHAR(20) NOT NULL,
+	Contrase√±a_ME VARCHAR(20) NOT NULL,
 	Estado_ME BIT DEFAULT 1 NOT NULL,
 	CONSTRAINT PK_MEDICOS PRIMARY KEY(CodMedico_ME),
 	CONSTRAINT FK_MEDICOS_PROVINCIAS FOREIGN KEY (CodProvincia_ME) REFERENCES Provincias (CodProvincia_PR),
@@ -163,7 +163,7 @@ CREATE PROCEDURE SP_modificarPaciente
     @Telefono VARCHAR(15)
 AS
 BEGIN
-    -- Actualizar datos del paciente si est· activo
+    -- Actualizar datos del paciente si est√° activo
     UPDATE Pacientes
     SET 
         Dni_PA = @Dni,
@@ -268,7 +268,7 @@ CREATE OR ALTER PROCEDURE SP_modificarMedico
 	@CodDiasAtencion CHAR(4), 
     @CodHorarioAtencion CHAR(4), 
     @Usuario VARCHAR(20), 
-    @ContraseÒa VARCHAR(20)
+    @Contrase√±a VARCHAR(20)
 AS
 BEGIN
     UPDATE Medicos
@@ -287,14 +287,14 @@ BEGIN
         CodDiasAtencion_ME = @CodDiasAtencion,
         CodHorariosAtencion_ME = @CodHorarioAtencion,
         Usuario_ME = @Usuario,
-        ContraseÒa_ME = @ContraseÒa
+        Contrase√±a_ME = @Contrase√±a
     WHERE CodMedico_ME = @Legajo;
 END
 GO
 
 SELECT CodMedico_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, 
 FechaNacimiento_ME, Direccion_ME, CodLocalidad_ME, CodProvincia_ME, Email_ME, Telefono_ME, 
-descripcion_ES AS 'Nombre Especialidad', CodDiasAtencion_ME, CodHorariosAtencion_ME AS 'Horarios de AtenciÛn'
+descripcion_ES AS 'Nombre Especialidad', CodDiasAtencion_ME, CodHorariosAtencion_ME AS 'Horarios de Atenci√≥n'
 FROM Medicos INNER JOIN Especialidades 
 ON (CodEspecialidad_ME = CodEspecialidad_ES)
 WHERE Estado_ME = 1
@@ -308,7 +308,7 @@ SELECT CodMedico_ME AS CodigoMedico, Dni_ME AS Dni, Nombre_ME AS Nombre, Apellid
 Sexo_ME AS Sexo, Nacionalidad_ME AS Nacionalidad, FechaNacimiento_ME AS 'Fecha de Nacimiento',
 Direccion_ME AS Direccion, CodLocalidad_ME AS Localidad, CodProvincia_ME AS Provincia, Email_ME AS Email,
 CodEspecialidad_ME AS CodigoEspecialidad, descripcion_ES AS 'Nombre Especialidad',
-CodDiasAtencion_ME AS 'Dias de AtenciÛn', CodHorariosAtencion_ME AS 'Horarios de AtenciÛn' 
+CodDiasAtencion_ME AS 'Dias de Atenci√≥n', CodHorariosAtencion_ME AS 'Horarios de Atenci√≥n' 
 FROM Medicos INNER JOIN Especialidades
 ON (CodEspecialidad_ME = CodEspecialidad_ES) 
 WHERE CodMedico_ME = @CodMedico AND Estado_ME = 1
@@ -316,25 +316,44 @@ END
 GO
 ---SI QUIERE MOSTRAR DESCRIPCION DIAS FALTA INNER JOIN
 
+
 --Creacion Tabla Usuarios
-
-CREATE TABLE Administradores (
-    CodAdmin_AD CHAR(4) PRIMARY KEY,        
-    Legajo INT UNIQUE NOT NULL,              
-    FechaCreacion DATETIME DEFAULT GETDATE(),
-    Rol VARCHAR(50) NOT NULL,                
-    FOREIGN KEY (Legajo) REFERENCES Usuarios(Legajo)  
-);
-
 
 CREATE TABLE Usuarios (
     Legajo INT IDENTITY(1000,1) PRIMARY KEY,
-    ContraseÒa VARCHAR(20) NOT NULL,
+    Contrase√±a VARCHAR(20) NOT NULL,
     TipoUsuario CHAR(1) NOT NULL,
     CodAdmin_AD CHAR(4) NULL,
     CodMedicos_ME CHAR(4) NULL,
     Nombre_US VARCHAR(50) NOT NULL,
     Apellido_US VARCHAR(50) NOT NULL,
-    FOREIGN KEY (CodAdmin_AD) REFERENCES Administradores(CodAdmin_AD),
+    FOREIGN KEY (CodAdmin_AD) REFERENCES Admins(CodAdmin_AD),
     FOREIGN KEY (CodMedicos_ME) REFERENCES Medicos(CodMedico_ME)
 );
+GO
+--Datos
+INSERT INTO Usuarios (Contrase√±a, TipoUsuario, CodAdmin_AD, CodMedicos_ME, Nombre_US, Apellido_US)
+VALUES 
+('contrase√±a', 'A', 'A001', NULL, 'Agustin', 'Bernal')  -- Usuario con administrador
+--('ejempllo', 'M', NULL, 'M001', 'X', 'X')      -- Usuario con m√©dico
+GO
+
+--Creacion Tabla Admins
+CREATE TABLE Admins (
+    CodAdmin_AD CHAR(4) PRIMARY KEY,                  
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    Nombre_AD varchar(20) NOT NULL,
+	Apellido_AD VARCHAR(20) NOT NULL
+);
+GO
+INSERT INTO Admins (CodAdmin_AD, Nombre_AD, Apellido_AD)
+VALUES 
+('A001', 'Agustin', 'Bernal') --Este y pongan el de tu ustedes
+--('A002', 'Ori', '')
+--('A002', 'Maxi', '')
+--('A003', 'Aby', '')
+--('A004', 'Juanma', '')
+GO
+
+
+

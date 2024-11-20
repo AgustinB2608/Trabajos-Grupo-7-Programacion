@@ -383,7 +383,7 @@ namespace VISTAS
                 // Crear usuario asociado
                 CrearUsuario(new ENTIDADES.Login
                 {
-                    Legajo = txtDni.Text,
+                    
                     Contraseña = txtDni.Text,
                     TipoUsuario = "M",
                     Nombre = txtNombre.Text,
