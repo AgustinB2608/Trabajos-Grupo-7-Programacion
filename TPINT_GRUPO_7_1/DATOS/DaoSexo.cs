@@ -16,7 +16,7 @@ namespace DATOS
         public List<Sexo> ObtenerSexo()
         {
             // Consulta SQL para seleccionar datos de la tabla Sexo
-            string consulta = "SELECT CodSexo_SX, Descripcion FROM Sexo";
+            string consulta = "SELECT Sexo_ME FROM Medicos";
 
             // Ejecuta la consulta y obtiene los resultados en un DataTable
             DataTable dt = ds.EjecutarConsulta(consulta);
@@ -30,16 +30,14 @@ namespace DATOS
                 // Crea un nuevo objeto sexo y asigna los valores de la fila actual
                 Sexo sex = new Sexo
                 {
-                    CodSexo_SX = row["CodSexo_SX"].ToString(),
-                    DescripcionSexo_SX = row["Descripcion"].ToString()
+                    CodSexo_SX = row["Sexo_ME"].ToString()
                 };
-
                 // Agrega el objeto sexo  a la lista
                 sexo.Add(sex);
-            }
+            };
 
-            // Retorna la lista de sexos obtenidas
             return sexo;
+
         }
     }
 }
