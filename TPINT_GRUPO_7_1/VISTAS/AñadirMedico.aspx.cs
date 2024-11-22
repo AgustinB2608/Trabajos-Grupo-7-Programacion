@@ -187,7 +187,6 @@ namespace VISTAS
             reg.setNacionalidad(txtNacionalidad.Text.Trim());
             reg.setFechaNacimiento(fecha);
             reg.setDireccion(txtDireccion.Text.Trim());
-            reg.setCodMedico(txtMatricula.Text.Trim());
             reg.setProvincia(ddlProvincia.SelectedValue);
             reg.setLocalidad(ddlLocalidad.SelectedValue);
             reg.setSexo(ddlSexo.SelectedValue);

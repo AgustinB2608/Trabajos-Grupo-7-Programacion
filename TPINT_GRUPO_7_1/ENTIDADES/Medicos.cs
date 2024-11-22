@@ -13,7 +13,6 @@ namespace ENTIDADES
         private string Nombre;
         private string Apellido;
         private string Dni;
-        private string Legajo;
         private string Email;
         private string Celular;
         private string Nacionalidad;
@@ -21,12 +20,11 @@ namespace ENTIDADES
         private string Provincia;
         private string Localidad;
         private string Direccion;
-        private string FechaNacimiento;///SqlDateTime 
+        private string FechaNacimiento;
         private string Especialidad;
         private string DiasAtencion;
         private string Horario;
-        private string Usuario;
-        private string Contraseña;
+
 
 
         public Medico() { }
@@ -71,15 +69,6 @@ namespace ENTIDADES
             Dni = dni;
         }
 
-        public string getLegajo()
-        {
-            return Legajo;
-        }
-
-        public void setLegajo(string legajo)
-        {
-            Legajo = legajo;
-        }
 
         public string getEmail()
         {
@@ -191,25 +180,6 @@ namespace ENTIDADES
             Horario = horario;
         }
 
-        public void setUsuario(string usuario)
-        {
-            Usuario = usuario;
-        }
-
-        public string getUsuario()
-        {
-            return Usuario;
-        }
-
-        public void setContraseña(string contraseña)
-        {
-            Contraseña = contraseña;
-        }
-
-        public string getContraseña()
-        {
-            return Contraseña;
-        }
     }
 
 }

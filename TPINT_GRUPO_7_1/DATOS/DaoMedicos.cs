@@ -17,12 +17,15 @@ namespace DATOS
 
         public bool agregarMedico(Medico medic)
         {
-            string agregar = "INSERT INTO Medicos (CodMedico_ME, Dni_ME, Nombre_ME, Apellido_ME, Sexo_ME, Nacionalidad_ME, FechaNacimiento_ME, Direccion_ME, CodLocalidad_ME, CodProvincia_ME, Email_ME, Telefono_ME, CodEspecialidad_ME, CodDiasAtencion_ME, CodHorariosAtencion_ME, Estado) " +
-                             "VALUES (@Matricula, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion, @Estado)";
+            string agregar = "EXEC SP_AgregarMedico @Provincia, @Localidad, @CodEspecialidad, @Dias, @HorarioAtencion, @Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Direccion, @Email, @Telefono";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Matricula", medic.getCodMedico()),
+                new SqlParameter("@Provincia", medic.getProvincia()),
+                new SqlParameter("@Localidad", medic.getLocalidad()),
+                new SqlParameter("@CodEspecialidad", medic.getEspecialidad()),
+                new SqlParameter("@Dias", medic.getDiasAtencion()),
+                new SqlParameter("@HorarioAtencion", medic.getHorario()),
                 new SqlParameter("@Dni", medic.getDni()),
                 new SqlParameter("@Nombre", medic.getNombre()),
                 new SqlParameter("@Apellido", medic.getApellido()),
@@ -30,14 +33,8 @@ namespace DATOS
                 new SqlParameter("@Nacionalidad", medic.getNacionalidad()),
                 new SqlParameter("@FechaNacimiento", medic.getFechaNacimiento()),
                 new SqlParameter("@Direccion", medic.getDireccion()),
-                new SqlParameter("@Localidad", medic.getLocalidad()),
-                new SqlParameter("@Provincia", medic.getProvincia()),
                 new SqlParameter("@Email", medic.getEmail()),
-                new SqlParameter("@Telefono", medic.getCelular()),
-                new SqlParameter("@CodEspecialidad", medic.getEspecialidad()),
-                new SqlParameter("@Dias", medic.getDiasAtencion()),
-                new SqlParameter("@HorarioAtencion", medic.getHorario()),
-                new SqlParameter("@Estado", 1)
+                new SqlParameter("@Telefono", medic.getCelular())               
             };
 
             int exito = ds.EjecutarConsultaSinRetorno(agregar, parametros);
@@ -72,14 +69,13 @@ namespace DATOS
         {
 
             // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
-            string modificar = "EXEC SP_modificarMedico @Matricula, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento" +
+            string modificar = "EXEC SP_modificarMedico @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento" +
             "@Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion,";
 
             // envia los valores de mi obj medico como parametro
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Matricula", medico.getCodMedico()),
                 new SqlParameter("@Nombre", medico.getNombre()),
                 new SqlParameter("@Apellido", medico.getApellido()),
                 new SqlParameter("@Sexo", medico.getSexo()),
