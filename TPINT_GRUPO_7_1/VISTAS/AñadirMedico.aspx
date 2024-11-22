@@ -329,8 +329,6 @@
                         </div>
                         <%--Matricula--%>
                         <div class="form-group">
-                            <asp:Label ID="lblMatricula" runat="server" Text="Matricula:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtMatricula" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
                 </div>

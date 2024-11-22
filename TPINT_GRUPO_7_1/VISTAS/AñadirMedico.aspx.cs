@@ -85,14 +85,14 @@ namespace VISTAS
             ddlDiasAtencion.DataTextField = "Descripcion";
             ddlDiasAtencion.DataValueField = "IdDias";
             ddlDiasAtencion.DataBind();
-            ddlDiasAtencion.Items.Insert(0, new ListItem("Seleccionar Dia de atencion", "0"));
+            ddlDiasAtencion.Items.Insert(0, new ListItem("Seleccionar dias de atencion", "0"));
 
             // Configuración de ddlHorario
             ddlHorario.DataSource = negH.ObtenerHorarios();
             ddlHorario.DataTextField = "Horario";
             ddlHorario.DataValueField = "IdHorario";
             ddlHorario.DataBind();
-            ddlHorario.Items.Insert(0, new ListItem("Selecciona Horario de atencion", "0"));
+            ddlHorario.Items.Insert(0, new ListItem("Selecciona horario de atencion", "0"));
 
             // Cargar días, meses y años para la fecha de nacimiento
             CargarFechaNacimiento();
@@ -341,8 +341,7 @@ namespace VISTAS
                      string.IsNullOrWhiteSpace(txtEmail.Text) ||
                      string.IsNullOrWhiteSpace(txtCelular.Text) ||
                      string.IsNullOrWhiteSpace(txtNacionalidad.Text) ||
-                     string.IsNullOrWhiteSpace(txtDireccion.Text) ||
-                     string.IsNullOrWhiteSpace(txtMatricula.Text));
+                     string.IsNullOrWhiteSpace(txtDireccion.Text));
         } // Valida que los campos no estén vacíos
 
         private void CargarFechaNacimiento()

@@ -14,7 +14,7 @@ namespace DATOS
         /// Metodo para obtener los nombres de todas las especialidades
         public List<Especialidades> ObtenerNombEspecialidades()
         {
-            string consulta = "SELECT CodEspecialidad_ES AS CodigoEspecialidad, Descripcion_ES AS Descripcion, FROM Especialidades"; 
+            string consulta = "SELECT CodEspecialidad_ES AS CodigoEspecialidad, Descripcion_ES AS Descripcion FROM Especialidades"; 
             
             DataTable dt = ds.EjecutarConsulta(consulta);
 
