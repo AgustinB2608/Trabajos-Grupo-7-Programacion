@@ -105,12 +105,7 @@ namespace DATOS
         public DataTable listarMedicos()
         {
             // Consulta SQL para ejecutar el procedimiento almacenado que trae todos los registros
-            string consulta = "SELECT CodMedicos_ME AS CodigoMedico, Dni_ME AS Dni, Nombre_ME AS Nombre, Apellido_ME AS Apellido," +
-               "Sexo_ME AS Sexo, Nacionalidad_ME AS Nacionalidad, FechaNacimiento_ME AS 'Fecha de Nacimiento'," +
-               "Direccion_ME AS Direccion, Localidad_ME AS Localidad, Provincia_ME AS Provincia, Email_ME AS Email," +
-               "CodEspecialidad_ME AS CodigoEspecialidad, NombreEspecialidad_ES AS 'Nombre Especialidad'," +
-               "Dias_ME AS 'Dias de Atención', HorarioAtencion_ME AS 'Horarios de Atención' FROM Medicos INNER JOIN Especialidad " +
-               "ON (CodEspecialidad_ME = CodEspecialidad_ES) WHERE Estado = 1";
+            string consulta = "EXEC SP_RegistrosMedicos";
 
 
             //retorna el datatable del metodo de Conexion
@@ -121,7 +116,7 @@ namespace DATOS
         public DataTable listarMedicoEspecifico(string codMedico)
         {
             // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
-            string consulta = "EXEC SP_retornarRegistro @CodMedico";
+            string consulta = "EXEC SP_retornarRegistroMedicoCod @CodMedico";
 
             // envia el valor del codMedico como parametro
             SqlParameter[] parametros = new SqlParameter[]
@@ -133,31 +128,6 @@ namespace DATOS
 
         }
 
-        // Metodo para obtener lista de todos los medicos desde la base de datos.
-        public List<Medico> ObtenerMedico()
-        {
-            // Consulta SQL para seleccionar datos de la tabla Medicos
-            string consulta = "SELECT CodMedicos_ME, Nombre_ME FROM Medicos";
-
-            // Ejecuta la consulta y obtiene los resultados en un DataTable
-            DataTable dt = ds.EjecutarConsulta(consulta);
-
-            // Crea una lista de objetos de Medicos para almacenar los resultados
-            List<Medico> medicos = new List<Medico>();
-
-            // Recorre cada fila del DataTable.
-            foreach (DataRow row in dt.Rows)
-            {
-                // Crea un nuevo objeto de Medico y asigna los valores de la fila actual
-                Medico medico = new Medico();
-                medico.setCodMedico(row["CodMedico_ME"].ToString());
-                medico.setNombre(row["Nombre_ME"].ToString());
-
-                // Agrega el objeto Medico a la lista
-                medicos.Add(medico);
-            }
-            return medicos;
-        }
 
     }
 }

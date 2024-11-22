@@ -16,7 +16,7 @@ namespace DATOS
         public List<Provincias> ObtenerProvincias()
         {
             // Consulta SQL para seleccionar datos de la tabla Localidades
-            string consulta = "SELECT CodProvincia_PR, Descripcion_PR FROM Provincias";
+            string consulta = "SELECT CodProvincia_PR AS CodigoProvincia, Descripcion_PR AS Descripcion FROM Provincias";
 
             // Crea una lista de objetos Localidades para almacenar los resultados
             DataTable dt = ds.EjecutarConsulta(consulta);

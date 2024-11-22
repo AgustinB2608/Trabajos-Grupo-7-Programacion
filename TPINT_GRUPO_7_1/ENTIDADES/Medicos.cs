@@ -21,7 +21,7 @@ namespace ENTIDADES
         private string Provincia;
         private string Localidad;
         private string Direccion;
-        private SqlDateTime FechaNacimiento;
+        private string FechaNacimiento;///SqlDateTime 
         private string Especialidad;
         private string DiasAtencion;
         private string Horario;
@@ -151,12 +151,12 @@ namespace ENTIDADES
             Direccion = direccion;
         }
 
-        public SqlDateTime getFechaNacimiento()
+        public string getFechaNacimiento()
         {
             return FechaNacimiento;
         }
 
-        public void setFechaNacimiento(SqlDateTime fechaNacimiento)
+        public void setFechaNacimiento(string fechaNacimiento)
         {
             FechaNacimiento = fechaNacimiento;
         }

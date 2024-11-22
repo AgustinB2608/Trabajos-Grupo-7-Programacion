@@ -15,7 +15,6 @@ namespace VISTAS
     public partial class AddMedico : System.Web.UI.Page
     {
         NegocioMedico negM = new NegocioMedico();
-        NegocioSexo negS = new NegocioSexo();
         NegocioProvincia negP = new NegocioProvincia();
         NegocioLocalidades negL = new NegocioLocalidades();
         NegocioEspecialidades negE = new NegocioEspecialidades();
@@ -54,31 +53,30 @@ namespace VISTAS
         private void InicializarDropDownLists()
         {
             // Configuración de ddlSexo
-            ddlSexo.DataSource = negS.ObtenerSexo();
-            ddlSexo.DataTextField = "DescripcionSexo_SX";
-            ddlSexo.DataValueField = "CodSexo_SX";
-            ddlSexo.DataBind();
+            ddlSexo.Items.Add(new ListItem("Femenino", "F"));
+            ddlSexo.Items.Add(new ListItem("Masculino", "M"));
+            ddlSexo.Items.Add(new ListItem("Otro", "O"));
             ddlSexo.Items.Insert(0, new ListItem("Seleccionar el sexo", "0"));
 
 
             // Configuración de ddlProvincia
             ddlProvincia.DataSource = negP.ObtenerProvincias();
-            ddlProvincia.DataTextField = "DescripcionProvincia1";
-            ddlProvincia.DataValueField = "Id_Provincia";
+            ddlProvincia.DataTextField = "Descripcion";
+            ddlProvincia.DataValueField = "CodigoProvincia";
             ddlProvincia.DataBind();
             ddlProvincia.Items.Insert(0, new ListItem("Seleccionar Provincia", "0"));
 
             // Configuración de ddlLocalidad
             ddlLocalidad.DataSource = negL.ObtenerLocalidad();
-            ddlLocalidad.DataTextField = "descripcionLocalidad1";
-            ddlLocalidad.DataValueField = "id_Localidad";
+            ddlLocalidad.DataTextField = "Descripcion";
+            ddlLocalidad.DataValueField = "CodigoLocalidad";
             ddlLocalidad.DataBind();
             ddlLocalidad.Items.Insert(0, new ListItem("SeleccionarLocalidad", "0"));
 
             // Configuración de ddlEspecialidad
             ddlEspecialidad.DataSource = negE.ObtenerNombresEspecialidades();
-            ddlEspecialidad.DataTextField = "NombreEspecialidad_ES";
-            ddlEspecialidad.DataValueField = "NombreEspecialidad_ES";
+            ddlEspecialidad.DataTextField = "Descripcion";
+            ddlEspecialidad.DataValueField = "CodigoEspecialidad";
             ddlEspecialidad.DataBind();
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccionar Especialidad", "0"));
 
@@ -165,7 +163,14 @@ namespace VISTAS
             }
 
             // Crear la fecha a partir de los valores seleccionados
-            SqlDateTime fechaNacimiento = new DateTime(año, mes, dia);
+            string fecha = string.Concat(año,"/",mes,"/",dia);
+
+            DateTime fechaNacimiento;
+            if (!DateTime.TryParse(fecha, out fechaNacimiento))
+            {
+                lblError.Text = "La fecha ingresada no es válida.";
+                return;
+            }
 
             // Validar que la fecha esté dentro de los rangos permitidos
             if (fechaNacimiento < new DateTime(1900, 1, 1) || fechaNacimiento > DateTime.Now)
@@ -180,7 +185,7 @@ namespace VISTAS
             reg.setEmail(txtEmail.Text.Trim());
             reg.setCelular(txtCelular.Text.Trim());
             reg.setNacionalidad(txtNacionalidad.Text.Trim());
-            reg.setFechaNacimiento(fechaNacimiento);
+            reg.setFechaNacimiento(fecha);
             reg.setDireccion(txtDireccion.Text.Trim());
             reg.setCodMedico(txtMatricula.Text.Trim());
             reg.setProvincia(ddlProvincia.SelectedValue);
