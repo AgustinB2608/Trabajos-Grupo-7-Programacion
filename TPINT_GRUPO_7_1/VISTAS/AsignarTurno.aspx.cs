@@ -52,18 +52,13 @@ namespace VISTAS
             ddlHorario.Items.Insert(0, new ListItem("Seleccione un horario para turno", "0"));
 
             // Configuración de ddlMedico
-            ddlMedico.DataSource = negM.ObtenerMedico();
+            ddlMedico.DataSource = negM.listarMedicos();
             ddlMedico.DataTextField = "Nombre";
-            ddlMedico.DataValueField = "CodMedico";
+            ddlMedico.DataValueField = "CodigoMedico";
             ddlMedico.DataBind();
             ddlMedico.Items.Insert(0, new ListItem("Seleccione un medico para asignar turno", "0"));
 
-            // Configuración de ddlPaciente
-            ddlPaciente.DataSource = negP.ObtenerPacientes();
-            ddlPaciente.DataTextField = "Nombre";
-            ddlPaciente.DataValueField = "CodPaciente";
-            ddlPaciente.DataBind();
-            ddlPaciente.Items.Insert(0, new ListItem("Seleccione un paciente para asignar turno", "0"));
+            /*para tomar el turno tiene que tener nombre, apellido y dni del paciente*/
         }
 
         protected void btnAsignar_Click(object sender, EventArgs e)
@@ -88,12 +83,14 @@ namespace VISTAS
             string especialidad = ddlEspecialidad.SelectedValue;
             string horario = ddlHorario.SelectedValue;
             string medico = ddlMedico.SelectedValue;
-            string paciente = ddlPaciente.SelectedValue;
+            ///string paciente = ddlPaciente.SelectedValue;
 
             // Obtener valores de los campos de texto
             string duracionText = txtDuracion.Text.Trim();
             string fecha = txtFecha.Text.Trim();
-            string estado = txtEstado.Text.Trim();
+            ///string estado = txtEstado.Text.Trim();
+            //estado no hay que poner nada, por default queda en pendiente y la confirmacion la hace el medico cuando
+            //lo atiende, tambien la cancelacion
 
             // Convertir la duración a int
             int duracion;
@@ -104,9 +101,9 @@ namespace VISTAS
             }
 
             // Asignar el turno utilizando la lógica de negocio
-            bool asignado = negT.agregarTurno(medico, especialidad, horario, paciente, duracion, fecha, estado);
+           /// bool asignado = negT.agregarTurno (medico, especialidad, horario, paciente,  duracion, fecha, estado);
 
-            if (asignado)
+            /*if (asignado)
             {
                 lblExito.Text = "Turno asignado correctamente.";
                 LimpiarCampos();
@@ -114,7 +111,9 @@ namespace VISTAS
             else
             {
                 lblError.Text = "Error al asignar el turno.";
-            }
+            }*/
+
+            
         }
 
 

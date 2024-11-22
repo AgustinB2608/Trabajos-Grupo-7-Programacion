@@ -16,7 +16,6 @@ namespace VISTAS
         NegocioPacientes negocioPacientes = new NegocioPacientes();
         NegocioProvincia negP = new NegocioProvincia();
         NegocioLocalidades negL = new NegocioLocalidades();
-        NegocioSexo ngSx = new NegocioSexo();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -101,12 +100,11 @@ namespace VISTAS
             ddlLocalidad.DataBind();
             ddlLocalidad.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
 
-            // Configuración de sexo
-            ddlSexo.DataSource = ngSx.ObtenerSexo();
-            ddlSexo.DataTextField = "DescripcionSexo_SX";
-            ddlSexo.DataValueField = "CodSexo_SX";
-            ddlSexo.DataBind();
-            ddlSexo.Items.Insert(0, new ListItem("Seleccione un se", "0"));
+            // Configuración de ddlSexo
+            ddlSexo.Items.Add(new ListItem("Femenino", "F"));
+            ddlSexo.Items.Add(new ListItem("Masculino", "M"));
+            ddlSexo.Items.Add(new ListItem("Otro", "O"));
+            ddlSexo.Items.Insert(0, new ListItem("Seleccionar el sexo", "0"));
 
 
 

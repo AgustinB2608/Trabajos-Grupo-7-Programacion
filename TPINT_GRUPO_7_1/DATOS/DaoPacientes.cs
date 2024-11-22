@@ -15,7 +15,7 @@ namespace DATOS
 
     // Metodo para agregar un nuevo paciente a la base de datos, retorna true si el registro fue agregado con exito, o false en caso contrario.
     public bool agregarPaciente(Pacientes paciente)
-        {
+    {
 
             // Consulta SQL para insertar un nuevo paciente en la tabla Paciente
             string agregar = "INSERT INTO Paciente (CodPaciente_PA, Dni_PA, Nombre_PA, Apellido_PA, FechaNacimiento_PA, Direccion_PA, Localidad_PA, Provincia_PA, Email_PA, Telefono_PA, Sexo_PA, Nacionalidad_PA, Estado) " +
@@ -136,7 +136,7 @@ namespace DATOS
         public DataTable listarPacientes(string contenido = "")
         {
             // Consulta SQL para traer todos los registros de pacientes activos
-            string consulta = "SELECT CodPaciente_PA AS CodPaciente, Dni_PA AS Dni, Nombre_PA AS Nombre, Apellido_PA AS Apellido, " +
+            string consulta = "SELECT Dni_PA AS Dni, Nombre_PA AS Nombre, Apellido_PA AS Apellido, " +
                               "FechaNacimiento_PA AS 'Fecha de Nacimiento', Direccion_PA AS Direccion, Localidad_PA AS Localidad, " +
                               "Provincia_PA AS Provincia, Email_PA AS Email, Telefono_PA AS Telefono " +
                               "FROM Paciente WHERE Estado = 1";
@@ -184,31 +184,5 @@ namespace DATOS
 
         }
 
-        // Metodo para obtener lista de todos los pacientes desde la base de datos.
-        public List<Pacientes> ObtenerPaciente()
-        {
-            // Consulta SQL para seleccionar datos de la tabla Pacientes
-            string consulta = "SELECT CodPaciente_PA, Nombre_PA FROM Paciente";
-
-            // Ejecuta la consulta y obtiene los resultados en un DataTable
-            DataTable dt = ds.EjecutarConsulta(consulta);
-
-            // Crea una lista de objetos de Pacientes para almacenar los resultados
-            List<Pacientes> pacientes = new List<Pacientes>();
-
-            // Recorre cada fila del DataTable.
-            foreach (DataRow row in dt.Rows)
-            {
-                // Crea un nuevo objeto de Pacientes y asigna los valores de la fila actual
-                Pacientes paciente = new Pacientes();
-                paciente.codPaciente = row["CodPaciente_PA"].ToString();
-                paciente.Nombre = row["Nombre_PA"].ToString();
-
-
-                // Agrega el objeto Pacientes a la lista
-                pacientes.Add(paciente);
-            }
-            return pacientes;
-        }
     }
 }

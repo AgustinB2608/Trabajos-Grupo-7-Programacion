@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ENTIDADES;
 
 namespace NEGOCIOS
 {
@@ -17,7 +18,7 @@ namespace NEGOCIOS
         }
 
         /// Método para obtener los nombres de todas las especialidades 
-        public DataTable ObtenerNombresEspecialidades()
+        public List<Especialidades> ObtenerNombresEspecialidades()
         {
             return Dao.ObtenerNombEspecialidades(); /// Llamo al método del DAO y retorna el resultado
         }

@@ -61,29 +61,29 @@ namespace VISTAS
 
             // Configuración de ddlProvincia
             ddlProvincia.DataSource = negP.ObtenerProvincias();
-            ddlProvincia.DataTextField = "Descripcion";
-            ddlProvincia.DataValueField = "CodigoProvincia";
+            ddlProvincia.DataTextField = "DescripcionProvincia1";
+            ddlProvincia.DataValueField = "Id_Provincia";
             ddlProvincia.DataBind();
             ddlProvincia.Items.Insert(0, new ListItem("Seleccionar Provincia", "0"));
 
             // Configuración de ddlLocalidad
             ddlLocalidad.DataSource = negL.ObtenerLocalidad();
-            ddlLocalidad.DataTextField = "Descripcion";
-            ddlLocalidad.DataValueField = "CodigoLocalidad";
+            ddlLocalidad.DataTextField = "DescripcionLocalidad1";
+            ddlLocalidad.DataValueField = "Id_Localidad";
             ddlLocalidad.DataBind();
             ddlLocalidad.Items.Insert(0, new ListItem("SeleccionarLocalidad", "0"));
 
             // Configuración de ddlEspecialidad
             ddlEspecialidad.DataSource = negE.ObtenerNombresEspecialidades();
-            ddlEspecialidad.DataTextField = "Descripcion";
-            ddlEspecialidad.DataValueField = "CodigoEspecialidad";
+            ddlEspecialidad.DataTextField = "DescripcionEspecialidad";
+            ddlEspecialidad.DataValueField = "Id_Especialidad";
             ddlEspecialidad.DataBind();
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccionar Especialidad", "0"));
 
             // Configuración de ddlDiasAtencion
             ddlDiasAtencion.DataSource = negD.ObtenerDiasAtencion();
-            ddlDiasAtencion.DataTextField = "Dias";
-            ddlDiasAtencion.DataValueField = "IdDia";
+            ddlDiasAtencion.DataTextField = "Descripcion";
+            ddlDiasAtencion.DataValueField = "IdDias";
             ddlDiasAtencion.DataBind();
             ddlDiasAtencion.Items.Insert(0, new ListItem("Seleccionar Dia de atencion", "0"));
 

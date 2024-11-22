@@ -16,7 +16,7 @@ namespace DATOS
         public List<Horarios> ObtenerHorarios()
         {
             // Consulta SQL para seleccionar datos de la tabla HorariosAtencion
-            string consulta = "SELECT CodHorariosAtencion_HA, Descripcion_HA FROM HorariosAtencion";
+            string consulta = "SELECT CodHorariosAtencion_HA AS CodigoHorarios, Descripcion_HA AS Descripcion FROM HorariosAtencion";
 
             // Ejecuta la consulta y obtiene los resultados en un DataTable
             DataTable dt = ds.EjecutarConsulta(consulta);
@@ -30,8 +30,8 @@ namespace DATOS
                 // Crea un nuevo objeto horarios y asigna los valores de la fila actual
                 Horarios hora = new Horarios
                 {
-                    IdHorario = row["CodHorariosAtencion_HA"].ToString(),
-                    Horario = row["Descripcion_HA"].ToString(),
+                    IdHorario = row["CodigoHorarios"].ToString(),
+                    Horario = row["Descripcion"].ToString(),
 
                 };
 

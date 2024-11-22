@@ -8,14 +8,14 @@ namespace ENTIDADES
 {
     public class DiasAtencion
     {
-        private string id_Dia;
-        private string dias;
+        private string _id_Dias;
+        private string _Descripcion;
         public DiasAtencion()
         {
 
         }
 
-        public string IdDia { get => id_Dia; set => id_Dia = value; }
-        public string Dias { get => dias; set => dias = value; }
+        public string IdDias { get => _id_Dias; set => _id_Dias = value; }
+        public string Descripcion { get => _Descripcion; set => _Descripcion = value; }
     }
 }

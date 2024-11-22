@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiasAtencion.cs" />
+    <Compile Include="Especialidades.cs" />
     <Compile Include="Horarios.cs" />
     <Compile Include="Localidades.cs" />
     <Compile Include="Login.cs" />

@@ -30,8 +30,8 @@ namespace DATOS
                 // Creo un nuevo objeto Provincia y asigna los valores de la fila actual.
                 Provincias provincia = new Provincias
                 {
-                    Id_Provincia = row["CodProvincia_PR"].ToString(),
-                    DescripcionProvincia1 = row["Descripcion_PR"].ToString()
+                    Id_Provincia = row["CodigoProvincia"].ToString(),
+                    DescripcionProvincia1 = row["Descripcion"].ToString()
                 };
 
                 // Agrega la provincia a la lista.

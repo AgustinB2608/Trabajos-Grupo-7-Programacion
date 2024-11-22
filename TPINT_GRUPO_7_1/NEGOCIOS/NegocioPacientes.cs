@@ -99,12 +99,6 @@ namespace NEGOCIOS
             //retorna el datatable del metodo listarPacienteEspecificoDni de DaoPacientes
             return dao.listarPacienteEspecificoDni(dni);
         }
-
-        // Obtengo la lista de pacientes llamando al metodo ObtenerPacientes de DaoPacientes
-        public List<Pacientes> ObtenerPacientes()
-        {
-            return dao.ObtenerPaciente();
-        }
     }
 }
 

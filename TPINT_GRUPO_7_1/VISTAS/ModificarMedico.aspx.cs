@@ -109,13 +109,11 @@ namespace VISTAS
             {
                 string fecha = ddlDia.SelectedValue + "/" + ddlMes.SelectedValue + "/" + ddlAño.SelectedValue;
 
-                // Convertir el string 'fecha' a DateTime
-                DateTime fechaSeleccionada = DateTime.ParseExact(fecha, "d/M/yyyy", null);
-
+               
                 // Comparar con la fecha de nacimiento del objeto 'reg'
-                if (fechaSeleccionada != reg.getFechaNacimiento())
+                if (DateTime.TryParseExact(fecha, "d/M/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime fechaSeleccionada))
                 {
-                    reg.setFechaNacimiento(fechaSeleccionada); // Asumimos que setFechaNacimiento acepta DateTime
+                    reg.setFechaNacimiento(fecha); // Asumimos que setFechaNacimiento acepta DateTime
                     cambios = true;
                 }
             }
