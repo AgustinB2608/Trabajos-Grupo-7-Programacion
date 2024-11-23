@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,36 +14,58 @@ namespace DATOS
         private Conexion ds = new Conexion();
 
         // Metodo para obtener la lista de todas las Localidades desde la base de datos
-        public List<Localidades> ObtenerLocalidad()
+        public List<Localidades> ObtenerLocalidadesPorProvincia(string idProvincia)
         {
-            // Consulta SQL para seleccionar datos de la tabla Localidades
-            string consulta = "SELECT CodLocalidad_LO AS CodigoLocalidad, Descripcion_LO AS Descripcion, "+
-                "CodProvincia_LO AS CodigoProvincia FROM Localidades";
+            // Consulta SQL para obtener localidades por provincia
+            string consulta = "SELECT CodLocalidad_LO AS CodigoLocalidad, Descripcion_LO AS Descripcion, CodProvincia_LO AS CodigoProvincia " +
+                              "FROM Localidades WHERE CodProvincia_LO = @IdProvincia";
 
-            // Ejecuta la consulta y obtiene los resultados en un DataTable
-            DataTable dt = ds.EjecutarConsulta(consulta);
+            // Crear parámetros SQL
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+        new SqlParameter("@IdProvincia", idProvincia)
+            };
 
-            // Creo una lista de objetos Localidades para almacenar los resultados.
+            // Ejecutar la consulta con parámetros
+            DataTable dt = ds.EjecutarConsultaConParametros(consulta, parametros);
+
+            // Convertir el DataTable en una lista de localidades
             List<Localidades> listaLocalidades = new List<Localidades>();
-
-            // Recorre cada fila del DataTable.
             foreach (DataRow row in dt.Rows)
             {
-                // Crea un nuevo objeto Localidades y asigna los valores de la fila actual
                 Localidades localidad = new Localidades
                 {
                     Id_Localidad = row["CodigoLocalidad"].ToString(),
                     DescripcionLocalidad1 = row["Descripcion"].ToString(),
-                    Id_Provincia = Convert.ToString(row["CodigoProvincia"])
+                    Id_Provincia = row["CodigoProvincia"].ToString()
                 };
-
-                // Agrega el objeto Localidades a la lista
                 listaLocalidades.Add(localidad);
             }
 
-            // Retorna la lista de localidades obtenidas
+            return listaLocalidades;
+        }
+
+        public List<Localidades> ObtenerLocalidad()
+        {
+            string consulta = "SELECT CodLocalidad_LO AS CodigoLocalidad, Descripcion_LO AS Descripcion, CodProvincia_LO AS CodigoProvincia FROM Localidades";
+
+            DataTable dt = ds.EjecutarConsulta(consulta);
+
+            List<Localidades> listaLocalidades = new List<Localidades>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Localidades localidad = new Localidades
+                {
+                    Id_Localidad = row["CodigoLocalidad"].ToString(),
+                    DescripcionLocalidad1 = row["Descripcion"].ToString(),
+                    Id_Provincia = row["CodigoProvincia"].ToString()
+                };
+
+                listaLocalidades.Add(localidad);
+            }
+
             return listaLocalidades;
         }
     }
 }
-

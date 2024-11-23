@@ -17,5 +17,12 @@ namespace NEGOCIOS
         {
             return ltLocalidad.ObtenerLocalidad();
         }
+        // Método para obtener localidades filtradas por provincia
+        public List<Localidades> ObtenerLocalidadesPorProvincia(string idProvincia)
+        {
+            return ltLocalidad.ObtenerLocalidadesPorProvincia(idProvincia);
+        }
     }
 }
+
+
