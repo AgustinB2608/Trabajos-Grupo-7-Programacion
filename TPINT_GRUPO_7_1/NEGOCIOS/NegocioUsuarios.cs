@@ -11,10 +11,10 @@ namespace NEGOCIOS
     {
         private DaoUsuario daoUsuario = new DaoUsuario();
 
-        public bool RegistrarUsuario(string legajo, string contraseña, string nombre, string apellido)
+        public bool RegistrarUsuario (string contraseña, string tipousuario, string codmedico, string nombre, string apellido)
         {
             
-            return daoUsuario.InsertarUsuario(legajo, contraseña, nombre, apellido);
+            return daoUsuario.InsertarUsuario(contraseña, tipousuario, codmedico, nombre, apellido);
         }
     }
 }

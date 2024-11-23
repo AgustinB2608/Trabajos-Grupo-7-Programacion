@@ -66,6 +66,9 @@ namespace VISTAS
             ddlProvincia.DataBind();
             ddlProvincia.Items.Insert(0, new ListItem("Seleccionar Provincia", "0"));
 
+
+            ///falta asegurarse de que el ddlLocalidad se actualice cuando se selec una nueva provincia en ddlProvincia
+
             // Configuración de ddlLocalidad
             ddlLocalidad.DataSource = negL.ObtenerLocalidad();
             ddlLocalidad.DataTextField = "DescripcionLocalidad1";
@@ -380,8 +383,8 @@ namespace VISTAS
 
         protected void Confirmar_Click(object sender, EventArgs e)
         {
-
-            if (negM.agregarMedico(reg))
+            negM.agregarMedico(reg);
+           /* if (negM.agregarMedico(reg))
             {
                 // Crear usuario asociado
                 CrearUsuario(new ENTIDADES.Login
@@ -393,10 +396,10 @@ namespace VISTAS
                     Apellido = txtApellido.Text
                 });
                 LimpiarCampos();
-            }
-            Confirmacion.Style.Add("display", "none");
+            }*/
+            /*Confirmacion.Style.Add("display", "none");
             h1.Style.Add("display", "none");
-            mensajeConfirmacion.Style.Add("display", "block");
+            mensajeConfirmacion.Style.Add("display", "block");*/
 
         }
 

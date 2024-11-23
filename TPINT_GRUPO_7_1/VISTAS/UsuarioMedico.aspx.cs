@@ -19,12 +19,16 @@ namespace VISTAS
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            string legajo = txtLegajo.Text;
+            
+            ///hay que traer los datos del medico a modificar, su codigo, nom, ape, asignar un solo tipo de usuario.
+
             string contraseña = txtContraseña.Text;
             string nombre = txtNombre.Text;
             string apellido = txtApellido.Text;
+            string tipousuario = "";
+            string codmedico = "";
 
-            bool resultado = regU.RegistrarUsuario(legajo, contraseña, nombre, apellido);
+            bool resultado = regU.RegistrarUsuario(contraseña, tipousuario, codmedico, nombre, apellido);
 
             lblMensaje1.Visible = true;
             lblMensaje2.Visible = true;

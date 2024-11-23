@@ -12,14 +12,17 @@ namespace DATOS
     {
             private Conexion conexion = new Conexion();
 
-            public bool InsertarUsuario(string legajo, string contraseña, string nombre, string apellido)
+            public bool InsertarUsuario(string contraseña, string tipousuario, string codmedico, string nombre, string apellido)
             {
-                string consulta = "INSERT INTO USUARIO (Legajo, Contrasena, Nombre, Apellido) VALUES (@Legajo, @Contraseña, @Nombre, @Apellido)";
+                string consulta = "INSERT INTO Usuarios (Contraseña_US, TipoUsuario_US, CodMedicos_US,  Nombre_US, Apellido_US) "+
+                "VALUES (@Contraseña, @TipoUsuario, @CodMedico, @Nombre, @Apellido)";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-                new SqlParameter("@Legajo", legajo),
+     
                 new SqlParameter("@Contraseña", contraseña),
+                new SqlParameter("@TipoUsuario", tipousuario),
+                new SqlParameter("@CodMedico", codmedico),
                 new SqlParameter("@Nombre", nombre),
                 new SqlParameter("@Apellido", apellido)
                 };
