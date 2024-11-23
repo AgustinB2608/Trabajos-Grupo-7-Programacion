@@ -2,6 +2,7 @@
 using ENTIDADES;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,10 @@ namespace NEGOCIOS
     public class NegocioTurnos
     {
         private DaoTurnos dao;
+        public NegocioTurnos()
+        {
+            dao = new DaoTurnos();
+        }
 
         public bool agregarTurno(string medico, string especialidad, string horario, string paciente, int duracion, string fecha, string estado)
         {
@@ -34,6 +39,10 @@ namespace NEGOCIOS
 
             // Retornamos true si el turno fue agregado correctamente
             return exito;
+        }
+        public DataTable ObtenerTurnos()
+        {
+            return dao.ObtenerTurnos();
         }
 
     }

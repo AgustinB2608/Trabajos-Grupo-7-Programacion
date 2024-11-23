@@ -211,11 +211,14 @@
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="search-button" />
                     </div>
                     <div class="filter-container">
-                        <asp:DropDownList ID="ddlFiltro1" runat="server" CssClass="form-control">
-                            <asp:ListItem Text="Fecha" Value=""></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:DropDownList ID="ddlFiltro2" runat="server" CssClass="form-control">
-                            <asp:ListItem Text="Estado" Value=""></asp:ListItem>
+                       
+                        <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
+                               <asp:ListItem Text="Seleccione un estado" Value=""></asp:ListItem>
+                          
+                                <asp:ListItem Text="Pendiente" Value="P" />
+                                <asp:ListItem Text="Confirmado" Value="C" />
+                                <asp:ListItem Text="Cancelado" Value="S" />
+                          
                         </asp:DropDownList>
                         <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-control">
                             <asp:ListItem Text="Especialidad" Value=""></asp:ListItem>
