@@ -220,7 +220,7 @@
                                 <asp:ListItem Text="Cancelado" Value="S" />
                           
                         </asp:DropDownList>
-                        <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-control">
+                        <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" >
                             <asp:ListItem Text="Especialidad" Value=""></asp:ListItem>
                         </asp:DropDownList>
                     </div>

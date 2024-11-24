@@ -66,6 +66,35 @@ namespace DATOS
                 }
             }
         }
+        //EJECUTAR PROCEDIMIENTOS ALMACENADOS CON PARAMETRO
+        public DataTable EjecutarProcedimientoConParametro(string procedimientoAlmacenado, SqlParameter[] parametros)
+        {
+            using (SqlConnection conexion = new SqlConnection(ruta))
+            {
+               
+                    conexion.Open();
+
+                    // Creación del comando para ejecutar el procedimiento almacenado
+                    using (SqlCommand cmd = new SqlCommand(procedimientoAlmacenado, conexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;  // Asegura que se ejecute como procedimiento almacenado
+                        if (parametros != null)
+                        {
+                            cmd.Parameters.AddRange(parametros);  // Añadir parámetros al comando
+                        }
+
+                        // Usar un adaptador para llenar el DataTable con los resultados
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        return dt;
+                    }
+                
+               
+            }
+        }
+
+
 
         public int EjecutarConsultaSinRetorno(string consulta, SqlParameter[] parametros = null)
         {

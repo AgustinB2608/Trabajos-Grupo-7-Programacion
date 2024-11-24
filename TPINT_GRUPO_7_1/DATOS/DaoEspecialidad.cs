@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,5 +37,24 @@ namespace DATOS
             }
             return especialidades;
         }
+        public DataTable ObtenerTurnosPorEspecialidad(string especialidad)
+        {
+            if (string.IsNullOrEmpty(especialidad))
+            {
+                // Si la especialidad está vacía, devolvemos una tabla vacía o lanzamos un error, según sea necesario
+                return new DataTable(); // o lanzar una excepción si lo prefieres
+            }
+
+            // Crear el parámetro para el procedimiento almacenado
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+        new SqlParameter("@Especialidad", SqlDbType.NVarChar) { Value = especialidad }
+            };
+
+            
+            return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosEspecialidad", parametros);
+        }
+            
+        
     }
 }

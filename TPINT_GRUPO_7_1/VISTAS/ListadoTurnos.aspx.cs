@@ -50,7 +50,27 @@ namespace VISTAS
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "0"));
         }
 
-        
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NegocioEspecialidades negocioEspecialidades = new NegocioEspecialidades();
 
+            // Obtener la especialidad seleccionada en el DropDownList
+            string especialidadSeleccionada = ddlEspecialidad.SelectedItem.Text;
+
+            // Verificar que no sea la opción por defecto
+            if (especialidadSeleccionada == "Seleccione una especialidad")
+            {
+                gvTurnos.DataSource = null; // Limpiar el GridView
+                gvTurnos.DataBind();
+                return;
+            }
+
+            // Obtener los turnos filtrados por la especialidad seleccionada
+            var turnos = negocioEspecialidades.ObtenerTurnosPorEspecialidad(especialidadSeleccionada);
+
+            // Vincular los datos al GridView
+            gvTurnos.DataSource = turnos;
+            gvTurnos.DataBind();
+        }
     }
 }

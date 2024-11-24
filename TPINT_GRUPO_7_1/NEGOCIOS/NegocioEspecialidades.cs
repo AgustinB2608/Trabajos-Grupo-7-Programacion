@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ENTIDADES;
+using System.Data.SqlClient;
 
 namespace NEGOCIOS
 {
@@ -21,6 +22,13 @@ namespace NEGOCIOS
         public List<Especialidades> ObtenerNombresEspecialidades()
         {
             return Dao.ObtenerNombEspecialidades(); /// Llamo al método del DAO y retorna el resultado
+        }
+
+        public DataTable ObtenerTurnosPorEspecialidad(string especialidad)
+        {
+
+            // Llamar al método correspondiente en la capa DAO
+            return Dao.ObtenerTurnosPorEspecialidad(especialidad);
         }
 
 
