@@ -212,7 +212,7 @@
                     </div>
                     <div class="filter-container">
                        
-                        <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
+                        <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlEstado_SelectedIndexChanged">
                                <asp:ListItem Text="Seleccione un estado" Value=""></asp:ListItem>
                           
                                 <asp:ListItem Text="Pendiente" Value="P" />

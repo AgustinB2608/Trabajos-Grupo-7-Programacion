@@ -48,7 +48,7 @@ namespace DATOS
             // Crear el parámetro para el procedimiento almacenado
             SqlParameter[] parametros = new SqlParameter[]
             {
-        new SqlParameter("@Especialidad", SqlDbType.NVarChar) { Value = especialidad }
+            new SqlParameter("@Especialidad", SqlDbType.NVarChar) { Value = especialidad }
             };
 
             

@@ -72,5 +72,28 @@ namespace VISTAS
             gvTurnos.DataSource = turnos;
             gvTurnos.DataBind();
         }
+
+        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NegocioTurnos negocioTurnos = new NegocioTurnos();
+
+            // Obtener la especialidad seleccionada en el DropDownList
+            string EstadoSeleccionado = ddlEstado.SelectedItem.Value; //Ya que el value será M, C O S
+
+            // Verificar que no sea la opción por defecto
+            if (EstadoSeleccionado == "Seleccione un estado")
+            {
+                gvTurnos.DataSource = null; // Limpiar el GridView
+                gvTurnos.DataBind();
+                return;
+            }
+
+            // Obtener los turnos filtrados por la especialidad seleccionada
+            var turnos = negocioTurnos.ObtenerTurnosPorEstado(EstadoSeleccionado);
+
+            // Vincular los datos al GridView
+            gvTurnos.DataSource = turnos;
+            gvTurnos.DataBind();
+        }
     }
 }

@@ -41,6 +41,24 @@ namespace DATOS
             return ds.EjecutarConsultaConParametros(consulta, null);
 
         }
+        public DataTable ObtenerTurnosPorEspecialidad(string estado)
+        {
+            if (string.IsNullOrEmpty(estado))
+            {
+                
+                return new DataTable(); // o lanzar una excepción si lo prefieres
+            }
+
+            // Crear el parámetro para el procedimiento almacenado
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+            new SqlParameter("@Estado", SqlDbType.NVarChar) { Value = estado }
+            };
+
+
+            return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosEstado", parametros);
+        }
+
     }
 }
 

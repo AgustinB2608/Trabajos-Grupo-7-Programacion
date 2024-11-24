@@ -45,5 +45,12 @@ namespace NEGOCIOS
             return dao.ObtenerTurnos();
         }
 
+        public DataTable ObtenerTurnosPorEstado(string estado)
+        {
+
+            // Llamar al método correspondiente en la capa DAO
+            return dao.ObtenerTurnosPorEspecialidad(estado);
+        }
+
     }
 }
