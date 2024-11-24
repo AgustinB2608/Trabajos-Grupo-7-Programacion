@@ -109,5 +109,47 @@ namespace VISTAS
 
 
         }
+
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idProvincia = ddlProvincia.SelectedValue;
+
+            // Verificar si se seleccionó una provincia válida
+            if (string.IsNullOrEmpty(idProvincia) || idProvincia == "0")
+            {
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
+                return;
+            }
+
+            try
+            {
+                // Obtener localidades filtradas por la provincia seleccionada
+                List<Localidades> localidades = new NegocioLocalidades().ObtenerLocalidadesPorProvincia(idProvincia);
+
+                // Limpiar y cargar el DropDownList de localidades
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
+
+                if (localidades.Count > 0)
+                {
+                    foreach (var loc in localidades)
+                    {
+                        ddlLocalidad.Items.Add(new ListItem(loc.DescripcionLocalidad1, loc.Id_Localidad));
+                    }
+                }
+                else
+                {
+                    ddlLocalidad.Items.Add(new ListItem("No hay localidades disponibles", "0"));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Muestra un mensaje de error en caso de fallas
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
     }
 }

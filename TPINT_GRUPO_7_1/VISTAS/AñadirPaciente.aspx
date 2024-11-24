@@ -221,7 +221,7 @@
 
                         <div class="form-group">
                             <asp:Label ID="lblProvincia" runat="server" Text="Provincia:"></asp:Label>
-                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
                         </div>
 
                         <div class="form-group">
