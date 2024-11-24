@@ -66,7 +66,7 @@ namespace VISTAS
             NegocioPacientes reg = new NegocioPacientes();
             Pacientes obj = new Pacientes();
 
-                DataTable paciente = reg.listarPacienteEspecificoCod(txtBuscar.Text);
+            DataTable paciente = reg.listarPacienteEspecificoDni(txtBuscar.Text);
 
                 if (paciente.Rows.Count > 0) //Validad que hayan datos para mostrar
                 {
@@ -78,20 +78,20 @@ namespace VISTAS
                     obj.Provincia = paciente.Rows[0]["Provincia"].ToString(); // Asigna la provincia del paciente buscado a provincia
                     obj.Localidad = paciente.Rows[0]["Localidad"].ToString(); // Asigna la localidad del paciente buscado a localidad
                     obj.Direccion = paciente.Rows[0]["Direccion"].ToString();// Asigna la direccion del paciente buscado a direccion
-                    obj.Sexo = "M";//paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
+                    obj.Sexo = paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
                     obj.FechaNacimiento = paciente.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del paciente buscado
-                    obj.codPaciente = paciente.Rows[0]["CodPaciente"].ToString(); // Asigna el codigo del paciente buscado
+                    obj.Nacionalidad = paciente.Rows[0]["Nacionalidad"].ToString();
 
-                    // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
-                    ddlLocalidad.Items.RemoveAt(0); 
+                // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
+                ddlLocalidad.Items.RemoveAt(0); 
                     ddlLocalidad.Items.Insert(0, new ListItem(obj.Localidad, obj.Localidad));
 
                     ddlProvincia.Items.RemoveAt(0);
                     ddlProvincia.Items.Insert(0, new ListItem(obj.Provincia, obj.Provincia));
 
-
-                //Falta obj.Nacionalidad = paciente.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del paciente buscado
-
+                
+                ///************************Corregir con el ddl de sexo, hay que traer de la bdd
+                ///
                 // Convertir M/H a Hombre/Mujer
                 if (obj.Sexo == "M")
                     {
@@ -110,10 +110,9 @@ namespace VISTAS
                     txtCelular.Text = obj.Celular;
                     txtDireccion.Text = obj.Direccion;
                     txtSexo.Text = obj.Sexo;
-                    //txtProvincia.Text = obj.Provincia;
-                   // txtLocalidad.Text = obj.Localidad;
-                    txtCodPaciente.Text = obj.codPaciente;
-                    //Falta txtNacionalidad.Text = obj.Nacionalidad;
+                    lblProvincia.Text = obj.Provincia;
+                    lblLocalidad.Text = obj.Localidad;
+                    txtNacionalidad.Text = obj.Nacionalidad;
 
                     // Declaramos una variable para almacenar la fecha de nacimiento como un objeto DateTime
                     DateTime fechaNacimiento;
@@ -152,10 +151,9 @@ namespace VISTAS
                     obj.Provincia = paciente.Rows[0]["Provincia"].ToString(); // Asigna la provincia del paciente buscado a provincia
                     obj.Localidad = paciente.Rows[0]["Localidad"].ToString(); // Asigna la localidad del paciente buscado a localidad
                     obj.Direccion = paciente.Rows[0]["Direccion"].ToString();// Asigna la direccion del paciente buscado a direccion
-                    obj.Sexo = "M";//paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
+                    obj.Sexo = paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
                     obj.FechaNacimiento = paciente.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del paciente buscado
-                    obj.codPaciente = paciente.Rows[0]["CodPaciente"].ToString(); // Asigna el codigo del paciente buscado
-                    //Falta obj.Nacionalidad = paciente.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del paciente buscado
+                    obj.Nacionalidad = paciente.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del paciente buscado
 
                     // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
                     ddlLocalidad.Items.RemoveAt(0);
@@ -181,11 +179,10 @@ namespace VISTAS
                     txtEmail.Text = obj.Email;
                     txtCelular.Text = obj.Celular;
                     txtDireccion.Text = obj.Direccion;
-                    txtSexo.Text = obj.Sexo;
-                    //txtProvincia.Text = obj.Provincia;
-                    //txtLocalidad.Text = obj.Localidad;
-                    txtCodPaciente.Text = obj.codPaciente;
-                    //Falta txtNacionalidad.Text = obj.Nacionalidad;
+                    txtSexo.Text = obj.Sexo; // tiene que ser ddl, modificar
+                    ddlProvincia.Text = obj.Provincia;
+                    ddlLocalidad.Text = obj.Localidad;
+                    txtNacionalidad.Text = obj.Nacionalidad;
 
                     // Declaramos una variable para almacenar la fecha de nacimiento como un objeto DateTime
                     DateTime fechaNacimiento;
@@ -262,8 +259,8 @@ namespace VISTAS
                 Direccion = txtDireccion.Text,
                 Provincia = ddlProvincia.SelectedValue,
                 Localidad = ddlLocalidad.SelectedValue,
-                Nacionalidad = "Argentina", //Nacionalidad = txtNacionalidad.Text, //Nacionalidad fija para probar nomas 
-                Sexo = (txtSexo.Text == "Hombre") ? "H" : (txtSexo.Text == "Mujer") ? "M" : "Error", //Asigno asi por las dudas pero si se borra guarda Hombre o mujer nomas (Sexo = txtSexo.Text)
+                Nacionalidad = txtNacionalidad.Text,
+                Sexo = (txtSexo.Text == "Hombre") ? "H" : (txtSexo.Text == "Mujer") ? "M" : "Error", //Asigno asi por las dudas pero si se borra guarda Hombre o mujer nomas (Sexo = txtSexo.Text)///corregir con ddl
                 FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text).ToString("dd/MM/yyyy") // Formatea el formato para guardar en la bd
             };
 
@@ -301,8 +298,7 @@ namespace VISTAS
             ddlProvincia.Items.Insert(0, new ListItem("Provincia"));
             ddlLocalidad.Items.Insert(0, new ListItem("Localidad"));
             txtFechaNacimiento.Text = "";
-            txtCodPaciente.Text = "";
-            //txtNacionalidad.Text = "";
+            txtNacionalidad.Text = "";
             txtCelular.Text = "";
             txtDireccion.Text = "";
             lblError.Text = "";

@@ -251,11 +251,6 @@
                             <asp:Label ID="lblDireccion" runat="server" Text="Dirección:" CssClass="form-label"></asp:Label>
                             <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Dirección:"></asp:TextBox>
                         </div>
-                        <%--Codigo Paciente--%>
-                        <div class="form-group">
-                            <asp:Label ID="lblCodPaciente" runat="server" Text="Paciente:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtCodPaciente" runat="server" CssClass="form-control" placeholder="" ReadOnly="true"></asp:TextBox>
-                        </div>
                     </div>
                 </div>
             </div>

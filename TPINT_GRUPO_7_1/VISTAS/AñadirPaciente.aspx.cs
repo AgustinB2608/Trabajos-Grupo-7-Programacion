@@ -28,13 +28,10 @@ namespace VISTAS
         // El boton guardar se encarga de recopilar toda la informacion escrita por el usuario para asi guardarla en la base de datos.
         protected void btnGuardar_Click1(object sender, EventArgs e)
         {
-            // Genera un código único para el paciente
-            string codPaciente = "m" + DateTime.Now.ToString("yyMMdd");
-
+            
             // Crear una instancia de Pacientes y asignar los valores de los controles del formulario
             Pacientes nuevoPaciente = new Pacientes
             {
-                codPaciente = codPaciente,
                 Dni = txtDni.Text,
                 Nombre = txtNombre.Text,
                 Apellido = txtApellido.Text,
@@ -46,7 +43,6 @@ namespace VISTAS
                 Celular = txtCelular.Text,
                 Sexo = ddlSexo.SelectedValue, 
                 Nacionalidad = txtNacionalidad.Text, 
-                Estado = true // Estado activo por defecto
             };
 
             // Llamar al método de negocio para agregar el paciente
@@ -105,9 +101,6 @@ namespace VISTAS
             ddlSexo.Items.Add(new ListItem("Masculino", "M"));
             ddlSexo.Items.Add(new ListItem("Otro", "O"));
             ddlSexo.Items.Insert(0, new ListItem("Seleccionar el sexo", "0"));
-
-
-
         }
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)

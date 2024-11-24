@@ -18,25 +18,23 @@ namespace DATOS
     {
 
             // Consulta SQL para insertar un nuevo paciente en la tabla Paciente
-            string agregar = "INSERT INTO Paciente (CodPaciente_PA, Dni_PA, Nombre_PA, Apellido_PA, FechaNacimiento_PA, Direccion_PA, Localidad_PA, Provincia_PA, Email_PA, Telefono_PA, Sexo_PA, Nacionalidad_PA, Estado) " +
-                             "VALUES (@CodigoPaciente, @Dni, @Nombre, @Apellido, @FechaNacimiento, @Direccion, @Localidad, @Provincia, @Email, @Telefono, @Sexo, @Nacionalidad, @Estado)";
+            string agregar = "EXEC SP_AgregarPaciente @Provincia, @Localidad, @Dni, @Nombre, @Apellido, @FechaNacimiento, @Nacionalidad, @Direccion, @Email, @Sexo, @Telefono";
 
             // Crear los parámetros y asignar los valores
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@CodigoPaciente", paciente.codPaciente),
+                new SqlParameter("@Provincia", paciente.Provincia),
+                new SqlParameter("@Localidad", paciente.Localidad),
                 new SqlParameter("@Dni", paciente.Dni),
                 new SqlParameter("@Nombre", paciente.Nombre),
                 new SqlParameter("@Apellido", paciente.Apellido),
                 new SqlParameter("@FechaNacimiento", DateTime.Parse(paciente.FechaNacimiento)), // Asegúrate de convertir correctamente a DateTime
+                new SqlParameter("@Nacionalidad", paciente.Nacionalidad),
                 new SqlParameter("@Direccion", paciente.Direccion),
-                new SqlParameter("@Localidad", paciente.Localidad),
-                new SqlParameter("@Provincia", paciente.Provincia),
                 new SqlParameter("@Email", paciente.Email),
+                new SqlParameter("@Sexo", paciente.Sexo),
                 new SqlParameter("@Telefono", paciente.Celular),
-                new SqlParameter("@Sexo", paciente.Sexo),           // Nuevo parámetro para Sexo
-                new SqlParameter("@Nacionalidad", paciente.Nacionalidad), // Nuevo parámetro para Nacionalidad
-                new SqlParameter("@Estado", paciente.Estado)
+                
             };
 
             // Ejecutar la consulta con los parámetros
@@ -52,18 +50,18 @@ namespace DATOS
             }
         }
 
-        public bool eliminarPaciente(string CODPACIENTE)
+        public bool eliminarPaciente(string Dni)
         {
             //Consulta SQL para dar de baja un paciente en la tabla pacientes
 
             //ejecuta un procedimiento almacenado enviando el codigo del paciente a dar de baja
 
-            string eliminar = "EXEC SP_bajaPaciente @CODPACIENTE";
+            string eliminar = "EXEC SP_bajaPacienteDni @Dni";
 
             // envia mi string codPaciente como parametro
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@CODPACIENTE", CODPACIENTE)
+                new SqlParameter("@Dni", Dni)
             };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
@@ -79,45 +77,17 @@ namespace DATOS
             }
         }
 
-        public bool eliminarPacienteDNI(string Dni)
-        {
-
-            //ejecuta un procedimiento almacenado, envia DNI del paciente como parametro
-
-            string eliminar = "EXEC SP_bajaPacienteDni @Dni";
-
-            
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@Dni", Dni)
-            };
-
-           //Verifica si hubo exito
-            int exito = ds.EjecutarConsultaSinRetorno(eliminar);
-
-            if (exito > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
-
         public bool modificarPaciente(Pacientes Paciente)
         {
 
             // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
-            string modificar = "EXEC SP_modificarPaciente @CodPaciente, @Direccion, @Localidad, @Provincia, @Email, @Telefono";
+            string modificar = "EXEC SP_modificarPaciente @Dni, @Direccion, @Localidad, @Provincia, @Email, @Telefono";
 
             // envia los valores de mi obj paciente como parametro
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@CodPaciente", Paciente.Direccion),
+                new SqlParameter("@Dni", Paciente.Dni),
                 new SqlParameter("@Direccion", Paciente.Direccion),
                 new SqlParameter("@Localidad", Paciente.Localidad),
                 new SqlParameter("@Provincia", Paciente.Provincia),
@@ -136,11 +106,11 @@ namespace DATOS
         public DataTable listarPacientes(string contenido = "")
         {
             // Consulta SQL para traer todos los registros de pacientes activos
-            string consulta = "SELECT Dni_PA AS Dni, Nombre_PA AS Nombre, Apellido_PA AS Apellido, " +
-                              "FechaNacimiento_PA AS 'Fecha de Nacimiento', Direccion_PA AS Direccion, Localidad_PA AS Localidad, " +
-                              "Provincia_PA AS Provincia, Email_PA AS Email, Telefono_PA AS Telefono " +
-                              "FROM Paciente WHERE Estado = 1";
+            string consulta = "EXEC SP_RegistrosPacientes";
 
+            
+            ///*********************SOLUCIONAR PORQUE NO FUNCIONA CON EL PROCEDIMIENTO ALMACENADO ACTUAL
+            
             // Si se proporciona un término de búsqueda, agrega condiciones de filtrado
             List<SqlParameter> parametros = new List<SqlParameter>();
             if (!string.IsNullOrEmpty(contenido))
@@ -151,22 +121,6 @@ namespace DATOS
 
             // Retorna el DataTable utilizando el método EjecutarConsultaConParametros de Conexion
             return ds.EjecutarConsultaConParametros(consulta, parametros.ToArray());
-        }
-
-
-        public DataTable listarPacienteEspecifico(string codPaciente)
-        {
-            // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
-            string consulta = "EXEC SP_retornarRegistroPacienteCod @CodPaciente";
-
-            // envia el valor del codpaciente como parametro
-            SqlParameter[] parametros = new SqlParameter[]
-                {
-                     new SqlParameter("@CodPaciente", codPaciente)
-                };
-            //retorna el datatable del metodo de Conexion
-            return ds.EjecutarConsultaConParametros(consulta, parametros); 
-
         }
 
         public DataTable listarPacienteEspecificoDni(string dni)

@@ -28,13 +28,13 @@ namespace NEGOCIOS
             return dao.agregarPaciente(paciente);
         }
 
-        public bool eliminarPaciente(Pacientes Paciente)
+        public bool eliminarPaciente(string DniPaciente)
         {
             // Instancia de la clase DaoPacientes para acceder a la base de datos
             dao = new DaoPacientes();
 
             // Llama al metodo eliminarPaciente de DaoPacientes y almacena el resultado bool
-            bool exito = dao.eliminarPaciente(Paciente.codPaciente);
+            bool exito = dao.eliminarPaciente(DniPaciente);
 
             // Retorno true si fue exitoso si no false
             if (exito)
@@ -43,24 +43,6 @@ namespace NEGOCIOS
                 return false;
 
         }
-
-        public bool eliminarPacienteDni(string DNI)
-        {
-            
-            dao = new DaoPacientes();
-
-            // Llama al metodo eliminarPacienteDNI
-            bool exito = dao.eliminarPacienteDNI(DNI);
-
-            // Retorno true si fue exitoso
-            if (exito)
-                return true;
-            else
-                return false;
-
-        }
-
-
 
         public bool modificarPaciente(Pacientes Paciente)
         {
@@ -83,14 +65,6 @@ namespace NEGOCIOS
             return dao.listarPacientes(contenido);
         }
 
-        public DataTable listarPacienteEspecificoCod(string CodPaciente)
-        {
-            // Instancia de la clase DaoPacientes para acceder a la base de datos
-            dao = new DaoPacientes();
-
-            //retorna el datatable del metodo listarPacienteEspecifico de DaoPacientes
-            return dao.listarPacienteEspecifico(CodPaciente);
-        }
         public DataTable listarPacienteEspecificoDni(string dni)
         {
             // Instancia de la clase DaoPacientes para acceder a la base de datos

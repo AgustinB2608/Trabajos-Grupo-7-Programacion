@@ -59,9 +59,9 @@ namespace VISTAS
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
             NegocioPacientes neg = new NegocioPacientes();
-            string dniN = txtEliminar.Text; 
+            string dniN = txtEliminar.Text;
 
-            bool SeElimino = neg.eliminarPacienteDni(dniN);
+            bool SeElimino = neg.eliminarPaciente(dniN);
 
             ///avisos sobre si se pudo o no eliminar
             if (SeElimino)

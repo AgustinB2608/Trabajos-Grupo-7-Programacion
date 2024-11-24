@@ -384,7 +384,9 @@ namespace VISTAS
         protected void Confirmar_Click(object sender, EventArgs e)
         {
             negM.agregarMedico(reg);
-           /* if (negM.agregarMedico(reg))
+            /// solucionar usuario
+
+            if (negM.agregarMedico(reg))
             {
                 // Crear usuario asociado
                 CrearUsuario(new ENTIDADES.Login
@@ -396,10 +398,11 @@ namespace VISTAS
                     Apellido = txtApellido.Text
                 });
                 LimpiarCampos();
-            }*/
-            /*Confirmacion.Style.Add("display", "none");
+            }
+
+            Confirmacion.Style.Add("display", "none");
             h1.Style.Add("display", "none");
-            mensajeConfirmacion.Style.Add("display", "block");*/
+            mensajeConfirmacion.Style.Add("display", "block");
 
         }
 
