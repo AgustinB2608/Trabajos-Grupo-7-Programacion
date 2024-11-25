@@ -15,31 +15,44 @@ namespace VISTAS
         {
 
         }
-        private NegocioUsuarios regU = new NegocioUsuarios();
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            
-            ///hay que traer los datos del medico a modificar, su codigo, nom, ape, asignar un solo tipo de usuario.
-
-            string contraseña = txtContraseña.Text;
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            string tipousuario = "";
-            string codmedico = "";
-
-            bool resultado = regU.RegistrarUsuario(contraseña, tipousuario, codmedico, nombre, apellido);
+            // Obtener datos del formulario
+            string contraseña = txtContraseña.Text.Trim();
+            string nombre = txtNombre.Text.Trim();
+            string apellido = txtApellido.Text.Trim();
+            string tipousuario = "M";
+            string codmedico = txtCodigoMedico.Text.Trim();
 
             lblMensaje1.Visible = true;
             lblMensaje2.Visible = true;
+
+            // Validación de campos
+            if (string.IsNullOrWhiteSpace(contraseña) || string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(apellido))
+            {
+                lblMensaje2.CssClass = "mensaje-error";
+                lblMensaje2.Text = "Todos los campos son obligatorios.";
+                return;
+            }
+
+            // Llamada a la capa de negocio
+            NegocioUsuarios negocioUsuarios = new NegocioUsuarios();
+            bool resultado = negocioUsuarios.RegistrarUsuario(contraseña, tipousuario, codmedico, nombre, apellido);
+
+            // Mensajes de retroalimentación
             if (resultado)
             {
                 lblMensaje1.Text = "Usuario registrado exitosamente.";
+                lblMensaje2.Visible = false;
             }
             else
             {
                 lblMensaje2.CssClass = "mensaje-error";
+                lblMensaje2.Text = "Error al registrar el usuario. Intenta nuevamente.";
             }
         }
+
+
     }
 }

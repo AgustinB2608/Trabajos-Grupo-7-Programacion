@@ -8,7 +8,7 @@ namespace ENTIDADES
 {
     public class Usuarios
     {
-        public string Legajo { get; set; }
+        public string CodMedico { get; set; }
         public string Contraseña { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }

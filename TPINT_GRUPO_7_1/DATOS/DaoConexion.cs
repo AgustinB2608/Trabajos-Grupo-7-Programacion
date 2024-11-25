@@ -12,9 +12,9 @@ namespace DATOS
     // Cambié 'internal' a 'public' para que la clase sea accesible desde otras clases
     public class Conexion
     {
-        private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = Clinica; Integrated Security = True";
+        //private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = Clinica; Integrated Security = True";
         //"Data Source=JUANMA\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
-        //private String ruta = "Data Source=localhost\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
+        private String ruta = "Data Source=localhost\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
         //private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = Clinica; Integrated Security = True";
         public Conexion()
         {
@@ -94,7 +94,33 @@ namespace DATOS
             }
         }
 
+        public int EjecutarProcedimientoConRetorno(string procedimientoAlmacenado, SqlParameter[] parametros)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(ruta))
+                {
+                    conexion.Open();
+                    using (SqlCommand cmd = new SqlCommand(procedimientoAlmacenado, conexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
+                        if (parametros != null)
+                        {
+                            cmd.Parameters.AddRange(parametros);
+                        }
+
+                        return cmd.ExecuteNonQuery(); // Retorna el número de filas afectadas
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                Console.WriteLine($"Error ejecutando el procedimiento: {ex.Message}");
+                return 0; // Devuelve 0 si hay un error
+            }
+        }
 
         public int EjecutarConsultaSinRetorno(string consulta, SqlParameter[] parametros = null)
         {

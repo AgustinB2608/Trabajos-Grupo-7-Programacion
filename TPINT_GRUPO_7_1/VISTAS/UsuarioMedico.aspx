@@ -133,9 +133,8 @@
             <h1>Registro de Usuario de Medico</h1>
             <div class="menu-box">
                 <div class="menu-item">
-                    <asp:Label ID="lblLegajo" runat="server" CssClass="label" Text="Legajo:"></asp:Label>
-                    <br />
-                    <asp:TextBox ID="txtLegajo" runat="server" CssClass="textbox"></asp:TextBox>
+                    Codigo Medico:<br />
+                    <asp:TextBox ID="txtCodigoMedico" runat="server" CssClass="textbox"></asp:TextBox>
                 </div>
                 <div class="menu-item">
                     <asp:Label ID="lblContraseña" runat="server" CssClass="label" Text="Contraseña:"></asp:Label>
