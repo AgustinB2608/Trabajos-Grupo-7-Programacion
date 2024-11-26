@@ -77,5 +77,22 @@ namespace NEGOCIOS
             return dao.listarMedicoEspecifico(CodMedico);
         }
 
+        public DataTable listarMedicoEspecificoDni(string dni)
+        {
+            // Instancia de la clase DaoMedicos para acceder a la base de datos
+            dao = new DaoMedicos();
+
+            //retorna el datatable del metodo listarMedicoEspecificoDni de DaoMedicos
+            return dao.listarMedicoEspecifico(dni);
+        }
+        
+        public DataTable RetornarCodMedico(string dni)
+        {
+            // Instancia de la clase DaoMedicos para acceder a la base de datos
+            dao = new DaoMedicos();
+
+            //retorna el datatable del metodo RetornarCodMedico de DaoMedicos
+            return dao.RetornarCodMedico(dni);
+        }
     }
 }

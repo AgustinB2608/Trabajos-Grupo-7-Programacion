@@ -124,6 +124,36 @@ namespace DATOS
 
         }
 
+        public DataTable listarMedicoEspecificoDni(string dni)
+        {
+            // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
+            string consulta = "EXEC SP_retornarRegistroMedicoDni @Dni";
+
+            // envia el valor del codMedico como parametro
+            SqlParameter[] parametros = new SqlParameter[]
+                {
+                     new SqlParameter("@Dni", dni)
+                };
+            //retorna el datatable del metodo de Conexion
+            return ds.EjecutarConsultaConParametros(consulta, parametros);
+
+        }
+
+        public DataTable RetornarCodMedico(string dni)
+        {
+            // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
+            string consulta = "SELECT CodMedico_ME AS CodMedico FROM Medicos WHERE Dni_ME = @Dni";
+
+            // envia el valor del codMedico como parametro
+            SqlParameter[] parametros = new SqlParameter[]
+                {
+                     new SqlParameter("@Dni", dni)
+                };
+            //retorna el datatable del metodo de Conexion
+            return ds.EjecutarConsultaConParametros(consulta, parametros);
+
+        }
+
         public List<Localidades> ObtenerLocalidadesPorProvincia(string idProvincia)
         {
             // Consulta SQL para obtener localidades por provincia

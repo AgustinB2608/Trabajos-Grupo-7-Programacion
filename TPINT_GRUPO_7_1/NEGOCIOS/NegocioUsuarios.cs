@@ -11,7 +11,7 @@ namespace NEGOCIOS
     {
         private DaoUsuario daoUsuario = new DaoUsuario();
 
-        public bool RegistrarUsuario(string contraseña, string tipousuario, string codmedico, string nombre, string apellido)
+        public bool RegistrarUsuario(string codmedico, string contraseña, string nombre, string apellido)
         {
             // Validar que el usuario no exista previamente
             if (UsuarioYaExiste(codmedico))
@@ -21,7 +21,7 @@ namespace NEGOCIOS
             }
 
             // Delegar la inserción a la capa de datos
-            return daoUsuario.InsertarUsuario(contraseña, tipousuario, codmedico, nombre, apellido);
+            return daoUsuario.InsertarUsuario(codmedico, contraseña, nombre, apellido);
         }
 
         private bool UsuarioYaExiste(string codmedico)

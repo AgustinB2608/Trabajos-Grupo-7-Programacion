@@ -12,16 +12,14 @@ namespace DATOS
     {
         private Conexion conexion = new Conexion();
 
-        public bool InsertarUsuario(string contraseña, string tipousuario, string codmedico, string nombre, string apellido)
+        public bool InsertarUsuario(string contraseña, string codmedico, string nombre, string apellido)
         {
-            string consulta = "INSERT INTO Usuarios (Contraseña_US, TipoUsuario_US, CodMedicos_US, Nombre_US, Apellido_US) " +
-                              "VALUES (@Contraseña, @TipoUsuario, @CodMedico, @Nombre, @Apellido)";
+            string consulta = "EXEC SP_AgregarUsuario @CodMedico, @Contraseña, @Nombre, @Apellido";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-            new SqlParameter("@Contraseña", contraseña),
-            new SqlParameter("@TipoUsuario", tipousuario),
             new SqlParameter("@CodMedico", codmedico),
+            new SqlParameter("@Contraseña", contraseña),
             new SqlParameter("@Nombre", nombre),
             new SqlParameter("@Apellido", apellido)
             };
@@ -32,7 +30,7 @@ namespace DATOS
 
         public bool VerificarUsuarioExistente(string codmedico)
         {
-            string consulta = "SELECT COUNT(*) FROM Usuarios WHERE CodMedicos_US = @CodMedico";
+            string consulta = "SELECT COUNT(*) FROM Usuarios WHERE Legajo_ME_US = @CodMedico";
             SqlParameter[] parametros = new SqlParameter[]
             {
             new SqlParameter("@CodMedico", codmedico)

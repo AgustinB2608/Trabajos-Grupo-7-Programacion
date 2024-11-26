@@ -19,11 +19,10 @@ namespace VISTAS
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             // Obtener datos del formulario
+            string codmedico = txtCodigoMedico.Text.Trim();
             string contraseña = txtContraseña.Text.Trim();
             string nombre = txtNombre.Text.Trim();
             string apellido = txtApellido.Text.Trim();
-            string tipousuario = "M";
-            string codmedico = txtCodigoMedico.Text.Trim();
 
             lblMensaje1.Visible = true;
             lblMensaje2.Visible = true;
@@ -38,7 +37,7 @@ namespace VISTAS
 
             // Llamada a la capa de negocio
             NegocioUsuarios negocioUsuarios = new NegocioUsuarios();
-            bool resultado = negocioUsuarios.RegistrarUsuario(contraseña, tipousuario, codmedico, nombre, apellido);
+            bool resultado = negocioUsuarios.RegistrarUsuario(contraseña, codmedico, nombre, apellido);
 
             // Mensajes de retroalimentación
             if (resultado)

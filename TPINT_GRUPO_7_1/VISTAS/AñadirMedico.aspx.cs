@@ -8,7 +8,8 @@ using System.Web.UI.WebControls;
 using ENTIDADES;
 using NEGOCIO;
 using System.ComponentModel;
-using System.Data.SqlTypes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace VISTAS
 {
@@ -66,8 +67,6 @@ namespace VISTAS
             ddlProvincia.DataBind();
             ddlProvincia.Items.Insert(0, new ListItem("Seleccionar Provincia", "0"));
 
-
-            ///falta asegurarse de que el ddlLocalidad se actualice cuando se selec una nueva provincia en ddlProvincia
 
             // Configuración de ddlLocalidad
             ddlLocalidad.DataSource = negL.ObtenerLocalidad();
@@ -203,12 +202,12 @@ namespace VISTAS
         }
 
         // Método para crear un usuario
-        private void CrearUsuario(ENTIDADES.Login usuario)
+        private void CrearUsuario(string legajo, string contraseña, string nombre, string apellido)
         {
             try
             {
-                LoginNegocio negU = new LoginNegocio();
-                negU.GuardarUsuario(usuario);
+                NegocioUsuarios negU = new NegocioUsuarios();
+                negU.RegistrarUsuario(legajo, contraseña, nombre, apellido);
             }
             catch (Exception ex)
             {
@@ -384,19 +383,29 @@ namespace VISTAS
         protected void Confirmar_Click(object sender, EventArgs e)
         {
             negM.agregarMedico(reg);
+            string codmed;
+
             /// solucionar usuario
 
             if (negM.agregarMedico(reg))
             {
                 // Crear usuario asociado
-                CrearUsuario(new ENTIDADES.Login
+                NegocioMedico med = new NegocioMedico();
+                DataTable dt = med.RetornarCodMedico(txtDni.Text);
+
+                if (dt.Rows.Count > 0)
                 {
-                    
-                    Contraseña = txtDni.Text,
-                    TipoUsuario = "M",
-                    Nombre = txtNombre.Text,
-                    Apellido = txtApellido.Text
-                });
+                    // Retornar el valor de la primera fila y columna
+                    codmed = dt.Rows[0]["CodMedico"].ToString();
+                }
+                else
+                {
+
+                    codmed = null;
+                }
+
+                CrearUsuario(codmed, txtDni.Text, txtNombre.Text, txtApellido.Text);
+                
                 LimpiarCampos();
             }
 
