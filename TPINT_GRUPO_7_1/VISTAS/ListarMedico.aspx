@@ -36,7 +36,7 @@
             <div class="form-grupo">
                 <label for="txtMedicos" style="font-size: x-large; font-style: inherit; color: #000000; font-weight: 100">Medicos:</label>
                 <asp:TextBox ID="txtMedico" runat="server"></asp:TextBox>
-                <asp:Button ID="btnFiltrar" runat="server" CssClass="btn" Text="Filtrar" />
+                <asp:Button ID="btnFiltrar" runat="server" CssClass="btn" Text="Filtrar" OnClick="btnFiltrar_Click1" />
                 <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" />
                 <br />
                 <br />

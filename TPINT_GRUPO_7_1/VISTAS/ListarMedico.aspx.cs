@@ -55,56 +55,6 @@ namespace VISTAS
             }
         }
 
-        protected void btnFiltrar_Click(object sender, EventArgs e)
-        {
-            // Verificar si el campo de texto txtMedico esta vacio o solo contiene espacios en blanco
-            if (string.IsNullOrWhiteSpace(txtMedico.Text))
-            {
-                // Mostrar un mensaje de error si no se ingreso un codigo de medico
-                lblMensaje.Text = "Por favor, ingrese un CODIGO de medico.";
-                return; // Salir del metodo si el campo está vacío
-            }
-
-            // Intentar convertir el texto ingresado en un numero entero
-            if (int.TryParse(txtMedico.Text, out int codMedico))
-            {
-                try
-                {
-                    // Crear una instancia de la clase NegocioMedico para acceder a sus metodos
-                    NegocioMedico negocioMedico = new NegocioMedico();
-
-                    // Llamar al metodo listarMedicoEspecifico con el codigo del medico ingresado
-                    DataTable dt = negocioMedico.listarMedicoEspecifico(codMedico.ToString());
-
-                    // Asignar el DataTable como origen de datos de la grilla grvMedicos
-                    grvMedicos.DataSource = dt;
-
-                    // Actualizar la grilla para mostrar los datos del medico especifico
-                    grvMedicos.DataBind();
-
-                    // Mostrar un mensaje segun si se encontraron medicos con el codigo especificado o no
-                    lblMensaje.Text = dt.Rows.Count > 0
-                        ? ""
-                        : "No se encontraron médicos con ese CODIGO.";
-                }
-                catch (Exception)
-                {
-                    // En caso de excepcion, mostrar un mensaje de error
-                    lblMensaje.Text = "Ocurrió un error al filtrar el médico.";
-                }
-            }
-            else
-            {
-                // Mostrar un mensaje de error si el codigo ingresado no es un numero entero
-                lblMensaje.Text = "El código ingresado debe ser un número entero.";
-            }
-
-            // Limpiar el campo de texto txtMedico después de procesar el evento
-            txtMedico.Text = string.Empty;
-        }
-
-
-
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             NegocioMedico negMedico = new NegocioMedico();
@@ -123,6 +73,57 @@ namespace VISTAS
                 lblMensaje1.Visible = true;
                 // Si no se encontraron registros
                 lblMensaje1.Text = "No se encontraron resultados.";
+            }
+        }
+
+        protected void btnFiltrar_Click1(object sender, EventArgs e)
+        {
+            // Verificar si el campo de texto está vacío o contiene solo espacios
+            if (string.IsNullOrWhiteSpace(txtMedico.Text))
+            {
+                lblMensaje.Text = "Por favor, ingrese un Código de Médico o un DNI.";
+                return;
+            }
+
+            // Determinar si es un DNI (numérico) o un Código de Médico
+            string input = txtMedico.Text.Trim();
+            bool esDni = int.TryParse(input, out int dni);
+
+            try
+            {
+                // Crear instancia de la clase de negocio
+                NegocioMedico negocioMedico = new NegocioMedico();
+                DataTable dt;
+
+                if (esDni)
+                {
+                    // Filtrar por DNI
+                    dt = negocioMedico.listarMedicoEspecificoDni(input);
+                }
+                else
+                {
+                    // Filtrar por Código de Médico
+                    dt = negocioMedico.listarMedicoEspecifico(input);
+                }
+
+                // Mostrar resultados en la grilla
+                grvMedicos.DataSource = dt;
+                grvMedicos.DataBind();
+
+                // Mostrar mensaje según los resultados
+                lblMensaje.Text = dt.Rows.Count > 0
+                    ? ""
+                    : "No se encontraron médicos con el Código o DNI ingresado.";
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción
+                lblMensaje.Text = "Ocurrió un error al filtrar los médicos: " + ex.Message;
+            }
+            finally
+            {
+                // Limpiar el campo de texto
+                txtMedico.Text = string.Empty;
             }
         }
     }

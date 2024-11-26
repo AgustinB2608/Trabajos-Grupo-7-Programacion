@@ -83,7 +83,7 @@ namespace NEGOCIOS
             dao = new DaoMedicos();
 
             //retorna el datatable del metodo listarMedicoEspecificoDni de DaoMedicos
-            return dao.listarMedicoEspecifico(dni);
+            return dao.listarMedicoEspecificoDni(dni);
         }
         
         public DataTable RetornarCodMedico(string dni)
