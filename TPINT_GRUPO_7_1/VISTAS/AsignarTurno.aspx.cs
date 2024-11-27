@@ -39,8 +39,8 @@ namespace VISTAS
         {
             // Configuración de ddlEspecialidad
             ddlEspecialidad.DataSource = negE.ObtenerNombresEspecialidades();
-            ddlEspecialidad.DataTextField = "NombreEspecialidad_ES";
-            ddlEspecialidad.DataValueField = "NombreEspecialidad_ES";
+            ddlEspecialidad.DataTextField = "DescripcionEspecialidad";
+            ddlEspecialidad.DataValueField = "Id_Especialidad";
             ddlEspecialidad.DataBind();
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione Especialidad", "0"));
 
