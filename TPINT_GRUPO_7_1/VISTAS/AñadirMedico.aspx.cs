@@ -355,15 +355,15 @@ namespace VISTAS
             }
 
             // Cargar meses
-            ddlMes.Items.Add(new ListItem("Enero", "1"));
-            ddlMes.Items.Add(new ListItem("Febrero", "2"));
-            ddlMes.Items.Add(new ListItem("Marzo", "3"));
-            ddlMes.Items.Add(new ListItem("Abril", "4"));
-            ddlMes.Items.Add(new ListItem("Mayo", "5"));
-            ddlMes.Items.Add(new ListItem("Junio", "6"));
-            ddlMes.Items.Add(new ListItem("Julio", "7"));
-            ddlMes.Items.Add(new ListItem("Agosto", "8"));
-            ddlMes.Items.Add(new ListItem("Septiembre", "9"));
+            ddlMes.Items.Add(new ListItem("Enero", "01"));
+            ddlMes.Items.Add(new ListItem("Febrero", "02"));
+            ddlMes.Items.Add(new ListItem("Marzo", "03"));
+            ddlMes.Items.Add(new ListItem("Abril", "04"));
+            ddlMes.Items.Add(new ListItem("Mayo", "05"));
+            ddlMes.Items.Add(new ListItem("Junio", "06"));
+            ddlMes.Items.Add(new ListItem("Julio", "07"));
+            ddlMes.Items.Add(new ListItem("Agosto", "08"));
+            ddlMes.Items.Add(new ListItem("Septiembre", "09"));
             ddlMes.Items.Add(new ListItem("Octubre", "10"));
             ddlMes.Items.Add(new ListItem("Noviembre", "11"));
             ddlMes.Items.Add(new ListItem("Diciembre", "12"));
@@ -374,10 +374,6 @@ namespace VISTAS
             {
                 ddlAño.Items.Add(new ListItem(i.ToString(), i.ToString()));
             }
-
-            ddlDia.Items.Insert(0, new ListItem("Seleccionar Día", "0"));
-            ddlMes.Items.Insert(0, new ListItem("Seleccionar Mes", "0"));
-            ddlAño.Items.Insert(0, new ListItem("Seleccionar Año", "0"));
         }
 
         protected void Confirmar_Click(object sender, EventArgs e)

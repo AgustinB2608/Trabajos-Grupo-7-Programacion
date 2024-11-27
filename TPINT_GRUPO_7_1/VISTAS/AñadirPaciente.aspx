@@ -253,19 +253,50 @@
                             <div class="form-columns">
                                 <!-- Día -->
                                 <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Día" Value="0" />
                                     <%-- Aquí cargarás los días del 1 al 31 --%>
+                                    <asp:ListItem Value="0">Seleccionar Día</asp:ListItem>
+                                    <asp:ListItem>01</asp:ListItem>
+                                    <asp:ListItem>02</asp:ListItem>
+                                    <asp:ListItem>03</asp:ListItem>
+                                    <asp:ListItem>04</asp:ListItem>
+                                    <asp:ListItem>05</asp:ListItem>
+                                    <asp:ListItem>06</asp:ListItem>
+                                    <asp:ListItem>07</asp:ListItem>
+                                    <asp:ListItem>08</asp:ListItem>
+                                    <asp:ListItem>09</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>11</asp:ListItem>
+                                    <asp:ListItem>12</asp:ListItem>
+                                    <asp:ListItem>13</asp:ListItem>
+                                    <asp:ListItem>14</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>16</asp:ListItem>
+                                    <asp:ListItem>17</asp:ListItem>
+                                    <asp:ListItem>18</asp:ListItem>
+                                    <asp:ListItem>19</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>21</asp:ListItem>
+                                    <asp:ListItem>22</asp:ListItem>
+                                    <asp:ListItem>23</asp:ListItem>
+                                    <asp:ListItem>24</asp:ListItem>
+                                    <asp:ListItem>25</asp:ListItem>
+                                    <asp:ListItem>26</asp:ListItem>
+                                    <asp:ListItem>27</asp:ListItem>
+                                    <asp:ListItem>28</asp:ListItem>
+                                    <asp:ListItem>29</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>31</asp:ListItem>
                                 </asp:DropDownList>
 
                                 <!-- Mes -->
                                 <asp:DropDownList ID="ddlMes" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Mes" Value="0" />
+                                    <asp:ListItem Text="Seleccionar Mes" Value="0" />
                                     <%-- Aquí cargarás los meses, por ejemplo Enero a Diciembre --%>
                                 </asp:DropDownList>
 
                                 <!-- Año -->
                                 <asp:DropDownList ID="ddlAño" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Año" Value="0" />
+                                    <asp:ListItem Text="Seleccionar Año" Value="0" />
                                     <%-- Aquí cargarás los años, por ejemplo del 1900 al año actual --%>
                                 </asp:DropDownList>
                             </div>

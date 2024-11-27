@@ -262,19 +262,19 @@
                             <div class="form-columns">
                                 <!-- Día -->
                                 <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Día" Value="0" />
+                                    <asp:ListItem Text="Seleccionar Día" Value="0" />
                                     <%-- Aquí cargarás los días del 1 al 31 --%>
                                 </asp:DropDownList>
 
                                 <!-- Mes -->
                                 <asp:DropDownList ID="ddlMes" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Mes" Value="0" />
+                                    <asp:ListItem Text="Seleccionar Mes" Value="0" />
                                     <%-- Aquí cargarás los meses, por ejemplo Enero a Diciembre --%>
                                 </asp:DropDownList>
 
                                 <!-- Año -->
                                 <asp:DropDownList ID="ddlAño" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Año" Value="0" />
+                                    <asp:ListItem Text="Seleccionar Año" Value="0" />
                                     <%-- Aquí cargarás los años, por ejemplo del 1900 al año actual --%>
                                 </asp:DropDownList>
                             </div>

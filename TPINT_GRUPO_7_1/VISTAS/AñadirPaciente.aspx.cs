@@ -65,22 +65,25 @@ namespace VISTAS
             }
 
             // Validación de la fecha de nacimiento
-            int dia = 0, mes = 0, año = 0;
+            string dia, mes, año;
+            dia = ddlDia.SelectedValue;
+            mes = ddlMes.SelectedValue;
+            año = ddlAño.SelectedValue;
 
             // Obtener valores seleccionados de los DropDownLists de fecha
-            if (!int.TryParse(ddlDia.SelectedValue, out dia) || dia == 0)
+            if (!int.TryParse(dia, out int diaInt) || diaInt == 0)
             {
                 lblMensaje.Text = "Debe seleccionar un día válido.";
                 return;
             }
 
-            if (!int.TryParse(ddlMes.SelectedValue, out mes) || mes == 0)
+            if (!int.TryParse(mes, out int mesInt) || mesInt == 0)
             {
                 lblMensaje.Text = "Debe seleccionar un mes válido.";
                 return;
             }
 
-            if (!int.TryParse(ddlAño.SelectedValue, out año) || año == 0)
+            if (!int.TryParse(año, out int añoInt) || añoInt == 0)
             {
                 lblMensaje.Text = "Debe seleccionar un año válido.";
                 return;
@@ -226,22 +229,17 @@ namespace VISTAS
 
         private void CargarFechaNacimiento()
         {
-            // Cargar días
-            for (int i = 1; i <= 31; i++)
-            {
-                ddlDia.Items.Add(new ListItem(i.ToString(), i.ToString()));
-            }
-
+         
             // Cargar meses
-            ddlMes.Items.Add(new ListItem("Enero", "1"));
-            ddlMes.Items.Add(new ListItem("Febrero", "2"));
-            ddlMes.Items.Add(new ListItem("Marzo", "3"));
-            ddlMes.Items.Add(new ListItem("Abril", "4"));
-            ddlMes.Items.Add(new ListItem("Mayo", "5"));
-            ddlMes.Items.Add(new ListItem("Junio", "6"));
-            ddlMes.Items.Add(new ListItem("Julio", "7"));
-            ddlMes.Items.Add(new ListItem("Agosto", "8"));
-            ddlMes.Items.Add(new ListItem("Septiembre", "9"));
+            ddlMes.Items.Add(new ListItem("Enero", "01"));
+            ddlMes.Items.Add(new ListItem("Febrero", "02"));
+            ddlMes.Items.Add(new ListItem("Marzo", "03"));
+            ddlMes.Items.Add(new ListItem("Abril", "04"));
+            ddlMes.Items.Add(new ListItem("Mayo", "05"));
+            ddlMes.Items.Add(new ListItem("Junio", "06"));
+            ddlMes.Items.Add(new ListItem("Julio", "07"));
+            ddlMes.Items.Add(new ListItem("Agosto", "08"));
+            ddlMes.Items.Add(new ListItem("Septiembre", "09"));
             ddlMes.Items.Add(new ListItem("Octubre", "10"));
             ddlMes.Items.Add(new ListItem("Noviembre", "11"));
             ddlMes.Items.Add(new ListItem("Diciembre", "12"));
@@ -253,9 +251,7 @@ namespace VISTAS
                 ddlAño.Items.Add(new ListItem(i.ToString(), i.ToString()));
             }
 
-            ddlDia.Items.Insert(0, new ListItem("Seleccionar Día", "0"));
-            ddlMes.Items.Insert(0, new ListItem("Seleccionar Mes", "0"));
-            ddlAño.Items.Insert(0, new ListItem("Seleccionar Año", "0"));
+           
         }
 
         private bool ValidarCamposVacios()
