@@ -163,7 +163,7 @@ namespace DATOS
             // Crear parámetros SQL
             SqlParameter[] parametros = new SqlParameter[]
             {
-        new SqlParameter("@IdProvincia", idProvincia)
+                new SqlParameter("@IdProvincia", idProvincia)
             };
 
             // Ejecutar la consulta con parámetros

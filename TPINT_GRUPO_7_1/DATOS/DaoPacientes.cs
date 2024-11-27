@@ -120,7 +120,7 @@ namespace DATOS
             }
 
             // Retorna el DataTable utilizando el método EjecutarConsultaConParametros de Conexion
-            return ds.EjecutarConsultaConParametros(consulta, parametros.ToArray());
+            return ds.EjecutarProcedimientoConParametro(consulta, parametros.ToArray());
         }
 
         public DataTable listarPacienteEspecificoDni(string dni)
