@@ -57,7 +57,7 @@ namespace VISTAS
             ddlSexo.Items.Add(new ListItem("Femenino", "F"));
             ddlSexo.Items.Add(new ListItem("Masculino", "M"));
             ddlSexo.Items.Add(new ListItem("Otro", "O"));
-            ddlSexo.Items.Insert(0, new ListItem("Seleccionar el sexo", "0"));
+            ddlSexo.Items.Insert(0, new ListItem("Seleccionar Sexo", "0"));
 
 
             // Configuración de ddlProvincia
@@ -73,7 +73,7 @@ namespace VISTAS
             ddlLocalidad.DataTextField = "DescripcionLocalidad1";
             ddlLocalidad.DataValueField = "Id_Localidad";
             ddlLocalidad.DataBind();
-            ddlLocalidad.Items.Insert(0, new ListItem("SeleccionarLocalidad", "0"));
+            ddlLocalidad.Items.Insert(0, new ListItem("Seleccionar Localidad", "0"));
 
             // Configuración de ddlEspecialidad
             ddlEspecialidad.DataSource = negE.ObtenerNombresEspecialidades();
