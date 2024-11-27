@@ -52,5 +52,11 @@ namespace NEGOCIOS
             return dao.ObtenerTurnosPorEspecialidad(estado);
         }
 
+        public DataTable ObtenerTurnosPorEspYEst(string especialidadSeleccionada, string estadoSeleccionado)
+        {
+            return dao.ObtenerTurnosPorEspYEst(especialidadSeleccionada, estadoSeleccionado);
+
+        }
+
     }
 }

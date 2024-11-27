@@ -46,7 +46,7 @@ namespace DATOS
             if (string.IsNullOrEmpty(estado))
             {
                 
-                return new DataTable(); // o lanzar una excepción si lo prefieres
+                return new DataTable(); 
             }
 
             // Crear el parámetro para el procedimiento almacenado
@@ -57,6 +57,25 @@ namespace DATOS
 
 
             return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosEstado", parametros);
+        }
+
+        public DataTable ObtenerTurnosPorEspYEst(string especialidadSeleccionada, string estadoSeleccionado)
+        {
+            // Si no se pasan ambos valores, devolver una tabla vacía
+            if (string.IsNullOrEmpty(estadoSeleccionado) || string.IsNullOrEmpty(especialidadSeleccionada))
+            {
+                return new DataTable(); // Devolver tabla vacía si falta alguno de los valores
+            }
+
+            // Crear los parámetros para el procedimiento almacenado
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Estado", SqlDbType.NVarChar) { Value = estadoSeleccionado },
+                new SqlParameter("@Especialidad", SqlDbType.NVarChar) { Value = especialidadSeleccionada }
+            };
+
+            // Ejecutar el procedimiento almacenado y devolver el resultado
+            return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosEspYEst", parametros);
         }
 
     }
