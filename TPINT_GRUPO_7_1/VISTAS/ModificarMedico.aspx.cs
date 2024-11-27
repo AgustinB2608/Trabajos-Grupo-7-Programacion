@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,130 +13,78 @@ namespace VISTAS
     public partial class ModificarMedico : System.Web.UI.Page
     {
         NegocioMedico regM = new NegocioMedico();
-        Medico reg = new Medico();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnModificar_Click(object sender, EventArgs e)
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            bool cambios = false;
-
-            // Verifica y asigna nuevos valores solo si son distintos al valor actual
-            if (!string.IsNullOrEmpty(txtNombre.Text.Trim()) && txtNombre.Text.Trim() != reg.getNombre())
+            // Verificar si el campo de texto está vacío o contiene solo espacios
+            if (string.IsNullOrWhiteSpace(txtCodigoMedico.Text))
             {
-                reg.setNombre(txtNombre.Text.Trim());
-                cambios = true;
+                lblMensajeBusqueda.Text = "Por favor, ingrese un Código de Médico.";
+                return;
             }
 
-            if (!string.IsNullOrEmpty(txtApellido.Text.Trim()) && txtApellido.Text.Trim() != reg.getApellido())
-            {
-                reg.setApellido(txtApellido.Text.Trim());
-                cambios = true;
-            }
+            // Obtener el código ingresado, eliminando espacios adicionales
+            string input = txtCodigoMedico.Text.Trim();
 
-            if (!string.IsNullOrEmpty(txtMatricula.Text.Trim()) && txtMatricula.Text.Trim() != reg.getCodMedico())
-            {
-                reg.setCodMedico(txtMatricula.Text.Trim());
-                cambios = true;
-            }
+            // Obtener los datos del médico
+            DataTable dt = regM.listarMedicoEspecifico(input);
 
-            if (!string.IsNullOrEmpty(txtEmail.Text.Trim()) && txtEmail.Text.Trim() != reg.getEmail())
-            {
-                reg.setEmail(txtEmail.Text.Trim());
-                cambios = true;
-            }
+            // Mostrar resultados en la grilla
+            grvMedicos.DataSource = dt;
+            grvMedicos.DataBind();
 
-            if (!string.IsNullOrEmpty(txtCelular.Text.Trim()) && txtCelular.Text.Trim() != reg.getCelular())
-            {
-                reg.setCelular(txtCelular.Text.Trim());
-                cambios = true;
-            }
+            // Mostrar mensaje según los resultados
+            lblMensajeBusqueda.Text = dt.Rows.Count > 0
+                ? ""
+                : "No se encontraron médicos con el Código.";
+        }
 
-            if (!string.IsNullOrEmpty(txtNacionalidad.Text.Trim()) && txtNacionalidad.Text.Trim() != reg.getNacionalidad())
-            {
-                reg.setNacionalidad(txtNacionalidad.Text.Trim());
-                cambios = true;
-            }
+        protected void btnMostrarTodos_Click(object sender, EventArgs e)
+        {
+            DataTable reg = regM.listarMedicos();
 
-            if (!string.IsNullOrEmpty(txtDireccion.Text.Trim()) && txtDireccion.Text.Trim() != reg.getDireccion())
-            {
-                reg.setDireccion(txtDireccion.Text.Trim());
-                cambios = true;
-            }
 
-            // Verificación de DropDownList y asignación de cambios
-            if (!string.IsNullOrEmpty(ddlProvincia.SelectedValue) && ddlProvincia.SelectedValue != reg.getProvincia())
+            if (reg != null && reg.Rows.Count > 0)
             {
-                reg.setProvincia(ddlProvincia.SelectedValue);
-                cambios = true;
-            }
+                grvMedicos.DataSource = reg;
+                grvMedicos.DataBind();
 
-            if (!string.IsNullOrEmpty(ddlLocalidad.SelectedValue) && ddlLocalidad.SelectedValue != reg.getLocalidad())
-            {
-                reg.setLocalidad(ddlLocalidad.SelectedValue);
-                cambios = true;
-            }
-
-            if (!string.IsNullOrEmpty(ddlSexo.SelectedValue) && ddlSexo.SelectedValue != reg.getSexo())
-            {
-                reg.setSexo(ddlSexo.SelectedValue);
-                cambios = true;
-            }
-
-            if (!string.IsNullOrEmpty(ddlEspecialidad.SelectedValue) && ddlEspecialidad.SelectedValue != reg.getEspecialidad())
-            {
-                reg.setEspecialidad(ddlEspecialidad.SelectedValue);
-                cambios = true;
-            }
-
-            if (!string.IsNullOrEmpty(ddlHorario.SelectedValue) && ddlHorario.SelectedValue != reg.getHorario())
-            {
-                reg.setHorario(ddlHorario.SelectedValue);
-                cambios = true;
-            }
-
-            if (!string.IsNullOrEmpty(ddlDiasAtencion.SelectedValue) && ddlDiasAtencion.SelectedValue != reg.getDiasAtencion())
-            {
-                reg.setDiasAtencion(ddlDiasAtencion.SelectedValue);
-                cambios = true;
-            }
-
-            // Validación de la fecha de nacimiento
-            if (!string.IsNullOrEmpty(ddlDia.SelectedValue) &&
-                !string.IsNullOrEmpty(ddlMes.SelectedValue) &&
-                !string.IsNullOrEmpty(ddlAño.SelectedValue))
-            {
-                string fecha = ddlDia.SelectedValue + "/" + ddlMes.SelectedValue + "/" + ddlAño.SelectedValue;
-
-               
-                // Comparar con la fecha de nacimiento del objeto 'reg'
-                if (DateTime.TryParseExact(fecha, "d/M/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime fechaSeleccionada))
-                {
-                    reg.setFechaNacimiento(fecha); // Asumimos que setFechaNacimiento acepta DateTime
-                    cambios = true;
-                }
             }
             else
             {
-                lblMensajeFecha.Text = "Por favor, seleccione una fecha completa.";
-            }
-
-            // Si hubo cambios, llamamos al metodo de modificacion
-            if (cambios)
-            {
-                
-                bool exito = regM.modificarMedico(reg);
-                lblMensaje.Text = exito ? "Modificado con éxito." : "Hubo un error al modificar los datos.";
-                lblMensaje.ForeColor = exito ? System.Drawing.Color.Green : System.Drawing.Color.Red;
-            }
-            else
-            {
-                lblMensaje.Text = "No se realizaron cambios.";
+                lblMensajeBusqueda.Visible = true;
+                // Si no se encontraron registros
+                lblMensajeBusqueda.Text = "No se encontraron resultados.";
             }
         }
 
+        protected void grvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grvMedicos.PageIndex = e.NewPageIndex; // Cambiar el índice de página
+            BindGridView(); // Asegurarte de recargar los datos
+        }
+
+        private void BindGridView()
+        {
+            grvMedicos.DataSource = regM.listarMedicos();
+            grvMedicos.DataBind();
+        }
+
+        protected void grvMedicos_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            // Obtener el índice de la fila seleccionada
+            int rowIndex = e.NewEditIndex;
+
+            // Suponiendo que la clave primaria (como el código del médico) está en la primera columna
+            string codigoMedico = grvMedicos.DataKeys[rowIndex].Value.ToString();
+
+            // Redirigir a la página EditarMedico.aspx con el código del médico en la QueryString
+            Response.Redirect($"EditarMedico.aspx?codigo={codigoMedico}");
+        }
 
     }
 }

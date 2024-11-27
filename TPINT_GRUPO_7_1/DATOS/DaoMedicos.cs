@@ -154,6 +154,13 @@ namespace DATOS
 
         }
 
+        public DataTable ObtenerMedicoPorCodigo(string codigo)
+        {
+            string consulta = $"SELECT * FROM Medicos WHERE CodMedico_ME = '{codigo}'";
+            return ds.EjecutarConsulta(consulta);
+        }
+
+
         public List<Localidades> ObtenerLocalidadesPorProvincia(string idProvincia)
         {
             // Consulta SQL para obtener localidades por provincia

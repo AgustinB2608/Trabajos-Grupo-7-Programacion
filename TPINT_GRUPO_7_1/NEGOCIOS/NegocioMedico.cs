@@ -94,5 +94,11 @@ namespace NEGOCIOS
             //retorna el datatable del metodo RetornarCodMedico de DaoMedicos
             return dao.RetornarCodMedico(dni);
         }
+
+        public DataTable ObtenerMedicoPorCodigo(string codigo)
+        {
+            return dao.ObtenerMedicoPorCodigo(codigo);
+        }
+
     }
 }
