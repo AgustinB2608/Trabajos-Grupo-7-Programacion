@@ -86,7 +86,7 @@
         <asp:Label ID="lblUsuario" runat="server" Text="" />
         <h1>Asignar Turno</h1>
         <label for="ddlMedico">Médico</label>
-        <asp:DropDownList ID="ddlMedico" runat="server">
+        <asp:DropDownList ID="ddlMedico" runat="server" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
         </asp:DropDownList>
 
         <label for="lblEspecialidad">Especialidad</label>

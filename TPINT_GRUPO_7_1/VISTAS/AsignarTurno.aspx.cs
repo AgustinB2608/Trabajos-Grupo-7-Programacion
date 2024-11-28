@@ -48,11 +48,11 @@ namespace VISTAS
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccionar Especialidad", "0"));
 
             // Configuración de ddlHorario
-            ddlHorario.DataSource = negH.ObtenerHorarios();
+            /*ddlHorario.DataSource = negH.ObtenerHorarios();
             ddlHorario.DataTextField = "Horario";
             ddlHorario.DataValueField = "IdHorario";
-            ddlHorario.DataBind();
-            ddlHorario.Items.Insert(0, new ListItem("Seleccione un horario para turno", "0"));
+            ddlHorario.DataBind();*/
+            ddlHorario.Items.Insert(0, new ListItem("Seleccionar Horario", "0"));
 
             /// Configuración de ddlMedico
             /// lo comente porq si no trae los nombres solos y trae todos, la idea es que traiga el nombre completo
@@ -171,7 +171,7 @@ namespace VISTAS
             {
                 // Limpiar el DropDownList
                 ddlMedico.Items.Clear();
-                ddlMedico.Items.Add(new ListItem("Seleccione un médico", "0"));
+                ddlMedico.Items.Add(new ListItem("Seleccionar Especialidad", "0"));
                 return;
             }   
                 try
@@ -182,21 +182,25 @@ namespace VISTAS
                     // Llamar al método MedicosSegunEspecialidad para obtener el DataTable con los médicos
                     DataTable medicos = negocioMedico.MedicosSegunEspecialidad(especialidadSeleccionada);
 
-                ddlMedico.Items.Clear();
-                
+                    ddlMedico.Items.Clear();
+                   
 
                 // Verificar si el DataTable tiene filas
                 if (medicos.Rows.Count > 0)
                     {
+                    string nombreCompleto, idMedico, horarioAtencion, idhorarioAtencion;
                         foreach (DataRow row in medicos.Rows)
                         {
-                        string nombreCompleto = $"{row["Nombre"]} {row["Apellido"]}";
-                        string idMedico = row["CodigoMedico"].ToString();
+                        nombreCompleto = $"{row["Nombre"]} {row["Apellido"]}";
+                        idMedico = row["CodigoMedico"].ToString();
+                        horarioAtencion = row["Horarios de Atención"].ToString();
+                        idhorarioAtencion = row["CodHorario"].ToString();
 
-                        // Agregar el elemento al DropDownList
+                        // Agregar el elemento al DropDownList de medico
                         ddlMedico.Items.Add(new ListItem(nombreCompleto, idMedico));
-                       
-                    }
+                        // horario
+                        }
+
                     }
                     else
                     {
@@ -204,8 +208,8 @@ namespace VISTAS
                         ddlMedico.Items.Add(new ListItem("No hay médicos disponibles", "0"));
                     }
 
-                ddlMedico.Items.Insert(0, new ListItem("Seleccionar Médico", "0"));
-            }
+                         ddlMedico.Items.Insert(0, new ListItem("Seleccionar Médico", "0"));
+                }
                 catch (Exception)
                 {
                     // Manejo de errores
@@ -213,6 +217,62 @@ namespace VISTAS
                     ddlMedico.Items.Add(new ListItem("Error al cargar médicos", "0"));
 
                 }
+
+
+        }
+
+        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string medicoSeleccionado = ddlMedico.SelectedValue;
+
+            // Verificar si la especialidad seleccionada es válida
+            if (string.IsNullOrEmpty(medicoSeleccionado) || medicoSeleccionado == "0")
+            {
+                // Limpiar el DropDownList
+                ddlHorario.Items.Clear();
+                ddlHorario.Items.Add(new ListItem("Seleccionar Horario", "0"));
+                return;
+            } 
+                ddlHorario.Items.Clear();
+            try
+            {
+                // Instancia del negocio de médicos
+                NegocioMedico negocioMedico = new NegocioMedico();
+
+                // Llamar al método MedicosSegunEspecialidad para obtener el DataTable con los médicos
+                DataTable medicos = negocioMedico.listarMedicoEspecifico(medicoSeleccionado);
+
+                // Verificar si el DataTable tiene filas
+                if (medicos.Rows.Count > 0)
+                {
+                    string horarioAtencion, idhorarioAtencion;
+
+                    foreach (DataRow row in medicos.Rows)
+                    {
+                        horarioAtencion = row["Horarios de Atención"].ToString();
+                        idhorarioAtencion = row["CodHorario"].ToString();
+
+                         ddlHorario.Items.Add(new ListItem(horarioAtencion, idhorarioAtencion));
+                        
+                    }
+
+                }
+                else
+                {
+                    // Agregar un mensaje en caso de que no existan médicos
+                    ddlHorario.Items.Add(new ListItem("No hay horario disponible", "0"));
+                }
+
+                ///ddlHorario.Items.Insert(0, new ListItem("Seleccionar Horario", "0"));
             }
+            catch (Exception)
+            {
+                // Manejo de errores
+                ddlHorario.Items.Clear();
+                ddlHorario.Items.Add(new ListItem("Error al cargar horarios", "0"));
+
+            }
+
         }
     }
+}
