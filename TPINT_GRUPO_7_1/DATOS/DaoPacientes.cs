@@ -65,7 +65,7 @@ namespace DATOS
             };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
-            int exito = ds.EjecutarConsultaSinRetorno(eliminar);
+            int exito = ds.EjecutarConsultaSinRetorno(eliminar, parametros);
 
             if (exito > 0)
             {
@@ -103,13 +103,13 @@ namespace DATOS
                 return false;   
         }
 
-        public DataTable listarPacientes(string contenido = "")
+        public DataTable listarPacientes()
         {
             // Consulta SQL para traer todos los registros de pacientes activos
             string consulta = "EXEC SP_RegistrosPacientes";
 
-            
-            ///*********************SOLUCIONAR PORQUE NO FUNCIONA CON EL PROCEDIMIENTO ALMACENADO ACTUAL
+
+            /*SOLUCIONAR PORQUE NO FUNCIONA CON EL PROCEDIMIENTO ALMACENADO ACTUAL
             
             // Si se proporciona un término de búsqueda, agrega condiciones de filtrado
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -117,10 +117,10 @@ namespace DATOS
             {
                 consulta += " AND (Nombre_PA LIKE @Contenido OR Apellido_PA LIKE @Contenido OR Dni_PA LIKE @Contenido)";
                 parametros.Add(new SqlParameter("@Contenido", "%" + contenido + "%"));
-            }
+            }*/
 
             // Retorna el DataTable utilizando el método EjecutarConsultaConParametros de Conexion
-            return ds.EjecutarProcedimientoConParametro(consulta, parametros.ToArray());
+            return ds.EjecutarConsulta(consulta);
         }
 
         public DataTable listarPacienteEspecificoDni(string dni)

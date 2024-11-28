@@ -14,7 +14,16 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack == false)
+            {
+                
+                btnAtras.Visible = false;
+            }
+            else
+            {
+                
+                btnAtras.Visible = true;
+            }
         }
 
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
@@ -37,9 +46,15 @@ namespace VISTAS
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
             NegocioPacientes negP = new NegocioPacientes();
+
+            if (txtListar.Text.Length != 8 || string.IsNullOrEmpty(txtListar.Text))
+            {
+                lblMensaje.Text = "El DNI es invalido";
+                return;
+            }
             string contenido = txtListar.Text.Trim();
 
-            DataTable lista = negP.listarPacientes(contenido);
+            DataTable lista = negP.listarPacienteEspecificoDni(txtListar.Text);
 
             if (lista != null && lista.Rows.Count > 0)
             {
