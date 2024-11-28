@@ -27,7 +27,7 @@ namespace VISTAS
                 if (Request.QueryString["codigo"] != null)
                 {
                     string codigoMedico = Request.QueryString["codigo"];
-                    CargarDatosMedico(codigoMedico);
+                    //CargarDatosMedico(codigoMedico);
                 }
             }
         }
@@ -80,7 +80,8 @@ namespace VISTAS
             CargarFechaNacimiento();
 
         }
-        private void CargarDatosMedico(string codigoMedico)
+       /* HAY QUE ACOMODARLO CON LOS AS DE LAS COLUMNAS, IGUAL YA HAY UN METODO QUE LO HACE ASI!!!! USAR EL OTRO
+        * private void CargarDatosMedico(string codigoMedico)
         {
             // Método para obtener los datos del médico
             DataTable dt = negM.ObtenerMedicoPorCodigo(codigoMedico);
@@ -109,7 +110,7 @@ namespace VISTAS
                 ddlDiasAtencion.SelectedValue = dt.Rows[0]["CodDiasAtencion_ME"].ToString();
                 ddlHorario.SelectedValue = dt.Rows[0]["CodHorariosAtencion_ME"].ToString();
             }
-        }
+        }*/
 
         private void CargarFechaNacimiento()
         {

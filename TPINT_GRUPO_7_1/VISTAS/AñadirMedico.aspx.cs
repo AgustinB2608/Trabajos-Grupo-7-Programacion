@@ -425,7 +425,7 @@ namespace VISTAS
             if (string.IsNullOrEmpty(idProvincia) || idProvincia == "0")
             {
                 ddlLocalidad.Items.Clear();
-                ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
+                //ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
                 return;
             }
 
@@ -436,7 +436,7 @@ namespace VISTAS
 
                 // Limpiar y cargar el DropDownList de localidades
                 ddlLocalidad.Items.Clear();
-                ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
+                //ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
 
                 if (localidades.Count > 0)
                 {
@@ -450,12 +450,12 @@ namespace VISTAS
                     ddlLocalidad.Items.Add(new ListItem("No hay localidades disponibles", "0"));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Muestra un mensaje de error en caso de fallas
                 ddlLocalidad.Items.Clear();
                 ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
-                Console.WriteLine("Error: " + ex.Message);
+                
             }
         }
 

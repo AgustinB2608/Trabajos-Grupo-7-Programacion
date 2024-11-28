@@ -95,10 +95,11 @@ namespace NEGOCIOS
             return dao.RetornarCodMedico(dni);
         }
 
-        public DataTable ObtenerMedicoPorCodigo(string codigo)
+        public DataTable MedicosSegunEspecialidad(string especialidad)
         {
-            return dao.ObtenerMedicoPorCodigo(codigo);
-        }
 
+            // Llamar al método correspondiente en la capa DAO
+            return dao.MedicosSegunEspecialidad(especialidad);
+        }
     }
 }

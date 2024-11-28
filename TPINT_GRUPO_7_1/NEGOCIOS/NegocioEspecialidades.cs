@@ -31,7 +31,6 @@ namespace NEGOCIOS
             return Dao.ObtenerTurnosPorEspecialidad(especialidad);
         }
 
-
-
+        
     }
 }

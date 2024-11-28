@@ -154,44 +154,20 @@ namespace DATOS
 
         }
 
-        public DataTable ObtenerMedicoPorCodigo(string codigo)
-        {
-            string consulta = $"SELECT * FROM Medicos WHERE CodMedico_ME = '{codigo}'";
-            return ds.EjecutarConsulta(consulta);
-        }
 
-
-        public List<Localidades> ObtenerLocalidadesPorProvincia(string idProvincia)
-        {
-            // Consulta SQL para obtener localidades por provincia
-            string consulta = "SELECT CodLocalidad_LO AS CodigoLocalidad, Descripcion_LO AS Descripcion, CodProvincia_LO AS CodigoProvincia " +
-                              "FROM Localidades WHERE CodProvincia_LO = @IdProvincia";
-
-            // Crear parámetros SQL
-            SqlParameter[] parametros = new SqlParameter[]
+         public DataTable MedicosSegunEspecialidad(string especialidad)
+         {
+             string consulta = "EXEC SP_RetornarMedicosEspecialidad @Especialidad";
+            
+             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@IdProvincia", idProvincia)
-            };
+                new SqlParameter("@Especialidad", especialidad)
+            };    
 
-            // Ejecutar la consulta con parámetros
-            DataTable dt = ds.EjecutarConsultaConParametros(consulta, parametros);
+            //retorna el datatable del metodo de Conexion
+            return ds.EjecutarConsultaConParametros(consulta, parametros);
 
-            // Convertir el DataTable en una lista de localidades
-            List<Localidades> listaLocalidades = new List<Localidades>();
-            foreach (DataRow row in dt.Rows)
-            {
-                Localidades localidad = new Localidades
-                {
-                    Id_Localidad = row["CodigoLocalidad"].ToString(),
-                    DescripcionLocalidad1 = row["Descripcion"].ToString(),
-                    Id_Provincia = row["CodigoProvincia"].ToString()
-                };
-                listaLocalidades.Add(localidad);
-            }
-
-            return listaLocalidades;
-        }
-
+         }
 
     }
 }
