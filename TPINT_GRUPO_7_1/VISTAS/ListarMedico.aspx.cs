@@ -17,12 +17,13 @@ namespace VISTAS
         {
             if (IsPostBack == false)
             {
-                
                 lblMensaje1.Visible = false;
+                btnVolver.Visible = false;
             }
             else
             {
                 lblMensaje1.Visible = false;
+                btnVolver.Visible = true;
             }
            
         }

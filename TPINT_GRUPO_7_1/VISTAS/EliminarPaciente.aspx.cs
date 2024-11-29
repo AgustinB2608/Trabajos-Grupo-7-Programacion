@@ -41,17 +41,24 @@ namespace VISTAS
                         gvPacienteInfo.DataSource = reg;
                         gvPacienteInfo.DataBind();
 
-                        lblMensaje.Text = "¿Está seguro de que desea eliminar este médico?";
+                        lblMensaje.Text = "¿Está seguro de que desea eliminar este paciente?";
 
                         btnConfirmarEliminar.Visible = true;
+                        
                     }
                     else
                     {
                         lblMensaje.Text = "No se encontraron resultados para el paciente.";
+                        txtEliminar.Text = "";
                     }
 
                     
             }
+            else
+                {
+                    lblMensaje.Text = "Por favor, ingrese un Dni válido.";
+                    txtEliminar.Text = "";
+                }
 
             }
         }
@@ -69,14 +76,16 @@ namespace VISTAS
                 lblMensaje.Text = "Paciente eliminado correctramente";
                 gvPacienteInfo.DataSource = null;
                 gvPacienteInfo.DataBind();
+                txtEliminar.Text = "";
             }
             else
             {
                 lblMensaje.Text = "Hubo un error al intentar eliminar el paciente.";
-                
+                txtEliminar.Text = "";
+
             }
             // Oculta el boton de confirmacion y limpia el mensaje
-            lblMensaje.Text = " ";
+            //lblMensaje.Text = " ";
             btnConfirmarEliminar.Visible = false;
         }
           

@@ -12,11 +12,15 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
+
+///Error al modificar el paciente: Debe declarar la variable escalar '@Dni'. (btnModificar)
+
+
 namespace VISTAS
 {
     public partial class ModificarPaciente : System.Web.UI.Page
     {
-
+        NegocioLocalidades ngl = new NegocioLocalidades();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,6 +28,7 @@ namespace VISTAS
             {
                 CargarProvincias();
                 CargarLocalidades();
+                CargarSexo();
 
             }
             else
@@ -32,7 +37,14 @@ namespace VISTAS
             }
 
         }
-
+        
+        public void CargarSexo()
+        {
+            ddlSexo.Items.Insert(0, new ListItem("Sexo"));
+            ddlSexo.Items.Insert(1, new ListItem("Femenino", "F"));
+            ddlSexo.Items.Insert(2, new ListItem("Masculino", "M"));
+            ddlSexo.Items.Insert(3, new ListItem("Otro", "O"));
+        }
         public void CargarProvincias()
         {
             NegocioProvincia negocioProvincia = new NegocioProvincia();
@@ -89,27 +101,31 @@ namespace VISTAS
                     ddlProvincia.Items.RemoveAt(0);
                     ddlProvincia.Items.Insert(0, new ListItem(obj.Provincia, obj.Provincia));
 
-                
-                ///************************Corregir con el ddl de sexo, hay que traer de la bdd
-                ///
-                // Convertir M/H a Hombre/Mujer
-                if (obj.Sexo == "M")
-                    {
-                        obj.Sexo = "Hombre";
-                    }
-                    else if (obj.Sexo == "H")
-                    {
-                        obj.Sexo = "Mujer";
-                    }
 
-                    // Asignar valores a los TextBox
-                    txtNombre.Text = obj.Nombre;
+                // Convertir
+                if (obj.Sexo == "M")
+                {
+                    obj.Sexo = "Masculino";
+                    ddlSexo.Items.Add(new ListItem(obj.Sexo, "M"));
+                }
+                else if (obj.Sexo == "F")
+                {
+                    obj.Sexo = "Femenino";
+                    ddlSexo.Items.Add(new ListItem(obj.Sexo, "F"));
+                }
+                else
+                {
+                    obj.Sexo = "Otro";
+                    ddlSexo.Items.Add(new ListItem(obj.Sexo, "O"));
+                }
+
+                // Asignar valores a los TextBox
+                txtNombre.Text = obj.Nombre;
                     txtApellido.Text = obj.Apellido;
                     txtDNI.Text = obj.Dni;
                     txtEmail.Text = obj.Email;
                     txtCelular.Text = obj.Celular;
                     txtDireccion.Text = obj.Direccion;
-                    txtSexo.Text = obj.Sexo;
                     lblProvincia.Text = obj.Provincia;
                     lblLocalidad.Text = obj.Localidad;
                     txtNacionalidad.Text = obj.Nacionalidad;
@@ -162,16 +178,25 @@ namespace VISTAS
                     ddlProvincia.Items.RemoveAt(0);
                     ddlProvincia.Items.Insert(0, new ListItem(obj.Provincia, obj.Provincia));
 
-                    // Convertir M/H a Hombre/Mujer
+                    // Convertir
                     if (obj.Sexo == "M")
                     {
-                        obj.Sexo = "Hombre";
+                        obj.Sexo = "Masculino";
+                        ddlSexo.SelectedValue = "M";
+                        
                     }
-                    else if (obj.Sexo == "H")
+                    else if (obj.Sexo == "F")
                     {
-                        obj.Sexo = "Mujer";
+                        obj.Sexo = "Femenino";
+                        ddlSexo.SelectedValue = "F";
+                        
                     }
-
+                    else
+                    {
+                        obj.Sexo = "Otro";
+                        ddlSexo.SelectedValue = "O";
+                        
+                    }
                     // Asignar valores a los TextBox
                     txtNombre.Text = obj.Nombre;
                     txtApellido.Text = obj.Apellido;
@@ -179,7 +204,6 @@ namespace VISTAS
                     txtEmail.Text = obj.Email;
                     txtCelular.Text = obj.Celular;
                     txtDireccion.Text = obj.Direccion;
-                    txtSexo.Text = obj.Sexo; // tiene que ser ddl, modificar
                     ddlProvincia.Text = obj.Provincia;
                     ddlLocalidad.Text = obj.Localidad;
                     txtNacionalidad.Text = obj.Nacionalidad;
@@ -243,7 +267,7 @@ namespace VISTAS
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             //Validacion por si se ingresa vacio
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text) || string.IsNullOrWhiteSpace(txtDNI.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtCelular.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || string.IsNullOrWhiteSpace(txtFechaNacimiento.Text) || string.IsNullOrWhiteSpace(txtSexo.Text) || string.IsNullOrWhiteSpace(ddlProvincia.SelectedValue) || string.IsNullOrWhiteSpace(ddlLocalidad.SelectedValue))
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text) || string.IsNullOrWhiteSpace(txtDNI.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtCelular.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || string.IsNullOrWhiteSpace(txtFechaNacimiento.Text) || string.IsNullOrWhiteSpace(ddlProvincia.SelectedValue) || string.IsNullOrWhiteSpace(ddlLocalidad.SelectedValue))
             {
                 lblError.Text = "Por favor, complete todos los campos.";
                 return;
@@ -260,7 +284,7 @@ namespace VISTAS
                 Provincia = ddlProvincia.SelectedValue,
                 Localidad = ddlLocalidad.SelectedValue,
                 Nacionalidad = txtNacionalidad.Text,
-                Sexo = (txtSexo.Text == "Hombre") ? "H" : (txtSexo.Text == "Mujer") ? "M" : "Error", //Asigno asi por las dudas pero si se borra guarda Hombre o mujer nomas (Sexo = txtSexo.Text)///corregir con ddl
+                Sexo = ddlSexo.SelectedValue,
                 FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text).ToString("dd/MM/yyyy") // Formatea el formato para guardar en la bd
             };
 
@@ -274,9 +298,9 @@ namespace VISTAS
             try
             {
                 lblError.Text = datos; // Mostrar datos 
-                                       // negocio.modificarPaciente(paciente); // Descomentar para guardar
-                                       // lblErrorBusqueda.Text = "Paciente modificado correctamente.";
-                                       // LimpiarCampos();
+                negocio.modificarPaciente(paciente); // Descomentar para guardar
+                lblErrorBusqueda.Text = "Paciente modificado correctamente.";
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
@@ -293,7 +317,7 @@ namespace VISTAS
             txtNombre.Text = "";
             txtDNI.Text = "";
             txtApellido.Text = "";
-            txtSexo.Text = "";
+            ddlSexo.Items.Insert(0, new ListItem("Sexo"));
             txtEmail.Text = "";
             ddlProvincia.Items.Insert(0, new ListItem("Provincia"));
             ddlLocalidad.Items.Insert(0, new ListItem("Localidad"));
@@ -327,6 +351,48 @@ namespace VISTAS
             }
         }
 
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+            string provincia = ddlProvincia.SelectedValue;
+
+            ngl.ObtenerLocalidadesPorProvincia(provincia);
+
+            if (string.IsNullOrEmpty(provincia) || provincia == "0")
+            {
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
+                return;
+            }
+
+            try
+            {
+                // Obtener localidades filtradas por la provincia seleccionada
+                List<Localidades> localidades = new NegocioLocalidades().ObtenerLocalidadesPorProvincia(provincia);
+
+                // Limpiar y cargar el DropDownList de localidades
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
+
+                if (localidades.Count > 0)
+                {
+                    foreach (var loc in localidades)
+                    {
+                        ddlLocalidad.Items.Add(new ListItem(loc.DescripcionLocalidad1, loc.Id_Localidad));
+                    }
+                }
+                else
+                {
+                    ddlLocalidad.Items.Add(new ListItem("No hay localidades disponibles", "0"));
+                }
+            }
+            catch (Exception)
+            {
+                // Muestra un mensaje de error en caso de fallas
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
+
+            }
+        }
     }
 }

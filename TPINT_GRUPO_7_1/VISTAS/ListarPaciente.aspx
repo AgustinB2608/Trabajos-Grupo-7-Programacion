@@ -141,7 +141,7 @@
             
         <div class="contenedor">
          <h1>
-        <asp:Label ID="lblListar" runat="server" Text="Ingrese el Paciente:"></asp:Label>
+        <asp:Label ID="lblListar" runat="server" Text="Ingrese el Dni del paciente:"></asp:Label>
        &nbsp;
        <asp:TextBox ID="txtListar" runat="server" Width="203px" Height="26px"></asp:TextBox>
       
