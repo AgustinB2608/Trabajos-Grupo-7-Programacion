@@ -240,13 +240,13 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.Label lblSexo;
 
         /// <summary>
-        /// Control txtSexo.
+        /// Control ddlSexo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSexo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSexo;
 
         /// <summary>
         /// Control lblProvincia.

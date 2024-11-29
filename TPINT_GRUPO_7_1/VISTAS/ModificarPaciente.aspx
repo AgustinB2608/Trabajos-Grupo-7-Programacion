@@ -171,7 +171,7 @@
                 
                 <div class="search-container">
                     <asp:Label ID="lblBuscar" runat="server" CssClass="form-label" Text="Paciente:"></asp:Label>
-                    <asp:TextBox ID="txtBuscar" CssClass="form-control" runat="server" placeholder="Buscar por DNI o CodPaciente"></asp:TextBox>
+                    <asp:TextBox ID="txtBuscar" CssClass="form-control" runat="server" placeholder="Buscar por DNI"></asp:TextBox>
                     <asp:Button ID="btnBuscar" runat="server" CssClass="btn" OnClick="btnBuscar_Click" Text="Buscar" />
                     <asp:Button ID="btnReset" runat="server" CssClass="btn-reset" OnClick="btnLimpiar_Click" Text="Limpiar" />
                     
@@ -234,12 +234,12 @@
                         <%--Sexo--%>
                         <div class="form-group">
                             <asp:Label ID="lblSexo" runat="server" Text="Sexo:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtSexo" runat="server" CssClass="form-control" placeholder="Sexo:" ReadOnly="true"></asp:TextBox>
+                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
                         </div>
                         <%--Provincia--%>
                         <div class="form-group">
                             <asp:Label ID="lblProvincia" runat="server" Text="Provincia:" CssClass="form-label"></asp:Label>
-                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
                         </div>
                         <%--Localidad--%>
                         <div class="form-group">
