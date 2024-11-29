@@ -12,18 +12,22 @@ namespace ENTIDADES
         private string Especialidad_TU;
         private DateTime Dia_TU;
         private TimeSpan Horario_TU;
-        private string Paciente_TU;
+        private string Nombre_TU;
+        private string Apellido_TU;
+        private string Dni_TU;
         private string Medico_TU;
         private int Duracion_TU;
         private string CodEstadoTurno_TU;
         private string Estado;
 
-        public Turnos(string especialidad, DateTime dia, TimeSpan horario, string paciente, string medico, int duracion, string codEstadoTurno, string estado)
+        public Turnos(string especialidad, DateTime dia, TimeSpan horario, string nombre, string apellido, string dni, string medico, int duracion, string codEstadoTurno, string estado)
         {
             Especialidad_TU = especialidad;
             Dia_TU = dia;
             Horario_TU = horario;
-            Paciente_TU = paciente;
+            Nombre_TU = nombre;
+            Apellido_TU = apellido;
+            Dni_TU = dni;
             Medico_TU = medico;
             Duracion_TU = duracion;
             CodEstadoTurno_TU = codEstadoTurno;
@@ -60,14 +64,34 @@ namespace ENTIDADES
             Horario_TU = horario;
         }
 
-        public string getPaciente()
+        public string getNombre()
         {
-            return Paciente_TU;
+            return Nombre_TU;
         }
 
-        public void setPaciente(string paciente)
+        public void setNombre(string nombre)
         {
-            Paciente_TU = paciente;
+            Nombre_TU = nombre;
+        }
+
+        public string getApellido()
+        {
+            return Apellido_TU;
+        }
+
+        public void setApellido(string apellido)
+        {
+            Apellido_TU = apellido;
+        }
+
+        public string getDni()
+        {
+            return Dni_TU;
+        }
+
+        public void setDni(string dni)
+        {
+            Dni_TU = dni;
         }
 
         public string getMedico()

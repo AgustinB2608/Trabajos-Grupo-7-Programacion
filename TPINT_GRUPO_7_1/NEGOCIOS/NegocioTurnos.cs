@@ -17,7 +17,7 @@ namespace NEGOCIOS
             dao = new DaoTurnos();
         }
 
-        public bool agregarTurno(string medico, string especialidad, string horario, string paciente, int duracion, string fecha, string estado)
+        public bool agregarTurno(string medico, string especialidad, string horario, string nombre, string apellido, string dni, int duracion, string fecha, string estado)
         {
             // Convertir la fecha
             TimeSpan horarioTimeSpan = TimeSpan.Parse(horario);
@@ -30,7 +30,7 @@ namespace NEGOCIOS
             }
 
             // Creamos un objeto turnos con los valores
-            Turnos turno = new Turnos(especialidad, diaDateTime, horarioTimeSpan, paciente, medico, duracion, "A", estado);
+            Turnos turno = new Turnos(especialidad, diaDateTime, horarioTimeSpan, nombre, apellido, dni, medico, duracion, "A", estado);
 
             dao = new DaoTurnos();
 

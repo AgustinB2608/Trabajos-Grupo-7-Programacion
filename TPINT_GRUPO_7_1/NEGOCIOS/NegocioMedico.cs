@@ -101,5 +101,11 @@ namespace NEGOCIOS
             // Llamar al método correspondiente en la capa DAO
             return dao.MedicosSegunEspecialidad(especialidad);
         }
+        public DataTable HorarioSegunMedico(string medico)
+        {
+
+            // Llamar al método correspondiente en la capa DAO
+            return dao.HorariosPorMedico(medico);
+        }
     }
 }

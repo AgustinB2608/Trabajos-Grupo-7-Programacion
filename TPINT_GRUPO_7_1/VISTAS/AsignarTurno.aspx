@@ -86,7 +86,7 @@
         <asp:Label ID="lblUsuario" runat="server" Text="" />
         <h1>Asignar Turno</h1>
         <label for="ddlMedico">Médico</label>
-        <asp:DropDownList ID="ddlMedico" runat="server" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
+        <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
         </asp:DropDownList>
 
         <label for="lblEspecialidad">Especialidad</label>
@@ -97,13 +97,19 @@
         <asp:TextBox ID="txtFecha" runat="server"></asp:TextBox>
 
         <label for="ddlHorario">Horario Disponible</label>
-        <asp:DropDownList ID="ddlHorario" runat="server">
+        <asp:DropDownList ID="ddlHorario" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHorario_SelectedIndexChanged">
             <asp:ListItem Value="0">Seleccionar Horario</asp:ListItem>
         </asp:DropDownList>
 
-        <label for="lblPaciente">Paciente</label>
-        <asp:DropDownList ID="ddlPaciente" runat="server">
-        </asp:DropDownList>
+        <label for="lblNombre">Nombre</label>
+        <asp:TextBox ID="txtNombrePaciente" runat="server" Placeholder="Nombre del Paciente"></asp:TextBox>
+
+        <label for="lblApellido">Apellido</label>
+        <asp:TextBox ID="txtApellidoPaciente" runat="server" Placeholder="Apellido del Paciente"></asp:TextBox>
+
+        <label for="lblDni">Dni</label>
+        <asp:TextBox ID="txtDniPaciente" runat="server" Placeholder="DNI del Paciente"></asp:TextBox>
+
 
         <label for="lblDuracion">Duracion</label>
         <asp:TextBox ID="txtDuracion" runat="server"></asp:TextBox>

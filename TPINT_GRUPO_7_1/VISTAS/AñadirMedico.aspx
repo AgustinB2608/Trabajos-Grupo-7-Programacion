@@ -11,7 +11,7 @@
             --color-header: #2C3E50;
             --color-boton: #3490dc;
             --color-boton-hover: #2779bd;
-            --color-textbox: #ddd;
+            
             --color-error: #ff6347;
             --color-fondo-error: #f8d7da;
             --radio-borde: 8px;

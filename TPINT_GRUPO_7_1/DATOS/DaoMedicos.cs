@@ -158,16 +158,27 @@ namespace DATOS
          public DataTable MedicosSegunEspecialidad(string especialidad)
          {
              string consulta = "EXEC SP_RetornarMedicosEspecialidad @Especialidad";
-            
-             SqlParameter[] parametros = new SqlParameter[]
+
+            SqlParameter[] parametros = new SqlParameter[]
+               {
+                    new SqlParameter("@Especialidad", especialidad)
+               };
+
+                        return ds.EjecutarConsultaConParametros(consulta, parametros);
+
+        }
+
+        public DataTable HorariosPorMedico(string medico)
+        {
+            string consulta = "EXEC SP_retornarHorariosPorMedico @CodMedico";
+
+            SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Especialidad", especialidad)
-            };    
+                new SqlParameter("@CodMedico", medico)
+            };
 
-            //retorna el datatable del metodo de Conexion
             return ds.EjecutarConsultaConParametros(consulta, parametros);
-
-         }
+        }
 
     }
 }

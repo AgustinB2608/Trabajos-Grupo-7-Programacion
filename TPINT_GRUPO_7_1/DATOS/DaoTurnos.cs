@@ -15,14 +15,16 @@ namespace DATOS
 
         public bool agregarTurno(Turnos turno)
         {
-            string consulta = "INSERT INTO Turnos (CodEspecialidades_TU, Dia_TU, CodPaciente_TU, CodMedico_TU, Horario_TU, CodEstadoTurno_TU)" +
-                               " VALUES (@Especialidad, @Dia, @Paciente, @Medico, @horario, @CodEstadoTurno)";
+            string consulta = "INSERT INTO Turnos (CodEspecialidades_TU, Dia_TU, NombrePaciente_TU, ApellidoPaciente_TU, DniPaciente_TU, CodMedico_TU, Horario_TU, CodEstadoTurno_TU)" +
+                               " VALUES (@Especialidad, @Dia, @Nombre, @Apellido, @Dni, @Medico, @horario, @CodEstadoTurno)";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
                     new SqlParameter("@Especialidad", turno.getEspecialidad()),
                     new SqlParameter("@Dia", turno.getDia()),
-                    new SqlParameter("@Paciente", turno.getPaciente()),
+                    new SqlParameter("@Nombre", turno.getNombre()),
+                    new SqlParameter("@Apellido", turno.getApellido()),
+                    new SqlParameter("@Dni", turno.getDni()),
                     new SqlParameter("@Medico", turno.getMedico()),
                     new SqlParameter("@horario", turno.getDuracion()),
                     new SqlParameter("@CodEstadoTurno", turno.getCodEstadoTurno()),

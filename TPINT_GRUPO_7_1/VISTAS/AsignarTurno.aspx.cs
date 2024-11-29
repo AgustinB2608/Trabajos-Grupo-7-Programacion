@@ -47,21 +47,10 @@ namespace VISTAS
             ddlEspecialidad.DataBind();
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccionar Especialidad", "0"));
 
-            // Configuración de ddlHorario
-            /*ddlHorario.DataSource = negH.ObtenerHorarios();
-            ddlHorario.DataTextField = "Horario";
-            ddlHorario.DataValueField = "IdHorario";
-            ddlHorario.DataBind();*/
-            ddlHorario.Items.Insert(0, new ListItem("Seleccionar Horario", "0"));
-
             /// Configuración de ddlMedico
             /// lo comente porq si no trae los nombres solos y trae todos, la idea es que traiga el nombre completo
             /// y segun la especialidad, queda lo mismo para los horarios, tiene que ser el disponible que tiene ese medico
-            /*ddlMedico.DataSource = negM.listarMedicos();
-            ddlMedico.DataTextField = "Nombre";
-            ddlMedico.DataValueField = "CodigoMedico";
-            ddlMedico.DataBind();*/
-            ddlMedico.Items.Insert(0, new ListItem("Seleccionar Médico", "0"));
+            
 
             /*para tomar el turno tiene que tener nombre, apellido y dni del paciente*/
         }
@@ -76,29 +65,21 @@ namespace VISTAS
             }
 
             // Validación de Dropdowns
-            if (!ValidarSeleccionDropDown(ddlEspecialidad, "Debe seleccionar una especialidad.") ||
-                !ValidarSeleccionDropDown(ddlHorario, "Debe seleccionar un horario.") ||
-                !ValidarSeleccionDropDown(ddlMedico, "Debe seleccionar un médico.") ||
-                !ValidarSeleccionDropDown(ddlPaciente, "Debe seleccionar un paciente."))
-            {//no conviene traer pacientes, son muchos, tomar turno con nombre, apellido, dni de paciente
-                return; // Si alguna validación falla, no continuar
-            }
+            if (!ValidarCamposVacios()) return;
 
             // Obtener valores seleccionados de los Dropdowns
             string especialidad = ddlEspecialidad.SelectedValue;
             string horario = ddlHorario.SelectedValue;
             string medico = ddlMedico.SelectedValue;
-            ///string paciente = ddlPaciente.SelectedValue;
-
-
-            ///MedicosSegunEspecialidad
-
-
 
             // Obtener valores de los campos de texto
             string duracionText = txtDuracion.Text.Trim();
             string fecha = txtFecha.Text.Trim();
-            ///string estado = txtEstado.Text.Trim();
+            string nombre = txtNombrePaciente.Text.Trim();
+            string apellido = txtApellidoPaciente.Text.Trim();
+            string dni = txtDniPaciente.Text.Trim();
+            string estado = "P";
+
             //estado no hay que poner nada, por default queda en pendiente y la confirmacion la hace el medico cuando
             //lo atiende, tambien la cancelacion
 
@@ -111,9 +92,9 @@ namespace VISTAS
             }
 
             // Asignar el turno utilizando la lógica de negocio
-            /// bool asignado = negT.agregarTurno (medico, especialidad, horario, paciente,  duracion, fecha, estado);
+            bool asignado = negT.agregarTurno (medico, especialidad, horario, nombre, apellido , dni,  duracion, fecha, estado);
 
-            /*if (asignado)
+            if (asignado)
             {
                 lblExito.Text = "Turno asignado correctamente.";
                 LimpiarCampos();
@@ -121,7 +102,7 @@ namespace VISTAS
             else
             {
                 lblError.Text = "Error al asignar el turno.";
-            }*/
+            }
 
 
         }
@@ -131,11 +112,21 @@ namespace VISTAS
         // Función para validar que los campos no estén vacíos
         private bool ValidarCamposVacios()
         {
-            return !(string.IsNullOrWhiteSpace(ddlEspecialidad.SelectedValue) ||
-                     string.IsNullOrWhiteSpace(ddlHorario.SelectedValue) ||
-                     string.IsNullOrWhiteSpace(ddlMedico.SelectedValue) ||
-                     string.IsNullOrWhiteSpace(ddlPaciente.SelectedValue));
+            if (ddlEspecialidad.SelectedValue == "0" ||
+                ddlHorario.SelectedValue == "0" ||
+                ddlMedico.SelectedValue == "0" ||
+                string.IsNullOrWhiteSpace(txtNombrePaciente.Text) ||
+                string.IsNullOrWhiteSpace(txtApellidoPaciente.Text) ||
+                string.IsNullOrWhiteSpace(txtDniPaciente.Text) ||
+                string.IsNullOrWhiteSpace(txtDuracion.Text) ||
+                string.IsNullOrWhiteSpace(txtFecha.Text))
+            {
+                lblError.Text = "Debe completar todos los campos obligatorios.";
+                return false;
+            }
+            return true;
         }
+
 
         // Función para validar DropDownList
         private bool ValidarSeleccionDropDown(DropDownList ddl, string mensajeError)
@@ -152,127 +143,160 @@ namespace VISTAS
         private void LimpiarCampos()
         {
             ddlEspecialidad.SelectedIndex = 0;
-            ddlHorario.SelectedIndex = 0;
-            ddlMedico.SelectedIndex = 0;
-            ddlPaciente.SelectedIndex = 0;
+            ddlMedico.Items.Clear();
+            ddlMedico.Items.Add(new ListItem("Seleccionar Médico", "0"));
+            ddlHorario.Items.Clear();
+            ddlHorario.Items.Add(new ListItem("Seleccionar Horario", "0"));
+            txtNombrePaciente.Text = "";
+            txtApellidoPaciente.Text = "";
+            txtDniPaciente.Text = "";
+            txtDuracion.Text = "";
+            txtFecha.Text = "";
+            lblError.Text = "";
+            lblExito.Text = "";
         }
 
 
+
         /// el ultimo item que trae es repetido no tengo idea porq, ver eso
-        
+
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             string especialidadSeleccionada = ddlEspecialidad.SelectedValue;
 
-            ///ddlMedico.Items.Insert(0, new ListItem("Seleccionar Médico", "0"));
-
             // Verificar si la especialidad seleccionada es válida
             if (string.IsNullOrEmpty(especialidadSeleccionada) || especialidadSeleccionada == "0")
             {
-                // Limpiar el DropDownList
+                // Limpiar el DropDownList de médicos
                 ddlMedico.Items.Clear();
-                ddlMedico.Items.Add(new ListItem("Seleccionar Especialidad", "0"));
+                ddlMedico.Items.Add(new ListItem("Seleccionar Médico", "0"));
                 return;
-            }   
-                try
-                {
-                    // Instancia del negocio de médicos
-                    NegocioMedico negocioMedico = new NegocioMedico();
+            }
+            
+            try
+            {
+                // Instancia de la clase de negocios
+                NegocioMedico negocioMedico = new NegocioMedico();
 
-                    // Llamar al método MedicosSegunEspecialidad para obtener el DataTable con los médicos
-                    DataTable medicos = negocioMedico.MedicosSegunEspecialidad(especialidadSeleccionada);
+                // Llamar al método que obtiene los médicos y horarios por especialidad
+                DataTable medicos = negocioMedico.MedicosSegunEspecialidad(especialidadSeleccionada);
 
-                    ddlMedico.Items.Clear();
-                   
+                // Limpiar el DropDownList de médicos
+                ddlMedico.Items.Clear();
 
-                // Verificar si el DataTable tiene filas
                 if (medicos.Rows.Count > 0)
-                    {
-                    string nombreCompleto, idMedico, horarioAtencion, idhorarioAtencion;
-                        foreach (DataRow row in medicos.Rows)
-                        {
-                        nombreCompleto = $"{row["Nombre"]} {row["Apellido"]}";
-                        idMedico = row["CodigoMedico"].ToString();
-                        horarioAtencion = row["Horarios de Atención"].ToString();
-                        idhorarioAtencion = row["CodHorario"].ToString();
-
-                        // Agregar el elemento al DropDownList de medico
-                        ddlMedico.Items.Add(new ListItem(nombreCompleto, idMedico));
-                        // horario
-                        }
-
-                    }
-                    else
-                    {
-                        // Agregar un mensaje en caso de que no existan médicos
-                        ddlMedico.Items.Add(new ListItem("No hay médicos disponibles", "0"));
-                    }
-
-                         ddlMedico.Items.Insert(0, new ListItem("Seleccionar Médico", "0"));
-                }
-                catch (Exception)
                 {
-                    // Manejo de errores
-                    ddlMedico.Items.Clear();
-                    ddlMedico.Items.Add(new ListItem("Error al cargar médicos", "0"));
+                    string nombreMedico, codigoMedico, horarioAtencion, idHorarioAtencion;
 
+                    foreach (DataRow row in medicos.Rows)
+                    {
+                        nombreMedico = row["NombreMedico"].ToString();
+                        codigoMedico = row["CodigoMedico"].ToString();
+                        horarioAtencion = row["HorarioAtencion"].ToString();
+                        idHorarioAtencion = row["CodHorario"].ToString();
+
+                        // Agregar médicos al DropDownList
+                        ddlMedico.Items.Add(new ListItem(nombreMedico, codigoMedico));
+
+                        ddlHorario.Items.Add(new ListItem(horarioAtencion, idHorarioAtencion));
+                    }
                 }
-
-
+                else
+                {
+                    ddlMedico.Items.Add(new ListItem("No hay médicos disponibles", "0"));
+                }
+            }
+            catch (Exception)
+            {
+                // Manejo de errores
+                ddlMedico.Items.Clear();
+                ddlMedico.Items.Add(new ListItem("Error al cargar médicos", "0"));
+            }
         }
+
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
             string medicoSeleccionado = ddlMedico.SelectedValue;
 
-            // Verificar si la especialidad seleccionada es válida
+            // Verificar si el médico seleccionado es válido
             if (string.IsNullOrEmpty(medicoSeleccionado) || medicoSeleccionado == "0")
             {
-                // Limpiar el DropDownList
+                // Limpiar el DropDownList de horarios
                 ddlHorario.Items.Clear();
                 ddlHorario.Items.Add(new ListItem("Seleccionar Horario", "0"));
                 return;
-            } 
-                ddlHorario.Items.Clear();
+            }
+
             try
             {
                 // Instancia del negocio de médicos
                 NegocioMedico negocioMedico = new NegocioMedico();
 
-                // Llamar al método MedicosSegunEspecialidad para obtener el DataTable con los médicos
-                DataTable medicos = negocioMedico.listarMedicoEspecifico(medicoSeleccionado);
+                // Llamar al método para obtener los horarios de atención según el médico
+                DataTable horarios = negocioMedico.HorarioSegunMedico(medicoSeleccionado);
 
-                // Verificar si el DataTable tiene filas
-                if (medicos.Rows.Count > 0)
+                // Limpiar el DropDownList de horarios
+                ddlHorario.Items.Clear();
+
+                if (horarios.Rows.Count > 0)
                 {
                     string horarioAtencion, idhorarioAtencion;
 
-                    foreach (DataRow row in medicos.Rows)
+                    foreach (DataRow row in horarios.Rows)
                     {
-                        horarioAtencion = row["Horarios de Atención"].ToString();
+                        horarioAtencion = row["HorarioAtencion"].ToString();
                         idhorarioAtencion = row["CodHorario"].ToString();
 
-                         ddlHorario.Items.Add(new ListItem(horarioAtencion, idhorarioAtencion));
-                        
+                        ddlHorario.Items.Add(new ListItem(horarioAtencion, idhorarioAtencion));
                     }
-
                 }
                 else
                 {
-                    // Agregar un mensaje en caso de que no existan médicos
-                    ddlHorario.Items.Add(new ListItem("No hay horario disponible", "0"));
+                    ddlHorario.Items.Add(new ListItem("No hay horarios disponibles", "0"));
                 }
-
-                ///ddlHorario.Items.Insert(0, new ListItem("Seleccionar Horario", "0"));
             }
             catch (Exception)
             {
                 // Manejo de errores
                 ddlHorario.Items.Clear();
                 ddlHorario.Items.Add(new ListItem("Error al cargar horarios", "0"));
-
             }
-
         }
+
+        protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string rangoSeleccionado = ddlHorario.SelectedValue; 
+
+            // Validar que el rango no esté vacío y contenga el guion
+            if (!string.IsNullOrEmpty(rangoSeleccionado) && rangoSeleccionado.Contains("-"))
+            {
+                // Dividir el rango en dos partes
+                string[] partes = rangoSeleccionado.Split('-'); // Separar por el guion
+
+                if (partes.Length == 2)
+                {
+                    string horaInicio = partes[0].Trim(); // "08:00"
+                    string horaFin = partes[1].Trim(); // "12:00"
+
+                    // Intentar convertir las partes a TimeSpan
+                    if (TimeSpan.TryParse(horaInicio, out TimeSpan inicio) &&
+                        TimeSpan.TryParse(horaFin, out TimeSpan fin))
+                    {
+                        lblExito.Text = $"Horas válidas. Inicio: {inicio}, Fin: {fin}";
+                    }
+                    else
+                    {
+                        lblError.Text = "Las horas no tienen un formato válido.";
+                    }
+                }
+            }
+            else
+            {
+                lblError.Text = "Seleccione un rango de horario válido.";
+            }
+        }
+
+
     }
 }
