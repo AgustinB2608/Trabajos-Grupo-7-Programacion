@@ -37,7 +37,7 @@ namespace DATOS
                 new SqlParameter("@Telefono", medic.getCelular())               
             };
 
-            int exito = ds.EjecutarConsultaSinRetorno(agregar, parametros);
+            int exito = ds.EjecutarProcedimientoConRetorno(agregar, parametros);
 
             return exito > 0;
         }

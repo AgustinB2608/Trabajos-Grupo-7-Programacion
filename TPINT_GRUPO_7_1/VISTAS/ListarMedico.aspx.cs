@@ -17,7 +17,6 @@ namespace VISTAS
         {
             if (IsPostBack == false)
             {
-                CargarMedicos();
                 lblMensaje1.Visible = false;
                 btnVolver.Visible = false;
             }
