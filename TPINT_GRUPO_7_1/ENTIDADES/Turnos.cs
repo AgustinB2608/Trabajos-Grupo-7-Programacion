@@ -20,7 +20,7 @@ namespace ENTIDADES
         private string CodEstadoTurno_TU;
         private string Estado;
 
-        public Turnos(string especialidad, DateTime dia, TimeSpan horario, string nombre, string apellido, string dni, string medico, int duracion, string codEstadoTurno, string estado)
+        public Turnos(string especialidad, DateTime dia, TimeSpan horario, string nombre, string apellido, string dni, string medico, string codEstadoTurno, string estado)
         {
             Especialidad_TU = especialidad;
             Dia_TU = dia;
@@ -29,7 +29,6 @@ namespace ENTIDADES
             Apellido_TU = apellido;
             Dni_TU = dni;
             Medico_TU = medico;
-            Duracion_TU = duracion;
             CodEstadoTurno_TU = codEstadoTurno;
             Estado = estado;
         }

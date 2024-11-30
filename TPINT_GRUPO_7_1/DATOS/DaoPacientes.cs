@@ -18,8 +18,10 @@ namespace DATOS
     {
 
             // Consulta SQL para insertar un nuevo paciente en la tabla Paciente
+            
             string agregar = "EXEC SP_AgregarPaciente @Provincia, @Localidad, @Dni, @Nombre, @Apellido, @FechaNacimiento, @Nacionalidad, @Direccion, @Email, @Sexo, @Telefono";
 
+            
             // Crear los parámetros y asignar los valores
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -28,7 +30,7 @@ namespace DATOS
                 new SqlParameter("@Dni", paciente.Dni),
                 new SqlParameter("@Nombre", paciente.Nombre),
                 new SqlParameter("@Apellido", paciente.Apellido),
-                new SqlParameter("@FechaNacimiento", paciente.FechaNacimiento),
+                new SqlParameter("@FechaNacimiento", paciente.FechaNacimiento.Date),
                 new SqlParameter("@Nacionalidad", paciente.Nacionalidad),
                 new SqlParameter("@Direccion", paciente.Direccion),
                 new SqlParameter("@Email", paciente.Email),
@@ -38,7 +40,7 @@ namespace DATOS
             };
 
             // Ejecutar la consulta con los parámetros
-            int exito = ds.EjecutarConsultaSinRetorno(agregar, parametros.ToArray());
+            int exito = ds.EjecutarConsultaSinRetorno(agregar, parametros);//.ToArray()
 
             if (exito > 0)
             {

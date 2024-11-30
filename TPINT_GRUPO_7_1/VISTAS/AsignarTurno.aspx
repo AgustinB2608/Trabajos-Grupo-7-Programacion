@@ -96,10 +96,8 @@
         <label for="lblFecha">Fecha</label>
         <asp:TextBox ID="txtFecha" runat="server"></asp:TextBox>
 
-        <label for="ddlHorario">Horario Disponible</label>
-        <asp:DropDownList ID="ddlHorario" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHorario_SelectedIndexChanged">
-            <asp:ListItem Value="0">Seleccionar Horario</asp:ListItem>
-        </asp:DropDownList>
+        <label for="lblHorario">Horario de Atención</label>
+        <asp:TextBox ID="txtHorario" runat="server" ReadOnly="true"></asp:TextBox>
 
         <label for="lblNombre">Nombre</label>
         <asp:TextBox ID="txtNombrePaciente" runat="server" Placeholder="Nombre del Paciente"></asp:TextBox>
@@ -111,11 +109,11 @@
         <asp:TextBox ID="txtDniPaciente" runat="server" Placeholder="DNI del Paciente"></asp:TextBox>
 
 
-        <label for="lblDuracion">Duracion</label>
-        <asp:TextBox ID="txtDuracion" runat="server"></asp:TextBox>
+        <label for="lblHorario">Turnos Disponibles | hs</label>
+        <asp:DropDownList ID="ddlHoraAsignada" runat="server" AutoPostBack="True" ></asp:DropDownList>
 
         <label for="lblEstado">Estado</label>
-        <asp:TextBox ID="txtEstado" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtEstado" runat="server" Placeholder="Pendiente" ReadOnly="true"></asp:TextBox>
 
         <div class="button-container">
             <asp:Button ID="btnAsignar" runat="server" Text="Asignar" OnClick="btnAsignar_Click" />

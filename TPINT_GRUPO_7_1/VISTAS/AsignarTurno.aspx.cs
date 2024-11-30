@@ -47,10 +47,13 @@ namespace VISTAS
             ddlEspecialidad.DataBind();
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccionar Especialidad", "0"));
 
+
+            ddlMedico.Items.Add(new ListItem("Seleccionar Médico", "0"));
+            ddlHoraAsignada.Items.Add(new ListItem("Turnos Disponibles", "0"));
             /// Configuración de ddlMedico
             /// lo comente porq si no trae los nombres solos y trae todos, la idea es que traiga el nombre completo
             /// y segun la especialidad, queda lo mismo para los horarios, tiene que ser el disponible que tiene ese medico
-            
+
 
             /*para tomar el turno tiene que tener nombre, apellido y dni del paciente*/
         }
@@ -69,30 +72,25 @@ namespace VISTAS
 
             // Obtener valores seleccionados de los Dropdowns
             string especialidad = ddlEspecialidad.SelectedValue;
-            string horario = ddlHorario.SelectedValue;
+            string horario = txtHorario.Text;
             string medico = ddlMedico.SelectedValue;
 
             // Obtener valores de los campos de texto
-            string duracionText = txtDuracion.Text.Trim();
-            string fecha = txtFecha.Text.Trim();
+
+            string fecha = txtFecha.Text.Trim().ToString();
             string nombre = txtNombrePaciente.Text.Trim();
             string apellido = txtApellidoPaciente.Text.Trim();
             string dni = txtDniPaciente.Text.Trim();
             string estado = "P";
+            string horarioAsignado = ddlHoraAsignada.SelectedIndex.ToString();
+
 
             //estado no hay que poner nada, por default queda en pendiente y la confirmacion la hace el medico cuando
             //lo atiende, tambien la cancelacion
 
-            // Convertir la duración a int
-            int duracion;
-            if (!int.TryParse(duracionText, out duracion))
-            {
-                lblError.Text = "La duración debe ser un número válido.";
-                return;
-            }
 
             // Asignar el turno utilizando la lógica de negocio
-            bool asignado = negT.agregarTurno (medico, especialidad, horario, nombre, apellido , dni,  duracion, fecha, estado);
+            bool asignado = negT.agregarTurno(medico, especialidad, horario, nombre, apellido , dni, fecha, horarioAsignado, estado);
 
             if (asignado)
             {
@@ -113,12 +111,12 @@ namespace VISTAS
         private bool ValidarCamposVacios()
         {
             if (ddlEspecialidad.SelectedValue == "0" ||
-                ddlHorario.SelectedValue == "0" ||
                 ddlMedico.SelectedValue == "0" ||
+                ddlHoraAsignada.SelectedValue == "0" ||
                 string.IsNullOrWhiteSpace(txtNombrePaciente.Text) ||
                 string.IsNullOrWhiteSpace(txtApellidoPaciente.Text) ||
                 string.IsNullOrWhiteSpace(txtDniPaciente.Text) ||
-                string.IsNullOrWhiteSpace(txtDuracion.Text) ||
+                string.IsNullOrWhiteSpace(txtHorario.Text) ||
                 string.IsNullOrWhiteSpace(txtFecha.Text))
             {
                 lblError.Text = "Debe completar todos los campos obligatorios.";
@@ -142,15 +140,18 @@ namespace VISTAS
         // Limpiar campos después de asignar el turno
         private void LimpiarCampos()
         {
-            ddlEspecialidad.SelectedIndex = 0;
+            ddlEspecialidad.Items.Clear();
+            ddlMedico.Items.Add(new ListItem("Seleccionar Especialidad", "0"));
+            ddlHoraAsignada.Items.Clear();
+            ddlHoraAsignada.Items.Add(new ListItem("Turnos Disponibles", "0"));
             ddlMedico.Items.Clear();
             ddlMedico.Items.Add(new ListItem("Seleccionar Médico", "0"));
-            ddlHorario.Items.Clear();
-            ddlHorario.Items.Add(new ListItem("Seleccionar Horario", "0"));
+            ddlHoraAsignada.Items.Clear();
+            ddlMedico.Items.Add(new ListItem("Turnos Disponibles", "0"));
+            txtHorario.Text = "";
             txtNombrePaciente.Text = "";
             txtApellidoPaciente.Text = "";
             txtDniPaciente.Text = "";
-            txtDuracion.Text = "";
             txtFecha.Text = "";
             lblError.Text = "";
             lblExito.Text = "";
@@ -163,6 +164,9 @@ namespace VISTAS
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             string especialidadSeleccionada = ddlEspecialidad.SelectedValue;
+            txtHorario.Text = "";
+            ddlHoraAsignada.Items.Clear();
+            ddlHoraAsignada.Items.Add(new ListItem("Turnos Disponibles", "0"));
 
             // Verificar si la especialidad seleccionada es válida
             if (string.IsNullOrEmpty(especialidadSeleccionada) || especialidadSeleccionada == "0")
@@ -183,6 +187,7 @@ namespace VISTAS
 
                 // Limpiar el DropDownList de médicos
                 ddlMedico.Items.Clear();
+                ddlMedico.Items.Add(new ListItem("Seleccionar Médico", "0"));
 
                 if (medicos.Rows.Count > 0)
                 {
@@ -198,7 +203,6 @@ namespace VISTAS
                         // Agregar médicos al DropDownList
                         ddlMedico.Items.Add(new ListItem(nombreMedico, codigoMedico));
 
-                        ddlHorario.Items.Add(new ListItem(horarioAtencion, idHorarioAtencion));
                     }
                 }
                 else
@@ -217,14 +221,18 @@ namespace VISTAS
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //cuando cambio de medico pero no de especialidad tienen los mismos horarios, asi esta en la bdd, despues lo cambiamos
+
             string medicoSeleccionado = ddlMedico.SelectedValue;
+            txtHorario.Text = "";
+            ddlHoraAsignada.Items.Clear();
+            ddlHoraAsignada.Items.Add(new ListItem ("Turnos Disponibles","0"));
 
             // Verificar si el médico seleccionado es válido
             if (string.IsNullOrEmpty(medicoSeleccionado) || medicoSeleccionado == "0")
             {
                 // Limpiar el DropDownList de horarios
-                ddlHorario.Items.Clear();
-                ddlHorario.Items.Add(new ListItem("Seleccionar Horario", "0"));
+                
                 return;
             }
 
@@ -234,39 +242,56 @@ namespace VISTAS
                 NegocioMedico negocioMedico = new NegocioMedico();
 
                 // Llamar al método para obtener los horarios de atención según el médico
-                DataTable horarios = negocioMedico.HorarioSegunMedico(medicoSeleccionado);
+                DataTable horario = negocioMedico.HorarioSegunMedico(medicoSeleccionado);
 
                 // Limpiar el DropDownList de horarios
-                ddlHorario.Items.Clear();
-
-                if (horarios.Rows.Count > 0)
+               
+                if (horario.Rows.Count > 0)
                 {
-                    string horarioAtencion, idhorarioAtencion;
-
-                    foreach (DataRow row in horarios.Rows)
+                    string horarioAtencion;
+                    string desde;
+                    string hasta; 
+                    foreach (DataRow row in horario.Rows)
                     {
                         horarioAtencion = row["HorarioAtencion"].ToString();
-                        idhorarioAtencion = row["CodHorario"].ToString();
+                        desde = row["Desde"].ToString();
+                        hasta = row["Hasta"].ToString();
 
-                        ddlHorario.Items.Add(new ListItem(horarioAtencion, idhorarioAtencion));
+
+                        txtHorario.Text = horarioAtencion;
+                        // Convierte las cadenas a TimeSpan
+                        TimeSpan desdeHs = TimeSpan.Parse(desde);
+                        TimeSpan hastaHs = TimeSpan.Parse(hasta);
+
+                        //aca deberia llamar al met de DaoHorario que retorne los reg donde coincida
+                        //deberia contemplar que las fechas sean iguales y el horario. dif fecha mismo 
+                        //horario si se podria
+                        //cuando tengo desde o hasta una hora 00:00 no me asigna los horarios
+                        //tengo que cambiar en la bdd, pondriamos rango de horarios desde las 00 hasta las
+                        //22 o 23
+                        for (TimeSpan hora = desdeHs; hora <= hastaHs; hora = hora.Add(TimeSpan.FromMinutes(15)))
+                        {
+                            string horaFinal = hora.ToString(@"hh\:mm");  // Formatea la hora como hh:mm
+                            ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
+                        }
                     }
                 }
                 else
                 {
-                    ddlHorario.Items.Add(new ListItem("No hay horarios disponibles", "0"));
+                    txtHorario.Text = "No hay horario disponible";
                 }
             }
             catch (Exception)
             {
                 // Manejo de errores
-                ddlHorario.Items.Clear();
-                ddlHorario.Items.Add(new ListItem("Error al cargar horarios", "0"));
+                txtHorario.Text = "";
+                txtHorario.Text = "Error al cargar horarios";
             }
         }
 
         protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string rangoSeleccionado = ddlHorario.SelectedValue; 
+            string rangoSeleccionado = txtHorario.Text;
 
             // Validar que el rango no esté vacío y contenga el guion
             if (!string.IsNullOrEmpty(rangoSeleccionado) && rangoSeleccionado.Contains("-"))

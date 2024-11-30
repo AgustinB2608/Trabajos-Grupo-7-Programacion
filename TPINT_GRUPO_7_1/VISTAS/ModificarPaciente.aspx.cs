@@ -73,81 +73,6 @@ namespace VISTAS
             ddlLocalidad.Items.Insert(0, new ListItem("Localidad"));
         }
 
-        public void DatosSegunCodigo()
-        {
-            NegocioPacientes reg = new NegocioPacientes();
-            Pacientes obj = new Pacientes();
-
-            DataTable paciente = reg.listarPacienteEspecificoDni(txtBuscar.Text);
-
-                if (paciente.Rows.Count > 0) //Validad que hayan datos para mostrar
-                {
-                    obj.Nombre = paciente.Rows[0]["Nombre"].ToString(); //Asigna el nombre del paciente buscado a nombre
-                    obj.Apellido = paciente.Rows[0]["Apellido"].ToString(); //Asigna el apellido del paciente buscado a apellido
-                    obj.Dni = paciente.Rows[0]["Dni"].ToString(); //Asigna el dni del paciente buscado a dni
-                    obj.Email = paciente.Rows[0]["Email"].ToString(); // Asigna el email del paciente buscado a email
-                    obj.Celular = paciente.Rows[0]["Telefono"].ToString(); // Asigna el telefono del paciente buscado a celular 
-                    obj.Provincia = paciente.Rows[0]["Provincia"].ToString(); // Asigna la provincia del paciente buscado a provincia
-                    obj.Localidad = paciente.Rows[0]["Localidad"].ToString(); // Asigna la localidad del paciente buscado a localidad
-                    obj.Direccion = paciente.Rows[0]["Direccion"].ToString();// Asigna la direccion del paciente buscado a direccion
-                    obj.Sexo = paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
-                    obj.FechaNacimiento = paciente.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del paciente buscado
-                    obj.Nacionalidad = paciente.Rows[0]["Nacionalidad"].ToString();
-
-                // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
-                ddlLocalidad.Items.RemoveAt(0); 
-                    ddlLocalidad.Items.Insert(0, new ListItem(obj.Localidad, obj.Localidad));
-
-                    ddlProvincia.Items.RemoveAt(0);
-                    ddlProvincia.Items.Insert(0, new ListItem(obj.Provincia, obj.Provincia));
-
-
-                // Convertir
-                if (obj.Sexo == "M")
-                {
-                    obj.Sexo = "Masculino";
-                    ddlSexo.Items.Add(new ListItem(obj.Sexo, "M"));
-                }
-                else if (obj.Sexo == "F")
-                {
-                    obj.Sexo = "Femenino";
-                    ddlSexo.Items.Add(new ListItem(obj.Sexo, "F"));
-                }
-                else
-                {
-                    obj.Sexo = "Otro";
-                    ddlSexo.Items.Add(new ListItem(obj.Sexo, "O"));
-                }
-
-                // Asignar valores a los TextBox
-                txtNombre.Text = obj.Nombre;
-                    txtApellido.Text = obj.Apellido;
-                    txtDNI.Text = obj.Dni;
-                    txtEmail.Text = obj.Email;
-                    txtCelular.Text = obj.Celular;
-                    txtDireccion.Text = obj.Direccion;
-                    lblProvincia.Text = obj.Provincia;
-                    lblLocalidad.Text = obj.Localidad;
-                    txtNacionalidad.Text = obj.Nacionalidad;
-
-                    // Declaramos una variable para almacenar la fecha de nacimiento como un objeto DateTime
-                    DateTime fechaNacimiento;
-
-                    // conveierte la cadena a unobjeto DateTime
-                    if (DateTime.TryParse(obj.FechaNacimiento, out fechaNacimiento))
-                    {
-                        // si lo convierte formatea la fecha en el formato dd/MM/yyyy
-                        txtFechaNacimiento.Text = fechaNacimiento.ToString("dd/MM/yyyy"); // Asigna el valor formateado al TextBox
-                    }
-                }
-                else
-                {
-                // Error
-                lblErrorBusqueda.Text = "No se encontró el paciente.";
-                }
-            
-        }
-
         public void DatosSegunDni()
         {
             NegocioPacientes reg = new NegocioPacientes();
@@ -168,7 +93,7 @@ namespace VISTAS
                     obj.Localidad = paciente.Rows[0]["Localidad"].ToString(); // Asigna la localidad del paciente buscado a localidad
                     obj.Direccion = paciente.Rows[0]["Direccion"].ToString();// Asigna la direccion del paciente buscado a direccion
                     obj.Sexo = paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
-                    obj.FechaNacimiento = paciente.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del paciente buscado
+                  ///  obj.FechaNacimiento = (DateTime)paciente.Rows[0]["Fecha de Nacimiento"]; // Asigna la fecha de nacimiento del paciente buscado
                     obj.Nacionalidad = paciente.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del paciente buscado
 
                     // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
@@ -209,13 +134,13 @@ namespace VISTAS
                     txtNacionalidad.Text = obj.Nacionalidad;
 
                     // Declaramos una variable para almacenar la fecha de nacimiento como un objeto DateTime
-                    DateTime fechaNacimiento;
+                   // DateTime fechaNacimiento;
 
                     // conveierte la cadena a unobjeto DateTime
-                    if (DateTime.TryParse(obj.FechaNacimiento, out fechaNacimiento))
+                   // if (DateTime.TryParse(obj.FechaNacimiento, out fechaNacimiento))
                     {
                         // si lo convierte formatea la fecha en el formato dd/MM/yyyy
-                        txtFechaNacimiento.Text = fechaNacimiento.ToString("dd/MM/yyyy"); // Asigna el valor formateado al TextBox
+                       /// txtFechaNacimiento.Text = fechaNacimiento.ToString("dd/MM/yyyy"); // Asigna el valor formateado al TextBox
                     }
                 }
                 else
@@ -245,15 +170,11 @@ namespace VISTAS
             {
                 DatosSegunDni();
             }
-            //Si la longitud es 4, busca por Codigo
-            else if (txtBuscar.Text.Length == 3) //Cambiar a 4
-            {
-                DatosSegunCodigo();
-            }
+            
             //Si no cumple ninguna de las condiciones anteriores, muestra un mensaje de error
             else
             {
-                lblErrorBusqueda.Text = "Por favor, ingrese un DNI o un Codigo.";
+                lblErrorBusqueda.Text = "Por favor, ingrese un DNI.";
             }
 
             txtBuscar.Text = "";
@@ -285,7 +206,7 @@ namespace VISTAS
                 Localidad = ddlLocalidad.SelectedValue,
                 Nacionalidad = txtNacionalidad.Text,
                 Sexo = ddlSexo.SelectedValue,
-                FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text).ToString("dd/MM/yyyy") // Formatea el formato para guardar en la bd
+                ///FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text).ToString("dd/MM/yyyy") // Formatea el formato para guardar en la bd
             };
 
             //Borrar despues

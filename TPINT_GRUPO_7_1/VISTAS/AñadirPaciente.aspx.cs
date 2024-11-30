@@ -90,7 +90,7 @@ namespace VISTAS
             }
 
             // Crear la fecha a partir de los valores seleccionados
-            string fecha = string.Concat(año, "/", mes, "/", dia);
+            string fecha = string.Concat(año, "-", mes, "-", dia);
 
             DateTime fechaNacimiento;
             if (!DateTime.TryParse(fecha, out fechaNacimiento))
@@ -100,7 +100,7 @@ namespace VISTAS
             }
 
             // Validar que la fecha esté dentro de los rangos permitidos
-            if (fechaNacimiento < new DateTime(1900, 1, 1) || fechaNacimiento > DateTime.Now)
+            if (fechaNacimiento.Date < new DateTime(1900, 1, 1) || fechaNacimiento > DateTime.Now)
             {
                 lblMensaje.Text = "La fecha de nacimiento debe estar entre el 1/1/1900 y la fecha actual.";
                 return;
@@ -119,7 +119,7 @@ namespace VISTAS
             nuevoPaciente.Celular = (txtCelular.Text.Trim());
             nuevoPaciente.Sexo = (ddlSexo.SelectedValue);
             nuevoPaciente.Nacionalidad = (txtNacionalidad.Text.Trim());
-            nuevoPaciente.FechaNacimiento = (fecha);
+            nuevoPaciente.FechaNacimiento = fechaNacimiento.Date;
 
 
             // Llamar al método de negocio para agregar el paciente
@@ -128,7 +128,7 @@ namespace VISTAS
 
             if (exito)
             {
-                LimpiarCampos();
+                //LimpiarCampos();
                 lblMensaje.Text = "¡Paciente agregado exitosamente!";
                 lblMensaje.CssClass = "mensaje-exito";
                 lblMensaje.Visible = true;
