@@ -12,9 +12,9 @@ namespace DATOS
     // Cambié 'internal' a 'public' para que la clase sea accesible desde otras clases
     public class Conexion
     {
-        private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = Clinica; Integrated Security = True";
+        //private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = Clinica; Integrated Security = True";
         //"Data Source=JUANMA\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
-        //private String ruta = "Data Source=localhost\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
+        private String ruta = "Data Source=localhost\\SQLEXPRESS01; Initial Catalog = Clinica; Integrated Security = True";
         //private String ruta = "Data Source=localhost\\SQLEXPRESS; Initial Catalog = Clinica; Integrated Security = True";
         public Conexion()
         {
@@ -124,20 +124,37 @@ namespace DATOS
 
         public int EjecutarConsultaSinRetorno(string consulta, SqlParameter[] parametros = null)
         {
-            using (SqlConnection conexion = new SqlConnection(ruta))
+            try
             {
-                conexion.Open();
-                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                using (SqlConnection conexion = new SqlConnection(ruta))
                 {
-                    if (parametros != null)
+                    conexion.Open();
+                    using (SqlCommand cmd = new SqlCommand(consulta, conexion))
                     {
-                        cmd.Parameters.AddRange(parametros);
-                    }
+                        if (parametros != null)
+                        {
+                            cmd.Parameters.AddRange(parametros);
+                        }
 
-                    return cmd.ExecuteNonQuery();
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        return filasAfectadas;
+                    }
                 }
             }
+            catch (SqlException ex)
+            {
+                // Loguear o mostrar el error para diagnosticar
+                Console.WriteLine($"Error en la consulta SQL: {ex.Message}");
+                return -1; // Indicar que hubo un error
+            }
+            catch (Exception ex)
+            {
+                // Otros errores
+                Console.WriteLine($"Error inesperado: {ex.Message}");
+                return -1; // Indicar que hubo un error
+            }
         }
+
 
         private SqlDataAdapter ObtenerAdaptador(String consultaSql, SqlConnection cn)
         {

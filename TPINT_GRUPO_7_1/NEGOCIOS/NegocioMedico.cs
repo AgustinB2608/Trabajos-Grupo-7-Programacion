@@ -23,14 +23,8 @@ namespace NEGOCIOS
             // Instancia de la clase DaoMedicos para acceder a la base de datos
              dao = new DaoMedicos();
 
-            // Llama al metodo agregarMedico de DaoMedicos y almacena el resultado
-            bool exito = dao.agregarMedico(medico);
-
-            // Retorno true si fue exitoso sino false
-            if (exito)
-                return true;
-            else
-                return false;
+            // Llama al método agregarMedico de DaoMedicos y devuelve el resultado
+            return dao.agregarMedico(medico);
 
         }
 

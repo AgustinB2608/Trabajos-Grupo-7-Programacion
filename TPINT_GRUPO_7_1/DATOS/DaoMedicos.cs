@@ -34,13 +34,23 @@ namespace DATOS
                 new SqlParameter("@FechaNacimiento", medic.getFechaNacimiento()),
                 new SqlParameter("@Direccion", medic.getDireccion()),
                 new SqlParameter("@Email", medic.getEmail()),
-                new SqlParameter("@Telefono", medic.getCelular())               
+                new SqlParameter("@Telefono", medic.getCelular())
             };
 
-            int exito = ds.EjecutarProcedimientoConRetorno(agregar, parametros);
+            int filasAfectadas = ds.EjecutarConsultaSinRetorno(agregar, parametros);
+            if (filasAfectadas > 0)
+            {
+                Console.WriteLine("Médico agregado correctamente.");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("No se pudo agregar el médico.");
+                return false;
+            }
 
-            return exito > 0;
         }
+
 
 
 

@@ -10,6 +10,7 @@ using NEGOCIO;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml.Linq;
 
 namespace VISTAS
 {
@@ -164,20 +165,9 @@ namespace VISTAS
                 return;
             }
 
-            // Crear la fecha a partir de los valores seleccionados
-            string fecha = string.Concat(año,"/",mes,"/",dia);
-
             DateTime fechaNacimiento;
-            if (!DateTime.TryParse(fecha, out fechaNacimiento))
+            if (!ValidateFechaNacimiento(out fechaNacimiento))
             {
-                lblError.Text = "La fecha ingresada no es válida.";
-                return;
-            }
-
-            // Validar que la fecha esté dentro de los rangos permitidos
-            if (fechaNacimiento < new DateTime(1900, 1, 1) || fechaNacimiento > DateTime.Now)
-            {
-                lblError.Text = "La fecha de nacimiento debe estar entre el 1/1/1900 y la fecha actual.";
                 return;
             }
             // Creación del médico
@@ -187,7 +177,7 @@ namespace VISTAS
             reg.setEmail(txtEmail.Text.Trim());
             reg.setCelular(txtCelular.Text.Trim());
             reg.setNacionalidad(txtNacionalidad.Text.Trim());
-            reg.setFechaNacimiento(fecha);
+            reg.setFechaNacimiento(fechaNacimiento.ToString("yyyy/MM/dd"));
             reg.setDireccion(txtDireccion.Text.Trim());
             reg.setProvincia(ddlProvincia.SelectedValue);
             reg.setLocalidad(ddlLocalidad.SelectedValue);
@@ -196,8 +186,18 @@ namespace VISTAS
             reg.setHorario(ddlHorario.SelectedValue);
             reg.setDiasAtencion(ddlDiasAtencion.SelectedValue);
 
-            colums.Style.Add("display", "none");
-            Confirmacion.Style.Add("display", "block");
+            bool exito = negM.agregarMedico(reg);
+
+            if (exito)
+            {
+                lblError.Text = "El médico fue agregado correctamente.";
+                colums.Style.Add("display", "none");
+                Confirmacion.Style.Add("display", "block");
+            }
+            else
+            {
+                lblError.Text = "Ocurrió un error al intentar agregar el médico.";
+            }
 
         }
 
@@ -236,66 +236,7 @@ namespace VISTAS
             return str.All(Char.IsDigit); //La funcion usa el metodo All para validar que todos los caracteres sean digitos con IsDigit
         }
 
-        protected DateTime ValidarFechaNacimiento()
-        {
-            // 1) Validar que se haya seleccionado un día, mes y año
-            if (ddlDia.SelectedValue == "0" || ddlMes.SelectedValue == "0" || ddlAño.SelectedValue == "0")
-            {
-                lblError.Text = "La fecha de nacimiento es incompleta.";
-                return DateTime.MinValue;
-            }
-
-            try
-            {
-                // 2) Crear la fecha a partir de los valores seleccionados
-                int dia = int.Parse(ddlDia.SelectedValue);
-                int mes = int.Parse(ddlMes.SelectedValue);
-                int año = int.Parse(ddlAño.SelectedValue);
-
-                DateTime fechaNacimiento = new DateTime(año, mes, dia);
-
-                // 3) Validar que la fecha no sea futura
-                if (fechaNacimiento > DateTime.Now)
-                {
-                    lblError.Text = "La fecha de nacimiento no puede ser futura.";
-                    return DateTime.MinValue;
-                }
-
-                // 4) Calcular la edad
-                int edad = DateTime.Now.Year - fechaNacimiento.Year;
-                if (DateTime.Now.DayOfYear < fechaNacimiento.DayOfYear)
-                    edad--;
-
-                // 5) Validar edad mínima (18 años)
-                if (edad < 18)
-                {
-                    lblError.Text = "El médico debe ser mayor de 18 años.";
-                    return DateTime.MinValue;
-                }
-
-                // 6) Validar edad máxima (120 años)
-                if (edad > 120)
-                {
-                    lblError.Text = "La edad ingresada no es válida.";
-                    return DateTime.MinValue;
-                }
-
-                // 7) Validar que la fecha no sea muy antigua
-                if (fechaNacimiento.Year < 1900)
-                {
-                    lblError.Text = "La fecha de nacimiento no puede ser tan antigua.";
-                    return DateTime.MinValue;
-                }
-
-                // Si todas las validaciones son correctas, devolver la fecha de nacimiento
-                return fechaNacimiento;
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "Error al validar la fecha de nacimiento: " + ex.Message;
-                return DateTime.MinValue;
-            }
-        }
+        
 
 
 
@@ -376,6 +317,36 @@ namespace VISTAS
             }
         }
 
+        private bool ValidateFechaNacimiento(out DateTime fechaNacimiento)
+        {
+            int dia = 0, mes = 0, año = 0;
+            if (!int.TryParse(ddlDia.SelectedValue, out dia) || dia == 0 ||
+                !int.TryParse(ddlMes.SelectedValue, out mes) || mes == 0 ||
+                !int.TryParse(ddlAño.SelectedValue, out año) || año == 0)
+            {
+                lblError.Text = "Debe seleccionar una fecha de nacimiento válida.";
+                fechaNacimiento = DateTime.MinValue;
+                return false;
+            }
+
+            string fecha = $"{año}/{mes}/{dia}";
+            if (!DateTime.TryParse(fecha, out fechaNacimiento))
+            {
+                lblError.Text = "La fecha ingresada no es válida.";
+                return false;
+            }
+
+            // Validate date range
+            if (fechaNacimiento < new DateTime(1900, 1, 1) || fechaNacimiento > DateTime.Now)
+            {
+                lblError.Text = "La fecha de nacimiento debe estar entre el 1/1/1900 y la fecha actual.";
+                return false;
+            }
+
+            return true;
+        }
+
+
         protected void Confirmar_Click(object sender, EventArgs e)
         {
             negM.agregarMedico(reg);
@@ -455,7 +426,7 @@ namespace VISTAS
                 // Muestra un mensaje de error en caso de fallas
                 ddlLocalidad.Items.Clear();
                 ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
-                
+
             }
         }
 
