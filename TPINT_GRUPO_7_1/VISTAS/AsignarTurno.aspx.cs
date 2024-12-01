@@ -73,25 +73,22 @@ namespace VISTAS
 
             // Obtener valores seleccionados de los Dropdowns
             string especialidad = ddlEspecialidad.SelectedValue;
-            string horario = txtHorario.Text;
+            TimeSpan horario = TimeSpan.Parse(ddlHoraAsignada.SelectedValue);
             string medico = ddlMedico.SelectedValue;
 
             // Obtener valores de los campos de texto
 
-            string fecha = txtFecha.Text.Trim().ToString();
+            string fecha = txtFecha.Text;//ToString("yyyy/MM/dd");
             string nombre = txtNombrePaciente.Text.Trim();
             string apellido = txtApellidoPaciente.Text.Trim();
             string dni = txtDniPaciente.Text.Trim();
-            string estado = "P";
-            string horarioAsignado = ddlHoraAsignada.SelectedIndex.ToString();
-
 
             //estado no hay que poner nada, por default queda en pendiente y la confirmacion la hace el medico cuando
             //lo atiende, tambien la cancelacion
 
 
             // Asignar el turno utilizando la lógica de negocio
-            bool asignado = negT.agregarTurno(medico, especialidad, horario, nombre, apellido , dni, fecha, horarioAsignado, estado);
+            bool asignado = negT.agregarTurno(especialidad, medico, nombre, apellido, dni, fecha, horario);
 
             if (asignado)
             {
@@ -241,8 +238,7 @@ namespace VISTAS
             try
             {
                 // Llamar al método para obtener los horarios de atención según el médico
-                DataTable medicos = negM.MedicosSegunEspecialidad(ddlEspecialidad.SelectedValue);
-
+                DataTable medicos = negM.HorarioSegunMedico(medicoSeleccionado);
 
                 if (medicos.Rows.Count > 0)
                 {
@@ -254,27 +250,23 @@ namespace VISTAS
                         DiasAtencion = row["DiasAtencion"].ToString();
                         desde = row["Desde"].ToString();
                         hasta = row["Hasta"].ToString();
+
                         txtHorario.Text = horarioAtencion + " | " + DiasAtencion;
 
                         // Convierte las cadenas a TimeSpan
                         TimeSpan desdeHs = TimeSpan.Parse(desde);
                         TimeSpan hastaHs = TimeSpan.Parse(hasta);
-                        string horaFinal;
-                        //aca deberia llamar al met de DaoHorario que retorne los reg donde coincida
+                       
                         for (TimeSpan hora = desdeHs; hora <= hastaHs; hora = hora.Add(TimeSpan.FromMinutes(15)))
                         {
-                            horaFinal = hora.ToString(@"hh\:mm");  // Formatea la hora como hh:mm
-                                
-                         //if (!Encontro(horaFinal, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue))//algo asi, falta, da mal, tengo que ver donde ubicarlo bien
-                             
+                            string horaFinal = hora.ToString(@"hh\:mm"); // Formatea la hora como hh:mm
                             ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
-                            
                         }
                     }
                 }
                 else
                 {
-                    txtHorario.Text = "No hay horarios disponible";
+                    txtHorario.Text = "No hay horarios disponibles";
                 }
             }
             catch (Exception)
@@ -287,7 +279,7 @@ namespace VISTAS
 
         protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string rangoSeleccionado = txtHorario.Text;
+            /*string rangoSeleccionado = txtHorario.Text;
 
             // Validar que el rango no esté vacío y contenga el guion
             if (!string.IsNullOrEmpty(rangoSeleccionado) && rangoSeleccionado.Contains("-"))
@@ -315,22 +307,18 @@ namespace VISTAS
             else
             {
                 lblError.Text = "Seleccione un rango de horario válido.";
-            }
+            }*/
+
+          /*  NO FUNCIONA
+                
+         DataTable dt = negH.EncontrarTurno(ddlHoraAsignada.SelectedValue, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue);
+
+         if (dt.Rows.Count > 0)
+         {
+                lblError.Visible = true;
+             lblError.Text = "Turno ocupado, puede ofrecer un sobre-turno";
+         }*/
+                
         }
-
-       /* public bool Encontro(string hora, string Fecha, string Especialidad, string medico)
-        {
-            DataTable dt = negH.EncontrarTurno(hora, Fecha, Especialidad, medico);
-
-            if (dt.Rows.Count > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
- 
-        }*/
     }
 }

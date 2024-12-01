@@ -17,20 +17,13 @@ namespace NEGOCIOS
             dao = new DaoTurnos();
         }
 
-        public bool agregarTurno(string medico, string especialidad, string horario, string nombre, string apellido, string dni, string fecha, string horarioAsignado, string estado)
+        public bool agregarTurno(string especialidad, string medico, string nombre, string apellido, string dni, string dia, TimeSpan horario)
         {
             // Convertir la fecha
-            TimeSpan horarioTimeSpan = TimeSpan.Parse(horario);
-            DateTime diaDateTime = DateTime.Parse(fecha);
-
-            // Comprobar que el estado sea valido
-            if (string.IsNullOrEmpty(estado) || (estado != "A" && estado != "P" && estado != "C"))
-            {
-                return false;
-            }
+            //TimeSpan horarioTimeSpan = TimeSpan.Parse(horario);
 
             // Creamos un objeto turnos con los valores
-            Turnos turno = new Turnos(especialidad, diaDateTime, horarioTimeSpan, nombre, apellido, dni, medico, "A", estado);
+            Turnos turno = new Turnos(especialidad, medico, nombre, apellido, dni, dia, horario);
 
             dao = new DaoTurnos();
 

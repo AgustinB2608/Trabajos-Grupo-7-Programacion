@@ -10,27 +10,24 @@ namespace ENTIDADES
     public class Turnos
     {
         private string Especialidad_TU;
-        private DateTime Dia_TU;
-        private TimeSpan Horario_TU;
+        private string Medico_TU;
         private string Nombre_TU;
         private string Apellido_TU;
         private string Dni_TU;
-        private string Medico_TU;
-        private int Duracion_TU;
+        private string Dia_TU;
+        private TimeSpan Horario_TU;
         private string CodEstadoTurno_TU;
         private string Estado;
 
-        public Turnos(string especialidad, DateTime dia, TimeSpan horario, string nombre, string apellido, string dni, string medico, string codEstadoTurno, string estado)
+        public Turnos(string especialidad, string medico, string nombre, string apellido, string dni, string dia, TimeSpan horario)
         {
             Especialidad_TU = especialidad;
-            Dia_TU = dia;
-            Horario_TU = horario;
+            Medico_TU = medico;
             Nombre_TU = nombre;
             Apellido_TU = apellido;
             Dni_TU = dni;
-            Medico_TU = medico;
-            CodEstadoTurno_TU = codEstadoTurno;
-            Estado = estado;
+            Dia_TU = dia;
+            Horario_TU = horario;
         }
 
         public string getEspecialidad()
@@ -43,12 +40,12 @@ namespace ENTIDADES
             Especialidad_TU = especialidad;
         }
 
-        public DateTime getDia()
+        public string getDia()
         {
             return Dia_TU;
         }
 
-        public void setDia(DateTime dia)
+        public void setDia(string dia)
         {
             Dia_TU = dia;
         }
@@ -102,17 +99,7 @@ namespace ENTIDADES
         {
             Medico_TU = medico;
         }
-
-        public int getDuracion()
-        {
-            return Duracion_TU;
-        }
-
-        public void setDuracion(int duracion)
-        {
-            Duracion_TU = duracion;
-        }
-
+       
         public string getCodEstadoTurno()
         {
             return CodEstadoTurno_TU;
