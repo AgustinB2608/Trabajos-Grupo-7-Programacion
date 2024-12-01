@@ -37,7 +37,7 @@ namespace DATOS
                 new SqlParameter("@Telefono", medic.getCelular())
             };
 
-            int filasAfectadas = ds.EjecutarProcedimientoConRetorno(agregar, parametros);
+            int filasAfectadas = ds.EjecutarConsultaSinRetorno(agregar, parametros);
             if (filasAfectadas > 0)
             {
                 Console.WriteLine("Médico agregado correctamente.");
@@ -79,30 +79,31 @@ namespace DATOS
         {
 
             // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
-            string modificar = "EXEC SP_modificarMedico @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento" +
+            string modificar = "EXEC SP_modificarMedico @CodMedico, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento" +
             "@Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion,";
 
             // envia los valores de mi obj medico como parametro
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Nombre", medico.getNombre()),
-                new SqlParameter("@Apellido", medico.getApellido()),
-                new SqlParameter("@Sexo", medico.getSexo()),
-                new SqlParameter("@Nacionalidad", medico.getNacionalidad()),
-                new SqlParameter("@FechaNacimiento", medico.getFechaNacimiento()),
-                new SqlParameter("@Direccion", medico.getDireccion()),
-                new SqlParameter("@Localidad", medico.getLocalidad()),
-                new SqlParameter("@Provincia", medico.getProvincia()),
-                new SqlParameter("@Email", medico.getEmail()),
-                new SqlParameter("@Telefono", medico.getCelular()),
-                new SqlParameter("@CodEspecialidad", medico.getEspecialidad()), 
-                new SqlParameter("@Dias", medico.getDiasAtencion()),
-                new SqlParameter("@HorarioAtencion", medico.getHorario()), 
+                new SqlParameter("@CodMedico", medico.CodMedico),
+                new SqlParameter("@Nombre", medico.Nombre),
+                new SqlParameter("@Apellido", medico.Apellido),
+                new SqlParameter("@Sexo", medico.Sexo),
+                new SqlParameter("@Nacionalidad", medico.Nacionalidad),
+                new SqlParameter("@FechaNacimiento", medico.FechaNacimiento),
+                new SqlParameter("@Direccion", medico.Direccion),
+                new SqlParameter("@Localidad", medico.Localidad),
+                new SqlParameter("@Provincia", medico.Provincia),
+                new SqlParameter("@Email", medico.Email),
+                new SqlParameter("@Telefono", medico.Celular),
+                new SqlParameter("@CodEspecialidad", medico.Especialidad), 
+                new SqlParameter("@Dias", medico.DiasAtencion),
+                new SqlParameter("@HorarioAtencion", medico.Horario), 
             };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
-            int exito = ds.EjecutarConsultaSinRetorno(modificar, parametros);
+            int exito = ds.EjecutarProcedimientoConRetorno(modificar, parametros);
 
             if (exito > 0) return true;
             return false;

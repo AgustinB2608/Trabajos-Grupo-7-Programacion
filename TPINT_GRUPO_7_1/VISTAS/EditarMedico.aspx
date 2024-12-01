@@ -8,292 +8,284 @@
     <title></title>
     <style>
         :root {
-        --color-fondo: #6CB2EB;
-        --color-header: #2C3E50;
-        --color-boton: #3490dc;
-        --color-boton-hover: #2779bd;
-        --color-textbox: #ddd;
-        --color-error: #ff6347;
-        --color-fondo-error: #f8d7da;
-        --radio-borde: 8px;
-    }
+            --color-fondo: #6CB2EB;
+            --color-header: #2C3E50;
+            --color-boton: #3490dc;
+            --color-boton-hover: #2779bd;
+            --color-textbox: #ddd;
+            --color-error: #ff6347;
+            --radio-borde: 8px;
+        }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    html, body {
-        height: 100%;
-    }
+        html, body {
+            height: 100%;
+        }
 
-    body {
-        background-color: var(--color-fondo);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
+        body {
+            background-color: var(--color-fondo);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    header {
-        display: flex;             
-        justify-content: space-between; 
-        align-items: center;       
-        padding: 20px;         
-        background-color: var(--color-header);
-        color: white;               
-    }
+        header {
+            display: flex;             
+            justify-content: space-between; 
+            align-items: center;       
+            padding: 20px;         
+            background-color: var(--color-header);
+            color: white;               
+        }
 
-    #lblUsuario {
-        font-weight: bold;
-    }
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-    .contenedor {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        min-height: calc(100vh - 80px);
-    }
+        .contenedor {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            min-height: calc(100vh - 80px);
+        }
 
-    .formulario-contenedor {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        max-width: 800px;
-        width: 100%;
-        margin: auto;
-        padding: 40px;
-        background-color: white;
-        border-radius: var(--radio-borde);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        .formulario-contenedor {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: var(--radio-borde);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    .form-columns {
-        display: flex;
-        gap: 40px;
-    }
+        .form-columns {
+            display: flex;
+            gap: 40px;
+        }
 
-    .form-columna {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+        .form-columna {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-    .form-group {
-        display: flex;
-        flex-direction: column;
-    }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
 
-    .form-label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        font-size: 14px;
-    }
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
 
-    .form-control {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid var(--color-textbox);
-        border-radius: 4px;
-        font-size: 14px;
-    }
-    .form-control::placeholder {
-        color: #757575; 
-    }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--color-textbox);
+            border-radius: 4px;
+            font-size: 14px;
+        }
 
-    .btn-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
+        .form-control::placeholder {
+            color: #757575; 
+        }
 
-    .btn {
-        width: 100%;
-        padding: 12px;
-        background-color: var(--color-boton);
-        color: white;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
 
-    .btn:hover {
-        background-color: var(--color-boton-hover);
-    }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--color-boton);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-    .error-message{
-        color: var(--color-error);
-    }
+        .btn:hover {
+            background-color: var(--color-boton-hover);
+        }
 
-   .msgConfirmacion {
-        padding: 20px;
-        border-radius: var(--radio-borde);
-        margin-top: 20px;
-        text-align: center;
-    }
+        .error-message {
+            color: var(--color-error);
+            font-weight:bold;
+            font-size:14px;
+        }
 
-    .msgConfirmacion input {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        border-radius: 4px;
-        border: 1px solid black;
-    }
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .msgConfirmacion .btn {
-        width: 100%;
-        padding: 12px;
-        background-color: var(--color-boton);
-        color: white;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+        .btn-reset {
+            background-color: #f44336; 
+            width: 100%;
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s; 
+        }
 
-    .msgConfirmacion .btn:last-child {
-        width: 100%;
-        padding: 12px;
-        background-color: #e74c3c; 
-        color: white;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+        .btn-reset:hover {
+            background-color: #d32f2f;
+        }
 
-    .msgConfirmacionCompleta {
-        color: white;
-        padding: 15px;
-        margin-top: 15px;
-        border-radius: 5px;
-        text-align: center;
-    }
+        .error-message{
+            color: red;
+        }
 
-    .mensajeConfirmacion {
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #28a745;
-    }
+        .exito-message{
+            color: green;
+        }
 
-   
-</style>
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-         <div id="colums" class="form-columns" runat="server">
-             <!-- Columna Izquierda -->
-             <div class="form-columna">
-                 <%--Nombre--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblNombre" runat="server" Text="Nombre:" CssClass="form-label"></asp:Label>
-                     <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresar Nombre" ></asp:TextBox>
-                 </div>
-                 <%--DNI--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="form-label"></asp:Label>
-                     <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" placeholder="Ingresar DNI"></asp:TextBox>
-                 </div>
-                 <%--Correo Electronico--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblEmail" runat="server" Text="E-mail:" CssClass="form-label"></asp:Label>
-                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingresar Correo" ></asp:TextBox>                            
-                 </div>
-                 <%--Celular--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblCelular" runat="server" Text="Tel/Celular:" CssClass="form-label"></asp:Label>
-                     <asp:TextBox ID="txtCelular" runat="server" CssClass="form-control" placeholder="Ingresar Celular" ></asp:TextBox>
-                 </div>
-                 <%--Nacionalidad--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad:" CssClass="form-label"></asp:Label>
-                     <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="form-control" placeholder="Ingresar Nacionalidad" ></asp:TextBox>
-                 </div>
-                 <%--Direccion--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblDireccion" runat="server" Text="Dirección:" CssClass="form-label"></asp:Label>
-                     <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Ingresar Direccion" ></asp:TextBox>
-                 </div>
-                 <%--Fecha de Nacimiento--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento:" CssClass="form-label"></asp:Label>
-                     <div class="form-columns">
-                         <!-- Día -->
-                         <asp:DropDownList ID="ddlDia" runat="server" CssClass="form-control">
-                             <asp:ListItem Text="Día" Value="0" />
-                             <%-- Aquí cargarás los días del 1 al 31 --%>
-                         </asp:DropDownList>
 
-                         <!-- Mes -->
-                         <asp:DropDownList ID="ddlMes" runat="server" CssClass="form-control">
-                             <asp:ListItem Text="Mes" Value="0" />
-                             <%-- Aquí cargarás los meses, por ejemplo Enero a Diciembre --%>
-                         </asp:DropDownList>
+        <header>
+            <div class="titulo">ABML</div>
+            <asp:Label ID="lblUsuario" runat="server" Text="" /> <%--Nombre de usuario--%>
+        </header>
 
-                         <!-- Año -->
-                         <asp:DropDownList ID="ddlAño" runat="server" CssClass="form-control">
-                             <asp:ListItem Text="Año" Value="0" />
-                             <%-- Aquí cargarás los años, por ejemplo del 1900 al año actual --%>
-                         </asp:DropDownList>
-                     </div>
-                 </div>
-                 <%--Label para los mensajes d error--%>
-                 <div class="error-message">
-                     <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" />
-                 </div>
-                 <%--Botones--%>
-                 <div class="btn-container">
-                     <asp:Button ID="btnAceptar" runat="server" Text="Guardar" CssClass="btn"  />
-                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click" />
-                 </div>
-             </div>
+        <%--Contenedor Principal--%>
+        <div class="contenedor">
+            <%--Contenedor 2--%>
+            <div class="formulario-contenedor">
+                <h1>Modificar Medico</h1>
+                
+                <div class="search-container">
+                    <asp:Label ID="lblBuscar" runat="server" CssClass="form-label" Text="Medico:"></asp:Label>
+                    <asp:TextBox ID="txtBuscar" CssClass="form-control" runat="server" placeholder="Buscar por Codigo"></asp:TextBox>
+                    <asp:Button ID="btnBuscar" runat="server" CssClass="btn"  Text="Buscar" OnClick="btnBuscar_Click" />
+                    <asp:Button ID="btnReset" runat="server" CssClass="btn-reset"  Text="Limpiar" OnClick="btnReset_Click" />
+                    
+                </div>
+                <asp:Label ID="lblErrorBusqueda" runat="server" CssClass="error-message" Text=""></asp:Label>
+                <asp:Label ID="lblExito" runat="server" CssClass="exito-message" Text=""></asp:Label>
+                
+                <%--Columnas--%>
+                <div class="form-columns">
+                    <!-- Columna Izquierda -->
+                    <div class="form-columna">
+                        <%--CODIGO--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblCodigo" runat="server" Text="Codigo:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" placeholder="Ingresar Codigo" ></asp:TextBox>
+                        </div>
+                        <%--Nombre--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblNombre" runat="server" Text="Nombre:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresar Nombre" ></asp:TextBox>
+                        </div>
+                        <%--DNI--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" placeholder="Ingresar DNI"></asp:TextBox>
+                        </div>
+                        <%--Correo Electronico--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblEmail" runat="server" Text="E-mail:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingresar Correo" ></asp:TextBox>                            
+                        </div>
+                        <%--Celular--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblCelular" runat="server" Text="Tel/Celular:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtCelular" runat="server" CssClass="form-control" placeholder="Ingresar Celular" ></asp:TextBox>
+                        </div>
+                        <%--Nacionalidad--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="form-control" placeholder="Ingresar Nacionalidad" ></asp:TextBox>
+                        </div>
+                        <%--Direccion--%>
+                        <div class="form-group">
+                            <asp:Label ID="Label1" runat="server" Text="Dirección:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Ingresar Direccion" ></asp:TextBox>
+                        </div>
+                        <%--Fecha de Nacimiento--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" ReadOnly="true" placeholder="Fecha de Nacimiento:" ></asp:TextBox>
+                        </div>
+                        <%-- Aquí cargarás los días del 1 al 31 --%>
+                        <div class="error-message">
+                            <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" />
+                        </div>
+                        <%-- Aquí cargarás los meses, por ejemplo Enero a Diciembre --%>
+                        <div class="btn-container">
+                            <asp:Button ID="btnAceptar" runat="server" Text="Guardar" CssClass="btn" OnClick="btnAceptar_Click"  />
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click1"  />
+                        </div>
+                    </div>
 
-             <!-- Columna Derecha -->
-             <div class="form-columna">
-                 <%--Apellido--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblApellido" runat="server" Text="Apellido:" CssClass="form-label"></asp:Label>
-                     <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Ingresar Apellido "></asp:TextBox>
-                 </div>
-                 <%--Sexo--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblSexo" runat="server" Text="Sexo:" CssClass="form-label"></asp:Label>
-                     <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
-                 </div>
-                 <%--Provincia--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblProvincia" runat="server" Text="Provincia:" CssClass="form-label"></asp:Label>
-                     <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
-                 </div>
-                 <%--Localidad--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:" CssClass="form-label"></asp:Label>
-                     <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-control"></asp:DropDownList>
-                 </div>
-                 <%--Especialidad--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad:" CssClass="form-label"></asp:Label>
-                     <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-control"></asp:DropDownList>
-                 </div>
-                 <%--Dias de Atencion--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblDiasAtencion" runat="server" Text="Días de Atención:" CssClass="form-label"></asp:Label>
-                     <asp:DropDownList ID="ddlDiasAtencion" runat="server" CssClass="form-control"></asp:DropDownList>
-                 </div>
-                 <%--Horario--%>
-                 <div class="form-group">
-                     <asp:Label ID="lblHorario" runat="server" Text="Horario:" CssClass="form-label"></asp:Label>
-                     <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-control"></asp:DropDownList> 
-                 </div>
+                    <!-- Columna Derecha -->
+                    <div class="form-columna">
+                        <%-- Aquí cargarás los años, por ejemplo del 1900 al año actual --%>
+                        <div class="form-group">
+                            <asp:Label ID="lblApellido" runat="server" Text="Apellido:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Ingresar Apellido "></asp:TextBox>
+                        </div>
+                        <%--Label para los mensajes d error--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblSexo" runat="server" Text="Sexo:" CssClass="form-label"></asp:Label>
+                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                        <%--Botones--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblProvincia" runat="server" Text="Provincia:" CssClass="form-label"></asp:Label>
+                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
+                        </div>
+                        <%--Apellido--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:" CssClass="form-label"></asp:Label>
+                            <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                        <%--Sexo--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad:" CssClass="form-label"></asp:Label>
+                            <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                        <%--Provincia--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblDiasAtencion" runat="server" Text="Días de Atención:" CssClass="form-label"></asp:Label>
+                            <asp:DropDownList ID="ddlDiasAtencion" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                        <%--Localidad--%>
+                        <div class="form-group">
+                            <asp:Label ID="lblHorario" runat="server" Text="Horario:" CssClass="form-label"></asp:Label>
+                            <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-control"></asp:DropDownList> 
+                        </div>
 
-             </div>
-         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </body>
 </html>

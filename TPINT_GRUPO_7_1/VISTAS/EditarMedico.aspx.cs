@@ -12,13 +12,12 @@ namespace VISTAS
 {
     public partial class EditarMedico : System.Web.UI.Page
     {
-        NegocioMedico negM = new NegocioMedico();
         NegocioProvincia negP = new NegocioProvincia();
         NegocioLocalidades negL = new NegocioLocalidades();
         NegocioEspecialidades negE = new NegocioEspecialidades();
         NegocioDiasAtencion negD = new NegocioDiasAtencion();
         NegocioHorarios negH = new NegocioHorarios();
-        Medico reg = new Medico();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -76,79 +75,362 @@ namespace VISTAS
             ddlHorario.DataBind();
             ddlHorario.Items.Insert(0, new ListItem("Selecciona horario de atencion", "0"));
 
-            // Cargar días, meses y años para la fecha de nacimiento
-            CargarFechaNacimiento();
 
         }
-       /* HAY QUE ACOMODARLO CON LOS AS DE LAS COLUMNAS, IGUAL YA HAY UN METODO QUE LO HACE ASI!!!! USAR EL OTRO
-        * private void CargarDatosMedico(string codigoMedico)
+        
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            // Método para obtener los datos del médico
-            DataTable dt = negM.ObtenerMedicoPorCodigo(codigoMedico);
-
-            if (dt.Rows.Count > 0)
+            //Validacion por si se ingresa vacio
+            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
-                // Asigna los datos de la tabla a los controles
-                txtNombre.Text = dt.Rows[0]["Nombre_ME"].ToString();
-                txtApellido.Text = dt.Rows[0]["Apellido_ME"].ToString();
-                txtDni.Text = dt.Rows[0]["DNI_ME"].ToString();
-                txtEmail.Text = dt.Rows[0]["Email_ME"].ToString();
-                txtCelular.Text = dt.Rows[0]["Telefono_ME"].ToString();
-                txtNacionalidad.Text = dt.Rows[0]["Nacionalidad_ME"].ToString();
-                txtDireccion.Text = dt.Rows[0]["Direccion_ME"].ToString();
-
-                // Configura los dropdowns para la fecha de nacimiento
-                ddlDia.SelectedValue = Convert.ToDateTime(dt.Rows[0]["FechaNacimiento_ME"]).Day.ToString();
-                ddlMes.SelectedValue = Convert.ToDateTime(dt.Rows[0]["FechaNacimiento_ME"]).Month.ToString();
-                ddlAño.SelectedValue = Convert.ToDateTime(dt.Rows[0]["FechaNacimiento_ME"]).Year.ToString();
-
-                // Configura el resto de los ddl
-                ddlSexo.SelectedValue = dt.Rows[0]["Sexo_ME"].ToString();
-                ddlProvincia.SelectedValue = dt.Rows[0]["CodProvincia_ME"].ToString();
-                ddlLocalidad.SelectedValue = dt.Rows[0]["CodLocalidad_ME"].ToString();
-                ddlEspecialidad.SelectedValue = dt.Rows[0]["CodEspecialidad_ME"].ToString();
-                ddlDiasAtencion.SelectedValue = dt.Rows[0]["CodDiasAtencion_ME"].ToString();
-                ddlHorario.SelectedValue = dt.Rows[0]["CodHorariosAtencion_ME"].ToString();
+                lblErrorBusqueda.Text = "Por favor, ingrese un Codigo.";
+                return;
             }
-        }*/
-
-        private void CargarFechaNacimiento()
-        {
-            // Cargar días
-            for (int i = 1; i <= 31; i++)
+            //Si la longitud es 4, busca por CODIGO MEDICO
+            if (txtBuscar.Text.Length == 4)
             {
-                ddlDia.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                CargarDatosMedicoPorCodigo();
+            }
+            //Si la longitud es 8, busca por DNI
+            else if (txtBuscar.Text.Length == 8)
+            {
+                CargarDatosMedicoPorDni();
             }
 
-            // Cargar meses
-            ddlMes.Items.Add(new ListItem("Enero", "1"));
-            ddlMes.Items.Add(new ListItem("Febrero", "2"));
-            ddlMes.Items.Add(new ListItem("Marzo", "3"));
-            ddlMes.Items.Add(new ListItem("Abril", "4"));
-            ddlMes.Items.Add(new ListItem("Mayo", "5"));
-            ddlMes.Items.Add(new ListItem("Junio", "6"));
-            ddlMes.Items.Add(new ListItem("Julio", "7"));
-            ddlMes.Items.Add(new ListItem("Agosto", "8"));
-            ddlMes.Items.Add(new ListItem("Septiembre", "9"));
-            ddlMes.Items.Add(new ListItem("Octubre", "10"));
-            ddlMes.Items.Add(new ListItem("Noviembre", "11"));
-            ddlMes.Items.Add(new ListItem("Diciembre", "12"));
-
-            // Cargar años
-            int currentYear = DateTime.Now.Year;
-            for (int i = currentYear; i >= 1900; i--)
+            //Si no cumple ninguna de las condiciones anteriores, muestra un mensaje de error
+            else
             {
-                ddlAño.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                lblErrorBusqueda.Text = "Por favor, ingrese un Codigo de Medico.";
             }
 
-            ddlDia.Items.Insert(0, new ListItem("Seleccionar Día", "0"));
-            ddlMes.Items.Insert(0, new ListItem("Seleccionar Mes", "0"));
-            ddlAño.Items.Insert(0, new ListItem("Seleccionar Año", "0"));
+            txtBuscar.Text = "";
         }
 
-        protected void btnCancelar_Click(object sender, EventArgs e)
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            //Validacion por si se ingresa vacio
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text) || string.IsNullOrWhiteSpace(txtDni.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtCelular.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || string.IsNullOrWhiteSpace(txtFechaNacimiento.Text)
+                || string.IsNullOrWhiteSpace(ddlProvincia.SelectedValue) || string.IsNullOrWhiteSpace(ddlLocalidad.SelectedValue) || string.IsNullOrWhiteSpace(ddlEspecialidad.SelectedValue) || string.IsNullOrWhiteSpace(ddlDiasAtencion.SelectedValue) || string.IsNullOrWhiteSpace(ddlHorario.SelectedValue))
+            {
+                lblError.Text = "Por favor, complete todos los campos.";
+                return;
+            }
+            NegocioMedico negocio = new NegocioMedico();
+            Medico medico = new Medico
+            {
+                CodMedico = txtCodigo.Text,
+                Nombre = txtNombre.Text,
+                Apellido = txtApellido.Text,
+                Dni = txtDni.Text,
+                Email = txtEmail.Text,
+                Celular = txtCelular.Text,
+                Direccion = txtDireccion.Text,
+                Provincia = ddlProvincia.SelectedValue,
+                Localidad = ddlLocalidad.SelectedValue,
+                Nacionalidad = txtNacionalidad.Text,
+                Sexo = ddlSexo.SelectedValue,
+                FechaNacimiento = txtFechaNacimiento.Text,
+                Especialidad = ddlEspecialidad.SelectedValue,
+                DiasAtencion = ddlDiasAtencion.SelectedValue,
+                Horario = ddlHorario.SelectedValue
+            };
+
+            //Borrar despues
+            string datos = $"Nombre: {medico.Nombre}, Apellido: {medico.Apellido}, DNI: {medico.Dni}, " +
+                           $"Email: {medico.Email}, Celular: {medico.Celular}, Direccion: {medico.Direccion}, " +
+                           $"Provincia: {medico.Provincia}, Localidad: {medico.Localidad}, " +
+                           $"Nacionalidad: {medico.Nacionalidad}, " +
+                           $"Sexo: {medico.Sexo}, Fecha de Nacimiento: {medico.FechaNacimiento.ToString()}," +
+                           $"Especialidad: {medico.Provincia}, DiasAtencion: {medico.DiasAtencion}, Horario: {medico.Horario} "  ;
+
+            try
+            {
+                negocio.modificarMedico(medico); // Descomentar para guardar
+                lblExito.Text = "Medico modificado correctamente.";
+                LimpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                lblErrorBusqueda.Text = "Error al modificar el Medico: " + ex.Message; // Muestra el error del sistema
+            }
+        }
+
+        protected void btnCancelar_Click1(object sender, EventArgs e)
         {
             Response.Redirect("ModificarMedico.aspx");
+
         }
+
+        private void CargarDatosMedicoPorCodigo()
+        {
+            NegocioMedico negM = new NegocioMedico();
+            Medico reg = new Medico();
+            if (txtBuscar.Text.Length == 4)
+            {
+                DataTable medico = negM.listarMedicoEspecifico(txtBuscar.Text);
+
+                if (medico.Rows.Count > 0) //Validad que hayan datos para mostrar
+                {
+                    reg.CodMedico = medico.Rows[0]["CodigoMedico"].ToString(); //Asigna el codigo del medico buscado a codMedico
+                    reg.Nombre = medico.Rows[0]["Nombre"].ToString(); //Asigna el nombre del medico buscado a nombre
+                    reg.Apellido = medico.Rows[0]["Apellido"].ToString(); //Asigna el apellido del medico buscado a apellido
+                    reg.Dni = medico.Rows[0]["Dni"].ToString(); //Asigna el dni del medico buscado a dni
+                    reg.Email = medico.Rows[0]["Email"].ToString(); // Asigna el email del medico buscado a email
+                    reg.Celular = medico.Rows[0]["Telefono"].ToString(); // Asigna el telefono del medico buscado a celular 
+                    reg.Provincia = medico.Rows[0]["Provincia"].ToString(); // Asigna la provincia del medico buscado a provincia
+                    reg.Localidad = medico.Rows[0]["Localidad"].ToString(); // Asigna la localidad del medico buscado a localidad
+                    reg.Direccion = medico.Rows[0]["Direccion"].ToString();// Asigna la direccion del medico buscado a direccion
+                    reg.Sexo = medico.Rows[0]["Sexo"].ToString(); // Asigna el sexo del medico buscado
+                    reg.FechaNacimiento = medico.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del medico buscado
+                    reg.Nacionalidad = medico.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del medico buscado
+                    reg.Especialidad = medico.Rows[0]["Especialidad"].ToString(); // Asigna la especialidad del medico buscado a especialidad
+                    reg.Horario = medico.Rows[0]["Horarios de Atención"].ToString(); // Asigna el horario del medico buscado a Horario
+                    reg.DiasAtencion = medico.Rows[0]["Dias de Atención"].ToString(); // Asigna el dia del medico buscado a Dia
+
+                    // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
+                    ddlLocalidad.Items.RemoveAt(0);
+                    ddlLocalidad.Items.Insert(0, new ListItem(reg.Localidad, reg.Localidad));
+
+                    ddlProvincia.Items.RemoveAt(0);
+                    ddlProvincia.Items.Insert(0, new ListItem(reg.Provincia, reg.Provincia));
+
+                    ddlEspecialidad.Items.RemoveAt(0);
+                    ddlEspecialidad.Items.Insert(0, new ListItem(reg.Especialidad, reg.Especialidad));
+
+                    ddlDiasAtencion.Items.RemoveAt(0);
+                    ddlDiasAtencion.Items.Insert(0, new ListItem(reg.DiasAtencion, reg.DiasAtencion));
+
+                    ddlHorario.Items.RemoveAt(0);
+                    ddlHorario.Items.Insert(0, new ListItem(reg.Horario, reg.Horario));
+
+                    // Convertir
+                    if (reg.Sexo == "M")
+                    {
+                        reg.Sexo = "Masculino";
+                        ddlSexo.SelectedValue = "M";
+
+                    }
+                    else if (reg.Sexo == "F")
+                    {
+                        reg.Sexo = "Femenino";
+                        ddlSexo.SelectedValue = "F";
+
+                    }
+                    else
+                    {
+                        reg.Sexo = "Otro";
+                        ddlSexo.SelectedValue = "O";
+
+                    }
+                    // Asignar valores a los TextBox y ddl
+                    txtCodigo.Text = reg.CodMedico;
+                    txtNombre.Text = reg.Nombre;
+                    txtApellido.Text = reg.Apellido;
+                    txtDni.Text = reg.Dni;
+                    txtEmail.Text = reg.Email;
+                    txtCelular.Text = reg.Celular;
+                    txtDireccion.Text = reg.Direccion;
+                    ddlProvincia.Text = reg.Provincia;
+                    ddlLocalidad.Text = reg.Localidad;
+                    txtNacionalidad.Text = reg.Nacionalidad;
+                    txtFechaNacimiento.Text = reg.FechaNacimiento;
+                    ddlEspecialidad.Text = reg.Especialidad;
+                    ddlHorario.Text = reg.Horario;
+                    ddlDiasAtencion.Text = reg.DiasAtencion;
+
+                }
+                else
+                {
+                    // Error
+                    lblErrorBusqueda.Text = "No se encontró el paciente.";
+                }
+            }
+        }
+
+        private void CargarDatosMedicoPorDni()
+        {
+            NegocioMedico negM = new NegocioMedico();
+            Medico reg = new Medico();
+            if (txtBuscar.Text.Length == 8)
+            {
+                DataTable medico = negM.listarMedicoEspecificoDni(txtBuscar.Text);
+
+                if (medico.Rows.Count > 0) //Validad que hayan datos para mostrar
+                {
+                    reg.CodMedico = medico.Rows[0]["CodigoMedico"].ToString(); //Asigna el codigo del medico buscado a codMedico
+                    reg.Nombre = medico.Rows[0]["Nombre"].ToString(); //Asigna el nombre del medico buscado a nombre
+                    reg.Apellido = medico.Rows[0]["Apellido"].ToString(); //Asigna el apellido del medico buscado a apellido
+                    reg.Dni = medico.Rows[0]["Dni"].ToString(); //Asigna el dni del medico buscado a dni
+                    reg.Email = medico.Rows[0]["Email"].ToString(); // Asigna el email del medico buscado a email
+                    reg.Celular = medico.Rows[0]["Telefono"].ToString(); // Asigna el telefono del medico buscado a celular 
+                    reg.Provincia = medico.Rows[0]["Provincia"].ToString(); // Asigna la provincia del medico buscado a provincia
+                    reg.Localidad = medico.Rows[0]["Localidad"].ToString(); // Asigna la localidad del medico buscado a localidad
+                    reg.Direccion = medico.Rows[0]["Direccion"].ToString();// Asigna la direccion del medico buscado a direccion
+                    reg.Sexo = medico.Rows[0]["Sexo"].ToString(); // Asigna el sexo del medico buscado
+                    reg.FechaNacimiento = medico.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del medico buscado
+                    reg.Nacionalidad = medico.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del medico buscado
+                    reg.Especialidad = medico.Rows[0]["Especialidad"].ToString(); // Asigna la especialidad del medico buscado a especialidad
+                    reg.Horario = medico.Rows[0]["Horarios de Atención"].ToString(); // Asigna el horario del medico buscado a Horario
+                    reg.DiasAtencion = medico.Rows[0]["Dias de Atención"].ToString(); // Asigna el dia del medico buscado a Dia
+
+                    // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
+                    ddlLocalidad.Items.RemoveAt(0);
+                    ddlLocalidad.Items.Insert(0, new ListItem(reg.Localidad, reg.Localidad));
+
+                    ddlProvincia.Items.RemoveAt(0);
+                    ddlProvincia.Items.Insert(0, new ListItem(reg.Provincia, reg.Provincia));
+
+                    ddlEspecialidad.Items.RemoveAt(0);
+                    ddlEspecialidad.Items.Insert(0, new ListItem(reg.Especialidad, reg.Especialidad));
+
+                    ddlDiasAtencion.Items.RemoveAt(0);
+                    ddlDiasAtencion.Items.Insert(0, new ListItem(reg.DiasAtencion, reg.DiasAtencion));
+
+                    ddlHorario.Items.RemoveAt(0);
+                    ddlHorario.Items.Insert(0, new ListItem(reg.Horario, reg.Horario));
+
+                    // Convertir
+                    if (reg.Sexo == "M")
+                    {
+                        reg.Sexo = "Masculino";
+                        ddlSexo.SelectedValue = "M";
+
+                    }
+                    else if (reg.Sexo == "F")
+                    {
+                        reg.Sexo = "Femenino";
+                        ddlSexo.SelectedValue = "F";
+
+                    }
+                    else
+                    {
+                        reg.Sexo = "Otro";
+                        ddlSexo.SelectedValue = "O";
+
+                    }
+                    // Asignar valores a los TextBox y ddl
+                    txtCodigo.Text = reg.CodMedico;
+                    txtNombre.Text = reg.Nombre;
+                    txtApellido.Text = reg.Apellido;
+                    txtDni.Text = reg.Dni;
+                    txtEmail.Text = reg.Email;
+                    txtCelular.Text = reg.Celular;
+                    txtDireccion.Text = reg.Direccion;
+                    ddlProvincia.Text = reg.Provincia;
+                    ddlLocalidad.Text = reg.Localidad;
+                    txtNacionalidad.Text = reg.Nacionalidad;
+                    txtFechaNacimiento.Text = reg.FechaNacimiento;
+                    ddlEspecialidad.Text = reg.Especialidad;
+                    ddlHorario.Text = reg.Horario;
+                    ddlDiasAtencion.Text = reg.DiasAtencion;
+
+                }
+                else
+                {
+                    // Error
+                    lblErrorBusqueda.Text = "No se encontró el paciente.";
+                }
+            }
+        }
+
+        protected void LimpiarCampos()
+        {
+            //TextBox
+            txtCodigo.Text = "";
+            txtNombre.Text = "";
+            txtDni.Text = "";
+            txtApellido.Text = "";
+            ddlSexo.Items.Clear();
+            ddlSexo.Items.Insert(0, new ListItem("Sexo"));
+            txtEmail.Text = "";
+            ddlProvincia.Items.Clear();
+            ddlProvincia.Items.Insert(0, new ListItem("Provincia"));
+            ddlLocalidad.Items.Clear();
+            ddlLocalidad.Items.Insert(0, new ListItem("Localidad"));
+            ddlEspecialidad.Items.Clear();
+            ddlEspecialidad.Items.Insert(0, new ListItem("Especialidad"));
+            ddlHorario.Items.Clear();
+            ddlHorario.Items.Insert(0, new ListItem("Horario"));
+            ddlDiasAtencion.Items.Clear();
+            ddlDiasAtencion.Items.Insert(0, new ListItem("Dia Atencion"));
+            txtFechaNacimiento.Text = "";
+            txtNacionalidad.Text = "";
+            txtCelular.Text = "";
+            txtDireccion.Text = "";
+            lblError.Text = "";
+            lblErrorBusqueda.Text = "";
+
+        }
+
+        //Funcion para validar solo digitos
+        private bool SoloDigitos(string str) //Parametro a checkear
+        {
+            return str.All(Char.IsDigit); //La funcion usa el metodo All para validar que todos los caracteres sean digitos con IsDigit
+        }
+
+        //Funcion para validar el correo electronico, retorna true si es valido, false si no lo es (Correos validos como ejemplo@ejemplo.com) 
+        private bool CorreoValido(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email); //signa el email a una variable de tipo MailAddress
+                return addr.Address == email; //retorna true si el email es valido
+            }
+            catch //Si el email no es valido, se captura la excepcion y se retorna false
+            {
+                return false;
+            }
+        }
+
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string provincia = ddlProvincia.SelectedValue;
+
+            negL.ObtenerLocalidadesPorProvincia(provincia);
+
+            if (string.IsNullOrEmpty(provincia) || provincia == "0")
+            {
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
+                return;
+            }
+
+            try
+            {
+                // Obtener localidades filtradas por la provincia seleccionada
+                List<Localidades> localidades = new NegocioLocalidades().ObtenerLocalidadesPorProvincia(provincia);
+
+                // Limpiar y cargar el DropDownList de localidades
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Seleccionar Localidad", "0"));
+
+                if (localidades.Count > 0)
+                {
+                    foreach (var loc in localidades)
+                    {
+                        ddlLocalidad.Items.Add(new ListItem(loc.DescripcionLocalidad1, loc.Id_Localidad));
+                    }
+                }
+                else
+                {
+                    ddlLocalidad.Items.Add(new ListItem("No hay localidades disponibles", "0"));
+                }
+            }
+            catch (Exception)
+            {
+                // Muestra un mensaje de error en caso de fallas
+                ddlLocalidad.Items.Clear();
+                ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
+
+            }
+        }
+
+        
     }
 }
