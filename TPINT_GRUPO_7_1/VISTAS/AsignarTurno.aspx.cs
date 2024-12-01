@@ -192,7 +192,7 @@ namespace VISTAS
 
                 if (medicos.Rows.Count > 0)
                 {
-                    string nombreMedico, codigoMedico, horarioAtencion, idHorarioAtencion;
+                    string nombreMedico, codigoMedico, horarioAtencion, idHorarioAtencion, DiasAtencion;
 
                     foreach (DataRow row in medicos.Rows)
                     {
@@ -200,10 +200,11 @@ namespace VISTAS
                         codigoMedico = row["CodigoMedico"].ToString();
                         horarioAtencion = row["HorarioAtencion"].ToString();
                         idHorarioAtencion = row["CodHorario"].ToString();
+                        DiasAtencion = row["DiasAtencion"].ToString(); 
 
                         // Agregar médicos al DropDownList
                         ddlMedico.Items.Add(new ListItem(nombreMedico, codigoMedico));
-
+                        
                     }
                 }
                 else
@@ -239,27 +240,21 @@ namespace VISTAS
 
             try
             {
-                // Instancia del negocio de médicos
-                NegocioMedico negocioMedico = new NegocioMedico();
-
                 // Llamar al método para obtener los horarios de atención según el médico
-                DataTable horario = negocioMedico.HorarioSegunMedico(medicoSeleccionado);
+                DataTable medicos = negM.MedicosSegunEspecialidad(ddlEspecialidad.SelectedValue);
 
-                // Limpiar el DropDownList de horarios
-               
-                if (horario.Rows.Count > 0)
+
+                if (medicos.Rows.Count > 0)
                 {
-                    string horarioAtencion;
-                    string desde;
-                    string hasta; 
-                    foreach (DataRow row in horario.Rows)
+                    string horarioAtencion, DiasAtencion, desde, hasta;
+
+                    foreach (DataRow row in medicos.Rows)
                     {
                         horarioAtencion = row["HorarioAtencion"].ToString();
+                        DiasAtencion = row["DiasAtencion"].ToString();
                         desde = row["Desde"].ToString();
                         hasta = row["Hasta"].ToString();
-
-
-                        txtHorario.Text = horarioAtencion;
+                        txtHorario.Text = horarioAtencion + " | " + DiasAtencion;
 
                         // Convierte las cadenas a TimeSpan
                         TimeSpan desdeHs = TimeSpan.Parse(desde);
@@ -269,17 +264,17 @@ namespace VISTAS
                         for (TimeSpan hora = desdeHs; hora <= hastaHs; hora = hora.Add(TimeSpan.FromMinutes(15)))
                         {
                             horaFinal = hora.ToString(@"hh\:mm");  // Formatea la hora como hh:mm
-                            if (!Encontro(horaFinal, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue))
-                            {
-                                ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
-                            }
-
+                                
+                         //if (!Encontro(horaFinal, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue))//algo asi, falta, da mal, tengo que ver donde ubicarlo bien
+                             
+                            ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
+                            
                         }
                     }
                 }
                 else
                 {
-                    txtHorario.Text = "No hay horario disponible";
+                    txtHorario.Text = "No hay horarios disponible";
                 }
             }
             catch (Exception)
@@ -323,7 +318,7 @@ namespace VISTAS
             }
         }
 
-        public bool Encontro(string hora, string Fecha, string Especialidad, string medico)
+       /* public bool Encontro(string hora, string Fecha, string Especialidad, string medico)
         {
             DataTable dt = negH.EncontrarTurno(hora, Fecha, Especialidad, medico);
 
@@ -336,6 +331,6 @@ namespace VISTAS
                 return false;
             }
  
-        }
+        }*/
     }
 }
