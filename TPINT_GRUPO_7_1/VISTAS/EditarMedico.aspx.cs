@@ -80,6 +80,8 @@ namespace VISTAS
         
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            lblErrorBusqueda.Text = "";
+            lblError.Text = "";
             //Validacion por si se ingresa vacio
             if (string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
@@ -120,9 +122,10 @@ namespace VISTAS
                 lblError.Text = "Por favor, complete todos los campos.";
                 return;
             }
+
             NegocioMedico negocio = new NegocioMedico();
             Medico medico = new Medico();
-            //{
+            
             DateTime fechaNacimiento;
             DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento);
             medico.setCodMedico(txtCodigo.Text.ToString());
@@ -139,26 +142,17 @@ namespace VISTAS
             medico.setEspecialidad(ddlEspecialidad.SelectedValue.ToString());
             medico.setDiasAtencion(ddlDiasAtencion.SelectedValue.ToString());
             medico.setHorario(ddlHorario.SelectedValue.ToString());
-            // };
-
-            //Borrar despues
-            /*string datos = $"Nombre: {medico.Nombre}, Apellido: {medico.Apellido} "+
-                           $"Email: {medico.Email}, Celular: {medico.Celular}, Direccion: {medico.Direccion}, " +
-                           $"Provincia: {medico.Provincia}, Localidad: {medico.Localidad}, " +
-                           $"Nacionalidad: {medico.Nacionalidad}, " +
-                           $"Sexo: {medico.Sexo}, Fecha de Nacimiento: {medico.FechaNacimiento.ToString()}," +
-                           $"Especialidad: {medico.Provincia}, DiasAtencion: {medico.DiasAtencion}, Horario: {medico.Horario} "  ;*/
-
-            if (negocio.modificarMedico(medico))//try
+           
+            if(negocio.modificarMedico(medico))
             {
-                //negocio.modificarMedico(medico);
-                lblExito.Text = "Medico modificado correctamente.";
+                negocio.modificarMedico(medico);
+                lblExito.Text = "Médico modificado correctamente.";
                 LimpiarCampos();
             }
-            else //catch (Exception ex)
+            else
             {
-                //lblErrorBusqueda.Text = "Error al modificar el Medico: " + ex.Message; // Muestra el error del sistema
-                lblError.Text = "Error al modificar el Medico. ";
+               
+                lblError.Text = "Error al modificar Médico. ";
             }
         }
 
@@ -249,7 +243,7 @@ namespace VISTAS
                 else
                 {
                     // Error
-                    lblErrorBusqueda.Text = "No se encontró el paciente.";
+                    lblErrorBusqueda.Text = "No se encontró el médico.";
                 }
             }
         }
@@ -335,7 +329,7 @@ namespace VISTAS
                 else
                 {
                     // Error
-                    lblErrorBusqueda.Text = "No se encontró el paciente.";
+                    lblErrorBusqueda.Text = "No se encontró el médico.";
                 }
             }
         }
