@@ -118,14 +118,11 @@
             <asp:Button ID="btnAsignar" runat="server" Text="Asignar" OnClick="btnAsignar_Click" />
         </div>
         <div class="error-message">
-            <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" />
+            <asp:Label ID="lblError" runat="server" ForeColor="Red" Font-Size="Large" />
         </div>
         <div class="exito-message">
-            <asp:Label ID="lblExito" runat="server" Text="" ForeColor="Green" />
+            <asp:Label ID="lblExito" runat="server" ForeColor="Green" text-align ="center" Font-Size="Large"/>
         </div>
-        <h1 class="center">Turnos Asignados</h1>
-        <asp:GridView ID="GridView1" runat="server">
-        </asp:GridView>
     </form>
 </body>
 </html>

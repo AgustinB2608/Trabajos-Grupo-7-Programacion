@@ -17,14 +17,9 @@ namespace NEGOCIOS
             dao = new DaoTurnos();
         }
 
-        public bool agregarTurno(string especialidad, string medico, string nombre, string apellido, string dni, string dia, TimeSpan horario)
+        public bool agregarTurno(Turnos turno)
         {
-            // Convertir la fecha
-            //TimeSpan horarioTimeSpan = TimeSpan.Parse(horario);
-
-            // Creamos un objeto turnos con los valores
-            Turnos turno = new Turnos(especialidad, medico, nombre, apellido, dni, dia, horario);
-
+            
             dao = new DaoTurnos();
 
             // Llamamos al metodo agregarTurno de DaoTurnos con el objeto turno

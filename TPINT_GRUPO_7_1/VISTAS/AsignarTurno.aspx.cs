@@ -4,6 +4,7 @@ using System;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
+using ENTIDADES;
 
 namespace VISTAS
 {
@@ -14,7 +15,11 @@ namespace VISTAS
         NegocioPacientes negP = new NegocioPacientes();
         NegocioMedico negM = new NegocioMedico();
         NegocioTurnos negT = new NegocioTurnos();
-
+        
+        /// **********************************
+        /// funciona perfecto, faltaria un verificar turno, con el proced. ya hecho, para ver si ese turno ya esta ocupado
+        /// pensé en algun boton de verificar disponibilidad, porque metiendolo dentro del codigo no funciona, probe de todo
+        /// **********************************
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,11 +56,7 @@ namespace VISTAS
 
             ddlMedico.Items.Add(new ListItem("Seleccionar Médico", "0"));
             ddlHoraAsignada.Items.Add(new ListItem("Turnos Disponibles", "0"));
-            /// Configuración de ddlMedico
-            /// lo comente porq si no trae los nombres solos y trae todos, la idea es que traiga el nombre completo
-            /// y segun la especialidad, queda lo mismo para los horarios, tiene que ser el disponible que tiene ese medico
-
-
+           
             /*para tomar el turno tiene que tener nombre, apellido y dni del paciente*/
         }
 
@@ -72,23 +73,13 @@ namespace VISTAS
             if (!ValidarCamposVacios()) return;
 
             // Obtener valores seleccionados de los Dropdowns
-            string especialidad = ddlEspecialidad.SelectedValue;
+            //obj turnos
             TimeSpan horario = TimeSpan.Parse(ddlHoraAsignada.SelectedValue);
-            string medico = ddlMedico.SelectedValue;
-
-            // Obtener valores de los campos de texto
-
-            string fecha = txtFecha.Text;//ToString("yyyy/MM/dd");
-            string nombre = txtNombrePaciente.Text.Trim();
-            string apellido = txtApellidoPaciente.Text.Trim();
-            string dni = txtDniPaciente.Text.Trim();
-
-            //estado no hay que poner nada, por default queda en pendiente y la confirmacion la hace el medico cuando
-            //lo atiende, tambien la cancelacion
-
-
+            Turnos turno = new Turnos(ddlEspecialidad.Text, ddlMedico.SelectedValue, txtNombrePaciente.Text, txtApellidoPaciente.Text,
+                txtDniPaciente.Text, txtFecha.Text.ToString(), horario);
+           
             // Asignar el turno utilizando la lógica de negocio
-            bool asignado = negT.agregarTurno(especialidad, medico, nombre, apellido, dni, fecha, horario);
+            bool asignado = negT.agregarTurno(turno);
 
             if (asignado)
             {
@@ -97,7 +88,7 @@ namespace VISTAS
             }
             else
             {
-                lblError.Text = "Error al asignar el turno.";
+                lblError.Text = "Error al asignar el turno. Recuerde que el paciente debe estar previamente registrado";
             }
 
 
@@ -139,20 +130,16 @@ namespace VISTAS
         private void LimpiarCampos()
         {
             ddlEspecialidad.Items.Clear();
-            ddlMedico.Items.Add(new ListItem("Seleccionar Especialidad", "0"));
+            ddlEspecialidad.Items.Add(new ListItem("Seleccionar Especialidad", "0"));
             ddlHoraAsignada.Items.Clear();
             ddlHoraAsignada.Items.Add(new ListItem("Turnos Disponibles", "0"));
             ddlMedico.Items.Clear();
             ddlMedico.Items.Add(new ListItem("Seleccionar Médico", "0"));
-            ddlHoraAsignada.Items.Clear();
-            ddlMedico.Items.Add(new ListItem("Turnos Disponibles", "0"));
             txtHorario.Text = "";
             txtNombrePaciente.Text = "";
             txtApellidoPaciente.Text = "";
             txtDniPaciente.Text = "";
             txtFecha.Text = "";
-            lblError.Text = "";
-            lblExito.Text = "";
         }
 
 
@@ -220,8 +207,6 @@ namespace VISTAS
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //cuando cambio de medico pero no de especialidad tienen los mismos horarios, asi esta en la bdd, despues lo cambiamos
-
             string medicoSeleccionado = ddlMedico.SelectedValue;
             txtHorario.Text = "";
             ddlHoraAsignada.Items.Clear();
@@ -277,48 +262,5 @@ namespace VISTAS
             }
         }
 
-        protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*string rangoSeleccionado = txtHorario.Text;
-
-            // Validar que el rango no esté vacío y contenga el guion
-            if (!string.IsNullOrEmpty(rangoSeleccionado) && rangoSeleccionado.Contains("-"))
-            {
-                // Dividir el rango en dos partes
-                string[] partes = rangoSeleccionado.Split('-'); // Separar por el guion
-
-                if (partes.Length == 2)
-                {
-                    string horaInicio = partes[0].Trim(); // "08:00"
-                    string horaFin = partes[1].Trim(); // "12:00"
-
-                    // Intentar convertir las partes a TimeSpan
-                    if (TimeSpan.TryParse(horaInicio, out TimeSpan inicio) &&
-                        TimeSpan.TryParse(horaFin, out TimeSpan fin))
-                    {
-                        lblExito.Text = $"Horas válidas. Inicio: {inicio}, Fin: {fin}";
-                    }
-                    else
-                    {
-                        lblError.Text = "Las horas no tienen un formato válido.";
-                    }
-                }
-            }
-            else
-            {
-                lblError.Text = "Seleccione un rango de horario válido.";
-            }*/
-
-          /*  NO FUNCIONA
-                
-         DataTable dt = negH.EncontrarTurno(ddlHoraAsignada.SelectedValue, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue);
-
-         if (dt.Rows.Count > 0)
-         {
-                lblError.Visible = true;
-             lblError.Text = "Turno ocupado, puede ofrecer un sobre-turno";
-         }*/
-                
-        }
     }
 }
