@@ -75,6 +75,7 @@
     <Content Include="EditarMedico.aspx" />
     <Content Include="EliminarMedico.aspx" />
     <Content Include="EliminarPaciente.aspx" />
+    <Content Include="EliminarTurnos.aspx" />
     <Content Include="EstadisticaDemanda.aspx" />
     <Content Include="EstadisticaEspecialidad.aspx" />
     <Content Include="EstadisticaMensual.aspx" />
@@ -92,6 +93,7 @@
     <Content Include="ListarPaciente.aspx" />
     <Content Include="ModificarMedico.aspx" />
     <Content Include="ModificarPaciente.aspx" />
+    <Content Include="ModificarTurnos.aspx" />
     <Content Include="RealizarInformes.aspx" />
     <Content Include="UsuarioMedico.aspx" />
     <Content Include="Web.config" />
@@ -153,6 +155,13 @@
     </Compile>
     <Compile Include="EliminarPaciente.aspx.designer.cs">
       <DependentUpon>EliminarPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarTurnos.aspx.cs">
+      <DependentUpon>EliminarTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EliminarTurnos.aspx.designer.cs">
+      <DependentUpon>EliminarTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="EstadisticaDemanda.aspx.cs">
       <DependentUpon>EstadisticaDemanda.aspx</DependentUpon>
@@ -230,6 +239,13 @@
     </Compile>
     <Compile Include="ModificarPaciente.aspx.designer.cs">
       <DependentUpon>ModificarPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarTurnos.aspx.cs">
+      <DependentUpon>ModificarTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarTurnos.aspx.designer.cs">
+      <DependentUpon>ModificarTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealizarInformes.aspx.cs">
