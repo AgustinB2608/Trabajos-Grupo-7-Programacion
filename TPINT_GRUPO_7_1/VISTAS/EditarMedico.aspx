@@ -196,17 +196,17 @@
                         <%--CODIGO--%>
                         <div class="form-group">
                             <asp:Label ID="lblCodigo" runat="server" Text="Codigo:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" placeholder="Ingresar Codigo" ></asp:TextBox>
+                            <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" ReadOnly = "true" placeholder="Ingresar Codigo " ></asp:TextBox>
                         </div>
                         <%--Nombre--%>
                         <div class="form-group">
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresar Nombre" ></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" ReadOnly="true" placeholder="Ingresar Nombre" ></asp:TextBox>
                         </div>
                         <%--DNI--%>
                         <div class="form-group">
                             <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" placeholder="Ingresar DNI"></asp:TextBox>
+                            <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" ReadOnly="true" placeholder="Ingresar DNI"></asp:TextBox>
                         </div>
                         <%--Correo Electronico--%>
                         <div class="form-group">
@@ -249,7 +249,7 @@
                         <%-- Aquí cargarás los años, por ejemplo del 1900 al año actual --%>
                         <div class="form-group">
                             <asp:Label ID="lblApellido" runat="server" Text="Apellido:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Ingresar Apellido "></asp:TextBox>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" ReadOnly="true" placeholder="Ingresar Apellido "></asp:TextBox>
                         </div>
                         <%--Label para los mensajes d error--%>
                         <div class="form-group">

@@ -121,42 +121,44 @@ namespace VISTAS
                 return;
             }
             NegocioMedico negocio = new NegocioMedico();
-            Medico medico = new Medico
-            {
-                CodMedico = txtCodigo.Text,
-                Nombre = txtNombre.Text,
-                Apellido = txtApellido.Text,
-                Dni = txtDni.Text,
-                Email = txtEmail.Text,
-                Celular = txtCelular.Text,
-                Direccion = txtDireccion.Text,
-                Provincia = ddlProvincia.SelectedValue,
-                Localidad = ddlLocalidad.SelectedValue,
-                Nacionalidad = txtNacionalidad.Text,
-                Sexo = ddlSexo.SelectedValue,
-                FechaNacimiento = txtFechaNacimiento.Text,
-                Especialidad = ddlEspecialidad.SelectedValue,
-                DiasAtencion = ddlDiasAtencion.SelectedValue,
-                Horario = ddlHorario.SelectedValue
-            };
+            Medico medico = new Medico();
+            //{
+            DateTime fechaNacimiento;
+            DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento);
+            medico.setCodMedico(txtCodigo.Text.ToString());
+            medico.setNombre(txtNombre.Text.ToString());
+            medico.setApellido(txtApellido.Text.ToString());
+            medico.setSexo(ddlSexo.SelectedValue);
+            medico.setNacionalidad(txtNacionalidad.Text.ToString());
+            medico.setFechaNacimiento(fechaNacimiento.ToString("yyyy/MM/dd"));
+            medico.setDireccion(txtDireccion.Text.ToString());
+            medico.setLocalidad(ddlLocalidad.SelectedValue.ToString());
+            medico.setProvincia(ddlProvincia.SelectedValue.ToString());
+            medico.setEmail(txtEmail.Text.ToString());
+            medico.setCelular(txtCelular.Text.ToString());
+            medico.setEspecialidad(ddlEspecialidad.SelectedValue.ToString());
+            medico.setDiasAtencion(ddlDiasAtencion.SelectedValue.ToString());
+            medico.setHorario(ddlHorario.SelectedValue.ToString());
+            // };
 
             //Borrar despues
-            string datos = $"Nombre: {medico.Nombre}, Apellido: {medico.Apellido}, DNI: {medico.Dni}, " +
+            /*string datos = $"Nombre: {medico.Nombre}, Apellido: {medico.Apellido} "+
                            $"Email: {medico.Email}, Celular: {medico.Celular}, Direccion: {medico.Direccion}, " +
                            $"Provincia: {medico.Provincia}, Localidad: {medico.Localidad}, " +
                            $"Nacionalidad: {medico.Nacionalidad}, " +
                            $"Sexo: {medico.Sexo}, Fecha de Nacimiento: {medico.FechaNacimiento.ToString()}," +
-                           $"Especialidad: {medico.Provincia}, DiasAtencion: {medico.DiasAtencion}, Horario: {medico.Horario} "  ;
+                           $"Especialidad: {medico.Provincia}, DiasAtencion: {medico.DiasAtencion}, Horario: {medico.Horario} "  ;*/
 
-            try
+            if (negocio.modificarMedico(medico))//try
             {
-                negocio.modificarMedico(medico); // Descomentar para guardar
+                //negocio.modificarMedico(medico);
                 lblExito.Text = "Medico modificado correctamente.";
                 LimpiarCampos();
             }
-            catch (Exception ex)
+            else //catch (Exception ex)
             {
-                lblErrorBusqueda.Text = "Error al modificar el Medico: " + ex.Message; // Muestra el error del sistema
+                //lblErrorBusqueda.Text = "Error al modificar el Medico: " + ex.Message; // Muestra el error del sistema
+                lblError.Text = "Error al modificar el Medico. ";
             }
         }
 
