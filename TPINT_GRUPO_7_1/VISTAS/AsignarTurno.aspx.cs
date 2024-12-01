@@ -260,6 +260,7 @@ namespace VISTAS
 
 
                         txtHorario.Text = horarioAtencion;
+
                         // Convierte las cadenas a TimeSpan
                         TimeSpan desdeHs = TimeSpan.Parse(desde);
                         TimeSpan hastaHs = TimeSpan.Parse(hasta);
@@ -272,26 +273,6 @@ namespace VISTAS
                             {
                                 ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
                             }
-
-
-                            // Verificar si el horario ya está ocupado
-                            /*bool turnoOcupado = negH.EncontrarTurno(horaFinal, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue);
-                            if (!turnoOcupado)
-                            {
-                                ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
-                            }*/
-
-                            /*horaFinal = hora.ToString(@"hh\:mm"); // Formato hh:mm
-
-                            // Verificar si la hora generada está en el DataTable de turnos ocupados
-                            DataTable turnosOcupados = negH.EncontrarTurno(horaFinal, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue);
-
-                            bool estaOcupado = turnosOcupados.AsEnumerable().Any(t => t["HorarioTurno"].ToString() == horaFinal);
-
-                            if (!estaOcupado)
-                            {
-                                ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
-                            }*/
 
                         }
                     }
