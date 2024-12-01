@@ -119,7 +119,7 @@ namespace VISTAS
             nuevoPaciente.Celular = (txtCelular.Text.Trim());
             nuevoPaciente.Sexo = (ddlSexo.SelectedValue);
             nuevoPaciente.Nacionalidad = (txtNacionalidad.Text.Trim());
-            nuevoPaciente.FechaNacimiento = fechaNacimiento.Date;
+            //nuevoPaciente.FechaNacimiento = 
 
 
             // Llamar al método de negocio para agregar el paciente

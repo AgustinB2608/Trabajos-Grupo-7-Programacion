@@ -30,7 +30,7 @@ namespace DATOS
                 new SqlParameter("@Dni", paciente.Dni),
                 new SqlParameter("@Nombre", paciente.Nombre),
                 new SqlParameter("@Apellido", paciente.Apellido),
-                new SqlParameter("@FechaNacimiento", paciente.FechaNacimiento.Date),
+                new SqlParameter("@FechaNacimiento", paciente.FechaNacimiento),
                 new SqlParameter("@Nacionalidad", paciente.Nacionalidad),
                 new SqlParameter("@Direccion", paciente.Direccion),
                 new SqlParameter("@Email", paciente.Email),

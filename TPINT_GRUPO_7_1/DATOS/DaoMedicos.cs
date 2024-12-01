@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ENTIDADES;
-using System.Data;
 
 namespace DATOS
 {
@@ -37,7 +37,7 @@ namespace DATOS
                 new SqlParameter("@Telefono", medic.getCelular())
             };
 
-            int filasAfectadas = ds.EjecutarConsultaSinRetorno(agregar, parametros);
+            int filasAfectadas = ds.EjecutarProcedimientoConRetorno(agregar, parametros);
             if (filasAfectadas > 0)
             {
                 Console.WriteLine("Médico agregado correctamente.");

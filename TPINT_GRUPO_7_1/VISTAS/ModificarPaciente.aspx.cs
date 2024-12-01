@@ -93,7 +93,7 @@ namespace VISTAS
                     obj.Localidad = paciente.Rows[0]["Localidad"].ToString(); // Asigna la localidad del paciente buscado a localidad
                     obj.Direccion = paciente.Rows[0]["Direccion"].ToString();// Asigna la direccion del paciente buscado a direccion
                     obj.Sexo = paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
-                  ///  obj.FechaNacimiento = (DateTime)paciente.Rows[0]["Fecha de Nacimiento"]; // Asigna la fecha de nacimiento del paciente buscado
+                    obj.FechaNacimiento = paciente.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del paciente buscado
                     obj.Nacionalidad = paciente.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del paciente buscado
 
                     // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
@@ -132,16 +132,8 @@ namespace VISTAS
                     ddlProvincia.Text = obj.Provincia;
                     ddlLocalidad.Text = obj.Localidad;
                     txtNacionalidad.Text = obj.Nacionalidad;
+                    txtFechaNacimiento.Text = obj.FechaNacimiento;
 
-                    // Declaramos una variable para almacenar la fecha de nacimiento como un objeto DateTime
-                   // DateTime fechaNacimiento;
-
-                    // conveierte la cadena a unobjeto DateTime
-                   // if (DateTime.TryParse(obj.FechaNacimiento, out fechaNacimiento))
-                    {
-                        // si lo convierte formatea la fecha en el formato dd/MM/yyyy
-                       /// txtFechaNacimiento.Text = fechaNacimiento.ToString("dd/MM/yyyy"); // Asigna el valor formateado al TextBox
-                    }
                 }
                 else
                 {
@@ -206,7 +198,7 @@ namespace VISTAS
                 Localidad = ddlLocalidad.SelectedValue,
                 Nacionalidad = txtNacionalidad.Text,
                 Sexo = ddlSexo.SelectedValue,
-                ///FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text).ToString("dd/MM/yyyy") // Formatea el formato para guardar en la bd
+                FechaNacimiento = txtFechaNacimiento.ToString(),
             };
 
             //Borrar despues
@@ -214,7 +206,7 @@ namespace VISTAS
                            $"Email: {paciente.Email}, Celular: {paciente.Celular}, Direccion: {paciente.Direccion}, " +
                            $"Provincia: {paciente.Provincia}, Localidad: {paciente.Localidad}, " +
                            $"Nacionalidad: {paciente.Nacionalidad}, " +
-                           $"Sexo: {paciente.Sexo}, Fecha de Nacimiento: {paciente.FechaNacimiento}";
+                           $"Sexo: {paciente.Sexo}, Fecha de Nacimiento: {paciente.FechaNacimiento.ToString()}";
 
             try
             {
@@ -238,9 +230,12 @@ namespace VISTAS
             txtNombre.Text = "";
             txtDNI.Text = "";
             txtApellido.Text = "";
+            ddlSexo.Items.Clear();
             ddlSexo.Items.Insert(0, new ListItem("Sexo"));
             txtEmail.Text = "";
+            ddlProvincia.Items.Clear();
             ddlProvincia.Items.Insert(0, new ListItem("Provincia"));
+            ddlLocalidad.Items.Clear();
             ddlLocalidad.Items.Insert(0, new ListItem("Localidad"));
             txtFechaNacimiento.Text = "";
             txtNacionalidad.Text = "";
@@ -248,8 +243,7 @@ namespace VISTAS
             txtDireccion.Text = "";
             lblError.Text = "";
             lblErrorBusqueda.Text = "";
-
-
+            
         }
 
         //Funcion para validar solo digitos

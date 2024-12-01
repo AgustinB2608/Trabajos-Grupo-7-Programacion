@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,11 @@ namespace NEGOCIOS
         public List<Horarios> ObtenerHorarios()
         {
             return ltHorariosAtencion.ObtenerHorarios();
+        }
+
+        public DataTable EncontrarTurno(string hora, string fecha, string codespecialidad, string codmedico)
+        {
+            return ltHorariosAtencion.EncontrarTurno(hora, fecha, codespecialidad, codmedico);
         }
     }
 }

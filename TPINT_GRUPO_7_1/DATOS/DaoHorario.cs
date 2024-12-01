@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -41,6 +42,23 @@ namespace DATOS
 
             // Retorna la lista de horarios obtenidas
             return horarios;
+        }
+
+        public DataTable EncontrarTurno (string hora, string fecha, string codespecialidad, string codmedico)
+        {
+            string consulta = "EXEC SP_EncontrarTurno @hora, @fecha, @codespecialidad, @codmedico";
+
+            DataTable dt = ds.EjecutarConsulta(consulta);
+
+            SqlParameter[] parametros = new SqlParameter[]
+                {
+                     new SqlParameter("@hora", hora),
+                     new SqlParameter("@fecha", fecha),
+                     new SqlParameter("@codespecialidad", codespecialidad),
+                     new SqlParameter("@codmedico", codmedico)
+                };
+            //retorna el datatable del metodo de Conexion
+            return ds.EjecutarConsultaConParametros(consulta, parametros);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 using System;
 using System.Data.SqlClient;
 using System.Data;
+using System.Linq;
 
 namespace VISTAS
 {
@@ -262,17 +263,36 @@ namespace VISTAS
                         // Convierte las cadenas a TimeSpan
                         TimeSpan desdeHs = TimeSpan.Parse(desde);
                         TimeSpan hastaHs = TimeSpan.Parse(hasta);
-
+                        string horaFinal;
                         //aca deberia llamar al met de DaoHorario que retorne los reg donde coincida
-                        //deberia contemplar que las fechas sean iguales y el horario. dif fecha mismo 
-                        //horario si se podria
-                        //cuando tengo desde o hasta una hora 00:00 no me asigna los horarios
-                        //tengo que cambiar en la bdd, pondriamos rango de horarios desde las 00 hasta las
-                        //22 o 23
                         for (TimeSpan hora = desdeHs; hora <= hastaHs; hora = hora.Add(TimeSpan.FromMinutes(15)))
                         {
-                            string horaFinal = hora.ToString(@"hh\:mm");  // Formatea la hora como hh:mm
-                            ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
+                            horaFinal = hora.ToString(@"hh\:mm");  // Formatea la hora como hh:mm
+                            if (!Encontro(horaFinal, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue))
+                            {
+                                ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
+                            }
+
+
+                            // Verificar si el horario ya está ocupado
+                            /*bool turnoOcupado = negH.EncontrarTurno(horaFinal, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue);
+                            if (!turnoOcupado)
+                            {
+                                ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
+                            }*/
+
+                            /*horaFinal = hora.ToString(@"hh\:mm"); // Formato hh:mm
+
+                            // Verificar si la hora generada está en el DataTable de turnos ocupados
+                            DataTable turnosOcupados = negH.EncontrarTurno(horaFinal, txtFecha.Text, ddlEspecialidad.SelectedValue, ddlMedico.SelectedValue);
+
+                            bool estaOcupado = turnosOcupados.AsEnumerable().Any(t => t["HorarioTurno"].ToString() == horaFinal);
+
+                            if (!estaOcupado)
+                            {
+                                ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
+                            }*/
+
                         }
                     }
                 }
@@ -322,6 +342,19 @@ namespace VISTAS
             }
         }
 
+        public bool Encontro(string hora, string Fecha, string Especialidad, string medico)
+        {
+            DataTable dt = negH.EncontrarTurno(hora, Fecha, Especialidad, medico);
 
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+ 
+        }
     }
 }
