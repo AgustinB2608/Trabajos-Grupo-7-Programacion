@@ -9,21 +9,21 @@ namespace ENTIDADES
 {
     public class Medico
     {
-        private string CodMedico;
-        private string Nombre;
-        private string Apellido;
-        private string Dni;
-        private string Email;
-        private string Celular;
-        private string Nacionalidad;
-        private string Sexo;
-        private string Provincia;
-        private string Localidad;
-        private string Direccion;
-        private string FechaNacimiento;
-        private string Especialidad;
-        private string DiasAtencion;
-        private string Horario;
+        public string CodMedico;
+        public string Nombre;
+        public string Apellido;
+        public string Dni;
+        public string Email;
+        public string Celular;
+        public string Nacionalidad;
+        public string Sexo;
+        public string Provincia;
+        public string Localidad;
+        public string Direccion;
+        public string FechaNacimiento;
+        public string Especialidad;
+        public string DiasAtencion;
+        public string Horario;
 
 
 

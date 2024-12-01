@@ -24,13 +24,85 @@ namespace VISTAS
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control colums.
+        /// Control lblUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl colums;
+        protected global::System.Web.UI.WebControls.Label lblUsuario;
+
+        /// <summary>
+        /// Control lblBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBuscar;
+
+        /// <summary>
+        /// Control txtBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+
+        /// <summary>
+        /// Control btnBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
+
+        /// <summary>
+        /// Control btnReset.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReset;
+
+        /// <summary>
+        /// Control lblErrorBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorBusqueda;
+
+        /// <summary>
+        /// Control lblExito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExito;
+
+        /// <summary>
+        /// Control lblCodigo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCodigo;
+
+        /// <summary>
+        /// Control txtCodigo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigo;
 
         /// <summary>
         /// Control lblNombre.
@@ -123,13 +195,13 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.TextBox txtNacionalidad;
 
         /// <summary>
-        /// Control lblDireccion.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDireccion;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// Control txtDireccion.
@@ -150,31 +222,13 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.Label lblFechaNacimiento;
 
         /// <summary>
-        /// Control ddlDia.
+        /// Control txtFechaNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDia;
-
-        /// <summary>
-        /// Control ddlMes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMes;
-
-        /// <summary>
-        /// Control ddlAño.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAño;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNacimiento;
 
         /// <summary>
         /// Control lblError.
