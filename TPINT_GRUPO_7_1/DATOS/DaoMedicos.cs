@@ -191,5 +191,22 @@ namespace DATOS
             return ds.EjecutarConsultaConParametros(consulta, parametros);
         }
 
+        public DataTable ObtenerTurnosNombMedico(string Nombre)
+        {
+            if (string.IsNullOrEmpty(Nombre))
+            {
+
+                return new DataTable();
+            }
+
+            // Crear el parámetro para el procedimiento almacenado
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+            new SqlParameter("@Nombre", SqlDbType.NVarChar) { Value = Nombre}
+            };
+
+            return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosNombMedico", parametros);
+        }
+
     }
 }
