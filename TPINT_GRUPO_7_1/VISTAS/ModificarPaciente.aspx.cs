@@ -187,39 +187,44 @@ namespace VISTAS
                 return;
             }
             NegocioPacientes negocio = new NegocioPacientes();
-            Pacientes paciente = new Pacientes
-            {
-                Nombre = txtNombre.Text,
-                Apellido = txtApellido.Text,
-                Dni = txtDNI.Text,
-                Email = txtEmail.Text,
-                Celular = txtCelular.Text,
-                Direccion = txtDireccion.Text,
-                Provincia = ddlProvincia.SelectedValue,
-                Localidad = ddlLocalidad.SelectedValue,
-                Nacionalidad = txtNacionalidad.Text,
-                Sexo = ddlSexo.SelectedValue,
-                FechaNacimiento = txtFechaNacimiento.Text,
-            };
+            Pacientes paciente = new Pacientes();
+
+            DateTime fechaNacimiento;
+            string fecha = (txtFechaNacimiento.Text.Trim().ToString());
+            DateTime.TryParse(fecha, out fechaNacimiento);
+
+            paciente.Provincia = (ddlProvincia.SelectedValue.ToString());
+            paciente.Localidad = (ddlLocalidad.SelectedValue.ToString());
+            paciente.Dni = (txtDNI.Text.Trim().ToString());
+            paciente.Nombre = (txtNombre.Text.Trim().ToString());
+            paciente.Apellido = (txtApellido.Text.Trim().ToString());
+            paciente.FechaNacimiento = fechaNacimiento.ToString("yyyy-MM-dd");
+            paciente.Nacionalidad = (txtNacionalidad.Text.Trim().ToString());
+            paciente.Direccion = (txtDireccion.Text.Trim().ToString());
+            paciente.Email = (txtEmail.Text.Trim().ToString());
+            paciente.Sexo = (ddlSexo.SelectedValue.ToString());
+            paciente.Celular = (txtCelular.Text.Trim().ToString());
 
             //Borrar despues
-            string datos = $"Nombre: {paciente.Nombre}, Apellido: {paciente.Apellido}, DNI: {paciente.Dni}, " +
-                           $"Email: {paciente.Email}, Celular: {paciente.Celular}, Direccion: {paciente.Direccion}, " +
-                           $"Provincia: {paciente.Provincia}, Localidad: {paciente.Localidad}, " +
-                           $"Nacionalidad: {paciente.Nacionalidad}, " +
-                           $"Sexo: {paciente.Sexo}, Fecha de Nacimiento: {paciente.FechaNacimiento.ToString()}";
+            //string datos = $"Nombre: {paciente.Nombre}, Apellido: {paciente.Apellido}, DNI: {paciente.Dni}, " +
+            //               $"Email: {paciente.Email}, Celular: {paciente.Celular}, Direccion: {paciente.Direccion}, " +
+            //               $"Provincia: {paciente.Provincia}, Localidad: {paciente.Localidad}, " +
+            //               $"Nacionalidad: {paciente.Nacionalidad}, " +
+            //               $"Sexo: {paciente.Sexo}, Fecha de Nacimiento: {paciente.FechaNacimiento.ToString()}";
 
-           // try
-           // {
-                lblError.Text = datos; // Mostrar datos 
-            if (negocio.modificarPaciente(paciente)) // Descomentar para guardar
+             //try
+             //{
+                // lblError.Text = datos; // Mostrar datos 
+            if (negocio.modificarPaciente(paciente)) 
             {
+                lblErrorBusqueda.ForeColor = System.Drawing.Color.Green;
                 lblErrorBusqueda.Text = "Paciente modificado correctamente.";
                 LimpiarCampos();
             }
             else
             {
                 lblErrorBusqueda.Text = "No se pudo modificar el Paciente.";
+                
             }
             //}
             //catch (Exception ex)

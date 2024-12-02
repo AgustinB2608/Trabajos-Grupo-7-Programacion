@@ -89,13 +89,13 @@ namespace DATOS
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Dni", Paciente.Dni),
-                new SqlParameter("@Direccion", Paciente.Direccion),
-                new SqlParameter("@Localidad", Paciente.Localidad),
-                new SqlParameter("@Provincia", Paciente.Provincia),
-                new SqlParameter("@Email", Paciente.Email),
-                new SqlParameter("@Telefono", Paciente.Celular),
-                
+                new SqlParameter("@Dni", SqlDbType.VarChar) { Value = Paciente.Dni },
+                new SqlParameter("@Direccion", SqlDbType.VarChar) { Value = Paciente.Direccion },
+                new SqlParameter("@Localidad", SqlDbType.VarChar) { Value = Paciente.Localidad },
+                new SqlParameter("@Provincia", SqlDbType.VarChar) { Value = Paciente.Provincia },
+                new SqlParameter("@Email", SqlDbType.VarChar) { Value = Paciente.Email },
+                new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = Paciente.Celular },
+
             };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
