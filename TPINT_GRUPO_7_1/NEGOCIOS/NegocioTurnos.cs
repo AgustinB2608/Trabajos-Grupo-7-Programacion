@@ -3,6 +3,7 @@ using ENTIDADES;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,12 @@ namespace NEGOCIOS
         {
             return dao.ObtenerTurnosPorEspYEst(especialidadSeleccionada, estadoSeleccionado);
 
+        }
+        public DataTable ObtenerTurnosFiltrados(string especialidad, string estado, string nombreMedico)
+        {
+            
+
+            return dao.ObtenerTurnosFiltrados(especialidad, estado, nombreMedico);
         }
 
     }
