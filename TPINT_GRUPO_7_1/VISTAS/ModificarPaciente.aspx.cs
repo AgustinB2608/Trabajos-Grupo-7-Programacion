@@ -13,8 +13,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-///Error al modificar el paciente: Debe declarar la variable escalar '@Dni'. (btnModificar)
-
 
 namespace VISTAS
 {
@@ -145,6 +143,9 @@ namespace VISTAS
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
+            lblErrorBusqueda.Text = "";
+
             //Validacion por si se ingresa vacio
             if (string.IsNullOrWhiteSpace(txtBuscar.Text)) 
             {
@@ -198,7 +199,7 @@ namespace VISTAS
                 Localidad = ddlLocalidad.SelectedValue,
                 Nacionalidad = txtNacionalidad.Text,
                 Sexo = ddlSexo.SelectedValue,
-                FechaNacimiento = txtFechaNacimiento.ToString(),
+                FechaNacimiento = txtFechaNacimiento.Text,
             };
 
             //Borrar despues
@@ -208,17 +209,23 @@ namespace VISTAS
                            $"Nacionalidad: {paciente.Nacionalidad}, " +
                            $"Sexo: {paciente.Sexo}, Fecha de Nacimiento: {paciente.FechaNacimiento.ToString()}";
 
-            try
-            {
+           // try
+           // {
                 lblError.Text = datos; // Mostrar datos 
-                negocio.modificarPaciente(paciente); // Descomentar para guardar
+            if (negocio.modificarPaciente(paciente)) // Descomentar para guardar
+            {
                 lblErrorBusqueda.Text = "Paciente modificado correctamente.";
                 LimpiarCampos();
             }
-            catch (Exception ex)
+            else
             {
-                lblErrorBusqueda.Text = "Error al modificar el paciente: " + ex.Message; // Muestra el error del sistema
+                lblErrorBusqueda.Text = "No se pudo modificar el Paciente.";
             }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lblErrorBusqueda.Text = "Error al modificar el paciente: " + ex.Message; // Muestra el error del sistema
+            //}
         }
 
 
@@ -241,8 +248,8 @@ namespace VISTAS
             txtNacionalidad.Text = "";
             txtCelular.Text = "";
             txtDireccion.Text = "";
-            lblError.Text = "";
-            lblErrorBusqueda.Text = "";
+            ///lblError.Text = "";
+            ///lblErrorBusqueda.Text = "";
             
         }
 

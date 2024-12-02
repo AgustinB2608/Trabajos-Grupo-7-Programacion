@@ -40,7 +40,7 @@ namespace DATOS
             };
 
             // Ejecutar la consulta con los parámetros
-            int exito = ds.EjecutarConsultaSinRetorno(agregar, parametros);//.ToArray()
+            int exito = ds.EjecutarConsultaSinRetorno(agregar, parametros);
 
             if (exito > 0)
             {

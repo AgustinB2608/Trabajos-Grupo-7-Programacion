@@ -109,17 +109,17 @@ namespace VISTAS
             // Crear una instancia de Pacientes y asignar los valores de los controles del formulario
             Pacientes nuevoPaciente = new Pacientes();
 
-            nuevoPaciente.Dni = (txtDni.Text.Trim());
-            nuevoPaciente.Nombre = (txtNombre.Text.Trim());
-            nuevoPaciente.Apellido = (txtApellido.Text.Trim());
-            nuevoPaciente.Direccion = (txtDireccion.Text.Trim());
+            nuevoPaciente.Dni = (txtDni.Text.Trim().ToString());
+            nuevoPaciente.Nombre = (txtNombre.Text.Trim().ToString());
+            nuevoPaciente.Apellido = (txtApellido.Text.Trim().ToString());
+            nuevoPaciente.Direccion = (txtDireccion.Text.Trim().ToString());
             nuevoPaciente.Localidad = (ddlLocalidad.SelectedValue);
             nuevoPaciente.Provincia = (ddlProvincia.SelectedValue);
-            nuevoPaciente.Email = (txtEmail.Text.Trim());
-            nuevoPaciente.Celular = (txtCelular.Text.Trim());
+            nuevoPaciente.Email = (txtEmail.Text.Trim().ToString());
+            nuevoPaciente.Celular = (txtCelular.Text.Trim().ToString());
             nuevoPaciente.Sexo = (ddlSexo.SelectedValue);
-            nuevoPaciente.Nacionalidad = (txtNacionalidad.Text.Trim());
-            //nuevoPaciente.FechaNacimiento = 
+            nuevoPaciente.Nacionalidad = (txtNacionalidad.Text.Trim().ToString());
+            nuevoPaciente.FechaNacimiento = fechaNacimiento.ToString("yyyy-MM-dd");
 
 
             // Llamar al método de negocio para agregar el paciente
