@@ -21,7 +21,7 @@ namespace VISTAS
                
             }
         }
-        protected void CargarTurnos()
+        protected void CargarTurnos() //
         {
 
             NegocioTurnos negocioTurnos = new NegocioTurnos();
@@ -154,14 +154,24 @@ namespace VISTAS
         {
             NegocioMedico negocioMedico = new NegocioMedico();
 
-            string Nombre = btnBuscar.Text;
+            string Nombre = txtBuscar.Text;
 
-            // Obtenemos los datos desde la capa de negocio
-            DataTable dt = negocioMedico.ObtenerTurnosNombMedico(Nombre);
+            if (Nombre != "")
+            {
 
-            // Asignamos los datos al GridView
-            gvTurnos.DataSource = dt;
-            gvTurnos.DataBind();
+                // Obtenemos los datos desde la capa de negocio
+                DataTable dt = negocioMedico.ObtenerTurnosNombMedico(Nombre);
+
+                // Asignamos los datos al GridView
+                gvTurnos.DataSource = dt;
+                gvTurnos.DataBind();
+            }
+            else
+            {
+                //Si se borra el contenido del txt y se clickea buscar, se muestran todos los resultados nuevamente
+                CargarTurnos();
+            }
+
         }
     }
 }
