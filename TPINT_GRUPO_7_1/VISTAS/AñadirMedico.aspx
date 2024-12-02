@@ -142,58 +142,6 @@
             color: var(--color-error);
         }
 
-       .msgConfirmacion {
-            padding: 20px;
-            border-radius: var(--radio-borde);
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .msgConfirmacion input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 4px;
-            border: 1px solid black;
-        }
-
-        .msgConfirmacion .btn {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--color-boton);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .msgConfirmacion .btn:last-child {
-            width: 100%;
-            padding: 12px;
-            background-color: #e74c3c; 
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .msgConfirmacionCompleta {
-            color: white;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .mensajeConfirmacion {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #28a745;
-        }
-
        
     </style>
 </head>
@@ -209,18 +157,6 @@
             <%--Contenedor 2--%>
             <div class="formulario-contenedor">
                <h1 id="h1" runat="server">Añadir Medico</h1>
-                <div id="Confirmacion" runat="server" class="msgConfirmacion" style="display:none">
-                    <asp:Label ID="Label1" runat="server" Text="Para completar el registro, ingrese una contraseña para el nuevo médico." />
-                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" TextMode="Password" />
-    
-                    <div class="btn-container">
-                        <asp:Button ID="Confirmar" runat="server" Text="Confirmar" CssClass="btn" OnClick="Confirmar_Click" />
-                        <asp:Button ID="Cancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="Cancelar_Click"/>
-                    </div>
-                </div>
-                    <div id="mensajeConfirmacion" runat="server" class="msgConfirmacionCompleta" style="display:none;">
-                    <asp:Label ID="lblConfirmacionCompleta" runat="server" Text="Carga confirmada correctamente." CssClass="mensajeConfirmacion" />
-                    </div>
 
                 <%--Columnas--%>
                 <div id="colums" class="form-columns" runat="server">
@@ -282,11 +218,13 @@
                         <%--Label para los mensajes d error--%>
                         <div class="error-message">
                             <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" />
+                            <asp:Label ID="lblExito" runat="server" Text="" ForeColor="Green" />
                         </div>
                         <%--Botones--%>
                         <div class="btn-container">
                             <asp:Button ID="btnAceptar" runat="server" Text="Guardar" CssClass="btn" OnClick="btnGuardar_Click" />
                             <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" />
+                            <asp:Button ID="btnConfigurarUsuario" runat="server" Text="Configurar Usuario" CssClass="btn" OnClick="btnConfigurarUsuario_Click" />
                         </div>
                     </div>
 

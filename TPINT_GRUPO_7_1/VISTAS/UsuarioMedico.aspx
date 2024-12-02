@@ -141,21 +141,11 @@
                     <br />
                     <asp:TextBox ID="txtContraseña" runat="server" TextMode="Password" CssClass="textbox"></asp:TextBox>
                 </div>
-                <div class="menu-item">
-                    <asp:Label ID="lblNombre" runat="server" CssClass="label" Text="Nombre"></asp:Label>
-                    <br />
-                    <asp:TextBox ID="txtNombre" runat="server" CssClass="textbox"></asp:TextBox>
-                </div>
-                <div class="menu-item">
-                    <asp:Label ID="lblApellido" runat="server" CssClass="label" Text="Apellido"></asp:Label>
-                    <br />
-                    <asp:TextBox ID="txtApellido" runat="server" CssClass="textbox"></asp:TextBox>
-                </div>
             </div>
 
             <asp:Button ID="btnGuardar" runat="server"  Text="Guardar" OnClick="btnGuardar_Click" />
 
-            <asp:HyperLink ID="hlkVolverAtras" runat="server" NavigateUrl="~/InicioAdministrador.aspx" CssClass="logout-button">Volver Atras</asp:HyperLink>
+            <asp:HyperLink ID="hlkVolverAtras" runat="server" NavigateUrl="~/AñadirMedico.aspx" CssClass="logout-button">Volver Atras</asp:HyperLink>
 
             <br />
 

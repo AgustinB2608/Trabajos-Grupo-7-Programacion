@@ -30,25 +30,28 @@ namespace VISTAS
         {
             if (!IsPostBack)
             {
-
-                //Verificar si el usuario está logueado y traer los datos de la session(Administrador)
-
+                // Verificar si el usuario está logueado y traer los datos de la sesión (Administrador)
                 if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
                 {
-                    string nombre = Session["UsuarioNombre"].ToString();//Nombre
-                    string apellido = Session["UsuarioApellido"].ToString();//Apellido
-                    string tipoUsuario = Session["UsuarioTipo"].ToString();//Tipo de usuario
+                    string nombre = Session["UsuarioNombre"].ToString(); // Nombre
+                    string apellido = Session["UsuarioApellido"].ToString(); // Apellido
+                    string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
 
                     lblUsuario.Text = $"{nombre} {apellido}";
                 }
                 else
                 {
-                    //Response.Redirect("InicioLogin.aspx");
+                   // Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
                 }
-                // VALIDACION DE USUARIO LOGUEADO (ADMINISTRADOR)
 
+                // Validar si ya hay un código de médico registrado en la sesión
+                if (Session["CodMedico"] != null)
+                {
+                    string codMedico = Session["CodMedico"].ToString();
+                }
+
+                // Inicializar los dropdowns
                 InicializarDropDownLists();
-
             }
         }
 
@@ -190,9 +193,7 @@ namespace VISTAS
 
             if (exito)
             {
-                lblError.Text = "El médico fue agregado correctamente.";
-                colums.Style.Add("display", "none");
-                Confirmacion.Style.Add("display", "block");
+                lblExito.Text = "El médico fue agregado correctamente.";
             }
             else
             {
@@ -200,21 +201,6 @@ namespace VISTAS
             }
 
         }
-
-        // Método para crear un usuario
-        private void CrearUsuario(string legajo, string contraseña, string nombre, string apellido)
-        {
-            try
-            {
-                NegocioUsuarios negU = new NegocioUsuarios();
-                negU.RegistrarUsuario(legajo, contraseña, nombre, apellido);
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "Error al crear el usuario: " + ex.Message;
-            }
-        }
-
 
         //Funcion para validar el correo electronico, retorna true si es valido, false si no lo es (Correos validos como ejemplo@ejemplo.com) 
         private bool CorreoValido(string email)
@@ -347,45 +333,9 @@ namespace VISTAS
         }
 
 
-        protected void Confirmar_Click(object sender, EventArgs e)
-        {
-            negM.agregarMedico(reg);
-            string codmed;
-
-            /// solucionar usuario
-
-            if (negM.agregarMedico(reg))
-            {
-                // Crear usuario asociado
-                NegocioMedico med = new NegocioMedico();
-                DataTable dt = med.RetornarCodMedico(txtDni.Text);
-
-                if (dt.Rows.Count > 0)
-                {
-                    // Retornar el valor de la primera fila y columna
-                    codmed = dt.Rows[0]["CodMedico"].ToString();
-                }
-                else
-                {
-
-                    codmed = null;
-                }
-
-                CrearUsuario(codmed, txtDni.Text, txtNombre.Text, txtApellido.Text);
-                
-                LimpiarCampos();
-            }
-
-            Confirmacion.Style.Add("display", "none");
-            h1.Style.Add("display", "none");
-            mensajeConfirmacion.Style.Add("display", "block");
-
-        }
-
         protected void Cancelar_Click(object sender, EventArgs e)
         {
-            colums.Style.Add("display", "column");
-            Confirmacion.Style.Add("display", "none");
+            Response.Redirect("ABMLMedicos.aspx");
         }
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
@@ -430,6 +380,22 @@ namespace VISTAS
             }
         }
 
+        protected void btnConfigurarUsuario_Click(object sender, EventArgs e)
+        {
+            NegocioMedico med = new NegocioMedico();
+            DataTable dt = med.RetornarCodMedico(txtDni.Text);
 
+            string codmed = dt.Rows.Count > 0 ? dt.Rows[0]["CodMedico"].ToString() : null;
+
+            if (!string.IsNullOrEmpty(codmed))
+            {
+                 Session["CodMedico"] = codmed;
+                 Response.Redirect("UsuarioMedico.aspx");
+            }
+            else
+            {
+                lblError.Text = "Error al obtener el código del médico. Verifique que el médico fue registrado correctamente.";
+            }
+        }
     }
 }
