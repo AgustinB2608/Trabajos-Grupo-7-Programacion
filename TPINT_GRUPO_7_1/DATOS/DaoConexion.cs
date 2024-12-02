@@ -110,15 +110,15 @@ namespace DATOS
                             cmd.Parameters.AddRange(parametros);
                         }
 
-                        return cmd.ExecuteNonQuery(); // Retorna el número de filas afectadas
+                        return cmd.ExecuteNonQuery();
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Manejo de errores
-                Console.WriteLine($"Error ejecutando el procedimiento: {ex.Message}");
-                return 0; // Devuelve 0 si hay un error
+                // Muestra el error en consola o log
+                Console.WriteLine($"Error al ejecutar el procedimiento: {ex.Message}");
+                throw; // Lanza la excepción para depurar
             }
         }
 

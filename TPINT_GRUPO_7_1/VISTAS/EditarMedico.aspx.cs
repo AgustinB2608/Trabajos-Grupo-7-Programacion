@@ -133,7 +133,7 @@ namespace VISTAS
             medico.setApellido(txtApellido.Text.ToString());
             medico.setSexo(ddlSexo.SelectedValue);
             medico.setNacionalidad(txtNacionalidad.Text.ToString());
-            medico.setFechaNacimiento(fechaNacimiento.ToString("yyyy/MM/dd"));
+            medico.setFechaNacimiento(fechaNacimiento.ToString("yyyy-MM-dd"));
             medico.setDireccion(txtDireccion.Text.ToString());
             medico.setLocalidad(ddlLocalidad.SelectedValue.ToString());
             medico.setProvincia(ddlProvincia.SelectedValue.ToString());
@@ -145,7 +145,7 @@ namespace VISTAS
            
             if(negocio.modificarMedico(medico))
             {
-                negocio.modificarMedico(medico);
+                
                 lblExito.Text = "Médico modificado correctamente.";
                 LimpiarCampos();
             }
@@ -179,30 +179,36 @@ namespace VISTAS
                     reg.Email = medico.Rows[0]["Email"].ToString(); // Asigna el email del medico buscado a email
                     reg.Celular = medico.Rows[0]["Telefono"].ToString(); // Asigna el telefono del medico buscado a celular 
                     reg.Provincia = medico.Rows[0]["Provincia"].ToString(); // Asigna la provincia del medico buscado a provincia
+                    reg.CodProvincia = medico.Rows[0]["codProvincia"].ToString(); // Asigna la provincia del medico buscado a provincia
                     reg.Localidad = medico.Rows[0]["Localidad"].ToString(); // Asigna la localidad del medico buscado a localidad
+                    reg.CodLocalidad = medico.Rows[0]["codLocalidad"].ToString(); // Asigna la localidad del medico buscado a localidad
+                    reg.CodEspecialidad = medico.Rows[0]["codEspecialidad"].ToString(); // Asigna la especialidad del medico buscado a especialidad
                     reg.Direccion = medico.Rows[0]["Direccion"].ToString();// Asigna la direccion del medico buscado a direccion
                     reg.Sexo = medico.Rows[0]["Sexo"].ToString(); // Asigna el sexo del medico buscado
-                    reg.FechaNacimiento = medico.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del medico buscado
+                    reg.FechaNacimiento = medico.Rows[0]["FechaNacimiento"].ToString(); // Asigna la fecha de nacimiento del medico buscado
                     reg.Nacionalidad = medico.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del medico buscado
                     reg.Especialidad = medico.Rows[0]["Especialidad"].ToString(); // Asigna la especialidad del medico buscado a especialidad
-                    reg.Horario = medico.Rows[0]["Horarios de Atención"].ToString(); // Asigna el horario del medico buscado a Horario
-                    reg.DiasAtencion = medico.Rows[0]["Dias de Atención"].ToString(); // Asigna el dia del medico buscado a Dia
+                    reg.Horario = medico.Rows[0]["HorarioAtencion"].ToString(); // Asigna el horario del medico buscado a Horario
+                    reg.CodHorario = medico.Rows[0]["CodHorario"].ToString(); // Asigna el horario del medico buscado a Horario
+                    reg.DiasAtencion = medico.Rows[0]["DiasAtencion"].ToString(); // Asigna el dia del medico buscado a Dia
+                    reg.CodDiasAtencion = medico.Rows[0]["codAtencion"].ToString(); // Asigna el dia del medico buscado a Dia
 
                     // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
                     ddlLocalidad.Items.RemoveAt(0);
-                    ddlLocalidad.Items.Insert(0, new ListItem(reg.Localidad, reg.Localidad));
+                    ddlLocalidad.Items.Insert(0, new ListItem(reg.Localidad, reg.CodLocalidad));
+                   
 
                     ddlProvincia.Items.RemoveAt(0);
-                    ddlProvincia.Items.Insert(0, new ListItem(reg.Provincia, reg.Provincia));
+                    ddlProvincia.Items.Insert(0, new ListItem(reg.Provincia, reg.CodProvincia));
 
                     ddlEspecialidad.Items.RemoveAt(0);
-                    ddlEspecialidad.Items.Insert(0, new ListItem(reg.Especialidad, reg.Especialidad));
+                    ddlEspecialidad.Items.Insert(0, new ListItem(reg.Especialidad, reg.CodEspecialidad));
 
                     ddlDiasAtencion.Items.RemoveAt(0);
-                    ddlDiasAtencion.Items.Insert(0, new ListItem(reg.DiasAtencion, reg.DiasAtencion));
+                    ddlDiasAtencion.Items.Insert(0, new ListItem(reg.DiasAtencion, reg.CodDiasAtencion));
 
                     ddlHorario.Items.RemoveAt(0);
-                    ddlHorario.Items.Insert(0, new ListItem(reg.Horario, reg.Horario));
+                    ddlHorario.Items.Insert(0, new ListItem(reg.Horario, reg.CodHorario));
 
                     // Convertir
                     if (reg.Sexo == "M")
@@ -231,13 +237,13 @@ namespace VISTAS
                     txtEmail.Text = reg.Email;
                     txtCelular.Text = reg.Celular;
                     txtDireccion.Text = reg.Direccion;
-                    ddlProvincia.Text = reg.Provincia;
-                    ddlLocalidad.Text = reg.Localidad;
+                    //ddlProvincia.Text = reg.Provincia;
+                   // ddlLocalidad.Text = reg.Localidad;
                     txtNacionalidad.Text = reg.Nacionalidad;
                     txtFechaNacimiento.Text = reg.FechaNacimiento;
-                    ddlEspecialidad.Text = reg.Especialidad;
-                    ddlHorario.Text = reg.Horario;
-                    ddlDiasAtencion.Text = reg.DiasAtencion;
+                    //ddlEspecialidad.Text = reg.Especialidad;
+                   // ddlHorario.Text = reg.Horario;
+                   // ddlDiasAtencion.Text = reg.DiasAtencion;
 
                 }
                 else

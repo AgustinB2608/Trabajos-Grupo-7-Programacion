@@ -19,13 +19,16 @@ namespace ENTIDADES
         public string Sexo;
         public string Provincia;
         public string Localidad;
+        public string CodLocalidad;
         public string Direccion;
         public string FechaNacimiento;
         public string Especialidad;
         public string DiasAtencion;
         public string Horario;
-
-
+        public string CodProvincia;
+        public string CodEspecialidad;
+        public string CodHorario;
+        public string CodDiasAtencion;
 
         public Medico() { }
 
