@@ -193,20 +193,23 @@ namespace VISTAS
                     reg.DiasAtencion = medico.Rows[0]["DiasAtencion"].ToString(); // Asigna el dia del medico buscado a Dia
                     reg.CodDiasAtencion = medico.Rows[0]["codAtencion"].ToString(); // Asigna el dia del medico buscado a Dia
 
-                    // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
+                    // Remover el primer item del dropdownlist y agregar el valor de la localidad 
                     ddlLocalidad.Items.RemoveAt(0);
                     ddlLocalidad.Items.Insert(0, new ListItem(reg.Localidad, reg.CodLocalidad));
-                   
 
+                    // Remover el primer item del dropdownlist y agregar el valor de la  provincia
                     ddlProvincia.Items.RemoveAt(0);
                     ddlProvincia.Items.Insert(0, new ListItem(reg.Provincia, reg.CodProvincia));
 
+                    // Remover el primer item del dropdownlist y agregar el valor de Especialidad
                     ddlEspecialidad.Items.RemoveAt(0);
                     ddlEspecialidad.Items.Insert(0, new ListItem(reg.Especialidad, reg.CodEspecialidad));
 
+                    // Remover el primer item del dropdownlist y agregar el valor de dias de atencion
                     ddlDiasAtencion.Items.RemoveAt(0);
                     ddlDiasAtencion.Items.Insert(0, new ListItem(reg.DiasAtencion, reg.CodDiasAtencion));
 
+                    // Remover el primer item del dropdownlist y agregar el valor de dias de Horario
                     ddlHorario.Items.RemoveAt(0);
                     ddlHorario.Items.Insert(0, new ListItem(reg.Horario, reg.CodHorario));
 
@@ -237,13 +240,9 @@ namespace VISTAS
                     txtEmail.Text = reg.Email;
                     txtCelular.Text = reg.Celular;
                     txtDireccion.Text = reg.Direccion;
-                    //ddlProvincia.Text = reg.Provincia;
-                   // ddlLocalidad.Text = reg.Localidad;
                     txtNacionalidad.Text = reg.Nacionalidad;
                     txtFechaNacimiento.Text = reg.FechaNacimiento;
-                    //ddlEspecialidad.Text = reg.Especialidad;
-                   // ddlHorario.Text = reg.Horario;
-                   // ddlDiasAtencion.Text = reg.DiasAtencion;
+                  
 
                 }
                 else
