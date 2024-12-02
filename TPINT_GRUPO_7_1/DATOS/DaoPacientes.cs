@@ -25,18 +25,18 @@ namespace DATOS
             // Crear los parámetros y asignar los valores
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Provincia", paciente.Provincia),
-                new SqlParameter("@Localidad", paciente.Localidad),
-                new SqlParameter("@Dni", paciente.Dni),
-                new SqlParameter("@Nombre", paciente.Nombre),
-                new SqlParameter("@Apellido", paciente.Apellido),
-                new SqlParameter("@FechaNacimiento", paciente.FechaNacimiento),
-                new SqlParameter("@Nacionalidad", paciente.Nacionalidad),
-                new SqlParameter("@Direccion", paciente.Direccion),
-                new SqlParameter("@Email", paciente.Email),
-                new SqlParameter("@Sexo", paciente.Sexo),
-                new SqlParameter("@Telefono", paciente.Celular),
-                
+                new SqlParameter("@Provincia", SqlDbType.VarChar) { Value = paciente.Provincia },
+                new SqlParameter("@Localidad", SqlDbType.VarChar) { Value = paciente.Localidad },
+                new SqlParameter("@Dni", SqlDbType.VarChar) { Value = paciente.Dni },
+                new SqlParameter("@Nombre", SqlDbType.VarChar) { Value = paciente.Nombre },
+                new SqlParameter("@Apellido", SqlDbType.VarChar) { Value = paciente.Apellido },
+                new SqlParameter("@FechaNacimiento", SqlDbType.VarChar) { Value = paciente.FechaNacimiento },
+                new SqlParameter("@Nacionalidad", SqlDbType.VarChar) { Value = paciente.Nacionalidad },
+                new SqlParameter("@Direccion", SqlDbType.VarChar) { Value = paciente.Direccion },
+                new SqlParameter("@Email", SqlDbType.VarChar) { Value = paciente.Email },
+                new SqlParameter("@Sexo", SqlDbType.VarChar) { Value = paciente.Sexo },
+                new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = paciente.Celular },
+
             };
 
             // Ejecutar la consulta con los parámetros

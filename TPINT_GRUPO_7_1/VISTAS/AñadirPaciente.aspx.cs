@@ -65,25 +65,22 @@ namespace VISTAS
             }
 
             // Validación de la fecha de nacimiento
-            string dia, mes, año;
-            dia = ddlDia.SelectedValue;
-            mes = ddlMes.SelectedValue;
-            año = ddlAño.SelectedValue;
+            int dia = 0, mes = 0, año = 0;
 
             // Obtener valores seleccionados de los DropDownLists de fecha
-            if (!int.TryParse(dia, out int diaInt) || diaInt == 0)
+            if (!int.TryParse(ddlDia.SelectedValue, out dia) || dia == 0)
             {
                 lblMensaje.Text = "Debe seleccionar un día válido.";
                 return;
             }
 
-            if (!int.TryParse(mes, out int mesInt) || mesInt == 0)
+            if (!int.TryParse(ddlMes.SelectedValue, out mes) || mes == 0)
             {
                 lblMensaje.Text = "Debe seleccionar un mes válido.";
                 return;
             }
 
-            if (!int.TryParse(año, out int añoInt) || añoInt == 0)
+            if (!int.TryParse(ddlAño.SelectedValue, out año) || año == 0)
             {
                 lblMensaje.Text = "Debe seleccionar un año válido.";
                 return;
@@ -93,16 +90,9 @@ namespace VISTAS
             string fecha = string.Concat(año, "-", mes, "-", dia);
 
             DateTime fechaNacimiento;
-            if (!DateTime.TryParse(fecha, out fechaNacimiento))
-            {
-                lblMensaje.Text = "La fecha ingresada no es válida.";
-                return;
-            }
 
-            // Validar que la fecha esté dentro de los rangos permitidos
-            if (fechaNacimiento.Date < new DateTime(1900, 1, 1) || fechaNacimiento > DateTime.Now)
+            if (!ValidateFechaNacimiento(out fechaNacimiento))
             {
-                lblMensaje.Text = "La fecha de nacimiento debe estar entre el 1/1/1900 y la fecha actual.";
                 return;
             }
 
@@ -119,25 +109,24 @@ namespace VISTAS
             nuevoPaciente.Celular = (txtCelular.Text.Trim().ToString());
             nuevoPaciente.Sexo = (ddlSexo.SelectedValue);
             nuevoPaciente.Nacionalidad = (txtNacionalidad.Text.Trim().ToString());
-            nuevoPaciente.FechaNacimiento = fechaNacimiento.ToString("yyyy-MM-dd");
+            nuevoPaciente.FechaNacimiento = (fechaNacimiento.ToString("yyyy-MM-dd"));
 
 
             // Llamar al método de negocio para agregar el paciente
 
-            bool exito = negocioPacientes.AgregarPaciente(nuevoPaciente);
-
-            if (exito)
+            if (negocioPacientes.AgregarPaciente(nuevoPaciente))
             {
-                //LimpiarCampos();
+                lblMensaje.Visible = true;
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Text = "¡Paciente agregado exitosamente!";
                 lblMensaje.CssClass = "mensaje-exito";
-                lblMensaje.Visible = true;
+                LimpiarCampos();
             }
             else
             {
+                lblMensaje.Visible = true;
                 lblMensaje.Text = "Error al agregar el paciente.";
                 lblMensaje.CssClass = "mensaje-error";
-                lblMensaje.Visible = true;
             }
         }
 
@@ -294,7 +283,34 @@ namespace VISTAS
             return str.All(Char.IsDigit); //La funcion usa el metodo All para validar que todos los caracteres sean digitos con IsDigit
         }
 
+        private bool ValidateFechaNacimiento(out DateTime fechaNacimiento)
+        {
+            int dia = 0, mes = 0, año = 0;
+            if (!int.TryParse(ddlDia.SelectedValue, out dia) || dia == 0 ||
+                !int.TryParse(ddlMes.SelectedValue, out mes) || mes == 0 ||
+                !int.TryParse(ddlAño.SelectedValue, out año) || año == 0)
+            {
+                lblMensaje.Text = "Debe seleccionar una fecha de nacimiento válida.";
+                fechaNacimiento = DateTime.MinValue;
+                return false;
+            }
 
+            string fecha = $"{año}/{mes}/{dia}";
+            if (!DateTime.TryParse(fecha, out fechaNacimiento))
+            {
+                lblMensaje.Text = "La fecha ingresada no es válida.";
+                return false;
+            }
+
+            // Validate date range
+            if (fechaNacimiento < new DateTime(1900, 1, 1) || fechaNacimiento > DateTime.Now)
+            {
+                lblMensaje.Text = "La fecha de nacimiento debe estar entre el 1/1/1900 y la fecha actual.";
+                return false;
+            }
+
+            return true;
+        }
     }
 
 }
