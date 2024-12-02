@@ -21,7 +21,7 @@ namespace VISTAS
                
             }
         }
-        protected void CargarTurnos()
+        protected void CargarTurnos() //
         {
 
             NegocioTurnos negocioTurnos = new NegocioTurnos();
