@@ -208,7 +208,7 @@
                 <div class="search-filter-row">
                     <div class="search-container">
                         <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" Placeholder="Buscar..."></asp:TextBox>
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="search-button" />
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="search-button" OnClick="btnBuscar_Click" />
                     </div>
                     <div class="filter-container">
                        

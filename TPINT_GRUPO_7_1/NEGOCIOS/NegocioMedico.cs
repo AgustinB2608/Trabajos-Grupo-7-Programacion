@@ -101,5 +101,10 @@ namespace NEGOCIOS
             // Llamar al método correspondiente en la capa DAO
             return dao.HorariosPorMedico(medico);
         }
+
+        public DataTable ObtenerTurnosNombMedico(string Nombre)
+        {
+            return dao.ObtenerTurnosNombMedico(Nombre);
+        }
     }
 }

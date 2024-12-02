@@ -149,5 +149,19 @@ namespace VISTAS
                 gvTurnos.DataBind();
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            NegocioMedico negocioMedico = new NegocioMedico();
+
+            string Nombre = btnBuscar.Text;
+
+            // Obtenemos los datos desde la capa de negocio
+            DataTable dt = negocioMedico.ObtenerTurnosNombMedico(Nombre);
+
+            // Asignamos los datos al GridView
+            gvTurnos.DataSource = dt;
+            gvTurnos.DataBind();
+        }
     }
 }
