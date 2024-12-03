@@ -44,16 +44,14 @@ namespace DATOS
             return horarios;
         }
 
-        public DataTable EncontrarTurno (string hora, string fecha, string codespecialidad, string codmedico)
+        public DataTable EncontrarTurno (TimeSpan hora, DateTime fecha, string codespecialidad, string codmedico)
         {
-            string consulta = "EXEC SP_EncontrarTurno @hora, @fecha, @codespecialidad, @codmedico";
-
-            DataTable dt = ds.EjecutarConsulta(consulta);
+            string consulta = "EXEC SP_EncontrarTurno @fecha, @hora, @codespecialidad, @codmedico";
 
             SqlParameter[] parametros = new SqlParameter[]
                 {
+                     new SqlParameter("@fecha", fecha.ToString("yyyy-MM-dd")),
                      new SqlParameter("@hora", hora),
-                     new SqlParameter("@fecha", fecha),
                      new SqlParameter("@codespecialidad", codespecialidad),
                      new SqlParameter("@codmedico", codmedico)
                 };

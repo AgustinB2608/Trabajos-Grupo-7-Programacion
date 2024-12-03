@@ -20,9 +20,19 @@ namespace NEGOCIOS
             return ltHorariosAtencion.ObtenerHorarios();
         }
 
-        public DataTable EncontrarTurno(string hora, string fecha, string codespecialidad, string codmedico)
+        public bool EncontrarTurno(TimeSpan hora, DateTime fecha, string codespecialidad, string codmedico)
         {
-            return ltHorariosAtencion.EncontrarTurno(hora, fecha, codespecialidad, codmedico);
+             
+            DataTable dt = ltHorariosAtencion.EncontrarTurno(hora, fecha, codespecialidad, codmedico);
+
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
