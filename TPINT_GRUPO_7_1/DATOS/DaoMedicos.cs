@@ -77,36 +77,37 @@ namespace DATOS
 
         public bool modificarMedico(Medico medico)
         {
-
-            // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
-            string modificar = "EXEC SP_modificarMedico @CodMedico, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento" +
-            "@Direccion, @Localidad, @Provincia, @Email, @Telefono, @CodEspecialidad, @Dias, @HorarioAtencion,";
-
-            // envia los valores de mi obj medico como parametro
+            
+            string procedimiento = "SP_modificarMedico";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@CodMedico", medico.getCodMedico()),
-                new SqlParameter("@Nombre", medico.getNombre()),
-                new SqlParameter("@Apellido", medico.getApellido()),
-                new SqlParameter("@Sexo", medico.getSexo()),
-                new SqlParameter("@Nacionalidad", medico.getNacionalidad()),
-                new SqlParameter("@FechaNacimiento", medico.getFechaNacimiento()),
-                new SqlParameter("@Direccion", medico.getDireccion()),
-                new SqlParameter("@Localidad", medico.getLocalidad()),
-                new SqlParameter("@Provincia", medico.getProvincia()),
-                new SqlParameter("@Email", medico.getEmail()),
-                new SqlParameter("@Telefono", medico.getCelular()),
-                new SqlParameter("@CodEspecialidad", medico.getEspecialidad()), 
-                new SqlParameter("@Dias", medico.getDiasAtencion()),
-                new SqlParameter("@HorarioAtencion", medico.getHorario()), 
+        new SqlParameter("@CodMedico", medico.getCodMedico()),
+        new SqlParameter("@Nombre", medico.getNombre()),
+        new SqlParameter("@Apellido", medico.getApellido()),
+        new SqlParameter("@Sexo", medico.getSexo()),
+        new SqlParameter("@Nacionalidad", medico.getNacionalidad()),
+        new SqlParameter("@FechaNacimiento", medico.getFechaNacimiento()),
+        new SqlParameter("@Direccion", medico.getDireccion()),
+        new SqlParameter("@CodLocalidad", medico.getLocalidad()),
+        new SqlParameter("@CodProvincia", medico.getProvincia()),
+        new SqlParameter("@Email", medico.getEmail()),
+        new SqlParameter("@Telefono", medico.getCelular()),
+        new SqlParameter("@CodEspecialidad", medico.getEspecialidad()),
+        new SqlParameter("@CodDiasAtencion", medico.getDiasAtencion()),
+        new SqlParameter("@CodHorarioAtencion", medico.getHorario())
             };
-
-            //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
-            int exito = ds.EjecutarProcedimientoConRetorno(modificar, parametros);
-
-            if (exito > 0) return true;
-            return false;
+            
+            try
+            {
+                int filasAfectadas = ds.EjecutarProcedimientoConRetorno(procedimiento, parametros);
+                return filasAfectadas > 0; // Retorna true si se modificaron filas
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al modificar el médico: {ex.Message}");
+                return false;
+            }
         }
 
         public DataTable listarMedicos()

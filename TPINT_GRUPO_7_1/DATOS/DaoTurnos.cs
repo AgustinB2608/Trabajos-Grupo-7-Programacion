@@ -79,6 +79,25 @@ namespace DATOS
             // Ejecutar el procedimiento almacenado y devolver el resultado
             return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosEspYEst", parametros);
         }
+        public DataTable ObtenerTurnosFiltrados(string especialidad, string estado, string nombreMedico)
+        {
+
+            // Crear la lista de parámetros para el procedimiento almacenado
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Especialidad", SqlDbType.VarChar) { Value = especialidad},
+                new SqlParameter("@Estado", SqlDbType.Char) { Value = estado},
+                new SqlParameter("@NombreMedico", SqlDbType.VarChar) { Value = nombreMedico}
+                /*
+                 new SqlParameter("@Especialidad", SqlDbType.VarChar) { Value = string.IsNullOrEmpty(especialidad) ? (object)DBNull.Value : especialidad },
+                 new SqlParameter("@Estado", SqlDbType.Char) { Value = string.IsNullOrEmpty(estado) ? (object)DBNull.Value : estado },
+                 new SqlParameter("@NombreMedico", SqlDbType.VarChar) { Value = string.IsNullOrEmpty(nombreMedico) ? (object)DBNull.Value : nombreMedico }
+                */
+            };
+
+            // Ejecutar el procedimiento almacenado
+            return ds.EjecutarProcedimientoConParametro("sp_FiltrarTurnos", parametros);
+        }
 
     }
 }

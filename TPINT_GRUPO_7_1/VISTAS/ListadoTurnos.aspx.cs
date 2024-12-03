@@ -50,6 +50,8 @@ namespace VISTAS
             ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "0"));
         }
 
+
+        /*
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             NegocioEspecialidades negocioEspecialidades = new NegocioEspecialidades();
@@ -171,7 +173,53 @@ namespace VISTAS
                 //Si se borra el contenido del txt y se clickea buscar, se muestran todos los resultados nuevamente
                 CargarTurnos();
             }
+            
+        }
+        */
 
+        private void FiltrarTurnos()
+        {
+            NegocioTurnos negocioTurnos = new NegocioTurnos();
+            string especialidadSeleccionada = ddlEspecialidad.SelectedItem.Text;
+            string estadoSeleccionado = ddlEstado.SelectedItem.Value;
+            string nombreMedico = txtBuscar.Text;
+
+            // Depuración: imprimir los valores seleccionados
+            Response.Write("Especialidad: " + especialidadSeleccionada);
+            Response.Write("Estado: " + estadoSeleccionado);
+            Response.Write("NombreMedico: " + nombreMedico);
+
+            DataTable turnosFiltrados;
+
+            if (especialidadSeleccionada == "Seleccione una especialidad" && estadoSeleccionado == "0" && string.IsNullOrEmpty(nombreMedico))
+            {
+                // Mostrar todos los turnos si no hay filtros
+                turnosFiltrados = negocioTurnos.ObtenerTurnos();
+            }
+            else
+            {
+                // Obtener los turnos filtrados dinámicamente
+                turnosFiltrados = negocioTurnos.ObtenerTurnosFiltrados(especialidadSeleccionada, estadoSeleccionado, nombreMedico);
+            }
+
+            // Mostrar los turnos filtrados en el GridView
+            gvTurnos.DataSource = turnosFiltrados;
+            gvTurnos.DataBind();
+        }
+
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltrarTurnos(); // Filtrar cuando cambia la especialidad
+        }
+
+        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltrarTurnos(); // Filtrar cuando cambia el estado
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            FiltrarTurnos(); // Filtrar cuando se busca por nombre
         }
     }
 }
