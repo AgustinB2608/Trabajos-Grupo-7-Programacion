@@ -13,23 +13,24 @@ namespace DATOS
     {
         private Conexion ds = new Conexion();
 
-        public bool InsertarUsuario(string contraseña, string codmedico)
+        public bool InsertarUsuario(string contraseña, string codmedico, string tipoUsuario = "M")
         {
             string consulta = "EXEC SP_AgregarUsuario @CodMedico, @Contraseña";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-            new SqlParameter("@CodMedico", codmedico),
-            new SqlParameter("@Contraseña", contraseña)
+                new SqlParameter("@CodMedico", codmedico),
+                new SqlParameter("@Contraseña", contraseña)
             };
 
             int resultado = ds.EjecutarConsultaSinRetorno(consulta, parametros);
             return resultado > 0;
         }
 
+
         public bool VerificarUsuarioExistente(string codmedico)
         {
-            string consulta = "SELECT COUNT(*) FROM Usuarios WHERE Legajo_ME_US = @CodMedico";
+            string consulta = "SELECT COUNT(1) FROM Usuarios WHERE Legajo_ME_US = @CodMedico";
             SqlParameter[] parametros = new SqlParameter[]
             {
             new SqlParameter("@CodMedico", codmedico)
@@ -45,7 +46,7 @@ namespace DATOS
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@CodUsuario", usuarios.CodUsuario),
+                new SqlParameter("@CodMedico", usuarios.CodMedico),
                 new SqlParameter("@Contraseña", usuarios.Contraseña)
             };
 
@@ -73,6 +74,20 @@ namespace DATOS
                 };
             //retorna el datatable del metodo de Conexion
             return ds.EjecutarConsultaConParametros(consulta, parametros);
+
+        }
+
+        public bool eliminarMedico(string CodMedico)
+        {
+            string eliminar = "EXEC SP_BajaUsuario @codMedico";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@CodMedico", CodMedico)
+            };
+            int exito = ds.EjecutarConsultaSinRetorno(eliminar, parametros);
+
+            return exito > 0;
 
         }
 

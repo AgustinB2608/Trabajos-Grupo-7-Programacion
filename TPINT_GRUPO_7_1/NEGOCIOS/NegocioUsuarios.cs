@@ -18,7 +18,6 @@ namespace NEGOCIOS
             // Validar que el usuario no exista previamente
             if (UsuarioYaExiste(codmedico))
             {
-                // Opcional: lanzar excepción o retornar false
                 throw new Exception("El médico ya tiene un usuario registrado.");
             }
 
@@ -44,6 +43,14 @@ namespace NEGOCIOS
         {
             //retorna el datatable del metodo listarMedicoEspecifico de DaoMedicos
             return daoUsuario.listarUsuarioEspecifico(CodUsuario);
+        }
+
+        public bool eliminarUsuario(string codmedico)
+        {
+            bool exito = daoUsuario.eliminarMedico(codmedico);
+
+            return exito;
+
         }
     }
 

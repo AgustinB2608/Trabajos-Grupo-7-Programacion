@@ -127,18 +127,6 @@
             background-color: var(--color-boton-hover);
         }
 
-        .error-message {
-            color: var(--color-error);
-            font-weight:bold;
-            font-size:14px;
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .btn-reset {
             background-color: #f44336; 
             width: 100%;
@@ -179,15 +167,6 @@
             <div class="formulario-contenedor">
                 <h1>Modificar Usuario</h1>
                 
-                <div class="search-container">
-                    <asp:Label ID="lblBuscar" runat="server" CssClass="form-label" Text="Usuario:"></asp:Label>
-                    <asp:TextBox ID="txtBuscar" CssClass="form-control" runat="server" placeholder="Buscar por Codigo"></asp:TextBox>
-                    <asp:Button ID="btnBuscar" runat="server" CssClass="btn"  Text="Buscar" OnClick="btnBuscar_Click" />
-                    <asp:Button ID="btnReset" runat="server" CssClass="btn-reset"  Text="Limpiar" OnClick="btnReset_Click" />
-                    
-                </div>
-                <asp:Label ID="lblErrorBusqueda" runat="server" CssClass="error-message" Text=""></asp:Label>
-                
                 <%--Columnas--%>
                 <div class="form-columns">
                     <div class="form-columna">
@@ -209,7 +188,7 @@
                         </div>
                         <div class="btn-container">
                             <asp:Button ID="btnAceptar" runat="server" Text="Guardar" CssClass="btn" OnClick="btnAceptar_Click"  />
-                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click"  />
+                            <asp:Button ID="btnVolverAtras" runat="server" Text="Volver Atras" CssClass="btn" OnClick="btnVolverAtras_Click" />
                         </div>
                         
                     </div>

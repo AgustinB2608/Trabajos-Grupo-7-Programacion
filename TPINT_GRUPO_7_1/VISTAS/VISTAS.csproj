@@ -74,10 +74,10 @@
     <Content Include="AsignarTurno.aspx" />
     <Content Include="AñadirMedico.aspx" />
     <Content Include="AñadirPaciente.aspx" />
-    <Content Include="EditarMedico.aspx" />
     <Content Include="EliminarMedico.aspx" />
     <Content Include="EliminarPaciente.aspx" />
     <Content Include="EliminarTurnos.aspx" />
+    <Content Include="EliminarUsuario.aspx" />
     <Content Include="EstadisticaMensualEspecialidad.aspx" />
     <Content Include="EstadisticasComparativoMensual.aspx" />
     <Content Include="imgs\doctor.jpg" />
@@ -151,13 +151,6 @@
     <Compile Include="AñadirPaciente.aspx.designer.cs">
       <DependentUpon>AñadirPaciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EditarMedico.aspx.cs">
-      <DependentUpon>EditarMedico.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditarMedico.aspx.designer.cs">
-      <DependentUpon>EditarMedico.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EliminarMedico.aspx.cs">
       <DependentUpon>EliminarMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,6 +171,13 @@
     </Compile>
     <Compile Include="EliminarTurnos.aspx.designer.cs">
       <DependentUpon>EliminarTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarUsuario.aspx.cs">
+      <DependentUpon>EliminarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EliminarUsuario.aspx.designer.cs">
+      <DependentUpon>EliminarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="EstadisticaMensualEspecialidad.aspx.cs">
       <DependentUpon>EstadisticaMensualEspecialidad.aspx</DependentUpon>

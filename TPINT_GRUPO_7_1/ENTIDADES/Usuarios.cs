@@ -8,28 +8,32 @@ namespace ENTIDADES
 {
     public class Usuarios
     {
-        public string CodUsuario { get; set; }
+        public string CodMedico { get; set; }
         public string Contraseña { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+
         public Usuarios() { }
 
-        public string getCodUsuario()
+        public string getCodMedico()
         {
-            return CodUsuario;
+            return CodMedico;
         }
 
-        public void setCodUsuario(string codUsuario)
+        public void setCodMedico(string codMedico)
         {
-            CodUsuario = codUsuario;
+            CodMedico = codMedico;
         }
         public string getContraseña()
         {
             return Contraseña;
         }
 
-        public void setContrasñea(string contraseña)
+        public void setContraseña(string contraseña)
         {
             Contraseña = contraseña;
         }
+
 
     }
 

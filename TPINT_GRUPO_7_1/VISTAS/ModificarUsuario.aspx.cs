@@ -14,41 +14,28 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            lblErrorBusqueda.Text = "";
-            lblError.Text = "";
-            //Validacion por si se ingresa vacio
-            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            if (!IsPostBack)
             {
-                lblErrorBusqueda.Text = "Por favor, ingrese un Codigo.";
-                return;
+                // Validar si hay un código de médico en la sesión
+                if (Session["CodMedico"] != null)
+                {
+                    string codmedico = Session["CodMedico"].ToString();
+                    txtCodigo.Text = codmedico; // Prellenar el campo con el valor de la sesión
+                    txtCodigo.Enabled = false; // Evitar que se modifique
+                }
+                else
+                {
+                    lblError.Visible = true;
+                    lblError.CssClass = "mensaje-error";
+                    lblError.Text = "No se encontró un código de médico en la sesión.";
+                    btnAceptar.Enabled = false; // Deshabilitar el botón si no hay código
+                }
             }
-            //Si la longitud es 4, busca por CODIGO MEDICO
-            if (txtBuscar.Text.Length == 4)
-            {
-                CargarDatosUsuarioPorCodigo();
-            }
-            //Si no cumple ninguna de las condiciones anteriores, muestra un mensaje de error
-            else
-            {
-                lblErrorBusqueda.Text = "Por favor, ingrese un Codigo de Usuario.";
-            }
-
-            txtBuscar.Text = "";
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
-        }
-
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("InicioAdministrador.aspx");
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -63,8 +50,8 @@ namespace VISTAS
             NegocioUsuarios negU = new NegocioUsuarios();
             Usuarios usuario = new Usuarios();
 
-            usuario.setCodUsuario(txtCodigo.Text.ToString());
-            usuario.setContrasñea(txtContraseña.Text.ToString());
+            usuario.setCodMedico(txtCodigo.Text.ToString());
+            usuario.setContraseña(txtContraseña.Text.ToString());
 
             if (negU.modificarUsuario(usuario))
             {
@@ -79,32 +66,6 @@ namespace VISTAS
             }
         }
 
-        private void CargarDatosUsuarioPorCodigo()
-        {
-            NegocioUsuarios negU = new NegocioUsuarios();
-            Usuarios reg = new Usuarios();
-            if (txtBuscar.Text.Length == 4)
-            {
-                DataTable usuario = negU.listarUsuarioEspecifico(txtBuscar.Text);
-
-                if (usuario.Rows.Count > 0) //Validad que hayan datos para mostrar
-                {
-                    reg.CodUsuario = usuario.Rows[0]["CodigoUsuario"].ToString(); //Asigna el codigo del usuario buscado a codUsuario
-                    reg.Contraseña = usuario.Rows[0]["Contraseña"].ToString(); //Asigna la contraseña del usuario buscado a contraseña
-
-                    // Asignar valores a los TextBox y ddl
-                    txtCodigo.Text = reg.CodUsuario;
-                    txtContraseña.Text = reg.Contraseña;
-
-
-                }
-                else
-                {
-                    // Error
-                    lblErrorBusqueda.Text = "No se encontró el Usuario.";
-                }
-            }
-        }
 
         protected void LimpiarCampos()
         {
@@ -112,10 +73,12 @@ namespace VISTAS
             txtCodigo.Text = "";
             txtContraseña.Text = "";
             lblError.Text = "";
-            lblErrorBusqueda.Text = "";
 
         }
 
-        
+        protected void btnVolverAtras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModificarMedico.aspx");
+        }
     }
 }
