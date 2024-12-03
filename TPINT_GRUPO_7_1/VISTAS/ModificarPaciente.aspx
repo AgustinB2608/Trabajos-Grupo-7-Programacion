@@ -153,6 +153,13 @@
         .btn-reset:hover {
             background-color: #d32f2f;
         }
+        .auto-style1 {
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
@@ -186,12 +193,12 @@
                         <%--Nombre--%>
                         <div class="form-group">
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre:" ReadOnly="true"></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre:"></asp:TextBox>
                         </div>
                         <%--DNI--%>
                         <div class="form-group">
                             <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Documento:" ReadOnly="true"></asp:TextBox>
+                            <asp:TextBox ID="txtDNI" runat="server" CssClass="auto-style1" placeholder="Documento:" ReadOnly="true"></asp:TextBox>
                         </div>
                         <%--Correo Electronico--%>
                         <div class="form-group">
@@ -206,12 +213,12 @@
                         <%--Nacionalidad--%>
                         <div class="form-group">
                             <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="form-control" placeholder="Nacionalidad:" ReadOnly="true"></asp:TextBox>
+                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="form-control" placeholder="Nacionalidad:"></asp:TextBox>
                         </div>
                         <%--Fecha de Nacimiento--%>
                         <div class="form-group">
                             <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" ReadOnly="true" placeholder="Fecha de Nacimiento:" ></asp:TextBox>
+                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" placeholder="Fecha de Nacimiento:" ></asp:TextBox>
                         </div>
                         <%--Label para los mensajes de error--%>
                         <div class="error-message">
@@ -229,7 +236,7 @@
                         <%--Apellido--%>
                         <div class="form-group">
                             <asp:Label ID="lblApellido" runat="server" Text="Apellido:" CssClass="form-label"></asp:Label>
-                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Apellido:" ReadOnly="true"></asp:TextBox>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Apellido:" ></asp:TextBox>
                         </div>
                         <%--Sexo--%>
                         <div class="form-group">

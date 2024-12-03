@@ -65,7 +65,7 @@ namespace VISTAS
             // Validación de campos vacíos
             if (!ValidarCamposVacios())
             {
-                lblError.Text = "Todos los campos son obligatorios.";
+                lblMensaje.Text = "Todos los campos son obligatorios.";
                 return;
             }
 
@@ -83,12 +83,14 @@ namespace VISTAS
 
             if (asignado)
             {
-                lblExito.Text = "Turno asignado correctamente.";
+                lblTurnoOcupado.Text = "";
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "Turno asignado correctamente.";
                 LimpiarCampos();
             }
             else
             {
-                lblError.Text = "Error al asignar el turno. Recuerde que el paciente debe estar previamente registrado";
+                lblMensaje.Text = "Error al asignar el turno. Recuerde que el paciente debe estar previamente registrado";
             }
 
 
@@ -108,7 +110,7 @@ namespace VISTAS
                 string.IsNullOrWhiteSpace(txtHorario.Text) ||
                 string.IsNullOrWhiteSpace(txtFecha.Text))
             {
-                lblError.Text = "Debe completar todos los campos obligatorios.";
+                lblMensaje.Text = "Debe completar todos los campos obligatorios.";
                 return false;
             }
             return true;
@@ -120,7 +122,7 @@ namespace VISTAS
         {
             if (ddl.SelectedValue == "0" || string.IsNullOrWhiteSpace(ddl.SelectedValue))
             {
-                lblError.Text = mensajeError;
+                lblMensaje.Text = mensajeError;
                 return false;
             }
             return true;
@@ -242,7 +244,7 @@ namespace VISTAS
                         TimeSpan desdeHs = TimeSpan.Parse(desde);
                         TimeSpan hastaHs = TimeSpan.Parse(hasta);
                        
-                        for (TimeSpan hora = desdeHs; hora <= hastaHs; hora = hora.Add(TimeSpan.FromMinutes(15)))
+                        for (TimeSpan hora = desdeHs; hora <= hastaHs; hora = hora.Add(TimeSpan.FromMinutes(60)))
                         {
                             string horaFinal = hora.ToString(@"hh\:mm"); // Formatea la hora como hh:mm
                             ddlHoraAsignada.Items.Add(new ListItem(horaFinal, horaFinal));
@@ -262,5 +264,25 @@ namespace VISTAS
             }
         }
 
+        protected void ddlHoraAsignada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string fecha = txtFecha.Text.Trim();
+            TimeSpan horarioSeleccionado = TimeSpan.Parse(ddlHoraAsignada.SelectedValue);
+            string medico = ddlMedico.SelectedValue;
+            string especialidad = ddlEspecialidad.SelectedValue;
+            DateTime fechaSeleccionada;
+            DateTime.TryParse(fecha, out fechaSeleccionada);
+
+            if (negH.EncontrarTurno(horarioSeleccionado, fechaSeleccionada, especialidad, medico))
+            {
+                lblTurnoOcupado.Text = "El turno seleccionado se encuentra ocupado.";
+            }
+            else
+            {
+                lblTurnoOcupado.ForeColor = System.Drawing.Color.Green;
+                lblTurnoOcupado.Text = "Turno Disponible.";
+            }
+
+        }
     }
 }

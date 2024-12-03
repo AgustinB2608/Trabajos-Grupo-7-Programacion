@@ -105,6 +105,15 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.DropDownList ddlHoraAsignada;
 
         /// <summary>
+        /// Control lblTurnoOcupado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTurnoOcupado;
+
+        /// <summary>
         /// Control txtEstado.
         /// </summary>
         /// <remarks>
@@ -123,21 +132,12 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.Button btnAsignar;
 
         /// <summary>
-        /// Control lblError.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
-
-        /// <summary>
-        /// Control lblExito.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblExito;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }

@@ -76,61 +76,65 @@ namespace VISTAS
             NegocioPacientes reg = new NegocioPacientes();
             Pacientes obj = new Pacientes();
 
-            if (txtBuscar.Text.Length == 8) //Si se "detecta" un DNI guarda los datos y luego los muestra.
+            if (txtBuscar.Text.Length == 8) //DNI, guarda los datos y luego los muestra.
             {
                 DataTable paciente = reg.listarPacienteEspecificoDni(txtBuscar.Text);
 
                 if (paciente.Rows.Count > 0) //Validad que hayan datos para mostrar
                 {
+                    obj.Provincia = paciente.Rows[0]["CodProvincia"].ToString(); // Asigna la provincia del paciente buscado a provincia
+                    obj.Localidad = paciente.Rows[0]["CodLocalidad"].ToString(); // Asigna la localidad del paciente buscado a localidad
+                    obj.Dni = paciente.Rows[0]["Dni"].ToString(); //Asigna el dni del paciente buscado a dni
                     obj.Nombre = paciente.Rows[0]["Nombre"].ToString(); //Asigna el nombre del paciente buscado a nombre
                     obj.Apellido = paciente.Rows[0]["Apellido"].ToString(); //Asigna el apellido del paciente buscado a apellido
-                    obj.Dni = paciente.Rows[0]["Dni"].ToString(); //Asigna el dni del paciente buscado a dni
-                    obj.Email = paciente.Rows[0]["Email"].ToString(); // Asigna el email del paciente buscado a email
-                    obj.Celular = paciente.Rows[0]["Telefono"].ToString(); // Asigna el telefono del paciente buscado a celular 
-                    obj.Provincia = paciente.Rows[0]["Provincia"].ToString(); // Asigna la provincia del paciente buscado a provincia
-                    obj.Localidad = paciente.Rows[0]["Localidad"].ToString(); // Asigna la localidad del paciente buscado a localidad
-                    obj.Direccion = paciente.Rows[0]["Direccion"].ToString();// Asigna la direccion del paciente buscado a direccion
-                    obj.Sexo = paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
                     obj.FechaNacimiento = paciente.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del paciente buscado
                     obj.Nacionalidad = paciente.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del paciente buscado
+                    obj.Direccion = paciente.Rows[0]["Direccion"].ToString();// Asigna la direccion del paciente buscado a direccion
+                    obj.Email = paciente.Rows[0]["Email"].ToString(); // Asigna el email del paciente buscado a email
+                    obj.Sexo = paciente.Rows[0]["Sexo"].ToString(); // Asigna el sexo del paciente buscado
+                    obj.Celular = paciente.Rows[0]["Telefono"].ToString(); // Asigna el telefono del paciente buscado a celular 
+                    string provincia = paciente.Rows[0]["Provincia"].ToString();
+                    string localidad = paciente.Rows[0]["Localidad"].ToString();
 
-                    // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
-                    ddlLocalidad.Items.RemoveAt(0);
-                    ddlLocalidad.Items.Insert(0, new ListItem(obj.Localidad, obj.Localidad));
-
-                    ddlProvincia.Items.RemoveAt(0);
-                    ddlProvincia.Items.Insert(0, new ListItem(obj.Provincia, obj.Provincia));
-
+                    CargarSexo();
+                   
                     // Convertir
                     if (obj.Sexo == "M")
                     {
                         obj.Sexo = "Masculino";
+                        ddlSexo.Items.RemoveAt(0);
                         ddlSexo.SelectedValue = "M";
                         
+
                     }
                     else if (obj.Sexo == "F")
                     {
                         obj.Sexo = "Femenino";
+                        ddlSexo.Items.RemoveAt(0);
                         ddlSexo.SelectedValue = "F";
                         
                     }
                     else
                     {
                         obj.Sexo = "Otro";
+                        ddlSexo.Items.RemoveAt(0);
                         ddlSexo.SelectedValue = "O";
                         
                     }
-                    // Asignar valores a los TextBox
+                    // Asigna valores a los TextBox
+                    // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
+                    ddlProvincia.Items.RemoveAt(0);
+                    ddlProvincia.Items.Insert(0, new ListItem(provincia, obj.Provincia));
+                    ddlLocalidad.Items.RemoveAt(0);
+                    ddlLocalidad.Items.Insert(0, new ListItem(localidad, obj.Localidad));
+                    txtDNI.Text = obj.Dni;
                     txtNombre.Text = obj.Nombre;
                     txtApellido.Text = obj.Apellido;
-                    txtDNI.Text = obj.Dni;
+                    txtFechaNacimiento.Text = obj.FechaNacimiento;
+                    txtNacionalidad.Text = obj.Nacionalidad;
+                    txtDireccion.Text = obj.Direccion;
                     txtEmail.Text = obj.Email;
                     txtCelular.Text = obj.Celular;
-                    txtDireccion.Text = obj.Direccion;
-                    ddlProvincia.Text = obj.Provincia;
-                    ddlLocalidad.Text = obj.Localidad;
-                    txtNacionalidad.Text = obj.Nacionalidad;
-                    txtFechaNacimiento.Text = obj.FechaNacimiento;
 
                 }
                 else
@@ -139,17 +143,22 @@ namespace VISTAS
                     lblErrorBusqueda.Text = "No se encontró el paciente.";
                 }
             }
+            else
+            {
+                lblErrorBusqueda.Text = "Debe ingresar un dni válido.";
+            }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            LimpiarCampos();
             lblError.Text = "";
             lblErrorBusqueda.Text = "";
 
             //Validacion por si se ingresa vacio
             if (string.IsNullOrWhiteSpace(txtBuscar.Text)) 
             {
-                lblErrorBusqueda.Text = "Por favor, ingrese un DNI o un Codigo.";
+                lblErrorBusqueda.Text = "Por favor, ingrese un DNI.";
                 return; 
             }
             //Valida si solo son digitos
@@ -181,51 +190,53 @@ namespace VISTAS
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             //Validacion por si se ingresa vacio
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text) || string.IsNullOrWhiteSpace(txtDNI.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtCelular.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || string.IsNullOrWhiteSpace(txtFechaNacimiento.Text) || string.IsNullOrWhiteSpace(ddlProvincia.SelectedValue) || string.IsNullOrWhiteSpace(ddlLocalidad.SelectedValue))
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text) || 
+                string.IsNullOrWhiteSpace(txtDNI.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || 
+                string.IsNullOrWhiteSpace(txtCelular.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || 
+                string.IsNullOrWhiteSpace(txtFechaNacimiento.Text))
             {
-                lblError.Text = "Por favor, complete todos los campos.";
+                lblError.Text = "Por favor, complete todos los campos de texto.";
                 return;
             }
             NegocioPacientes negocio = new NegocioPacientes();
-            Pacientes paciente = new Pacientes
-            {
-                Nombre = txtNombre.Text,
-                Apellido = txtApellido.Text,
-                Dni = txtDNI.Text,
-                Email = txtEmail.Text,
-                Celular = txtCelular.Text,
-                Direccion = txtDireccion.Text,
-                Provincia = ddlProvincia.SelectedValue,
-                Localidad = ddlLocalidad.SelectedValue,
-                Nacionalidad = txtNacionalidad.Text,
-                Sexo = ddlSexo.SelectedValue,
-                FechaNacimiento = txtFechaNacimiento.Text,
-            };
+            Pacientes paciente = new Pacientes();
+
+            DateTime fechaNacimiento;
+            string fecha = (txtFechaNacimiento.Text.Trim().ToString());
+            DateTime.TryParse(fecha, out fechaNacimiento);
+
+            paciente.Provincia = (ddlProvincia.SelectedValue.ToString());
+            paciente.Localidad = (ddlLocalidad.SelectedValue.ToString());
+            paciente.Dni = (txtDNI.Text.Trim().ToString());
+            paciente.Nombre = (txtNombre.Text.Trim().ToString());
+            paciente.Apellido = (txtApellido.Text.Trim().ToString());
+            paciente.FechaNacimiento = fechaNacimiento.ToString("yyyy-MM-dd");
+            paciente.Nacionalidad = (txtNacionalidad.Text.Trim().ToString());
+            paciente.Direccion = (txtDireccion.Text.Trim().ToString());
+            paciente.Email = (txtEmail.Text.Trim().ToString());
+            paciente.Sexo = (ddlSexo.SelectedValue.ToString());
+            paciente.Celular = (txtCelular.Text.Trim().ToString());
 
             //Borrar despues
-            string datos = $"Nombre: {paciente.Nombre}, Apellido: {paciente.Apellido}, DNI: {paciente.Dni}, " +
-                           $"Email: {paciente.Email}, Celular: {paciente.Celular}, Direccion: {paciente.Direccion}, " +
-                           $"Provincia: {paciente.Provincia}, Localidad: {paciente.Localidad}, " +
-                           $"Nacionalidad: {paciente.Nacionalidad}, " +
-                           $"Sexo: {paciente.Sexo}, Fecha de Nacimiento: {paciente.FechaNacimiento.ToString()}";
+            //string datos = $"Nombre: {paciente.Nombre}, Apellido: {paciente.Apellido}, DNI: {paciente.Dni}, " +
+            //               $"Email: {paciente.Email}, Celular: {paciente.Celular}, Direccion: {paciente.Direccion}, " +
+            //               $"Provincia: {paciente.Provincia}, Localidad: {paciente.Localidad}, " +
+            //               $"Nacionalidad: {paciente.Nacionalidad}, " +
+            //               $"Sexo: {paciente.Sexo}, Fecha de Nacimiento: {paciente.FechaNacimiento.ToString()}";
 
-           // try
-           // {
-                lblError.Text = datos; // Mostrar datos 
-            if (negocio.modificarPaciente(paciente)) // Descomentar para guardar
+            
+            if (negocio.modificarPaciente(paciente)) 
             {
+                lblErrorBusqueda.ForeColor = System.Drawing.Color.Green;
                 lblErrorBusqueda.Text = "Paciente modificado correctamente.";
                 LimpiarCampos();
             }
             else
             {
                 lblErrorBusqueda.Text = "No se pudo modificar el Paciente.";
+                
             }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblErrorBusqueda.Text = "Error al modificar el paciente: " + ex.Message; // Muestra el error del sistema
-            //}
+            
         }
 
 

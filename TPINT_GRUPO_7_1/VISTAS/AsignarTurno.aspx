@@ -109,20 +109,22 @@
         <asp:TextBox ID="txtFecha" runat="server"></asp:TextBox>
 
         <label for="lblHorario">Turnos Disponibles | hs</label>
-        <asp:DropDownList ID="ddlHoraAsignada" runat="server" AutoPostBack="True" ></asp:DropDownList>
+        <asp:DropDownList ID="ddlHoraAsignada" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHoraAsignada_SelectedIndexChanged" ></asp:DropDownList>
+        <div class="error-message">
+        <label for="lblMensaje"></label>
 
-        <label for="lblEstado">Estado</label>
+        <asp:Label ID="lblTurnoOcupado" runat="server" ForeColor="Red" Font-Size="Medium" />
+        <label for="lblEstado">
+            <br />
+            Estado</label>
         <asp:TextBox ID="txtEstado" runat="server" Placeholder="Pendiente" ReadOnly="true"></asp:TextBox>
 
         <div class="button-container">
             <asp:Button ID="btnAsignar" runat="server" Text="Asignar" OnClick="btnAsignar_Click" />
         </div>
         <div class="error-message">
-            <asp:Label ID="lblError" runat="server" ForeColor="Red" Font-Size="Large" />
+            <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" Font-Size="Large" />
         </div>
-        <div class="exito-message">
-            <asp:Label ID="lblExito" runat="server" ForeColor="Green" text-align ="center" Font-Size="Large"/>
-        </div>
-    </form>
+        </form>
 </body>
 </html>
