@@ -83,23 +83,29 @@ namespace DATOS
         {
 
             // Consulta SQL para ejecutar el procedimiento almacenado que actualiza los valores
-            string modificar = "EXEC SP_modificarPaciente @Dni, @Direccion, @Localidad, @Provincia, @Email, @Telefono";
+            string modificar = "EXEC SP_modificarPaciente @Provincia, @Localidad, @Dni, @Nombre, @Apellido, @FechaNacimiento, "+
+                "@Nacionalidad, @Direccion, @Email, @Sexo, @Telefono";
 
             // envia los valores de mi obj paciente como parametro
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Dni", SqlDbType.VarChar) { Value = Paciente.Dni },
-                new SqlParameter("@Direccion", SqlDbType.VarChar) { Value = Paciente.Direccion },
-                new SqlParameter("@Localidad", SqlDbType.VarChar) { Value = Paciente.Localidad },
                 new SqlParameter("@Provincia", SqlDbType.VarChar) { Value = Paciente.Provincia },
+                new SqlParameter("@Localidad", SqlDbType.VarChar) { Value = Paciente.Localidad },
+                new SqlParameter("@Dni", SqlDbType.VarChar) { Value = Paciente.Dni },
+                new SqlParameter("@Nombre", SqlDbType.VarChar) { Value = Paciente.Nombre },
+                new SqlParameter("@Apellido", SqlDbType.VarChar) { Value = Paciente.Apellido },
+                new SqlParameter("@FechaNacimiento", SqlDbType.VarChar) { Value = Paciente.FechaNacimiento },
+                new SqlParameter("@Nacionalidad", SqlDbType.VarChar) { Value = Paciente.Nacionalidad },
+                new SqlParameter("@Direccion", SqlDbType.VarChar) { Value = Paciente.Direccion },
                 new SqlParameter("@Email", SqlDbType.VarChar) { Value = Paciente.Email },
+                new SqlParameter("@Sexo", SqlDbType.VarChar) { Value = Paciente.Sexo },
                 new SqlParameter("@Telefono", SqlDbType.VarChar) { Value = Paciente.Celular },
 
             };
 
             //Ejecuta una consulta SQL usando un metodo que no devuelve un resultado (solo verifica exito o fracaso)
-            int exito = ds.EjecutarConsultaSinRetorno(modificar);
+            int exito = ds.EjecutarConsultaSinRetorno(modificar, parametros);
 
             if (exito > 0) return true;
                 return false;   
