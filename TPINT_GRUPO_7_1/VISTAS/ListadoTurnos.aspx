@@ -241,7 +241,7 @@
                               <asp:BoundField DataField="Estado" HeaderText="Estado" />
                               <asp:TemplateField HeaderText="Presentismo">
                                  <ItemTemplate>
-                                    <asp:Button ID="btnPresente" runat="server" Text="Presente" CommandName="MarcarPresente" CommandArgument='<%# Container.DataItemIndex %>' CssClass="presente-button" />
+                                    <asp:HyperLink ID="lnkPresente" runat="server" NavigateUrl="~/ObservacionTurno.aspx" Text="Presente" CommandName="MarcarPresente" CommandArgument='<%# Container.DataItemIndex %>' CssClass="presente-button" />
                                     <asp:Button ID="btnAusente" runat="server" Text="Ausente" CommandName="MarcarAusente" CommandArgument='<%# Container.DataItemIndex %>' CssClass="ausente-button" />
                                  </ItemTemplate>
                              </asp:TemplateField>
@@ -249,7 +249,7 @@
                     </asp:GridView>
                 </div>
                 
-                <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~/Menu.aspx" CssClass="volver-menu">Volver al menú</asp:HyperLink>
+                <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~inicio.aspx" CssClass="volver-menu">Volver al menú</asp:HyperLink>
             </div>
         </div>
     </form>

@@ -18,7 +18,7 @@ namespace VISTAS
             {
                 CargarTurnos();
                 CargarEspecialidades();
-               
+
             }
         }
         protected void CargarTurnos() //
@@ -184,10 +184,7 @@ namespace VISTAS
             string estadoSeleccionado = ddlEstado.SelectedItem.Value;
             string nombreMedico = txtBuscar.Text;
 
-            // Depuración: imprimir los valores seleccionados
-            Response.Write("Especialidad: " + especialidadSeleccionada);
-            Response.Write("Estado: " + estadoSeleccionado);
-            Response.Write("NombreMedico: " + nombreMedico);
+
 
             DataTable turnosFiltrados;
 
@@ -207,6 +204,8 @@ namespace VISTAS
             gvTurnos.DataBind();
         }
 
+        //SECCION DE FILTROS
+
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             FiltrarTurnos(); // Filtrar cuando cambia la especialidad
@@ -221,5 +220,12 @@ namespace VISTAS
         {
             FiltrarTurnos(); // Filtrar cuando se busca por nombre
         }
+
+
+        //SECCION DE AUSENTE/PRESENTE
+
+        
     }
+
+
 }

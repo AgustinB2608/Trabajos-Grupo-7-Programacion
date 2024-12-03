@@ -96,6 +96,7 @@
     <Content Include="ModificarPaciente.aspx" />
     <Content Include="ModificarTurnos.aspx" />
     <Content Include="ModificarUsuario.aspx" />
+    <Content Include="ObservacionTurno.aspx" />
     <Content Include="RealizarInformes.aspx" />
     <Content Include="UsuarioMedico.aspx" />
     <Content Include="Web.config" />
@@ -262,6 +263,13 @@
     </Compile>
     <Compile Include="ModificarUsuario.aspx.designer.cs">
       <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ObservacionTurno.aspx.cs">
+      <DependentUpon>ObservacionTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ObservacionTurno.aspx.designer.cs">
+      <DependentUpon>ObservacionTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealizarInformes.aspx.cs">
