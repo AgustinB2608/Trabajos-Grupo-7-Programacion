@@ -1,25 +1,29 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AnalisisPacientesCancelaciones.aspx.cs" Inherits="VISTAS.AnalisisPacientesCancelaciones" %>
 
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>Análisis de Pacientes</title>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Analisis de Pacientes Con Cancelaciones</title>
     <style>
-        /* Estilos básicos para la tabla */
+        /* Estilos básicos */
         .table {
-            width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
+
         .table th, .table td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 10px;
             text-align: center;
         }
+
         .table th {
             background-color: #f4f4f4;
             font-weight: bold;
         }
+
         .btn {
             padding: 10px 20px;
             background-color: #007bff;
@@ -28,29 +32,49 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         .btn:hover {
             background-color: #0056b3;
+        }
+
+        h1 {
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="padding: 20px;">
             <!-- Título -->
-            <h1>Análisis de Pacientes con Alta Tasa de Cancelaciones</h1>
-            
-            <!-- Filtro de prioridad -->
-            <label for="ddlPrioridad">Prioridad:</label>
-            <asp:DropDownList ID="ddlPrioridad" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPrioridad_SelectedIndexChanged">
-                <asp:ListItem Text="Alta" Value="Alta"></asp:ListItem>
-                <asp:ListItem Text="Baja" Value="Baja"></asp:ListItem>
-            </asp:DropDownList>
+            <h1>Analisis de Pacientes Con Cancelaciones</h1>
 
-            <!-- Botón para actualizar -->
-            <asp:Button ID="btnFiltrar" runat="server" CssClass="btn" Text="Filtrar" OnClick="btnFiltrar_Click" />
+            <!-- Selección de mes -->
+        
 
-            <!-- Tabla de pacientes -->
+            <!-- Tabla -->
+            <table class="table">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <!-- GridView para mostrar ausencias -->
+                            <asp:GridView ID="gvEspecialidad" runat="server" AutoGenerateColumns="False" CssClass="table" Width="1168px">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="%"></asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Paciente"></asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Turnos Asignados"></asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Turnos Cancelados"></asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </form>
 </body>
 </html>
+
+

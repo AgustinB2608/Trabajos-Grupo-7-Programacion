@@ -78,9 +78,6 @@
     <Content Include="EliminarMedico.aspx" />
     <Content Include="EliminarPaciente.aspx" />
     <Content Include="EliminarTurnos.aspx" />
-    <Content Include="EstadisticaDemanda.aspx" />
-    <Content Include="EstadisticaEspecialidad.aspx" />
-    <Content Include="EstadisticaMensual.aspx" />
     <Content Include="EstadisticaMensualEspecialidad.aspx" />
     <Content Include="EstadisticasComparativoMensual.aspx" />
     <Content Include="imgs\doctor.jpg" />
@@ -181,27 +178,6 @@
     </Compile>
     <Compile Include="EliminarTurnos.aspx.designer.cs">
       <DependentUpon>EliminarTurnos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EstadisticaDemanda.aspx.cs">
-      <DependentUpon>EstadisticaDemanda.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EstadisticaDemanda.aspx.designer.cs">
-      <DependentUpon>EstadisticaDemanda.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EstadisticaEspecialidad.aspx.cs">
-      <DependentUpon>EstadisticaEspecialidad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EstadisticaEspecialidad.aspx.designer.cs">
-      <DependentUpon>EstadisticaEspecialidad.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EstadisticaMensual.aspx.cs">
-      <DependentUpon>EstadisticaMensual.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EstadisticaMensual.aspx.designer.cs">
-      <DependentUpon>EstadisticaMensual.aspx</DependentUpon>
     </Compile>
     <Compile Include="EstadisticaMensualEspecialidad.aspx.cs">
       <DependentUpon>EstadisticaMensualEspecialidad.aspx</DependentUpon>
