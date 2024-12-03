@@ -1,125 +1,114 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RealizarInformes.aspx.cs" Inherits="VISTAS.RealizarInformes" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Realizar Informes</title>
     <style>
         body {
-            margin: 0;
+            background-color: #add8e6;
             font-family: Arial, sans-serif;
-            background-color: #6CB2EB;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-
-        /* Header */
         .header {
-            background-color: #2C3E50;
+            background-color: #2a2a2a;
             color: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 20px;
-            font-weight: bold;
-            align-items: center;
-            position: relative;
-        }
-
-        .header img {
-            height: 20px; 
-            width: auto; 
-            vertical-align: middle; 
-            color: white;
-        }
-
-        .admin-button {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            color: white;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
-
-        .admin-button img {
-            height: 15px;
-            margin-right: 5px;
-        }
-
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            width: 271px;
-            height: 55px;
-            flex-shrink: 0;
-            border-radius: 10px;
-            background: var(--Background-Disabled-Default, #D9D9D9);
-            color: #FFF;
-        }
-        
-        .menu-box {
-            width: 70%;
-            margin: 0 auto;
-            flex-shrink: 0;
-        }
-
-        .menu-item {
-            background-color: #807979;
-            color: white;
-            border-radius: 10px;
             padding: 15px;
-            margin: 10px 0;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
             text-align: left;
-            display: flex;
-            align-content: center;
-            justify-content: center;
         }
-
-        .menu-item:hover {
-            background-color: #3A3A3A;
+        .header h2 {
+            margin: 0;
         }
-
-        .menu-item a {
-            color: white;
-            text-decoration: none;
-            width: 100%;
+        .container {
+            flex: 1;
+            margin: 20px auto;
+            max-width: 800px;
             text-align: center;
         }
-
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .link {
+            display: inline-block;
+            width: 60%;
+            padding: 10px 20px;
+            margin: 10px auto;
+            font-size: 16px;
+            background-color: #6b6b6b;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .link:hover {
+            background-color: #505050;
+            transform: translateY(-2px);
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            padding: 15px;
+            background-color: #f0f0f0;
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h2>Nombre Administrador</h2>
+    </div>
     <form id="form1" runat="server">
-        <div class="header">
-            <asp:HyperLink ID="hlkVolverAtras" runat="server" NavigateUrl="~/InicioAdministrador.aspx" ImageUrl="~/imgs/flecha-izquierda.png">&lt;-</asp:HyperLink>
-            <span>Nombre Administrador</span>
-        </div>
-        
         <div class="container">
-            <h1 >Informes</h1>
-
-            <div class="menu-box">
-                <div class="menu-item">
-                    <asp:HyperLink ID="hlkComparativoMensual" runat="server" NavigateUrl="~/EstadisticaMensual.aspx">Estadísticas de Asistencia y Ausencia: Comparativo Mensual</asp:HyperLink>
-                </div>
-                <div class="menu-item">
-                    <asp:HyperLink ID="hlkEspecialidad" runat="server" NavigateUrl="~/EstadisticaEspecialidad.aspx">Estadística Mensual de Asistencia y Ausencia: Especialidad</asp:HyperLink>
-                </div>
-                <div class="menu-item">
-                    <asp:HyperLink ID="hlkDemandaMensual" runat="server" NavigateUrl="~/EstadisticaDemanda.aspx">Análisis Mensual de Demanda por Especialidad</asp:HyperLink>
-                </div>
-                <div class="menu-item">
-                    <asp:HyperLink ID="hlkCancelaciones" runat="server">Análisis de Pacientes con Alta Tasa de Cancelaciones</asp:HyperLink>
-                </div>
-            </div>
+            <div class="title">Informes</div>
+            <!-- HyperLink 1 -->
+            <asp:HyperLink
+                ID="hlkEstadisticasComparativo"
+                runat="server"
+                CssClass="link"
+                NavigateUrl="EstadisticasComparativoMensual.aspx"
+                Text="Estadísticas de Asistencia y Ausencia: Comparativo Mensual"></asp:HyperLink>
+            <!-- HyperLink 2 -->
+            <asp:HyperLink
+                ID="hlkEstadisticasEspecialidad"
+                runat="server"
+                CssClass="link"
+                NavigateUrl="EstadisticaMensualEspecialidad.aspx"
+                Text="Estadística Mensual de Asistencia y Ausencia: Especialidad"></asp:HyperLink>
+            <!-- HyperLink 3 -->
+            <asp:HyperLink
+                ID="hlkAnalisisDemanda"
+                runat="server"
+                CssClass="link"
+                NavigateUrl="AnalisisMensualDemanda.aspx"
+                Text="Análisis Mensual de Demanda por Especialidad"></asp:HyperLink>
+            <!-- HyperLink 4 -->
+            <asp:HyperLink
+                ID="hlkAnalisisCancelaciones"
+                runat="server"
+                CssClass="link"
+                NavigateUrl="AnalisisPacientesCancelaciones.aspx"
+                Text="Análisis de Pacientes con Alta Tasa de Cancelaciones"></asp:HyperLink>
+            <!-- HyperLink Volver al Inicio -->
+            <asp:HyperLink
+                ID="hlkVolverInicio"
+                runat="server"
+                CssClass="link"
+                NavigateUrl="Inicio.aspx"
+                Text="Volver al Inicio"
+                Style="background-color: #0056b3;"></asp:HyperLink>
         </div>
     </form>
+    <div class="footer">
+        Todos los derechos reservados Grupo 7 | Sistema de Gestión Clínica
+    </div>
 </body>
 </html>

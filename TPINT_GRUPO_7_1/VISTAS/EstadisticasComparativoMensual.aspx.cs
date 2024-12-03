@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace VISTAS
 {
-    public partial class RealizarInformes : System.Web.UI.Page
+    public partial class EstadisticasComparativoMensual : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
     }
 }

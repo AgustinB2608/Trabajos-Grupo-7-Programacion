@@ -24,48 +24,48 @@ namespace VISTAS
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control hlkVolverAtras.
+        /// Control hlkEstadisticasComparativo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkVolverAtras;
+        protected global::System.Web.UI.WebControls.HyperLink hlkEstadisticasComparativo;
 
         /// <summary>
-        /// Control hlkComparativoMensual.
+        /// Control hlkEstadisticasEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkComparativoMensual;
+        protected global::System.Web.UI.WebControls.HyperLink hlkEstadisticasEspecialidad;
 
         /// <summary>
-        /// Control hlkEspecialidad.
+        /// Control hlkAnalisisDemanda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkEspecialidad;
+        protected global::System.Web.UI.WebControls.HyperLink hlkAnalisisDemanda;
 
         /// <summary>
-        /// Control hlkDemandaMensual.
+        /// Control hlkAnalisisCancelaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkDemandaMensual;
+        protected global::System.Web.UI.WebControls.HyperLink hlkAnalisisCancelaciones;
 
         /// <summary>
-        /// Control hlkCancelaciones.
+        /// Control hlkVolverInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkCancelaciones;
+        protected global::System.Web.UI.WebControls.HyperLink hlkVolverInicio;
     }
 }
