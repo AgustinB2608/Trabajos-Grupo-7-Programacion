@@ -224,7 +224,17 @@ namespace VISTAS
 
         //SECCION DE AUSENTE/PRESENTE
 
-        
+        protected void lkbPresente_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "MarcarPresente")
+            {
+                // Obtener el ID del turno seleccionado 
+                string turnoID = e.CommandArgument.ToString();
+
+                // Redirigir a ObservacionTurno.aspx con el ID del turno
+                Response.Redirect("ObservacionTurno.aspx?TurnoID=" + "CodTurno_TU");
+            }
+        }
     }
 
 
