@@ -19,7 +19,7 @@ namespace VISTAS
                 string apellido = Session["UsuarioApellido"].ToString();//Apellido
                 string tipoUsuario = Session["UsuarioTipo"].ToString();//Tipo de usuario
 
-                lblInicio.Text = $"Bienvenido {nombre} {apellido} {tipoUsuario}";
+                //lblInicio.Text = $"Bienvenido {nombre} {apellido} {tipoUsuario}";
             }
             else
             {

@@ -231,15 +231,6 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control btnConfigurarUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfigurarUsuario;
-
-        /// <summary>
         /// Control lblApellido.
         /// </summary>
         /// <remarks>

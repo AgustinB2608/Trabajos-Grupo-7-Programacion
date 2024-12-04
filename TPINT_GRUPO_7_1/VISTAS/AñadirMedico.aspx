@@ -224,7 +224,6 @@
                         <div class="btn-container">
                             <asp:Button ID="btnAceptar" runat="server" Text="Guardar" CssClass="btn" OnClick="btnGuardar_Click" />
                             <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" />
-                            <asp:Button ID="btnConfigurarUsuario" runat="server" Text="Configurar Usuario" CssClass="btn" OnClick="btnConfigurarUsuario_Click" />
                         </div>
                     </div>
 

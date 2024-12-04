@@ -132,24 +132,23 @@ namespace VISTAS
                 return;
             }
 
-            // Validación solo digitos y maximo 15 caracteres
+            // Validación solo digitos y máximo 15 caracteres
             if (!SoloDigitos(txtCelular.Text) || txtCelular.Text.Length > 15)
             {
                 lblError.Text = "El número de celular es inválido.";
                 return;
             }
 
-            // Validación solo digitos y 8 caracteres 
+            // Validación solo dígitos y 8 caracteres 
             if (!SoloDigitos(txtDni.Text) || txtDni.Text.Length != 8)
             {
-                lblError.Text = "El DNI es invalido";
+                lblError.Text = "El DNI es inválido.";
                 return;
             }
 
             // Validación de la fecha de nacimiento
             int dia = 0, mes = 0, año = 0;
 
-            // Obtener valores seleccionados de los DropDownLists de fecha
             if (!int.TryParse(ddlDia.SelectedValue, out dia) || dia == 0)
             {
                 lblError.Text = "Debe seleccionar un día válido.";
@@ -173,6 +172,7 @@ namespace VISTAS
             {
                 return;
             }
+
             // Creación del médico
             reg.setNombre(txtNombre.Text.Trim());
             reg.setApellido(txtApellido.Text.Trim());
@@ -193,12 +193,29 @@ namespace VISTAS
 
             if (exito)
             {
-                lblExito.Text = "El médico fue agregado correctamente. No olvide generar su usuario y contraseña";
+                // Obtener el código del médico recién agregado
+                DataTable dt = negM.RetornarCodMedico(txtDni.Text);
+
+                string codmed = dt.Rows.Count > 0 ? dt.Rows[0]["CodMedico"].ToString() : null;
+
+                if (!string.IsNullOrEmpty(codmed))
+                {
+                    // Guardar el código del médico en la sesión
+                    Session["CodMedico"] = codmed;
+
+                    // Redirigir a la página de creación de usuario
+                    Response.Redirect("UsuarioMedico.aspx");
+                }
+                else
+                {
+                    lblError.Text = "Error al obtener el código del médico. Verifique que el médico fue registrado correctamente.";
+                }
             }
             else
             {
                 lblError.Text = "Ocurrió un error al intentar agregar el médico.";
             }
+
 
         }
 
@@ -377,24 +394,6 @@ namespace VISTAS
                 ddlLocalidad.Items.Clear();
                 ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
 
-            }
-        }
-
-        protected void btnConfigurarUsuario_Click(object sender, EventArgs e)
-        {
-            NegocioMedico med = new NegocioMedico();
-            DataTable dt = med.RetornarCodMedico(txtDni.Text);
-
-            string codmed = dt.Rows.Count > 0 ? dt.Rows[0]["CodMedico"].ToString() : null;
-
-            if (!string.IsNullOrEmpty(codmed))
-            {
-                 Session["CodMedico"] = codmed;
-                 Response.Redirect("UsuarioMedico.aspx");
-            }
-            else
-            {
-                lblError.Text = "Error al obtener el código del médico. Verifique que el médico fue registrado correctamente.";
             }
         }
     }

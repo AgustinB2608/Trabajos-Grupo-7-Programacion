@@ -24,11 +24,7 @@ namespace DATOS
             try
             {
                 // Consulta SQL para obtener el usuario y su contraseña
-                string consulta = "SELECT Legajo_AD_US AS LegajoAdministrador, Legajo_ME_US AS LegajoMedico, "+
-                    "Nombre_US AS Nombre, Apellido_US AS Apellido,"+
-                    "TipoUsuario_US AS TipoUsuario, Contraseña_US AS Contraseña " +
-                    "FROM Usuarios WHERE Legajo_ME_US = @Legajo OR Legajo_AD_US = @Legajo " +
-                    "AND Contraseña_US = @Contraseña AND Estado_US = 1; ";
+                string consulta = "EXEC SP_VerificarUsuario @Legajo, @Contraseña ";
 
 
                 // Parametrización de la consulta
