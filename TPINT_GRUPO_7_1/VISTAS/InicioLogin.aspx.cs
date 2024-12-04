@@ -45,8 +45,8 @@ namespace VISTAS
 
                 Session["UsuarioLegajo"] = usuario.Legajo;
                 Session["UsuarioTipo"] = usuario.TipoUsuario;
-                Session["UsuarioNombre"] = usuario.Nombre;  // Guardar Nombre
-                Session["UsuarioApellido"] = usuario.Apellido;  // Guardar Apellido
+                Session["UsuarioNombre"] = usuario.Nombre;
+                Session["UsuarioApellido"] = usuario.Apellido;
 
                 // Dependiendo del tipo de usuario, redirigir a la página correspondiente
                 if (usuario.TipoUsuario == "A")

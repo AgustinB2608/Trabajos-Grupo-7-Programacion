@@ -102,8 +102,9 @@
         <!-- Encabezado -->
         <div class="header">
             <span>Nombre del sistema</span>
-            <asp:Label ID="lblUsuario" runat="server" Text="Usuario"></asp:Label>
+            <asp:Label ID="lblInicio" runat="server" Text="Bienvenido, Usuario"></asp:Label>
         </div>
+
 
         <!-- Contenedor principal -->
         <div class="container">
