@@ -163,6 +163,12 @@
             color: green;
         }
 
+        .auto-style1 {
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
     </style>
 </head>
 <body>
@@ -237,6 +243,8 @@
                         <%-- Aquí cargarás los días del 1 al 31 --%>
                         <div class="error-message">
                             <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:TextBox ID="txtCodigoMedico" runat="server" CssClass="auto-style1" placeholder="Codigo Médico" Width="116px" Visible="False" ></asp:TextBox>
                         </div>
                         <%-- Aquí cargarás los meses, por ejemplo Enero a Diciembre --%>
                         <div class="btn-container">

@@ -28,17 +28,11 @@ namespace VISTAS
                 return;
             }
 
-            // Validar que el legajo sea numérico
-            if (!long.TryParse(legajo, out long legajoNumero))
-            {
-                lblError.Text = "El legajo debe ser numérico."; // Mostrar error
-                return;
-            }
 
-            // Validar que el legajo tenga un máximo de 6 dígitos
-            if (legajo.Length > 6)
+            // Validar que el legajo tenga un máximo de 4 dígitos
+            if (legajo.Length > 4)
             {
-                lblError.Text = "El legajo no puede tener más de 6 dígitos."; // Mostrar error
+                lblError.Text = "El legajo no puede tener más de 4 dígitos."; // Mostrar error
                 return;
             }
 

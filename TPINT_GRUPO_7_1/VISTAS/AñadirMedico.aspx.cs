@@ -193,7 +193,7 @@ namespace VISTAS
 
             if (exito)
             {
-                lblExito.Text = "El médico fue agregado correctamente.";
+                lblExito.Text = "El médico fue agregado correctamente. No olvide generar su usuario y contraseña";
             }
             else
             {

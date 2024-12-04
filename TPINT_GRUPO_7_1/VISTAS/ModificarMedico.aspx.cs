@@ -463,6 +463,7 @@ namespace VISTAS
             else
             {
                 lblError.Text = "Error al obtener el código del médico. Verifique que el médico fue registrado para modificar correctamente.";
+                
             }
         }
     }

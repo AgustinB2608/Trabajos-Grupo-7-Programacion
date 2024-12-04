@@ -24,14 +24,18 @@ namespace DATOS
             try
             {
                 // Consulta SQL para obtener el usuario y su contraseña
-                string consulta = "SELECT Legajo_ME_US, Contraseña_US, Nombre_US, Apellido_US " +
-                                  "FROM Usuarios WHERE Legajo_ME_US = @Legajo AND Contraseña_US = @Contrasena";
+                string consulta = "SELECT Legajo_AD_US AS LegajoAdministrador, Legajo_ME_US AS LegajoMedico, "+
+                    "Nombre_US AS Nombre, Apellido_US AS Apellido,"+
+                    "TipoUsuario_US AS TipoUsuario, Contraseña_US AS Contraseña " +
+                    "FROM Usuarios WHERE Legajo_ME_US = @Legajo OR Legajo_AD_US = @Legajo " +
+                    "AND Contraseña_US = @Contraseña AND Estado_US = 1; ";
+
 
                 // Parametrización de la consulta
                 SqlParameter[] parametros = new SqlParameter[]
                 {
                     new SqlParameter("@Legajo", SqlDbType.Char) { Value = legajo },
-                    new SqlParameter("@Contrasena", SqlDbType.NVarChar) { Value = contrasena }
+                    new SqlParameter("@Contraseña", SqlDbType.NVarChar) { Value = contrasena }
                 };
 
                 // Ejecuta la consulta y obtiene el resultado
@@ -43,10 +47,10 @@ namespace DATOS
                     // Crea un objeto Login con los datos obtenidos
                     Login usuario = new Login()
                     {
-                        Contraseña = resultado.Rows[0]["Contraseña_US"].ToString(),
-                        TipoUsuario = resultado.Rows[0]["TipoUsuario_US"].ToString(),
-                        Nombre = resultado.Rows[0]["Nombre_US"]?.ToString(),
-                        Apellido = resultado.Rows[0]["Apellido_US"]?.ToString()
+                        Contraseña = resultado.Rows[0]["Contraseña"].ToString(),
+                        TipoUsuario = resultado.Rows[0]["TipoUsuario"].ToString(),
+                        Nombre = resultado.Rows[0]["Nombre"]?.ToString(),
+                        Apellido = resultado.Rows[0]["Apellido"]?.ToString()
                     };
 
                     return usuario; // Retorna el usuario encontrado

@@ -13,7 +13,7 @@ namespace DATOS
     {
         private Conexion ds = new Conexion();
 
-        public bool InsertarUsuario(string contraseña, string codmedico, string tipoUsuario = "M")
+        public bool InsertarUsuario(string codmedico, string contraseña)
         {
             string consulta = "EXEC SP_AgregarUsuario @CodMedico, @Contraseña";
 
@@ -30,13 +30,13 @@ namespace DATOS
 
         public bool VerificarUsuarioExistente(string codmedico)
         {
-            string consulta = "SELECT COUNT(1) FROM Usuarios WHERE Legajo_ME_US = @CodMedico";
+            string consulta = "SELECT Legajo_ME_US FROM Usuarios WHERE Legajo_ME_US = @CodMedico;";
             SqlParameter[] parametros = new SqlParameter[]
             {
             new SqlParameter("@CodMedico", codmedico)
             };
 
-            int resultado = (int)ds.EjecutarConsultaSinRetorno(consulta, parametros);
+            int resultado = ds.EjecutarConsultaSinRetorno(consulta, parametros);
             return resultado > 0;
         }
 
@@ -46,7 +46,7 @@ namespace DATOS
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@CodMedico", usuarios.CodMedico),
+                new SqlParameter("@Legajo", usuarios.Legajo),
                 new SqlParameter("@Contraseña", usuarios.Contraseña)
             };
 
@@ -65,19 +65,19 @@ namespace DATOS
         public DataTable listarUsuarioEspecifico(string codUsuario)
         {
             // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
-            string consulta = "EXEC SP_retornarUsuarioCod @codUsuario";
+            string consulta = "EXEC SP_retornarUsuario @Legajo";
 
             // envia el valor del codUsuario como parametro
             SqlParameter[] parametros = new SqlParameter[]
                 {
-                     new SqlParameter("@codUsuario", codUsuario)
+                     new SqlParameter("@Legajo", codUsuario)
                 };
             //retorna el datatable del metodo de Conexion
             return ds.EjecutarConsultaConParametros(consulta, parametros);
 
         }
 
-        public bool eliminarMedico(string CodMedico)
+        public bool eliminarUsuario(string CodMedico)
         {
             string eliminar = "EXEC SP_BajaUsuario @codMedico";
 

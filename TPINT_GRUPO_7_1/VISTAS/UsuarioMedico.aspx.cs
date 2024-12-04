@@ -50,7 +50,7 @@ namespace VISTAS
 
             // Llamada a la capa de negocio
             NegocioUsuarios negocioUsuarios = new NegocioUsuarios();
-            bool resultado = negocioUsuarios.RegistrarUsuario(contraseña, codmedico);
+            bool resultado = negocioUsuarios.RegistrarUsuario(codmedico, contraseña);
 
             // Mensajes de retroalimentación
             if (resultado)

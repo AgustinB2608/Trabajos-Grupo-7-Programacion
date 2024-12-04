@@ -19,16 +19,17 @@ namespace VISTAS
                 // Validar si hay un código de médico en la sesión
                 if (Session["CodMedico"] != null)
                 {
-                    string codmedico = Session["CodMedico"].ToString();
-                    txtCodigo.Text = codmedico; // Prellenar el campo con el valor de la sesión
+                    string Legajo = Session["CodMedico"].ToString();
+                    txtCodigo.Text = Legajo; // Prellenar el campo con el valor de la sesión
                     txtCodigo.Enabled = false; // Evitar que se modifique
                 }
                 else
                 {
                     lblError.Visible = true;
                     lblError.CssClass = "mensaje-error";
-                    lblError.Text = "No se encontró un código de médico en la sesión.";
-                    btnAceptar.Enabled = false; // Deshabilitar el botón si no hay código
+                    lblError.Text = "No se encontró un legajo en la sesión. ";
+                    btnAceptar.Enabled = false; // Deshabilitar el botón si no hay legajo
+                    
                 }
             }
         }
@@ -50,7 +51,7 @@ namespace VISTAS
             NegocioUsuarios negU = new NegocioUsuarios();
             Usuarios usuario = new Usuarios();
 
-            usuario.setCodMedico(txtCodigo.Text.ToString());
+            usuario.setLegajo(txtCodigo.Text.ToString());
             usuario.setContraseña(txtContraseña.Text.ToString());
 
             if (negU.modificarUsuario(usuario))
