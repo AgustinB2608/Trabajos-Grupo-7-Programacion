@@ -53,5 +53,9 @@ namespace NEGOCIOS
             return dao.ObtenerTurnosFiltrados(especialidad, estado, nombreMedico);
         }
 
+        public DataTable ObtenerTurnoPorID(string turnoID)
+        {
+            return dao.ObtenerTurnoPorID(turnoID);
+        }
     }
 }

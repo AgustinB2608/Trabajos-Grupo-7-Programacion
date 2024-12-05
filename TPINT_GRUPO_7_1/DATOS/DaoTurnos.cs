@@ -99,6 +99,18 @@ namespace DATOS
             return ds.EjecutarProcedimientoConParametro("sp_FiltrarTurnos", parametros);
         }
 
+        public DataTable ObtenerTurnoPorID(string turnoID)
+        {
+            // Crear la lista de parámetros para el procedimiento almacenado
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+             new SqlParameter("@TurnoID", SqlDbType.VarChar) { Value = turnoID }
+            };
+
+            // Ejecutar el procedimiento almacenado que obtiene el turno por ID
+            return ds.EjecutarProcedimientoConParametro("sp_ObtenerTurnoPorID", parametros);
+        }
+
     }
 }
 
