@@ -14,29 +14,30 @@ namespace VISTAS
         NegocioUsuarios negU = new NegocioUsuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                // Validar si hay un código de médico en la sesión
-                if (Session["CodMedico"] != null)
-                {
-                    string codmedico = Session["CodMedico"].ToString();
-                    txtCodigo.Text = codmedico; // Prellenar el campo con el valor de la sesión
-                    txtCodigo.Enabled = false; // Evitar que se modifique
-                }
-                else
-                {
-                    lblMensaje2.Visible = true;
-                    lblMensaje2.Text = "No se encontró un código de médico en la sesión.";
-                    btnEliminar.Enabled = false; // Deshabilitar el botón si no hay código
-                }
-
-            }
+            
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            
-            
+            string eliminarUsuario = txtCodigo.Text;
+
+            // eliminar al médico
+            bool exito = negU.eliminarUsuario(eliminarUsuario);
+
+            if (exito)
+            {
+                // Si la eliminación fue exitosa
+                lblMensaje.Text = "El usuario médico ha sido eliminado con éxito.";
+                lblMensaje2.Text = string.Empty;
+
+                // Limpiar el campo de texto
+                txtCodigo.Text = string.Empty;
+            }
+            else
+            {
+                lblMensaje.Text = "No se pudo eliminar el usuario médico. Intente nuevamente.";
+            }
+
         }
     }
 }

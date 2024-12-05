@@ -14,22 +14,15 @@ namespace VISTAS
 {
     public partial class EliminarMedico : System.Web.UI.Page
     {
+        NegocioMedico negocioMedico = new NegocioMedico();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                // Validar si ya hay un código de médico registrado en la sesión
-                if (Session["CodMedico"] != null)
-                {
-                    string codMedico = Session["CodMedico"].ToString();
-                }
-            }
             btnConfirmarEliminar.Visible = false;
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            NegocioMedico negocioMedico = new NegocioMedico();
+            
 
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
@@ -83,7 +76,6 @@ namespace VISTAS
 
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
-            NegocioMedico negocioMedico = new NegocioMedico();
             string medicoEliminar = txtCodigo.Text;
 
             // eliminar al médico
@@ -110,20 +102,7 @@ namespace VISTAS
 
         protected void btnEliminarUsuario_Click(object sender, EventArgs e)
         {
-            NegocioMedico med = new NegocioMedico();
-            DataTable dt = med.RetornarCodMedico(txtCodigo.Text);
-
-            string codmed = dt.Rows.Count > 0 ? dt.Rows[0]["CodMedico"].ToString() : null;
-
-            if (!string.IsNullOrEmpty(codmed))
-            {
-                Session["CodMedico"] = codmed;
-                Response.Redirect("EliminarUsuario.aspx");
-            }
-            else
-            {
-                lblMensaje2.Text = "Error al obtener el código del médico. Verifique que el médico fue registrado correctamente.";
-            }
+            Response.Redirect("EliminarUsuario.aspx");
         }
     }
 }
