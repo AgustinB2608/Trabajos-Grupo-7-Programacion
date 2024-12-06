@@ -21,6 +21,18 @@ namespace VISTAS
                     string codmedico = Session["CodMedico"].ToString();
                     txtCodigoMedico.Text = codmedico; // Prellenar el campo con el valor de la sesión
                     txtCodigoMedico.Enabled = false; // Evitar que se modifique
+
+                    if (Session["Nombre"] != null)
+                    {
+                        txtNombre.Text = Session["Nombre"].ToString();
+                        txtNombre.Enabled = false;
+                    }
+
+                    if (Session["Apellido"] != null)
+                    {
+                        txtApellido.Text = Session["Apellido"].ToString();
+                        txtApellido.Enabled = false;
+                    }
                 }
                 else
                 {
@@ -36,6 +48,8 @@ namespace VISTAS
         {
             string codmedico = txtCodigoMedico.Text.Trim();
             string contraseña = txtContraseña.Text.Trim();
+            string nombre = txtNombre.Text.Trim();
+            string apellido = txtApellido.Text.Trim();
 
             lblMensaje1.Visible = true;
             lblMensaje2.Visible = true;
@@ -50,10 +64,10 @@ namespace VISTAS
 
             // Llamada a la capa de negocio
             NegocioUsuarios negocioUsuarios = new NegocioUsuarios();
-           // bool resultado = negocioUsuarios.InsertarUsuario(codmedico, nombre, apellido contraseña);
+            bool resultado = negocioUsuarios.InsertarUsuario(codmedico, nombre, apellido, contraseña);
 
             // Mensajes de retroalimentación
-            /*if (resultado)
+            if (resultado)
             {
                 lblMensaje1.Text = "Usuario registrado exitosamente.";
                 lblMensaje2.Visible = false;
@@ -62,7 +76,7 @@ namespace VISTAS
             {
                 lblMensaje2.CssClass = "mensaje-error";
                 lblMensaje2.Text = "Error al registrar el usuario. Intenta nuevamente.";
-            }*/
+            }
         }
 
 

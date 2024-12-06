@@ -197,11 +197,15 @@ namespace VISTAS
                 DataTable dt = negM.RetornarCodMedico(txtDni.Text);
 
                 string codmed = dt.Rows.Count > 0 ? dt.Rows[0]["CodMedico"].ToString() : null;
+                string nombre = dt.Rows.Count > 0 ? dt.Rows[0]["Nombre"].ToString() : null;
+                string apellido = dt.Rows.Count > 0 ? dt.Rows[0]["Apellido"].ToString() : null;
 
                 if (!string.IsNullOrEmpty(codmed))
                 {
                     // Guardar el código del médico en la sesión
                     Session["CodMedico"] = codmed;
+                    Session["Nombre"] = nombre;
+                    Session["Apellido"] = apellido;
 
                     // Redirigir a la página de creación de usuario
                     Response.Redirect("UsuarioMedico.aspx");
