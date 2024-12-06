@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecuperarContraseñaConDni.aspx.cs" Inherits="VISTAS.RecuperarContraseñaConDni" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecuperarContraseña.aspx.cs" Inherits="VISTAS.RecuperarContraseña" %>
 
 <!DOCTYPE html>
 
@@ -124,13 +124,15 @@
             <div class="login">
                 <div class="logo">Logo</div>
                 
-                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Ingrese su DNI" />
+                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Ingrese su DNI" TextMode="Number" />
                 <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control" placeholder="Ingrese su Legajo" />
                 <asp:TextBox ID="txtContrasenaRecuperada" runat="server" CssClass="form-control" TextMode="SingleLine" placeholder="Contraseña" ReadOnly="True" />
-                <asp:Button ID="btnRecuperar" runat="server" Text="Recuperar" CssClass="btn-iniciar" OnClick="btnRecuperar_Click" /> <%--Evento para verificar datos--%>
+                <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+
+                <asp:Button ID="btnRecuperar" runat="server" Text="Recuperar" CssClass="btn-iniciar" OnClick="btnRecuperar_Click" /> 
                 
                 <div class="links">
-                    <asp:HyperLink ID="VolverInicio" runat="server" NavigateUrl="~/Login.aspx" CssClass="hyperlink">Volver a iniciar sesion.</asp:HyperLink>
+                    <asp:HyperLink ID="VolverInicio" runat="server" NavigateUrl="~/InicioLogin.aspx" CssClass="hyperlink">Volver a iniciar sesion.</asp:HyperLink>
                 </div>
             </div>
         </div>

@@ -97,7 +97,7 @@
     <Content Include="ModificarUsuario.aspx" />
     <Content Include="ObservacionTurno.aspx" />
     <Content Include="RealizarInformes.aspx" />
-    <Content Include="RecuperarContraseñaConDni.aspx" />
+    <Content Include="RecuperarContraseña.aspx" />
     <Content Include="RecuperarContraseñaConLegajo.aspx" />
     <Content Include="UsuarioMedico.aspx" />
     <Content Include="Web.config" />
@@ -272,12 +272,12 @@
     <Compile Include="RealizarInformes.aspx.designer.cs">
       <DependentUpon>RealizarInformes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RecuperarContraseñaConDni.aspx.cs">
-      <DependentUpon>RecuperarContraseñaConDni.aspx</DependentUpon>
+    <Compile Include="RecuperarContraseña.aspx.cs">
+      <DependentUpon>RecuperarContraseña.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RecuperarContraseñaConDni.aspx.designer.cs">
-      <DependentUpon>RecuperarContraseñaConDni.aspx</DependentUpon>
+    <Compile Include="RecuperarContraseña.aspx.designer.cs">
+      <DependentUpon>RecuperarContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecuperarContraseñaConLegajo.aspx.cs">
       <DependentUpon>RecuperarContraseñaConLegajo.aspx</DependentUpon>

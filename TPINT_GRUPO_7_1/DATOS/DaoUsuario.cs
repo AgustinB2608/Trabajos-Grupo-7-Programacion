@@ -75,10 +75,28 @@ namespace DATOS
         }
 
 
-        public bool recuperarContraseñaConDni(string dni)
+        public string RecuperarContraseña(string dni, string legajo)
         {
-            string 
+            string consulta = "EXEC SP_recuperarContraseñaConDNI @Dni, @Legajo";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Dni", dni),
+                new SqlParameter("@Legajo", legajo)
+            };
+
+            DataTable resultado = ds.EjecutarConsultaConParametros(consulta, parametros);
+
+            if (resultado.Rows.Count > 0)
+            {
+                return resultado.Rows[0]["Contraseña"].ToString();
+            }
+
+            return null;
         }
+
+
+
     }
 
 }
