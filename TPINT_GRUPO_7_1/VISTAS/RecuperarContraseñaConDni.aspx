@@ -1,10 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="VISTAS.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecuperarContraseñaConDni.aspx.cs" Inherits="VISTAS.RecuperarContraseñaConDni" %>
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Iniciar Sesión</title>
-    <style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -125,7 +127,7 @@
                 <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Ingrese su DNI" />
                 <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control" placeholder="Ingrese su Legajo" />
                 <asp:TextBox ID="txtContrasenaRecuperada" runat="server" CssClass="form-control" TextMode="SingleLine" placeholder="Contraseña" ReadOnly="True" />
-                <asp:Button ID="btnRecuperar" runat="server" Text="Recuperar" CssClass="btn-iniciar" /> <%--Evento para verificar datos--%>
+                <asp:Button ID="btnRecuperar" runat="server" Text="Recuperar" CssClass="btn-iniciar" OnClick="btnRecuperar_Click" /> <%--Evento para verificar datos--%>
                 
                 <div class="links">
                     <asp:HyperLink ID="VolverInicio" runat="server" NavigateUrl="~/Login.aspx" CssClass="hyperlink">Volver a iniciar sesion.</asp:HyperLink>

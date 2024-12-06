@@ -74,6 +74,11 @@ namespace DATOS
 
         }
 
+
+        public bool recuperarContraseñaConDni(string dni)
+        {
+            string 
+        }
     }
 
 }

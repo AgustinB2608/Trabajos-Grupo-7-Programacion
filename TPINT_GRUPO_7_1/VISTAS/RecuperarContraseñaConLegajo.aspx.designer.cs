@@ -11,7 +11,7 @@ namespace VISTAS
 {
 
 
-    public partial class WebForm1
+    public partial class RecuperarContraseñaConLegajo
     {
 
         /// <summary>
