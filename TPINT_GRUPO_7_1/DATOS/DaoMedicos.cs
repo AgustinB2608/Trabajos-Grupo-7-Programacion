@@ -206,6 +206,7 @@ namespace DATOS
             new SqlParameter("@Nombre", SqlDbType.NVarChar) { Value = Nombre}
             };
 
+
             return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosNombMedico", parametros);
         }
 

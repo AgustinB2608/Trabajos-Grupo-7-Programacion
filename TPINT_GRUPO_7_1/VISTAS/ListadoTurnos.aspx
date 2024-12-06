@@ -242,15 +242,15 @@
                               <asp:TemplateField HeaderText="Presentismo">
                                  <ItemTemplate>
                                     <asp:LinkButton ID="lkbPresente" runat="server" 
-                NavigateUrl="~/ObservacionTurno.aspx" Text="Presente" CommandName="MarcarPresente" CommandArgument='<%# Eval("CodTurno_TU") %>' OnCommand="lkbPresente_Command" CssClass="presente-button"  />
-                                    <asp:Button ID="btnAusente" runat="server" Text="Ausente" CommandName="MarcarAusente" CommandArgument='<%# Container.DataItemIndex %>' CssClass="ausente-button" />
+                                     NavigateUrl="~/ObservacionTurno.aspx" Text="Presente" CommandName="MarcarPresente" CommandArgument='<%# Eval("CodTurno_TU") %>' OnCommand="lkbPresente_Command" CssClass="presente-button"  />
+                                    <asp:Button ID="btnAusente" runat="server" Text="Ausente" CommandName="MarcarAusente" CommandArgument='<%# Eval("CodTurno_TU") %>' CssClass="ausente-button"  OnCommand="btnAusente_Command" />
                                  </ItemTemplate>
                              </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </div>
                 
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                
                 
                 <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~/InicioMedico.aspx" CssClass="volver-menu">Volver al inicio</asp:HyperLink>
             </div>

@@ -43,42 +43,9 @@ namespace DATOS
             return ds.EjecutarConsultaConParametros(consulta, null);
 
         }
-        public DataTable ObtenerTurnosPorEspecialidad(string estado)
-        {
-            if (string.IsNullOrEmpty(estado))
-            {
-                
-                return new DataTable(); 
-            }
+       
 
-            // Crear el parámetro para el procedimiento almacenado
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-            new SqlParameter("@Estado", SqlDbType.NVarChar) { Value = estado }
-            };
-
-
-            return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosEstado", parametros);
-        }
-
-        public DataTable ObtenerTurnosPorEspYEst(string especialidadSeleccionada, string estadoSeleccionado)
-        {
-            // Si no se pasan ambos valores, devolver una tabla vacía
-            if (string.IsNullOrEmpty(estadoSeleccionado) || string.IsNullOrEmpty(especialidadSeleccionada))
-            {
-                return new DataTable(); // Devolver tabla vacía si falta alguno de los valores
-            }
-
-            // Crear los parámetros para el procedimiento almacenado
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@Estado", SqlDbType.NVarChar) { Value = estadoSeleccionado },
-                new SqlParameter("@Especialidad", SqlDbType.NVarChar) { Value = especialidadSeleccionada }
-            };
-
-            // Ejecutar el procedimiento almacenado y devolver el resultado
-            return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosEspYEst", parametros);
-        }
+        
         public DataTable ObtenerTurnosFiltrados(string especialidad, string estado, string nombreMedico)
         {
 
@@ -88,11 +55,7 @@ namespace DATOS
                 new SqlParameter("@Especialidad", SqlDbType.VarChar) { Value = especialidad},
                 new SqlParameter("@Estado", SqlDbType.Char) { Value = estado},
                 new SqlParameter("@NombreMedico", SqlDbType.VarChar) { Value = nombreMedico}
-                /*
-                 new SqlParameter("@Especialidad", SqlDbType.VarChar) { Value = string.IsNullOrEmpty(especialidad) ? (object)DBNull.Value : especialidad },
-                 new SqlParameter("@Estado", SqlDbType.Char) { Value = string.IsNullOrEmpty(estado) ? (object)DBNull.Value : estado },
-                 new SqlParameter("@NombreMedico", SqlDbType.VarChar) { Value = string.IsNullOrEmpty(nombreMedico) ? (object)DBNull.Value : nombreMedico }
-                */
+               
             };
 
             // Ejecutar el procedimiento almacenado
@@ -158,7 +121,7 @@ namespace DATOS
             SqlParameter[] parametros = new SqlParameter[]
            {
                 new SqlParameter("@estado", SqlDbType.VarChar) { Value = estado},
-                new SqlParameter("@codturno", SqlDbType.Char) { Value = codturno}
+                new SqlParameter("@codturno", SqlDbType.VarChar) { Value = codturno}
                 
            };
 
