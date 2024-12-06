@@ -13,5 +13,15 @@ namespace VISTAS
         {
 
         }
+
+        /*
+         Análisis de Pacientes con Alta Tasa de Cancelaciones
+
+        Informará sobre el mes anterior al actual. Tiene como objetivo identificar 
+        y analizar a aquellos pacientes que han cancelado una cantidad significativa de turnos 
+        y poder listarlos bajo una categoría de baja prioridad lo que le permitirá a la clínica tener en cuenta 
+        estas cancelaciones al momento de gestionar la programación de citas futuras.
+         
+         */
     }
 }

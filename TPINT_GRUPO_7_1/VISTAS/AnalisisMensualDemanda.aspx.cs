@@ -13,5 +13,12 @@ namespace VISTAS
         {
 
         }
+
+        /*
+         Análisis Mensual de Demanda por Especialidad
+
+        Informará cuál fue la especialidad con más turnos asignados (demanda) en el mes.
+         
+         */
     }
 }

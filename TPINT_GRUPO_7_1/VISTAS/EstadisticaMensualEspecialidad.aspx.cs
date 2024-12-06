@@ -13,5 +13,12 @@ namespace VISTAS
         {
 
         }
+
+        /*
+         Estadística Mensual de Asistencia y Ausencia: Especialidad
+
+        Informará los porcentajes y la información de asistencias y ausencias según la especialidad.
+         
+         */
     }
 }
