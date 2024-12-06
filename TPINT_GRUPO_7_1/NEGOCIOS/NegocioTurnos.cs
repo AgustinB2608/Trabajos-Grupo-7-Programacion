@@ -70,9 +70,9 @@ namespace NEGOCIOS
             return dao.ModificarEstado(estado, codturno);
         }
 
-        public bool AgregarObservacion (string codturno, string dni, string observacion)
+        public bool AgregarObservacion (string codturno, string observacion)
         {
-            return dao.AgregarObservacion(codturno, dni, observacion);
+            return dao.AgregarObservacion(codturno, observacion);
         }
     }
 }

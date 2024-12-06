@@ -132,14 +132,13 @@ namespace DATOS
             return false;
         }
         
-        public bool AgregarObservacion(string codturno, string dni, string observacion)
+        public bool AgregarObservacion(string codturno, string observacion)
         {
-            string consulta = "EXEC SP_GenerarObservacion @codturno, @dni, @observacion";
+            string consulta = "EXEC SP_GenerarObservacion @codturno, @observacion";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@codturno", SqlDbType.VarChar) { Value = codturno},
-                new SqlParameter("@dni", SqlDbType.Char) { Value = dni},
                 new SqlParameter("@observacion", SqlDbType.VarChar) { Value = observacion}
 
             };
