@@ -11,7 +11,7 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            CargarOrden();
         }
 
         /*
@@ -23,5 +23,21 @@ namespace VISTAS
         estas cancelaciones al momento de gestionar la programación de citas futuras.
          
          */
+        public void CargarOrden()
+        {
+            ddlOrden.Items.Insert(0, new ListItem("Seleccionar Orden", "0"));
+            ddlOrden.Items.Add(new ListItem("Ascendente", "01"));
+            ddlOrden.Items.Add(new ListItem("Descendente", "02"));
+        }
+        protected void btnMostrarTodos_Click(object sender, EventArgs e)
+        {
+            ddlOrden.Items.Clear();
+            CargarOrden();
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/RealizarInformes.aspx");
+        }
     }
 }

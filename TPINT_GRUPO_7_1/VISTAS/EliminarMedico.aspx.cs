@@ -107,7 +107,7 @@ namespace VISTAS
                 txtCodigo.Text = string.Empty;
 
                 // Limpiar el gridview
-                gvMedicoInfo.DataSource = null;
+                //gvMedicoInfo.DataSource = null;
                 gvMedicoInfo.DataBind();
             }
             else
