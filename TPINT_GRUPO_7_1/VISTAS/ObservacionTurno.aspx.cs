@@ -53,9 +53,12 @@ namespace VISTAS
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            NegocioTurnos negT = new NegocioTurnos();
+            string turnoID = Request.QueryString["TurnoID"];
+            NegocioTurnos negocioTurno = new NegocioTurnos();
+            negocioTurno.AgregarObservacion(turnoID, txtObservacion.Text);
 
 
         }
+       
     }
 }

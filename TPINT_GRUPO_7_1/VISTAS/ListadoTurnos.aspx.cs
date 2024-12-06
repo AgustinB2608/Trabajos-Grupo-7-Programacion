@@ -51,132 +51,7 @@ namespace VISTAS
         }
 
 
-        /*
-        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            NegocioEspecialidades negocioEspecialidades = new NegocioEspecialidades();
-            NegocioTurnos negocioTurnos = new NegocioTurnos();
-
-            string estadoSeleccionado = ddlEstado.SelectedItem.Value;
-            string especialidadSeleccionada = ddlEspecialidad.SelectedItem.Text;
-
-            // Verificar si ambos son valores por defecto
-            if (estadoSeleccionado == "0" && especialidadSeleccionada == "Seleccione una especialidad")
-            {
-                // Si ambos están vacíos, mostrar todos los turnos
-                var todosTurnos = negocioTurnos.ObtenerTurnos(); // Este método debe devolver todos los turnos sin filtros
-                gvTurnos.DataSource = todosTurnos;
-                gvTurnos.DataBind();
-                return;
-            }
-
-            // Si solo se seleccionó "Seleccione una especialidad"
-            if (especialidadSeleccionada == "Seleccione una especialidad")
-            {
-                if (estadoSeleccionado == "0") // Si no hay estado seleccionado, limpiar el GridView
-                {
-                    gvTurnos.DataSource = null;
-                    gvTurnos.DataBind();
-                    return;
-                }
-
-                // Mostrar turnos filtrados solo por estado
-                var turnosPorEstado = negocioTurnos.ObtenerTurnosPorEstado(estadoSeleccionado);
-                gvTurnos.DataSource = turnosPorEstado;
-                gvTurnos.DataBind();
-                return;
-            }
-
-            // Si solo se seleccionó "Seleccione estado"
-            if (estadoSeleccionado == "0") // Mostrar turnos solo por especialidad
-            {
-                var turnosPorEspecialidad = negocioEspecialidades.ObtenerTurnosPorEspecialidad(especialidadSeleccionada);
-                gvTurnos.DataSource = turnosPorEspecialidad;
-                gvTurnos.DataBind();
-            }
-            else // Mostrar turnos por especialidad y estado
-            {
-                var turnos = negocioTurnos.ObtenerTurnosPorEspYEst(especialidadSeleccionada, estadoSeleccionado);
-                gvTurnos.DataSource = turnos;
-                gvTurnos.DataBind();
-            }
-        }
-
-        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            NegocioTurnos negocioTurnos = new NegocioTurnos();
-            NegocioEspecialidades negocioEspecialidades = new NegocioEspecialidades();
-
-            string estadoSeleccionado = ddlEstado.SelectedItem.Value;
-            string especialidadSeleccionada = ddlEspecialidad.SelectedItem.Text;
-
-            // Verificar si ambos son valores por defecto
-            if (estadoSeleccionado == "0" && especialidadSeleccionada == "Seleccione una especialidad")
-            {
-                // Si ambos están vacíos, mostrar todos los turnos
-                var todosTurnos = negocioTurnos.ObtenerTurnos(); // Este método debe devolver todos los turnos sin filtros
-                gvTurnos.DataSource = todosTurnos;
-                gvTurnos.DataBind();
-                return;
-            }
-
-            // Si la especialidad es "Seleccione una especialidad"
-            if (especialidadSeleccionada == "Seleccione una especialidad")
-            {
-                if (estadoSeleccionado == "0") // Si no hay estado seleccionado, limpiar el GridView
-                {
-                    gvTurnos.DataSource = null;
-                    gvTurnos.DataBind();
-                    return;
-                }
-
-                // Mostrar turnos filtrados solo por estado
-                var turnosPorEstado = negocioTurnos.ObtenerTurnosPorEstado(estadoSeleccionado);
-                gvTurnos.DataSource = turnosPorEstado;
-                gvTurnos.DataBind();
-                return;
-            }
-
-            // Si la especialidad está seleccionada
-            if (estadoSeleccionado == "0") // Mostrar turnos solo por especialidad
-            {
-                var turnosPorEspecialidad = negocioEspecialidades.ObtenerTurnosPorEspecialidad(especialidadSeleccionada);
-                gvTurnos.DataSource = turnosPorEspecialidad;
-                gvTurnos.DataBind();
-            }
-            else // Mostrar turnos por especialidad y estado
-            {
-                var turnos = negocioTurnos.ObtenerTurnosPorEspYEst(especialidadSeleccionada, estadoSeleccionado);
-                gvTurnos.DataSource = turnos;
-                gvTurnos.DataBind();
-            }
-        }
-
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            NegocioMedico negocioMedico = new NegocioMedico();
-
-            string Nombre = txtBuscar.Text;
-
-            if (Nombre != "")
-            {
-
-                // Obtenemos los datos desde la capa de negocio
-                DataTable dt = negocioMedico.ObtenerTurnosNombMedico(Nombre);
-
-                // Asignamos los datos al GridView
-                gvTurnos.DataSource = dt;
-                gvTurnos.DataBind();
-            }
-            else
-            {
-                //Si se borra el contenido del txt y se clickea buscar, se muestran todos los resultados nuevamente
-                CargarTurnos();
-            }
-            
-        }
-        */
-
+      
         private void FiltrarTurnos()
         {
             NegocioTurnos negocioTurnos = new NegocioTurnos();
@@ -226,17 +101,40 @@ namespace VISTAS
 
         protected void lkbPresente_Command(object sender, CommandEventArgs e)
         {
-            
-            
+            NegocioTurnos negocioTurnos = new NegocioTurnos();
+
+            //PARA MI: cambiar a como lo hace el resto
             if (e.CommandName == "MarcarPresente")
             {
                 // Obtener el ID del turno seleccionado 
                 string turnoID = e.CommandArgument.ToString();
 
+               //Cambiamos el estado en la bd
+                negocioTurnos.ModificarEstado("P",turnoID);
+
                 // Redirigir a ObservacionTurno.aspx con el ID del turno
                 Response.Redirect("ObservacionTurno.aspx?TurnoID=" + turnoID);
+
+
             }
-            
+
+        }
+        protected void btnAusente_Command(object sender, CommandEventArgs e)
+        {
+            NegocioTurnos negocioTurnos = new NegocioTurnos();
+            if (e.CommandName == "MarcarAusente")
+            {
+                // Obtener el ID del turno seleccionado 
+                string turnoID = e.CommandArgument.ToString();
+
+                
+                //Cambiamos el estado en la bd
+                negocioTurnos.ModificarEstado("A", turnoID);
+
+                //al estar ausente el turno se borra
+                CargarTurnos();
+       
+            }
         }
     }
 

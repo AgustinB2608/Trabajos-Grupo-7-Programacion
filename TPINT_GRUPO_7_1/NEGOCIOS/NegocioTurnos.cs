@@ -34,18 +34,9 @@ namespace NEGOCIOS
             return dao.ObtenerTurnos();
         }
 
-        public DataTable ObtenerTurnosPorEstado(string estado)
-        {
+      
 
-            // Llamar al método correspondiente en la capa DAO
-            return dao.ObtenerTurnosPorEspecialidad(estado);
-        }
-
-        public DataTable ObtenerTurnosPorEspYEst(string especialidadSeleccionada, string estadoSeleccionado)
-        {
-            return dao.ObtenerTurnosPorEspYEst(especialidadSeleccionada, estadoSeleccionado);
-
-        }
+     
         public DataTable ObtenerTurnosFiltrados(string especialidad, string estado, string nombreMedico)
         {
             
@@ -79,9 +70,9 @@ namespace NEGOCIOS
             return dao.ModificarEstado(estado, codturno);
         }
 
-        public bool AgregarObservacion (string codturno, string dni, string observacion)
+        public bool AgregarObservacion (string codturno, string observacion)
         {
-            return dao.AgregarObservacion(codturno, dni, observacion);
+            return dao.AgregarObservacion(codturno, observacion);
         }
     }
 }
