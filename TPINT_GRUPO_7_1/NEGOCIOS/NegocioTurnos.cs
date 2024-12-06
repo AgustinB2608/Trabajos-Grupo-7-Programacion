@@ -57,5 +57,31 @@ namespace NEGOCIOS
         {
             return dao.ObtenerTurnoPorID(turnoID);
         }
+        
+        
+
+
+        // 06/12
+        public DataTable TurnoEspecifico(string codespecialidad, string codmedico, string dni, string fecha, TimeSpan hora)
+        {
+            return dao.TurnoEspecifico(codespecialidad, codmedico, dni, fecha, hora);
+        }
+
+        public string RetornarCodigoTurno(string codespecialidad, string codmedico, string dni, string fecha, TimeSpan hora)
+        {
+            string codigoturno = dao.RetornarCodigoTurno(codespecialidad, codmedico, dni, fecha, hora);
+
+            return codigoturno;
+        }
+
+        public bool ModificarEstado(string estado, string codturno)
+        {
+            return dao.ModificarEstado(estado, codturno);
+        }
+
+        public bool AgregarObservacion (string codturno, string dni, string observacion)
+        {
+            return dao.AgregarObservacion(codturno, dni, observacion);
+        }
     }
 }

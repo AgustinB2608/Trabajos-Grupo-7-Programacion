@@ -53,7 +53,9 @@ namespace VISTAS
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            ///
+            NegocioTurnos negT = new NegocioTurnos();
+
+
         }
     }
 }

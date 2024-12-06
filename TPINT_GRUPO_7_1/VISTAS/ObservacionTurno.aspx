@@ -148,7 +148,9 @@
                         </Columns>
                     </asp:GridView>
                 </div>
-
+                <div class="DataTable-container">
+                    
+                </div>
                 <div class="observacion-container">
                     <label for="txtObservacion" class="observacion-label">Observación:</label>
                     <asp:TextBox ID="txtObservacion" runat="server" TextMode="MultiLine" CssClass="observacion-textarea"></asp:TextBox>
@@ -156,7 +158,7 @@
 
                 <div class="buttons-container">
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="accept-button" OnClick="btnAceptar_Click" />
-                    <asp:HyperLink ID="lnkRegresar" runat="server" NavigateUrl="~ListadoTurnos.aspx" CssClass="back-button">Regresar al Listado</asp:HyperLink>
+                    <asp:HyperLink ID="lnkRegresar" runat="server" NavigateUrl="~/ListadoTurnos.aspx" CssClass="back-button">Regresar al Listado</asp:HyperLink>
                 </div>
             </div>
         </div>

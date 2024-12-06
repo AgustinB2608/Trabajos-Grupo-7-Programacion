@@ -127,7 +127,7 @@
             cursor: pointer;
             text-align: center;
             display: inline-block; 
-            margin-top: px;
+            margin-top: 5px;
             float: right;
         }
 

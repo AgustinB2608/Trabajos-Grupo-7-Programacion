@@ -111,6 +111,83 @@ namespace DATOS
             return ds.EjecutarProcedimientoConParametro("sp_ObtenerTurnoPorID", parametros);
         }
 
+
+
+
+        // 06/12
+        public DataTable TurnoEspecifico(string codespecialidad, string codmedico, string dni, string fecha, TimeSpan hora)
+        {
+            string consulta = "EXEC SP_TurnoEspecifico @codespecialidad, @codmedico, @dni, @fecha, @hora";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@codespecialidad", SqlDbType.VarChar) { Value = codespecialidad},
+                new SqlParameter("@codmedico", SqlDbType.Char) { Value = codmedico},
+                new SqlParameter("@dni", SqlDbType.VarChar) { Value = dni},
+                new SqlParameter("@fecha", SqlDbType.VarChar) { Value = fecha},
+                new SqlParameter("@hora", SqlDbType.VarChar) { Value = hora}
+            };
+
+            return ds.EjecutarConsultaConParametros(consulta, parametros);
+
+        }
+
+        public string RetornarCodigoTurno(string codespecialidad, string codmedico, string dni, string fecha, TimeSpan hora)
+        {
+            DataTable dt = TurnoEspecifico(codespecialidad, codmedico, dni, fecha, hora);
+            string CodigoTurno = null;
+
+            if (dt.Rows.Count > 0)
+
+            {
+                CodigoTurno = dt.Rows[0]["CodigoTurno"].ToString();
+                return CodigoTurno;
+            }
+            else
+            {
+                //"Error al encontrar el codigo del turno";
+                return CodigoTurno;
+            }
+
+        }
+
+        public bool ModificarEstado(string estado, string codturno)
+        {
+            string consulta = "UPDATE Turnos SET EstadoEtapa_TU = @estado WHERE CodTurno_TU = @codturno; ";
+
+            SqlParameter[] parametros = new SqlParameter[]
+           {
+                new SqlParameter("@estado", SqlDbType.VarChar) { Value = estado},
+                new SqlParameter("@codturno", SqlDbType.Char) { Value = codturno}
+                
+           };
+
+            // Ejecutar el procedimiento almacenado que obtiene el turno por ID
+            int exito = ds.EjecutarConsultaSinRetorno(consulta, parametros);
+
+            if (exito > 0) return true;
+            return false;
+        }
+        
+        public bool AgregarObservacion(string codturno, string dni, string observacion)
+        {
+            string consulta = "EXEC SP_GenerarObservacion @codturno, @dni, @observacion";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@codturno", SqlDbType.VarChar) { Value = codturno},
+                new SqlParameter("@dni", SqlDbType.Char) { Value = dni},
+                new SqlParameter("@observacion", SqlDbType.VarChar) { Value = observacion}
+
+            };
+
+            // Ejecutar el procedimiento almacenado que obtiene el turno por ID
+           int exito = ds.EjecutarConsultaSinRetorno(consulta, parametros);
+
+            if (exito > 0) return true;
+            return false;
+        }
+
     }
 }
 
