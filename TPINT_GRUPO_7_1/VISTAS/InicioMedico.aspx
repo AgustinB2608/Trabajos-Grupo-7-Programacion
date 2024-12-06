@@ -112,8 +112,8 @@
             <div class="menu">
                 <h2>MENU</h2>
                 <ul>
-                    <li><asp:HyperLink ID="lnkPerfil" runat="server" NavigateUrl="~/Perfil.aspx">Perfil</asp:HyperLink></li>
-                    <li><asp:HyperLink ID="lnkTurnos" runat="server" NavigateUrl="~/ListadoTurnos.aspx">Turnos asignados</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="lnkTurnos" runat="server" NavigateUrl="~/ListadoTurnos.aspx">Turnos</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="lnkObservaciones" runat="server" NavigateUrl="~/ObservacionTurno.aspx">Observaciones</asp:HyperLink></li>
                 </ul>
                 <asp:Button ID="btnCerrarSesion" runat="server" CssClass="logout-btn" Text="Cerrar sesión" OnClick="btnCerrarSesion_Click" />
             </div>

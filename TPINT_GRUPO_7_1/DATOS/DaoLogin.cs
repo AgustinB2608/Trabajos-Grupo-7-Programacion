@@ -21,8 +21,7 @@ namespace DATOS
         // Método que valida el login y retorna el usuario si es válido, o null si no lo es
         public Login ValidarLogin(string legajo, string contrasena)
         {
-            try
-            {
+           
                 // Consulta SQL para obtener el usuario y su contraseña
                 string consulta = "EXEC SP_VerificarUsuario @Legajo, @Contraseña ";
 
@@ -53,13 +52,7 @@ namespace DATOS
                 }
 
                 return null; // Si no se encontró el usuario
-            }
-            catch (Exception ex)
-            {
-                // Manejo de excepciones en caso de error en la consulta
-                Console.WriteLine("Error al validar el login: " + ex.Message);
-                return null;
-            }
+            
         }
 
     }

@@ -252,7 +252,7 @@
                 
                 <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 
-                <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~inicio.aspx" CssClass="volver-menu">Volver al inicio</asp:HyperLink>
+                <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~/InicioMedico.aspx" CssClass="volver-menu">Volver al inicio</asp:HyperLink>
             </div>
         </div>
     </form>

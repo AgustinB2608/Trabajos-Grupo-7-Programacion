@@ -33,15 +33,6 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.Label lblInicio;
 
         /// <summary>
-        /// Control lnkPerfil.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPerfil;
-
-        /// <summary>
         /// Control lnkTurnos.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace VISTAS
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkTurnos;
+
+        /// <summary>
+        /// Control lnkObservaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkObservaciones;
 
         /// <summary>
         /// Control btnCerrarSesion.
