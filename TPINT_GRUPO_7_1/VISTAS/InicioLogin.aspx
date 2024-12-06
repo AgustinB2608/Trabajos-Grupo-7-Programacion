@@ -151,7 +151,7 @@
                 </div>
 
                 <div class="links">
-                    <asp:HyperLink ID="OlvidoContrasena" runat="server" NavigateUrl="~/RecuperarContraseñaConDni.aspx" CssClass="hyperlink">¿Olvidaste tu contraseña?</asp:HyperLink>
+                    <asp:HyperLink ID="OlvidoContrasena" runat="server" NavigateUrl="~/RecuperarContraseña.aspx" CssClass="hyperlink">¿Olvidaste tu contraseña?</asp:HyperLink>
                     <asp:HyperLink ID="OlvidoLegajo" runat="server" NavigateUrl="~/RecuperarLegajo.aspx" CssClass="hyperlink">¿Olvidaste tu legajo?</asp:HyperLink>
                 </div>
             </div>

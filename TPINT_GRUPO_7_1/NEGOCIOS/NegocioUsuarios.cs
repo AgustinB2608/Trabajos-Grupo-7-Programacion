@@ -49,11 +49,13 @@ namespace NEGOCIOS
 
         public string recuperarContraseñaMedico(string dni, string legajo)
         {
-            // Llama al DAO para obtener la contraseña
             return daoUsuario.RecuperarContraseña(dni, legajo);
         }
 
-
+        public string recuperarLegajo(string dni)
+        {
+            return daoUsuario.recuperarLegajo(dni);
+        }
     }
 
 }

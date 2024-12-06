@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using ENTIDADES;
@@ -95,7 +96,24 @@ namespace DATOS
             return null;
         }
 
+        public string recuperarLegajo(string dni)
+        {
+            string consulta = "EXEC SP_recuperarLegajo @DNI";
 
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DNI", dni)
+            };
+
+            DataTable resultado = ds.EjecutarConsultaConParametros(consulta, parametros);
+
+            if (resultado.Rows.Count > 0)
+            {
+                return resultado.Rows[0]["LegajoMedico"].ToString();
+            }
+
+            return null; 
+        }
 
     }
 
