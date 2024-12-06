@@ -50,10 +50,10 @@ namespace VISTAS
 
             // Llamada a la capa de negocio
             NegocioUsuarios negocioUsuarios = new NegocioUsuarios();
-            bool resultado = negocioUsuarios.RegistrarUsuario(codmedico, contraseña);
+           // bool resultado = negocioUsuarios.InsertarUsuario(codmedico, nombre, apellido contraseña);
 
             // Mensajes de retroalimentación
-            if (resultado)
+            /*if (resultado)
             {
                 lblMensaje1.Text = "Usuario registrado exitosamente.";
                 lblMensaje2.Visible = false;
@@ -62,7 +62,7 @@ namespace VISTAS
             {
                 lblMensaje2.CssClass = "mensaje-error";
                 lblMensaje2.Text = "Error al registrar el usuario. Intenta nuevamente.";
-            }
+            }*/
         }
 
 

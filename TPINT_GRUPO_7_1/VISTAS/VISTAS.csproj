@@ -86,7 +86,7 @@
     <Content Include="imgs\personal_injury_24dp_5F6368.jpg" />
     <Content Include="imgs\prescripcion-medica.jpg" />
     <Content Include="imgs\turno-nocturno.jpg" />
-    <Content Include="Inicio.aspx" />
+    <Content Include="InicioMedico.aspx" />
     <Content Include="InicioAdministrador.aspx" />
     <Content Include="InicioLogin.aspx" />
     <Content Include="ListadoTurnos.aspx" />
@@ -194,12 +194,12 @@
     <Compile Include="EstadisticasComparativoMensual.aspx.designer.cs">
       <DependentUpon>EstadisticasComparativoMensual.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="InicioMedico.aspx.cs">
+      <DependentUpon>InicioMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="InicioMedico.aspx.designer.cs">
+      <DependentUpon>InicioMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="InicioAdministrador.aspx.cs">
       <DependentUpon>InicioAdministrador.aspx</DependentUpon>

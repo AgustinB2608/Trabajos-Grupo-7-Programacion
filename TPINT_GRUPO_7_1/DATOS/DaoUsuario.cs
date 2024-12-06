@@ -13,13 +13,15 @@ namespace DATOS
     {
         private Conexion ds = new Conexion();
 
-        public bool InsertarUsuario(string codmedico, string contraseña)
+        public bool InsertarUsuario(string codmedico, string nombre, string apellido, string contraseña)
         {
-            string consulta = "EXEC SP_AgregarUsuario @CodMedico, @Contraseña";
+            string consulta = "EXEC SP_AgregarUsuario @CodMedico, @Nombre, @Apellido, @Contraseña";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@CodMedico", codmedico),
+                new SqlParameter("@Nombre", nombre),
+                new SqlParameter("@Apellido", apellido),
                 new SqlParameter("@Contraseña", contraseña)
             };
 
@@ -28,12 +30,13 @@ namespace DATOS
         }
 
 
-        public bool VerificarUsuarioExistente(string codmedico)
+        public bool VerificarUsuarioExistente(string legajo, string contraseña)
         {
-            string consulta = "SELECT Legajo_ME_US FROM Usuarios WHERE Legajo_ME_US = @CodMedico;";
+            string consulta = "EXEC SP_VerificarUsuario @legajo, @contraseña";
             SqlParameter[] parametros = new SqlParameter[]
             {
-            new SqlParameter("@CodMedico", codmedico)
+            new SqlParameter("@legajo", legajo),
+            new SqlParameter("@contraseña", contraseña)
             };
 
             int resultado = ds.EjecutarConsultaSinRetorno(consulta, parametros);
@@ -50,40 +53,20 @@ namespace DATOS
                 new SqlParameter("@Contraseña", usuarios.Contraseña)
             };
 
-            try
-            {
+           
                 int filasAfectadas = ds.EjecutarProcedimientoConRetorno(procedimiento, parametros);
                 return filasAfectadas > 0; // Retorna true si se modificaron filas
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al modificar el Usuario: {ex.Message}");
-                return false;
-            }
+            
         }
 
-        public DataTable listarUsuarioEspecifico(string codUsuario)
+
+        public bool eliminarUsuario(string legajo)
         {
-            // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
-            string consulta = "EXEC SP_retornarUsuario @Legajo";
-
-            // envia el valor del codUsuario como parametro
-            SqlParameter[] parametros = new SqlParameter[]
-                {
-                     new SqlParameter("@Legajo", codUsuario)
-                };
-            //retorna el datatable del metodo de Conexion
-            return ds.EjecutarConsultaConParametros(consulta, parametros);
-
-        }
-
-        public bool eliminarUsuario(string CodMedico)
-        {
-            string eliminar = "EXEC SP_BajaUsuario @codMedico";
+            string eliminar = "EXEC SP_BajaUsuario @CodMedico";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@CodMedico", CodMedico)
+                new SqlParameter("@CodMedico", legajo)
             };
             int exito = ds.EjecutarConsultaSinRetorno(eliminar, parametros);
 

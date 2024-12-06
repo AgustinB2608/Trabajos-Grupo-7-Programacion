@@ -57,7 +57,7 @@ namespace VISTAS
                 else if (usuario.TipoUsuario == "M")
                 {
                     // Redirigir a la página de médico
-                    Response.Redirect("Inicio.aspx");
+                    Response.Redirect("InicioMedico.aspx");
                 }
             }
             else

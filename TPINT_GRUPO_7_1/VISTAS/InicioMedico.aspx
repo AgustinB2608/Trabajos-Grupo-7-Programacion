@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="VISTAS.Inicio" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioMedico.aspx.cs" Inherits="VISTAS.Inicio" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -115,7 +115,7 @@
                     <li><asp:HyperLink ID="lnkPerfil" runat="server" NavigateUrl="~/Perfil.aspx">Perfil</asp:HyperLink></li>
                     <li><asp:HyperLink ID="lnkTurnos" runat="server" NavigateUrl="~/ListadoTurnos.aspx">Turnos asignados</asp:HyperLink></li>
                 </ul>
-                <asp:Button ID="btnCerrarSesion" runat="server" CssClass="logout-btn" Text="Cerrar sesión" />
+                <asp:Button ID="btnCerrarSesion" runat="server" CssClass="logout-btn" Text="Cerrar sesión" OnClick="btnCerrarSesion_Click" />
             </div>
         </div>
     </form>

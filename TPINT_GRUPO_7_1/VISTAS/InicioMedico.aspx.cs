@@ -36,7 +36,9 @@ namespace VISTAS
             }
         }
 
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

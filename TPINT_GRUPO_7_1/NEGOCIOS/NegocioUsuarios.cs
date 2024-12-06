@@ -13,21 +13,21 @@ namespace NEGOCIOS
     {
         private DaoUsuario daoUsuario = new DaoUsuario();
 
-        public bool RegistrarUsuario(string codmedico, string contraseña)
+        public bool InsertarUsuario(string codmedico, string nombre, string apellido, string contraseña)
         {
             // Validar que el usuario no exista previamente
-            if (UsuarioYaExiste(codmedico))
+            if (UsuarioYaExiste(codmedico, contraseña))
             {
-                throw new Exception("El médico ya tiene un usuario registrado.");
+                return false;
             }
 
             // Delegar la inserción a la capa de datos
-            return daoUsuario.InsertarUsuario(codmedico, contraseña);
+            return daoUsuario.InsertarUsuario(codmedico, nombre, apellido, contraseña);
         }
 
-        private bool UsuarioYaExiste(string codmedico)
+        private bool UsuarioYaExiste(string codmedico, string contraseña)
         {
-            return daoUsuario.VerificarUsuarioExistente(codmedico);
+            return daoUsuario.VerificarUsuarioExistente(codmedico, contraseña);
         }
 
         public bool modificarUsuario(Usuarios usuarios)
@@ -37,12 +37,6 @@ namespace NEGOCIOS
 
             // Retorno true si fue exitoso si no false
             return exito;
-        }
-
-        public DataTable listarUsuarioEspecifico(string CodUsuario)
-        {
-            //retorna el datatable del metodo listarMedicoEspecifico de DaoMedicos
-            return daoUsuario.listarUsuarioEspecifico(CodUsuario);
         }
 
         public bool eliminarUsuario(string codmedico)
