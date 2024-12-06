@@ -141,6 +141,14 @@
                     <br />
                     <asp:TextBox ID="txtContraseña" runat="server" TextMode="Password" CssClass="textbox"></asp:TextBox>
                 </div>
+                <div class="menu-item">
+                    Nombre Medico:<br />
+                    <asp:TextBox ID="txtNombre" runat="server" CssClass="textbox"></asp:TextBox>
+                </div>
+                                <div class="menu-item">
+                    Apellido Medico:<br />
+                    <asp:TextBox ID="txtApellido" runat="server" CssClass="textbox"></asp:TextBox>
+                </div>
             </div>
 
             <asp:Button ID="btnGuardar" runat="server"  Text="Guardar" OnClick="btnGuardar_Click" />

@@ -154,7 +154,7 @@ namespace DATOS
         public DataTable RetornarCodMedico(string dni)
         {
             // Consulta SQL para ejecutar el procedimiento almacenado que trae el registro especificado
-            string consulta = "SELECT CodMedico_ME AS CodMedico FROM Medicos WHERE Dni_ME = @Dni";
+            string consulta = "SELECT CodMedico_ME AS CodMedico, Nombre_ME AS Nombre, Apellido_ME AS Apellido FROM Medicos WHERE Dni_ME = @Dni";
 
             // envia el valor del codMedico como parametro
             SqlParameter[] parametros = new SqlParameter[]

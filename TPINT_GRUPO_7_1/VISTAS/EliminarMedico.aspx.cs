@@ -15,6 +15,7 @@ namespace VISTAS
     public partial class EliminarMedico : System.Web.UI.Page
     {
         NegocioMedico negocioMedico = new NegocioMedico();
+        NegocioUsuarios negU = new NegocioUsuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
             btnConfirmarEliminar.Visible = false;
@@ -76,33 +77,32 @@ namespace VISTAS
 
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
+
             string medicoEliminar = txtCodigo.Text;
 
-            // eliminar al médico
+            // Eliminar al médico
             bool exito = negocioMedico.eliminarMedico(medicoEliminar);
 
             if (exito)
             {
                 // Si la eliminación fue exitosa
-                lblMensaje.Text = "El médico ha sido eliminado con éxito.";
+                lblMensaje.Text = "El médico y su usuario han sido eliminado con éxito.";
                 lblMensaje2.Text = string.Empty;
-                btnConfirmarEliminar.Visible = false;
 
-                // Limpiar el campo de texto
+                // Ocultar el botón y limpiar campos
+                btnConfirmarEliminar.Visible = false;
                 txtCodigo.Text = string.Empty;
 
+                // Limpiar el gridview
                 gvMedicoInfo.DataSource = null;
                 gvMedicoInfo.DataBind();
             }
             else
             {
+                // Si no se pudo eliminar
                 lblMensaje.Text = "No se pudo eliminar el médico. Intente nuevamente.";
             }
-        }
 
-        protected void btnEliminarUsuario_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("EliminarUsuario.aspx");
         }
     }
 }

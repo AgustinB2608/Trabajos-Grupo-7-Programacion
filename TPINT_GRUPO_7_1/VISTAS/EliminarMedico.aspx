@@ -158,7 +158,6 @@
 
             <div class="btn-container">
                 <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click" />
-                <asp:Button ID="btnEliminarUsuario" runat="server" CssClass="btn" Text="Eliminar Usuario" OnClick="btnEliminarUsuario_Click" />
                 <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="btn" NavigateUrl="~/ABMLMedicos.aspx">Volver Atras</asp:HyperLink>
             </div>
 
