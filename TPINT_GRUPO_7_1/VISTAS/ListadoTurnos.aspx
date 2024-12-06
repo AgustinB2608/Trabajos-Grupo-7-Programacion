@@ -197,7 +197,7 @@
     <form id="form1" runat="server">
         <header>
             <div class="titulo">Nombre del sistema</div>
-            <div class="usuario">Nombre del usuario</div>
+            <asp:Label ID="lblUsuario" runat="server" />
         </header>
         
         <div class="contenedor">
