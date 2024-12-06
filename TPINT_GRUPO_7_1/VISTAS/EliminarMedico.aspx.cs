@@ -102,8 +102,7 @@ namespace VISTAS
                 // Si no se pudo eliminar
                 lblMensaje.Text = "No se pudo eliminar el médico. Intente nuevamente.";
             }
-            lblMensaje.Text = string.Empty;
-            lblMensaje2.Text = string.Empty;
+
         }
     }
 }
