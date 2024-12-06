@@ -7,86 +7,174 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Estadísticas de Asistencia y Ausencia</title>
     <style>
-        /* Estilos básicos */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+                :root {
+             --color-fondo: #6CB2EB;
+             --color-header: #2C3E50;
+             --color-boton: #3490dc;
+             --color-boton-hover: #2779bd;
+             --color-error: #ff6347;
+             --color-fondo-error: #f8d7da;
+             --radio-borde: 8px;
+         }
+    .selector-mes{
+        border: 2px solid #000;
+        font-size: 14px;
+        padding: 10px 20px;
+        margin: 10px;
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+   body {
+   margin: 0;
+   font-family: Arial, sans-serif;
+   background-color:#6CB2EB;
         }
 
-        .table th, .table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
+    .header {
+        background-color: #2C3E50;
+        color: white;
+        padding: 15px 20px;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .table th {
-            background-color: #f4f4f4;
-            font-weight: bold;
-        }
+    .contenedor {
+        max-width: 800px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .btn {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    .titulo {
+    font-size: 24px;
+    font-weight: bold;
+    }
 
-        .btn:hover {
-            background-color: #0056b3;
-        }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
 
-        h1 {
-            text-align: center;
-        }
-    </style>
+    .form-grupo {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .label {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .textbox {
+        width: 200px;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    .textbox:focus {
+        border-color: #3490dc;
+        outline: none;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin: 10px;
+        background-color: #3490dc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .btn:hover {
+        background-color: #2779bd;
+    }
+
+    .grid-container {
+        margin: 20px 0;
+    }
+
+    .grid-view {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .grid-view th,
+    .grid-view td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .grid-view th {
+        background-color: #3490dc;
+        color: white;
+    }
+
+    .mensaje {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .mensaje-texto {
+        font-size: 1rem;
+    }
+
+    .boton-volver {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="padding: 20px;">
-            <!-- Título -->
-            <h1>Estadísticas de Asistencia y Ausencia: Comparativo Mensual</h1>
+        <!-- Encabezado -->
+        <div class="header">
+            <div class="titulo">Clínica médica</div>
+            <asp:Label ID="lblUsuario" runat="server" />
+        </div>
 
-            <!-- Selección de mes -->
-            <div style="text-align: center; margin-bottom: 20px;">
-                <label for="ddlMes">MES:</label>
-                <asp:DropDownList ID="ddlMes" runat="server">
-                </asp:DropDownList>
+        <!-- Contenedor principal -->
+        <div class="contenedor">
+            <h1 style="font-size: x-large">Estadísticas de Asistencia y Ausencia: </h1>
+            <h1 style="font-size: larger">Comparativo Mensual</h1>
+
+            <!-- Filtro -->
+            <div class="form-grupo">
+                <asp:DropDownList ID="ddlMes" runat="server" CssClass="selector-mes" AutoPostBack="True"></asp:DropDownList>
+                &nbsp;<asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos los meses" OnClick="btnMostrarTodos_Click"/>
             </div>
 
-            <!-- Tabla -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>AUSENCIAS: </th>
-                        <th>ASISTENCIAS: </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <!-- GridView para mostrar ausencias -->
-                            <asp:GridView ID="gvAusencias" runat="server" AutoGenerateColumns="False" CssClass="table">
-                                <Columns>
-                                    <asp:TemplateField HeaderText="%"></asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Nombre Del Paciente"></asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
-                        </td>
-                        <td>
-                            <!-- GridView para mostrar asistencias -->
-                            <asp:GridView ID="gvAsistencias" runat="server" AutoGenerateColumns="False" CssClass="table">
-                                <Columns>
-                                    <asp:TemplateField HeaderText="%"></asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Nombre Del Paciente"></asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Mensaje -->
+            <div class="mensaje">
+                <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje-texto" />
+            </div>
+
+            <!-- Estadistica -->
+            <div class="grid-container">
+                <asp:GridView ID="grvEstadistica" runat="server" CssClass="grid-view" />
+            </div>
+
+            <!-- Mensaje adicional -->
+            <div class="mensaje-adicional">
+                <asp:Label ID="lblMensaje1" runat="server" CssClass="mensaje-texto" ForeColor="Red" />
+            </div>
+
+            <!-- Botón volver -->
+            <div class="boton-volver">
+                <asp:Button ID="btnVolver" runat="server" CssClass="btn" Text="Volver atrás" OnClick="btnVolver_Click" />
+            </div>
         </div>
     </form>
 </body>
