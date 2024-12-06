@@ -29,9 +29,18 @@ namespace VISTAS
                 CargarSexo();
 
             }
+            // Verificar si el usuario está logueado y traer los datos de la sesión (Administrador)
+            if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
+            {
+                string nombre = Session["UsuarioNombre"].ToString(); // Nombre
+                string apellido = Session["UsuarioApellido"].ToString(); // Apellido
+                string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
+
+                lblUsuario.Text = $"{nombre} {apellido} {tipoUsuario}";
+            }
             else
             {
-                
+                Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
             }
 
         }
@@ -326,6 +335,11 @@ namespace VISTAS
                 ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
 
             }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMLPacientes.aspx");
         }
     }
 }

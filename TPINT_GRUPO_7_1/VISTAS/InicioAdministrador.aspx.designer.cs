@@ -69,12 +69,12 @@ namespace VISTAS
         protected global::System.Web.UI.WebControls.HyperLink hlkInforme;
 
         /// <summary>
-        /// Control hlkCerrarSesion.
+        /// Control btnCerrarSesion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkCerrarSesion;
+        protected global::System.Web.UI.WebControls.Button btnCerrarSesion;
     }
 }

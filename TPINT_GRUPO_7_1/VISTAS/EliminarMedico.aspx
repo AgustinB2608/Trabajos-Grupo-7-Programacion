@@ -34,6 +34,11 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
         .container {
             max-width: 900px;
             margin: 30px auto;
@@ -145,8 +150,8 @@
 <body>
     <form id="form1" runat="server">
         <div class="header">
-            <span>Menu Administrador</span>
-            <span>Nombre Administrador</span>
+            <div class="titulo">Eliminar Medicos</div>
+            <asp:Label ID="lblUsuario" runat="server" />
         </div>
         <div class="container">
             <h1>Eliminar Médico</h1>

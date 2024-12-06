@@ -94,11 +94,11 @@
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/doctor.jpg" alt="Medico" />
-                    <asp:HyperLink ID="hlkAbmlMedicos" runat="server" NavigateUrl="~/AñadirMedico.aspx">Altas Bajas Modificaciones Y Listado de Medicos</asp:HyperLink>
+                    <asp:HyperLink ID="hlkAbmlMedicos" runat="server" NavigateUrl="~/ABMLMedicos.aspx">Altas Bajas Modificaciones Y Listado de Medicos</asp:HyperLink>
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/turno-nocturno.jpg" alt="Turno" />
-                    <asp:HyperLink ID="hlkTurno" runat="server">Asignar Turno</asp:HyperLink>
+                    <asp:HyperLink ID="hlkTurno" runat="server" NavigateUrl="~/AsignarTurno.aspx">Asignar Turno</asp:HyperLink>
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/prescripcion-medica.jpg" alt="Informe" />
@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <asp:HyperLink ID="hlkCerrarSesion" runat="server" NavigateUrl="~/Login.aspx" CssClass="logout-button">Cerrar sesión</asp:HyperLink>
+            <asp:Button ID="btnCerrarSesion" runat="server" CssClass="logout-btn" Text="Cerrar sesión" OnClick="btnCerrarSesion_Click"  />
         </div>
     </form>
 </body>

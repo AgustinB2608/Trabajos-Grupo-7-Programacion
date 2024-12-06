@@ -24,6 +24,11 @@
             align-items: center;
         }
 
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
         /* Container */
         .container {
             text-align: center;
@@ -77,8 +82,8 @@
 <body>
     <form id="form1" runat="server">
         <div class="header">
-            <span>Menu Administrador</span>
-            <asp:Label ID="lblUsuario" runat="server" Text="" />
+            <div class="titulo">ABML Medicos</div>
+            <asp:Label ID="lblUsuario" runat="server" />
         </div>
 
         <div class="container">

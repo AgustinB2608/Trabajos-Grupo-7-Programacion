@@ -149,7 +149,7 @@
     <form id="form1" runat="server">
 
         <header>
-            <div class="titulo">ABML</div>
+            <div class="titulo">Añadir Medico</div>
             <asp:Label ID="lblUsuario" runat="server" Text="" /> <%--Nombre de usuario--%>
         </header>
         <%--Contenedor Principal--%>
@@ -223,7 +223,7 @@
                         <%--Botones--%>
                         <div class="btn-container">
                             <asp:Button ID="btnAceptar" runat="server" Text="Guardar" CssClass="btn" OnClick="btnGuardar_Click" />
-                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" />
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click" />
                         </div>
                     </div>
 

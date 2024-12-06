@@ -21,6 +21,21 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+
+        header {
+            display: flex;             
+            justify-content: space-between; 
+            align-items: center;       
+            padding: 20px;         
+            background-color: var(--color-header);
+            color: white;               
+        }
+
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
         h1 {
             text-align: center;
             color: #333;
@@ -83,7 +98,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Label ID="lblUsuario" runat="server" Text="" />
+        <header>
+            <div class="titulo">Añadir Paciente</div>
+            <asp:Label ID="lblUsuario" runat="server" />
+        </header>
         <h1>Asignar Turno</h1>
         <label for="lblEspecialidad">Especialidad</label>
         <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">

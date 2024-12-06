@@ -27,5 +27,14 @@ namespace VISTAS
                 Response.Redirect("InicioLogin.aspx");
             }
         }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear(); // Elimina todos los elementos de la sesión actual
+            Session.Abandon(); // Marca la sesión como abandonada y lista para eliminación
+
+            // Redirige al usuario a la página de inicio de sesión
+            Response.Redirect("InicioLogin.aspx");
+        }
     }
 }

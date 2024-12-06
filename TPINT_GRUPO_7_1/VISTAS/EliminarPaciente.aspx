@@ -7,172 +7,147 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Eliminar Paciente</title>
     <style>
-        /* Definición de variables de CSS */
-        :root {
-            --color-fondo: #6CB2EB;
-            --color-header: #2C3E50;
-            --color-boton: #3490dc;
-            --color-boton-hover: #2779bd;
-            --color-texto: white;
-            --color-textbox: #ddd;
-            --radio-borde: 8px;
-        }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #6CB2EB;
-        }
+    .header {
+        background-color: #2C3E50;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 20px;
+        font-size: 1.2rem;
+        align-items: center;
+    }
 
-        .header {
-            background-color: #2C3E50;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 20px;
-            font-weight: bold;
-            align-items: center;
-        }
-       
-        .titulo {
-            font-size: 24px;
-            font-weight: bold;
-        }
+    .contenedor {
+        max-width: 800px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 30px;
-            background-color: #E1EFFF;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
+    .titulo-pagina h1 {
+        text-align: center;
+        color: #333;
+    }
 
-        h1 {
-            font-size: 1.6rem;
-            color: var(--color-texto);
-            margin-bottom: 20px;
-        }
+    .formulario-eliminacion {
+        margin: 20px 0;
+        text-align: center;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
+    .formulario-eliminacion label {
+        font-size: 1rem;
+        color: #333;
+    }
 
-        .form-group label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-            color: var(--color-texto);
-        }
+    .textbox {
+        width: 200px;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
 
-        .form-group input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--color-textbox);
-            border: 1px solid #ccc;
-            border-radius: var(--radio-borde);
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
+    .textbox:focus {
+        border-color: #3490dc;
+        outline: none;
+    }
 
-        .form-group input[type="text"]:focus {
-            border-color: var(--color-boton);
-            outline: none;
-        }
+    .btn {
+        padding: 10px 20px;
+        margin: 10px;
+        background-color: #3490dc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
 
-        .btn {
-            background-color: var(--color-boton);
-            color: var(--color-texto);
-            border: none;
-            border-radius: var(--radio-borde);
-            font-size: 1rem;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
+    .btn:hover {
+        background-color: #2779bd;
+    }
 
-        .btn:hover {
-            background-color: var(--color-boton-hover);
-        }
+    .mensaje {
+        text-align: center;
+        margin-top: 20px;
+    }
 
-        #mensaje {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: var(--color-texto);
-        }
+    .confirmacion {
+        text-align: center;
+        margin: 20px 0;
+    }
 
-        #links a {
-            color: var(--color-boton);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
+    .info-paciente {
+        margin: 20px 0;
+    }
 
-        #links a:hover {
-            color: var(--color-boton-hover);
-        }
+    .grid-view {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-        #label {
-            font-size: 10rem;
-            color:red;
-            background-color: white;
-        }
-        .contenedor {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-    </style>
+    .grid-view th,
+    .grid-view td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .grid-view th {
+        background-color: #3490dc;
+        color: white;
+    }
+</style>
+
 </head>
 <body>
     <form id="form1" runat="server">
+        <!-- Encabezado -->
         <div class="header">
-            <span>Menu Administrador</span>
-            <span>Nombre Administrador</span>
+            <div class="titulo">Eliminar Paciente</div>
+            <asp:Label ID="lblUsuario" runat="server" Text="" />
         </div>
+
+        <!-- Contenedor principal -->
         <div class="contenedor">
-        <div id=".container">
-            <h1>Eliminar Paciente</h1>
-        </div>
-         </div>
-        <div class="contenedor">
-       <h1>
-        <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el código del Paciente o DNI:"></asp:Label>
-       &nbsp;&nbsp;&nbsp;
-       <asp:TextBox ID="txtEliminar" runat="server" Width="198px" Height="26px"></asp:TextBox>
-       <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Height="37px" Width="89px " OnClick="btnEliminar_Click" />
-        
-       &nbsp;<asp:Button ID="btnAtras" runat="server" Text="Atrás" Height="37px" Width="89px " OnClick="btnEliminar_Click" PostBackUrl="~/ABMLPacientes.aspx" />
-           
-        
-       </h1>
-            <p>
-                &nbsp;</p>
-
-            <div>
-
-
-
-                <asp:GridView ID="gvPacienteInfo" runat="server">
-                </asp:GridView>
-
-
-
+            <!-- Título -->
+            <div class="titulo-pagina">
+                <h1>Eliminar Paciente</h1>
             </div>
 
-           </div>
-        <div class="contenedor">
-        <div>
-            <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" ></asp:Label>
-        &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnConfirmarEliminar" runat="server" Text="Confirmar" OnClick="btnConfirmarEliminar_Click" />
-        </div>
+            <!-- Formulario de eliminación -->
+            <div class="formulario-eliminacion">
+                <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el código del Paciente o DNI:" />
+                <br /><br />
+                <asp:TextBox ID="txtEliminar" runat="server" CssClass="textbox" />
+                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn" OnClick="btnEliminar_Click" />
+                <asp:Button ID="btnAtras" runat="server" Text="Atrás" CssClass="btn" PostBackUrl="~/ABMLPacientes.aspx" />
             </div>
-        
 
+            <!-- Mensaje -->
+            <div class="mensaje">
+                <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" />
+            </div>
+
+            <!-- Confirmación -->
+            <div class="confirmacion">
+                <asp:Button ID="btnConfirmarEliminar" runat="server" Text="Confirmar" CssClass="btn" OnClick="btnConfirmarEliminar_Click" />
+            </div>
+
+            <!-- Información del paciente -->
+            <div class="info-paciente">
+                <asp:GridView ID="gvPacienteInfo" runat="server" CssClass="grid-view" />
+            </div>
+        </div>
     </form>
 </body>
 </html>

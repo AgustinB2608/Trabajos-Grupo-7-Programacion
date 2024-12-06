@@ -201,8 +201,8 @@
 <body>
     <form id="form1" runat="server">
         <header>
-            <span>Menu Administrador</span>
-            <span>Nombre Administrador</span>
+            <div class="titulo">Añadir Paciente</div>
+            <asp:Label ID="lblUsuario" runat="server" />
         </header>
 
 	<%--Contenedor Principal--%>
@@ -333,7 +333,7 @@
                     <%--Botones--%>
                         <div class="btn-container">
                             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click1" CssClass="btn" />
-                    	<asp:HyperLink ID="hlAtras" runat="server" NavigateUrl="~/InicioAdministrador.aspx" CssClass="btn">Atrás</asp:HyperLink>
+                    	<asp:HyperLink ID="hlAtras" runat="server" NavigateUrl="~/ABMLPacientes.aspx" CssClass="btn">Atrás</asp:HyperLink>
                         </div>
                      </div>
                 </div>

@@ -29,7 +29,7 @@ namespace VISTAS
                     string apellido = Session["UsuarioApellido"].ToString(); // Apellido
                     string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
 
-                    lblUsuario.Text = $"{nombre} {apellido}";
+                    lblUsuario.Text = $"{nombre} {apellido} {tipoUsuario}";
                 }
                 else
                 {
@@ -174,8 +174,7 @@ namespace VISTAS
 
         protected void btnCancelar_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("ModificarMedico.aspx");
-
+            Response.Redirect("ABMLMedicos.aspx");
         }
 
         private void CargarDatosMedicoPorCodigo()

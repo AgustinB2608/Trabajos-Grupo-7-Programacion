@@ -41,7 +41,7 @@ namespace VISTAS
                 }
                 else
                 {
-                   // Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
+                    Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
                 }
 
                 // Validar si ya hay un código de médico registrado en la sesión
@@ -399,6 +399,11 @@ namespace VISTAS
                 ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
 
             }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMLMedicos.aspx");
         }
     }
 }
