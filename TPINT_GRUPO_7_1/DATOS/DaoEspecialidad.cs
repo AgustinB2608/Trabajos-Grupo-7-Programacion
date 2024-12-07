@@ -32,7 +32,7 @@ namespace DATOS
                     DescripcionEspecialidad = row["Descripcion"].ToString()
                 };
 
-                // Agrega la provincia a la lista.
+                // Agrega la especialidad a la lista.
                especialidades.Add(especialidad);
             }
             return especialidades;

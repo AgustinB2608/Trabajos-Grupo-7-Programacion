@@ -31,7 +31,7 @@ namespace VISTAS
             if (!IsPostBack)
             {
                 // Verificar si el usuario está logueado y traer los datos de la sesión (Administrador)
-                if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
+              /*  if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
                 {
                     string nombre = Session["UsuarioNombre"].ToString(); // Nombre
                     string apellido = Session["UsuarioApellido"].ToString(); // Apellido
@@ -48,7 +48,7 @@ namespace VISTAS
                 if (Session["CodMedico"] != null)
                 {
                     string codMedico = Session["CodMedico"].ToString();
-                }
+                }*/
 
                 // Inicializar los dropdowns
                 InicializarDropDownLists();

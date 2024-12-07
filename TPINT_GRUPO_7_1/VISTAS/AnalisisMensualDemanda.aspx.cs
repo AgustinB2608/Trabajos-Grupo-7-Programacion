@@ -16,8 +16,11 @@ namespace VISTAS
         NegocioEspecialidades negE = new NegocioEspecialidades();
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarEspecialidades();
-            CargarMeses();
+            if (!IsPostBack)
+            {
+                cargarEspecialidades();
+                CargarMeses();
+            }
         }
 
         /*
@@ -66,5 +69,46 @@ namespace VISTAS
             Response.Redirect("~/RealizarInformes.aspx");
         }
 
+        protected void ddlMes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltrarResultados();
+        }
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltrarResultados();
+        }
+
+        private void FiltrarResultados()
+        {
+            string mesSeleccionado = ddlMes.SelectedValue;
+            string especialidadSeleccionada = ddlEspecialidad.SelectedValue;
+
+            // Validar selección
+            if (mesSeleccionado == "0" || especialidadSeleccionada == "0")
+            {
+                lblMensaje.Text = "Por favor, seleccione un mes y una especialidad.";
+                grvEstadistica.DataSource = null;
+                grvEstadistica.DataBind();
+                return;
+            }
+
+            NegocioEstadisticas negEst = new NegocioEstadisticas();
+            DataTable dt = negEst.ObtenerEstadisticasMensuales(mesSeleccionado, especialidadSeleccionada);
+
+            if (dt.Rows.Count > 0)
+            {
+                grvEstadistica.DataSource = dt;
+                grvEstadistica.DataBind();
+                lblMensaje.Text = "";
+            }
+            else
+            {
+                grvEstadistica.DataSource = null;
+                grvEstadistica.DataBind();
+                lblMensaje.Text = "No se encontraron datos para la especialidad seleccionada en el mes indicado.";
+            }
+        }
+
+        
     }
 }
