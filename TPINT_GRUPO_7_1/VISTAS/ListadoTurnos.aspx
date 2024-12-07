@@ -31,7 +31,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            width: 120%;
         }
 
         .titulo {
@@ -50,10 +50,12 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow-x: auto;
         }
 
         .auto-style1 {
-            width: 800px;
+            width: 140%; /* Ocupa todo el ancho disponible */
+            max-width: 1000px; /* Mantiene el ancho máximo de 1000px */
             background: white;
             padding: 30px;
             border-radius: 8px;
@@ -111,8 +113,18 @@
 
         .gridview-container {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
+            
             margin-bottom: 20px;
+            margin: 0; /* Elimina márgenes adicionales */
+            padding: 0; /* Elimina cualquier relleno adicional */
+            width: 100%;
+            max-width: 100%;
+        }
+        .gridview {
+            width: 130%; /* Ajusta este porcentaje para hacerlo más largo horizontalmente */
+            table-layout: auto; /* Permite a las columnas ajustarse automáticamente */
+            margin: 0 auto;
         }
 
         .volver-menu {
