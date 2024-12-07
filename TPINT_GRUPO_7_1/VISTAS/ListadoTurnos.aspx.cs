@@ -14,19 +14,20 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Verificar si el usuario está logueado y traer los datos de la sesión (Administrador)
+          
+            // Verificar si el usuario está logueado y traer los datos de la sesión 
             if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "M")
             {
                 string nombre = Session["UsuarioNombre"].ToString(); // Nombre
                 string apellido = Session["UsuarioApellido"].ToString(); // Apellido
-                string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
 
-                lblUsuario.Text = $"{nombre} {apellido} {tipoUsuario}";
+                lblUsuario.Text = $"{nombre} {apellido} ";
             }
             else
             {
                 Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
             }
+          
             if (!IsPostBack)
             {
                 CargarTurnos();
@@ -92,6 +93,8 @@ namespace VISTAS
             gvTurnos.DataBind();
         }
 
+        
+
         //SECCION DE FILTROS
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,6 +151,16 @@ namespace VISTAS
                 CargarTurnos();
        
             }
+        }
+
+        //Cambio de pagina en el listado
+        protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Cambia el índice de la página actual
+            gvTurnos.PageIndex = e.NewPageIndex;
+
+            // Vuelve a cargar los datos del GridView
+            CargarTurnos();
         }
     }
 

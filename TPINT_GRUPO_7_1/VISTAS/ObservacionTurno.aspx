@@ -131,11 +131,12 @@
     <form id="form1" runat="server">
         <header>
             <div class="titulo">Nombre del sistema</div>
+            <asp:Label ID="lblUsuario" runat="server" class="titulo" />
         </header>
 
         <div class="contenedor">
             <div class="auto-style1">
-                <div class="titulo-seccion">Observación del Turno</div>
+                <div class="titulo-seccion">Turno seleccionado</div>
 
                 <div class="gridview-container">
                     <asp:GridView ID="gvTurnoSeleccionado" runat="server" CssClass="gridview" AutoGenerateColumns="False">

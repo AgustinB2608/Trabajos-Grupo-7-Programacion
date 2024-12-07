@@ -197,7 +197,7 @@
     <form id="form1" runat="server">
         <header>
             <div class="titulo">Nombre del sistema</div>
-            <asp:Label ID="lblUsuario" runat="server" />
+            <asp:Label ID="lblUsuario" runat="server" class="titulo" />
         </header>
         
         <div class="contenedor">
@@ -232,7 +232,7 @@
 
                
                 <div class="gridview-container">
-                    <asp:GridView ID="gvTurnos" runat="server" CssClass="gridview" AutoGenerateColumns="False" AllowPaging="True" PageSize="10"  >
+                    <asp:GridView ID="gvTurnos" runat="server" CssClass="gridview" AutoGenerateColumns="False" AllowPaging="True" PageSize="8"  OnPageIndexChanging="gvTurnos_PageIndexChanging" >
                         <Columns>
                               <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
                               <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -243,7 +243,7 @@
                                  <ItemTemplate>
                                     <asp:LinkButton ID="lkbPresente" runat="server" 
                                      NavigateUrl="~/ObservacionTurno.aspx" Text="Presente" CommandName="MarcarPresente" CommandArgument='<%# Eval("CodTurno_TU") %>' OnCommand="lkbPresente_Command" CssClass="presente-button"  />
-                                    <asp:Button ID="btnAusente" runat="server" Text="Ausente" CommandName="MarcarAusente" CommandArgument='<%# Eval("CodTurno_TU") %>' CssClass="ausente-button"  OnCommand="btnAusente_Command" />
+                                    <asp:Button ID="btnAusente" runat="server" Text="Ausente" CommandName="MarcarAusente" CommandArgument='<%# Eval("CodTurno_TU") %>' CssClass="ausente-button"  OnCommand="btnAusente_Command"  />
                                  </ItemTemplate>
                              </asp:TemplateField>
                         </Columns>
