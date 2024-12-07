@@ -13,7 +13,7 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* Verificar si el usuario está logueado y traer los datos de la sesión 
+            // Verificar si el usuario está logueado y traer los datos de la sesión 
             if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "M")
             {
                 string nombre = Session["UsuarioNombre"].ToString(); // Nombre
@@ -25,7 +25,7 @@ namespace VISTAS
             {
                 Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
             }
-            */
+            
 
             if (!IsPostBack)
             {
