@@ -70,7 +70,6 @@
     <Content Include="ABMLMedicos.aspx" />
     <Content Include="ABMLPacientes.aspx" />
     <Content Include="AnalisisMensualDemanda.aspx" />
-    <Content Include="AnalisisPacientesCancelaciones.aspx" />
     <Content Include="AsignarTurno.aspx" />
     <Content Include="AñadirMedico.aspx" />
     <Content Include="AñadirPaciente.aspx" />
@@ -123,13 +122,6 @@
     </Compile>
     <Compile Include="AnalisisMensualDemanda.aspx.designer.cs">
       <DependentUpon>AnalisisMensualDemanda.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AnalisisPacientesCancelaciones.aspx.cs">
-      <DependentUpon>AnalisisPacientesCancelaciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AnalisisPacientesCancelaciones.aspx.designer.cs">
-      <DependentUpon>AnalisisPacientesCancelaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="AsignarTurno.aspx.cs">
       <DependentUpon>AsignarTurno.aspx</DependentUpon>
