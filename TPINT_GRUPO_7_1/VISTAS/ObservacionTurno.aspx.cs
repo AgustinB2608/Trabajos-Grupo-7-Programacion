@@ -13,7 +13,7 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Verificar si el usuario está logueado y traer los datos de la sesión 
+            /* Verificar si el usuario está logueado y traer los datos de la sesión 
             if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "M")
             {
                 string nombre = Session["UsuarioNombre"].ToString(); // Nombre
@@ -25,6 +25,7 @@ namespace VISTAS
             {
                 Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
             }
+            */
 
             if (!IsPostBack)
             {
@@ -40,7 +41,10 @@ namespace VISTAS
                 {
                     ///mensaje error
                 }
+                lblObservacionVacia.Visible = false;
             }
+            
+
 
         }
 
@@ -66,10 +70,16 @@ namespace VISTAS
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            string turnoID = Request.QueryString["TurnoID"];
-            NegocioTurnos negocioTurno = new NegocioTurnos();
-            negocioTurno.AgregarObservacion(turnoID, txtObservacion.Text);
-
+            if (txtObservacion.Text != "") {
+                string turnoID = Request.QueryString["TurnoID"];
+                NegocioTurnos negocioTurno = new NegocioTurnos();
+                negocioTurno.AgregarObservacion(turnoID, txtObservacion.Text);
+            }
+            else
+            {
+                lblObservacionVacia.Text = "*La observación no debe estar vacía";
+                lblObservacionVacia.Visible = true;
+            }
 
         }
        

@@ -35,6 +35,7 @@ namespace VISTAS
                 CargarEspecialidades();
 
             }
+            //buscar otra forma de declararlo
             btnConfirmarEliminar.Visible = false;
             btnCancelar.Visible = false;
         }

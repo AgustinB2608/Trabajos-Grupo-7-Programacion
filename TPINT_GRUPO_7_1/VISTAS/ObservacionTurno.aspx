@@ -90,6 +90,13 @@
             margin-bottom: 10px;
             display: block;
         }
+        .observacionVacia-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            color: red;
+        }
 
         .observacion-textarea {
             width: 100%;
@@ -156,6 +163,9 @@
                     <label for="txtObservacion" class="observacion-label">Observación:</label>
                     <asp:TextBox ID="txtObservacion" runat="server" TextMode="MultiLine" CssClass="observacion-textarea"></asp:TextBox>
                 </div>
+
+                
+                <asp:Label ID="lblObservacionVacia" runat="server" class="observacionVacia-label" ></asp:Label>
 
                 <div class="buttons-container">
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="accept-button" OnClick="btnAceptar_Click" />
