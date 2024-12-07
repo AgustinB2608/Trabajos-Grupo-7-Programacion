@@ -147,7 +147,10 @@ namespace DATOS
            int exito = ds.EjecutarConsultaSinRetorno(consulta, parametros);
 
             if (exito > 0) return true;
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
     }

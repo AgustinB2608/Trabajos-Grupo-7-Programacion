@@ -70,10 +70,18 @@ namespace VISTAS
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            lblObservacionVacia.Text = "";
+
             if (txtObservacion.Text != "") {
                 string turnoID = Request.QueryString["TurnoID"];
                 NegocioTurnos negocioTurno = new NegocioTurnos();
                 negocioTurno.AgregarObservacion(turnoID, txtObservacion.Text);
+                
+                    lblObservacionVacia.ForeColor=System.Drawing.Color.Green;
+                    lblObservacionVacia.Text = "*La observación se guardó correctamente";
+                    lblObservacionVacia.Visible = true;
+                
+                
             }
             else
             {
