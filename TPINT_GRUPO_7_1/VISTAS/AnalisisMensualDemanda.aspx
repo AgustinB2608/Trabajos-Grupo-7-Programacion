@@ -151,6 +151,7 @@
 
             <!-- Filtro -->
             <div class="form-grupo">
+                <asp:DropDownList ID="ddlMes" runat="server" CssClass="selector-mes" AutoPostBack="True"></asp:DropDownList>
                 <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="selector-mes" AutoPostBack="True"></asp:DropDownList>
                 <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todas las especialidades" OnClick="btnMostrarTodos_Click"/>
             </div>
