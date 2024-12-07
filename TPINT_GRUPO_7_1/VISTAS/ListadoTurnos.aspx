@@ -188,6 +188,35 @@
         .gridview td {
              text-align: center;
         }
+        #mensaje {
+            display: flex;
+            flex-direction: column; /* Los elementos estarán en columna */
+            align-items: center; /* Centra el texto horizontalmente */
+            justify-content: flex-start; /* Alinea los elementos al inicio del contenedor */
+            margin-top: 10px; /* Espaciado superior*/
+        }
+        .botones-container {
+            display: flex; /* Alinea los botones horizontalmente */
+            justify-content: center; /* Centra los botones en el contenedor */
+            gap: 7px; /* Menor espacio entre los botones */
+            margin-top: 5px; /* Menos espacio entre el texto y los botones */
+        }
+
+        .aceptar-cancelar-button {
+            margin: 10px 20px; /* Espacio entre los botones */
+            padding: 10px 20px; /* Tamaño de los botones */
+            font-size: 14px; /* Tamaño de la fuente */
+            background-color: #2C3E50; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin bordes */
+            border-radius: 4px; /* Bordes redondeados */
+            cursor: pointer; /* Apunta como cursor de acción */
+        }
+        
+        .aceptar-cancelar-button:hover {
+            background-color: #1A252F; /* Cambio de color al pasar el ratón */
+        }
+
 
 
 
@@ -249,9 +278,19 @@
                         </Columns>
                     </asp:GridView>
                 </div>
-                
-                
-                
+
+                    <div id="mensaje">
+                        
+                            <asp:Label ID="lblMensaje2" runat="server"></asp:Label>
+                        
+                   <div class="botones-container">
+                     <asp:Button ID="btnConfirmarEliminar" runat="server" OnClick="btnConfirmarEliminar_Click" Text="Confirmar" CssClass="aceptar-cancelar-button" />
+                     <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" Text="Cancelar" CssClass="aceptar-cancelar-button" />
+                 </div>
+               </div> 
+
+               
+
                 <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~/InicioMedico.aspx" CssClass="volver-menu">Volver al inicio</asp:HyperLink>
             </div>
         </div>

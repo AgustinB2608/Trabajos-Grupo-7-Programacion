@@ -15,7 +15,7 @@ namespace VISTAS
         protected void Page_Load(object sender, EventArgs e)
         {
           
-            // Verificar si el usuario está logueado y traer los datos de la sesión 
+            /* Verificar si el usuario está logueado y traer los datos de la sesión 
             if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "M")
             {
                 string nombre = Session["UsuarioNombre"].ToString(); // Nombre
@@ -27,6 +27,7 @@ namespace VISTAS
             {
                 Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
             }
+            */
           
             if (!IsPostBack)
             {
@@ -34,6 +35,8 @@ namespace VISTAS
                 CargarEspecialidades();
 
             }
+            btnConfirmarEliminar.Visible = false;
+            btnCancelar.Visible = false;
         }
         protected void CargarTurnos() //
         {
@@ -135,22 +138,48 @@ namespace VISTAS
             }
 
         }
+
+        private string turnoIDSeleccionado;
         protected void btnAusente_Command(object sender, CommandEventArgs e)
         {
-            NegocioTurnos negocioTurnos = new NegocioTurnos();
             if (e.CommandName == "MarcarAusente")
             {
-                // Obtener el ID del turno seleccionado 
-                string turnoID = e.CommandArgument.ToString();
+                // Mostrar el mensaje de confirmación
+                lblMensaje2.Text = "¿Está seguro de que desea marcar ausente este turno?";
+                lblMensaje2.Visible = true;
 
-                
-                //Cambiamos el estado en la bd
-                negocioTurnos.ModificarEstado("A", turnoID);
+                // Guardar el ID del turno seleccionado
+                //ViewState mantiene el valor de una variable aunque se genere un postback
+                ViewState["TurnoIDSeleccionado"] = e.CommandArgument.ToString();
 
-                //al estar ausente el turno se borra
-                CargarTurnos();
-       
+
+                // Mostrar los botones de confirmación y cancelación
+                btnConfirmarEliminar.Visible = true;
+                btnCancelar.Visible = true;
             }
+        }
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            // Recuperar el ID del turno seleccionado desde ViewState
+            string turnoIDSeleccionado = ViewState["TurnoIDSeleccionado"] as string;
+            if (!string.IsNullOrEmpty(turnoIDSeleccionado))
+            {
+                
+                NegocioTurnos negocioTurnos = new NegocioTurnos();
+
+                // Cambiar el estado del turno en la base de datos
+                negocioTurnos.ModificarEstado("A", turnoIDSeleccionado);
+
+                // Recargar los turnos después de la modificación
+                CargarTurnos();
+
+                // Limpiar y ocultar los controles de confirmación
+                lblMensaje2.Visible = false;
+                btnConfirmarEliminar.Visible = false;
+                //btnCancelar.Visible = false;
+                lblMensaje2.Text = ""; // Limpiar el mensaje
+            }
+            
         }
 
         //Cambio de pagina en el listado
@@ -161,6 +190,14 @@ namespace VISTAS
 
             // Vuelve a cargar los datos del GridView
             CargarTurnos();
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            lblMensaje2.Visible = false;
+            btnConfirmarEliminar.Visible = false;
+            btnCancelar.Visible = false;
+            lblMensaje2.Text = ""; // Limpiar el mensaje
         }
     }
 
