@@ -65,15 +65,14 @@
         }
 
         .logout-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: white; 
-            color: #4A90E2;
-            border: 1px solid #808080;
-            border-radius: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
+             margin: 10px 20px; 
+             padding: 10px 20px; 
+             font-size: 14px; 
+             background-color: #2C3E50; 
+             color: white; 
+             border: none; 
+             border-radius: 4px; 
+             cursor: pointer;
         }
 
     </style>
@@ -106,7 +105,7 @@
                 </div>
             </div>
 
-            <asp:Button ID="btnCerrarSesion" runat="server" CssClass="logout-btn" Text="Cerrar sesión" OnClick="btnCerrarSesion_Click"  />
+            <asp:Button ID="btnCerrarSesion" runat="server" CssClass="logout-button" Text="Cerrar sesión" OnClick="btnCerrarSesion_Click"  />
         </div>
     </form>
 </body>

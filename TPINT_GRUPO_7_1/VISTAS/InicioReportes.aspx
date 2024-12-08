@@ -17,12 +17,13 @@
             min-height: 100vh;
         }
         header {
-            display: flex;             
-            justify-content: space-between; 
-            align-items: center;       
-            padding: 20px;         
-            background-color: var(--color-header);
-            color: white;               
+            background-color: #2C3E50;
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+                       
         }
         .header h2 {
             margin: 0;
@@ -81,7 +82,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <header class="auto-style1">
+    <header >
         <div class="titulo">Clínica</div>
         <asp:Label ID="lblUsuario" runat="server" Text="" class="titulo"/> <%--Nombre de usuario--%>
     </header>
