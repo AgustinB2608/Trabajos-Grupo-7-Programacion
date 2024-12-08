@@ -82,12 +82,13 @@ namespace DATOS
 
         public DataTable TotalTurnosSegunEstadoyMes(string mes, string estado)
         {
-            string consulta = "SP_TurnosMesEstado @mes, @estado";
+            string consulta = "SELECT COUNT(EstadoEtapa_TU) AS Total FROM Turnos " +
+            "WHERE MONTH(Dia_TU) = @mes AND EstadoEtapa_TU = @estado ; ";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@mes", mes),
-                new SqlParameter("@estado", estado)
+                new SqlParameter("@mes", SqlDbType.VarChar) { Value = mes},
+                new SqlParameter("@estado", SqlDbType.VarChar) { Value = estado},
             };
 
             return ds.EjecutarProcedimientoConParametro(consulta, parametros);
