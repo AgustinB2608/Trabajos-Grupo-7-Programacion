@@ -81,8 +81,6 @@ namespace VISTAS
                     lblObservacionVacia.Text = "*La observación se guardó correctamente";
                     txtObservacion.Text = "";
                     lblObservacionVacia.Visible = true;
-                
-                
             }
             else
             {
