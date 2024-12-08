@@ -99,7 +99,7 @@
 <body>
     <form id="form1" runat="server">
         <header>
-            <div class="titulo">Añadir Paciente</div>
+            <div class="titulo"></div>
             <asp:Label ID="lblUsuario" runat="server" />
         </header>
         <h1>Asignar Turno</h1>
@@ -143,6 +143,7 @@
         <div class="error-message">
             <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" Font-Size="Large" />
         </div>
+</div>
         </form>
 </body>
 </html>
