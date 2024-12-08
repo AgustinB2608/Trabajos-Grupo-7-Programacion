@@ -153,12 +153,11 @@
             <div class="form-grupo">
                 <asp:DropDownList ID="ddlMes" runat="server" CssClass="selector-mes" AutoPostBack="True" OnSelectedIndexChanged="ddlMes_SelectedIndexChanged"></asp:DropDownList>
                 <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="selector-mes" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"></asp:DropDownList>
-                <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todas las especialidades" OnClick="btnMostrarTodos_Click"/>
             </div>
 
             <!-- Mensaje -->
             <div class="mensaje">
-                <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje-texto" />
+                <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje-texto" ForeColor="#FF3300" />
             </div>
 
             <!-- Estadistica -->

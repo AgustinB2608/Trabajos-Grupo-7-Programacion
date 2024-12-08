@@ -76,7 +76,6 @@
     <Content Include="EliminarMedico.aspx" />
     <Content Include="EliminarPaciente.aspx" />
     <Content Include="EliminarTurnos.aspx" />
-    <Content Include="ReporteMensualEspecialidad.aspx" />
     <Content Include="ReporteComparativoMensual.aspx" />
     <Content Include="imgs\doctor.jpg" />
     <Content Include="imgs\engranaje.png" />
@@ -164,13 +163,6 @@
     </Compile>
     <Compile Include="EliminarTurnos.aspx.designer.cs">
       <DependentUpon>EliminarTurnos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteMensualEspecialidad.aspx.cs">
-      <DependentUpon>ReporteMensualEspecialidad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReporteMensualEspecialidad.aspx.designer.cs">
-      <DependentUpon>ReporteMensualEspecialidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteComparativoMensual.aspx.cs">
       <DependentUpon>ReporteComparativoMensual.aspx</DependentUpon>

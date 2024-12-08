@@ -136,8 +136,6 @@ namespace VISTAS
 
                 // Redirigir a ObservacionTurno.aspx con el ID del turno
                 Response.Redirect("ObservacionTurno.aspx?TurnoID=" + turnoID);
-
-
             }
 
         }

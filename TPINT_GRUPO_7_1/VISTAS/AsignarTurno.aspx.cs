@@ -16,10 +16,6 @@ namespace VISTAS
         NegocioMedico negM = new NegocioMedico();
         NegocioTurnos negT = new NegocioTurnos();
         
-        /// **********************************
-        /// funciona perfecto, faltaria un verificar turno, con el proced. ya hecho, para ver si ese turno ya esta ocupado
-        /// pensé en algun boton de verificar disponibilidad, porque metiendolo dentro del codigo no funciona, probe de todo
-        /// **********************************
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,7 +35,6 @@ namespace VISTAS
                 }
 
                 InicializarDropDownLists(); // Cargar los dropdowns
-
 
             }
         }
@@ -73,7 +68,7 @@ namespace VISTAS
             if (!ValidarCamposVacios()) return;
 
             // Obtener valores seleccionados de los Dropdowns
-            //obj turnos
+            //obj turno
             TimeSpan horario = TimeSpan.Parse(ddlHoraAsignada.SelectedValue);
             Turnos turno = new Turnos(ddlEspecialidad.Text, ddlMedico.SelectedValue, txtNombrePaciente.Text, txtApellidoPaciente.Text,
                 txtDniPaciente.Text, txtFecha.Text.ToString(), horario);
@@ -91,12 +86,9 @@ namespace VISTAS
             else
             {
                 lblMensaje.Text = "Error al asignar el turno. Recuerde que el paciente debe estar previamente registrado";
+                lblTurnoOcupado.Text = "";
             }
-
-
         }
-
-
 
         // Función para validar que los campos no estén vacíos
         private bool ValidarCamposVacios()
@@ -115,7 +107,6 @@ namespace VISTAS
             }
             return true;
         }
-
 
         // Función para validar DropDownList
         private bool ValidarSeleccionDropDown(DropDownList ddl, string mensajeError)
@@ -143,10 +134,6 @@ namespace VISTAS
             txtDniPaciente.Text = "";
             txtFecha.Text = "";
         }
-
-
-
-        /// el ultimo item que trae es repetido no tengo idea porq, ver eso
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -205,7 +192,6 @@ namespace VISTAS
                 ddlMedico.Items.Add(new ListItem("Error al cargar médicos", "0"));
             }
         }
-
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
