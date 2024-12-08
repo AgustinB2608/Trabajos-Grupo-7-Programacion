@@ -177,8 +177,7 @@ namespace VISTAS
                 // Limpiar y ocultar los controles de confirmación
                 lblMensaje2.Visible = false;
                 btnConfirmarEliminar.Visible = false;
-                //btnCancelar.Visible = false;
-                lblMensaje2.Text = ""; // Limpiar el mensaje
+                lblMensaje2.Text = "Marcado como ausente";
             }
             
         }
