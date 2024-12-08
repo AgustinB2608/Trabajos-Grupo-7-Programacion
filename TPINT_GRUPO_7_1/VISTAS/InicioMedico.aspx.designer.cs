@@ -11,7 +11,7 @@ namespace VISTAS
 {
 
 
-    public partial class RealizarInformes
+    public partial class Inicio
     {
 
         /// <summary>
@@ -24,39 +24,39 @@ namespace VISTAS
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control lblUsuario.
+        /// Control lblInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsuario;
+        protected global::System.Web.UI.WebControls.Label lblInicio;
 
         /// <summary>
-        /// Control hlkEstadisticasComparativo.
+        /// Control lnkTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkEstadisticasComparativo;
+        protected global::System.Web.UI.WebControls.HyperLink lnkTurnos;
 
         /// <summary>
-        /// Control hlkAnalisisDemanda.
+        /// Control lnkObservaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkAnalisisDemanda;
+        protected global::System.Web.UI.WebControls.HyperLink lnkObservaciones;
 
         /// <summary>
-        /// Control hlkVolverInicio.
+        /// Control btnCerrarSesion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlkVolverInicio;
+        protected global::System.Web.UI.WebControls.Button btnCerrarSesion;
     }
 }
