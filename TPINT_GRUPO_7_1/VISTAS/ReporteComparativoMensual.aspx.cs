@@ -52,7 +52,7 @@ namespace VISTAS
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/RealizarInformes.aspx");
+            Response.Redirect("~/InicioReportes.aspx");
         }
 
         protected void ddlMes_SelectedIndexChanged(object sender, EventArgs e)

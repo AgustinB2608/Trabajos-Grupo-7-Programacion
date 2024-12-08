@@ -20,8 +20,8 @@ namespace DATOS
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-        new SqlParameter("@Mes", mes),
-        new SqlParameter("@CodEspecialidad", codEspecialidad)
+                new SqlParameter("@Mes", mes),
+                new SqlParameter("@CodEspecialidad", codEspecialidad)
             };
          
             return ds.EjecutarProcedimientoConParametro(procedimiento, parametros);

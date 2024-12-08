@@ -16,11 +16,13 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        .header {
-            background-color: #2a2a2a;
-            color: white;
-            padding: 15px;
-            text-align: left;
+        header {
+            display: flex;             
+            justify-content: space-between; 
+            align-items: center;       
+            padding: 20px;         
+            background-color: var(--color-header);
+            color: white;               
         }
         .header h2 {
             margin: 0;
@@ -60,43 +62,54 @@
             padding: 15px;
             background-color: #f0f0f0;
         }
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .contenedor {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            min-height: calc(100vh - 80px);
+        }
+        .auto-style1 {
+            height: 8px;
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h2>Nombre Administrador</h2>
-    </div>
     <form id="form1" runat="server">
+    <header class="auto-style1">
+        <div class="titulo">Clínica</div>
+        <asp:Label ID="lblUsuario" runat="server" Text="" /> <%--Nombre de usuario--%>
+    </header>
+        <div class="contenedor">
         <div class="container">
-            <div class="title">Informes</div>
+            <div class="title" style="font-weight: bold">Reportes</div>
             <!-- HyperLink 1 -->
             <asp:HyperLink
                 ID="hlkEstadisticasComparativo"
                 runat="server"
                 CssClass="link"
                 NavigateUrl="EstadisticasComparativoMensual.aspx"
-                Text="Estadísticas de Asistencia y Ausencia: Comparativo Mensual"></asp:HyperLink>
+                Text="Reporte de Asistencia y Ausencia: Comparativo Mensual"></asp:HyperLink>
             <!-- HyperLink 2 -->
             <asp:HyperLink
                 ID="hlkEstadisticasEspecialidad"
                 runat="server"
                 CssClass="link"
                 NavigateUrl="EstadisticaMensualEspecialidad.aspx"
-                Text="Estadística Mensual de Asistencia y Ausencia: Especialidad"></asp:HyperLink>
+                Text="Reporte Mensual de Asistencia y Ausencia: Especialidad"></asp:HyperLink>
             <!-- HyperLink 3 -->
             <asp:HyperLink
                 ID="hlkAnalisisDemanda"
                 runat="server"
                 CssClass="link"
                 NavigateUrl="AnalisisMensualDemanda.aspx"
-                Text="Análisis Mensual de Demanda por Especialidad"></asp:HyperLink>
+                Text="Reporte Mensual de Demanda por Especialidad"></asp:HyperLink>
             <!-- HyperLink 4 -->
-            <asp:HyperLink
-                ID="hlkAnalisisCancelaciones"
-                runat="server"
-                CssClass="link"
-                NavigateUrl="AnalisisPacientesCancelaciones.aspx"
-                Text="Análisis de Pacientes con Alta Tasa de Cancelaciones"></asp:HyperLink>
             <!-- HyperLink Volver al Inicio -->
             <asp:HyperLink
                 ID="hlkVolverInicio"
@@ -106,9 +119,11 @@
                 Text="Volver al Inicio"
                 Style="background-color: #0056b3;"></asp:HyperLink>
         </div>
+        </div>
     </form>
     <div class="footer">
         Todos los derechos reservados Grupo 7 | Sistema de Gestión Clínica
     </div>
+
 </body>
 </html>

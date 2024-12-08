@@ -43,7 +43,7 @@ namespace VISTAS
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/RealizarInformes.aspx");
+            Response.Redirect("~/InicioReportes.aspx");
         }
     }
 }
