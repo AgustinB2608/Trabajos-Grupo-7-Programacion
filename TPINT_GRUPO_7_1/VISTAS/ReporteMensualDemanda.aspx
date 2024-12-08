@@ -1,14 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EstadisticaMensualEspecialidad.aspx.cs" Inherits="VISTAS.EstadisticaMensualEspecialidad" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteMensualDemanda.aspx.cs" Inherits="VISTAS.AnalisisMensualDemanda" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Estadísticas de Asistencia y Ausencia</title>
-     <style>
-
-         :root {
+    <title>Analisis Mensual de Demanda</title>
+    <style>
+                :root {
              --color-fondo: #6CB2EB;
              --color-header: #2C3E50;
              --color-boton: #3490dc;
@@ -148,13 +147,13 @@
 
         <!-- Contenedor principal -->
         <div class="contenedor">
-            <h1 style="font-size: x-large">Estadísticas de Asistencia y Ausencia: </h1>
-            <h1 style="font-size: larger">Comparativo Mensual Por Especialidad</h1>
+            <h1 style="font-size: x-large">Análisis Mensual de Demanda por Especialidad </h1>
 
             <!-- Filtro -->
             <div class="form-grupo">
-                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="selector-mes" AutoPostBack="True"></asp:DropDownList>
-                &nbsp;<asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todas las especialidades" OnClick="btnMostrarTodos_Click"/>
+                <asp:DropDownList ID="ddlMes" runat="server" CssClass="selector-mes" AutoPostBack="True" OnSelectedIndexChanged="ddlMes_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="selector-mes" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"></asp:DropDownList>
+                <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todas las especialidades" OnClick="btnMostrarTodos_Click"/>
             </div>
 
             <!-- Mensaje -->

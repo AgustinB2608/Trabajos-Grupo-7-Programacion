@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RealizarInformes.aspx.cs" Inherits="VISTAS.RealizarInformes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioReportes.aspx.cs" Inherits="VISTAS.RealizarInformes" %>
 
 <!DOCTYPE html>
 <html lang="es">

@@ -11,15 +11,15 @@ using DATOS;
 
  namespace NEGOCIOS
 {
-   public class NegocioEstadisticas
+   public class NegocioReportes
     {
-        DaoEstadisticas dao = new DaoEstadisticas();
+        DaoReportes dao = new DaoReportes();
         public DataTable ObtenerEstadisticasMensuales(string mes, string codEspecialidad)
         {
             return dao.ObtenerEstadisticasMensuales(mes, codEspecialidad);
         }
 
-        public DataTable ObtenerPacientesMes(int mes, string estado)
+        public DataTable ObtenerPacientesMes(string mes, string estado)
         {
             return dao.ObtenerPacientesMes(mes, estado);
         }
@@ -29,12 +29,12 @@ using DATOS;
             return dao.TotalTurnos();
         }
 
-        public DataTable TotalTurnosMes(int mes)
+        public DataTable TotalTurnosMes(string mes)
         {
             return dao.TotalTurnosMes(mes);
         }
 
-        public DataTable TotalTurnosSegunEstadoyMes(int mes, string estado)
+        public DataTable TotalTurnosSegunEstadoyMes(string mes, string estado)
         {
             return dao.TotalTurnosSegunEstadoyMes(mes, estado);
         }

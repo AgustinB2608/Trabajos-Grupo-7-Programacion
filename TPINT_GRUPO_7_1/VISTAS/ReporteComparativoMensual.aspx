@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AnalisisMensualDemanda.aspx.cs" Inherits="VISTAS.AnalisisMensualDemanda" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteComparativoMensual.aspx.cs" Inherits="VISTAS.EstadisticasComparativoMensual" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Analisis Mensual de Demanda</title>
+    <title>Estadísticas de Asistencia y Ausencia</title>
     <style>
                 :root {
              --color-fondo: #6CB2EB;
@@ -147,19 +147,25 @@
 
         <!-- Contenedor principal -->
         <div class="contenedor">
-            <h1 style="font-size: x-large">Análisis Mensual de Demanda por Especialidad </h1>
+            <h1 style="font-size: x-large">Estadísticas de Asistencia y Ausencia: </h1>
+            <h1 style="font-size: larger">Comparativo Mensual</h1>
 
             <!-- Filtro -->
             <div class="form-grupo">
                 <asp:DropDownList ID="ddlMes" runat="server" CssClass="selector-mes" AutoPostBack="True" OnSelectedIndexChanged="ddlMes_SelectedIndexChanged"></asp:DropDownList>
-                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="selector-mes" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"></asp:DropDownList>
-                <asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todas las especialidades" OnClick="btnMostrarTodos_Click"/>
+                &nbsp;<asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos los meses" OnClick="btnMostrarTodos_Click"/>
+            </div>
+            <div class="mensaje">
+                <asp:Label ID="lblAsistencia" runat="server" CssClass="mensaje-texto" BackColor="#99FF99" >Asistencia</asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="lblAusencia" runat="server" CssClass="mensaje-texto" BackColor="#FE9592" >Ausencia</asp:Label>
+            </div>
+            <div class="mensaje">
+                <asp:Textbox ID="txtAsistencia" runat="server" CssClass="mensaje-texto" ReadOnly="true" Width="90px" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Textbox ID="txtAusencia" runat="server" CssClass="mensaje-texto" ReadOnly="true" Width="90px"/>
             </div>
 
-            <!-- Mensaje -->
-            <div class="mensaje">
-                <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje-texto" />
-            </div>
 
             <!-- Estadistica -->
             <div class="grid-container">
@@ -168,7 +174,7 @@
 
             <!-- Mensaje adicional -->
             <div class="mensaje-adicional">
-                <asp:Label ID="lblMensaje1" runat="server" CssClass="mensaje-texto" ForeColor="Red" />
+                <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje-texto" ForeColor="Red" />
             </div>
 
             <!-- Botón volver -->

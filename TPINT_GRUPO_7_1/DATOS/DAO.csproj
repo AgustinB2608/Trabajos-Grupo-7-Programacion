@@ -44,7 +44,7 @@
     <Compile Include="DaoConexion.cs" />
     <Compile Include="DaoDiasAtencion.cs" />
     <Compile Include="DaoEspecialidad.cs" />
-    <Compile Include="DaoEstadisticas.cs" />
+    <Compile Include="DaoReportes.cs" />
     <Compile Include="DaoHorario.cs" />
     <Compile Include="DaoLocalidad.cs" />
     <Compile Include="DaoLogin.cs" />

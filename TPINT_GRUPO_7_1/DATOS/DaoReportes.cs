@@ -9,7 +9,7 @@ using ENTIDADES;
 
 namespace DATOS
 {
-    public class DaoEstadisticas
+    public class DaoReportes
     {
             private Conexion ds = new Conexion();
 
@@ -27,7 +27,7 @@ namespace DATOS
             return ds.EjecutarProcedimientoConParametro(procedimiento, parametros);
         }
 
-        public DataTable ObtenerPacientesMes(int mes, string estado)
+        public DataTable ObtenerPacientesMes(string mes, string estado)
         {
             string consulta = "EXEC SP_PacientesPresentesoAusentes @mes, @estado";
 
@@ -47,10 +47,10 @@ namespace DATOS
             return ds.EjecutarConsulta(consulta);
         }
 
-        public DataTable TotalTurnosMes(int mes)//total turnos de determinado mes
+        public DataTable TotalTurnosMes(string mes)//total turnos de determinado mes
         {
             int mesActual = DateTime.Now.Month;
-            if (mes < mesActual)
+            if (int.Parse(mes) < mesActual)
             {
 
                 string consulta = "SELECT COUNT(CodTurno_TU) AS 'Turnos Totales' FROM Turnos " +
@@ -64,7 +64,7 @@ namespace DATOS
                 return ds.EjecutarConsultaConParametros(consulta, parametros);
 
             }
-            else if (mes == mesActual)//total turnos del mes actual, contempla los no atendidos tambien
+            else if (int.Parse(mes) == mesActual)//total turnos del mes actual, contempla los no atendidos tambien
             {
                 string consulta = "SELECT COUNT(CodTurno_TU) AS 'Turnos Totales' FROM Turnos " +
                 "WHERE EstadoEtapa_TU = 'A' OR EstadoEtapa_TU = 'P' OR EstadoEtapa_TU = 'N' AND MONTH(Dia_TU) = @mes";
@@ -80,15 +80,14 @@ namespace DATOS
             else return null;
         }
 
-        public DataTable TotalTurnosSegunEstadoyMes(int mes, string estado)
+        public DataTable TotalTurnosSegunEstadoyMes(string mes, string estado)
         {
-            string consulta = "SELECT EstadoEtapa_TU AS '(A)usente o (P)resente', COUNT(CodTurno_TU) AS Total FROM Turnos "+
-            "WHERE EstadoEtapa_TU = @estado AND MONTH(Dia_TU) = @mes GROUP BY EstadoEtapa_TU; ";
+            string consulta = "EXEC SP_TurnosMesEstado @mes, @estado;";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@mes", mes),
-                new SqlParameter("@estado", estado)
+                new SqlParameter("@mes", mes.ToString()),
+                new SqlParameter("@estado", estado.ToString())
             };
 
             return ds.EjecutarProcedimientoConParametro(consulta, parametros);

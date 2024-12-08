@@ -92,7 +92,7 @@ namespace VISTAS
                 return;
             }
 
-            NegocioEstadisticas negEst = new NegocioEstadisticas();
+            NegocioReportes negEst = new NegocioReportes();
             DataTable dt = negEst.ObtenerEstadisticasMensuales(mesSeleccionado, especialidadSeleccionada);
 
             if (dt.Rows.Count > 0)

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EstadisticasComparativoMensual.aspx.cs" Inherits="VISTAS.EstadisticasComparativoMensual" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReporteMensualEspecialidad.aspx.cs" Inherits="VISTAS.EstadisticaMensualEspecialidad" %>
 
 <!DOCTYPE html>
 
@@ -6,8 +6,9 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Estadísticas de Asistencia y Ausencia</title>
-    <style>
-                :root {
+     <style>
+
+         :root {
              --color-fondo: #6CB2EB;
              --color-header: #2C3E50;
              --color-boton: #3490dc;
@@ -148,12 +149,12 @@
         <!-- Contenedor principal -->
         <div class="contenedor">
             <h1 style="font-size: x-large">Estadísticas de Asistencia y Ausencia: </h1>
-            <h1 style="font-size: larger">Comparativo Mensual</h1>
+            <h1 style="font-size: larger">Comparativo Mensual Por Especialidad</h1>
 
             <!-- Filtro -->
             <div class="form-grupo">
-                <asp:DropDownList ID="ddlMes" runat="server" CssClass="selector-mes" AutoPostBack="True"></asp:DropDownList>
-                &nbsp;<asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos los meses" OnClick="btnMostrarTodos_Click"/>
+                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="selector-mes" AutoPostBack="True"></asp:DropDownList>
+                &nbsp;<asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todas las especialidades" OnClick="btnMostrarTodos_Click"/>
             </div>
 
             <!-- Mensaje -->
