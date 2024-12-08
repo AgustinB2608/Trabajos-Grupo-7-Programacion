@@ -161,6 +161,7 @@
         <div class="error-message">
             <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" Font-Size="Large" />
         </div>
+</div>
         </form>
 </body>
 </html>
