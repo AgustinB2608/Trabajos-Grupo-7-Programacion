@@ -10,8 +10,9 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            margin: 0;
+            margin: 0; /* Elimina márgenes predeterminados */
             padding: 0;
+            box-sizing: border-box; /* Manejo correcto de márgenes y rellenos */
         }
         form {
             max-width: 800px;
@@ -23,12 +24,15 @@
         }
 
         header {
-            display: flex;             
-            justify-content: space-between; 
-            align-items: center;       
-            padding: 20px;         
-            background-color: var(--color-header);
-            color: white;               
+            margin: 0; /* Elimina márgenes del header */
+            padding: 20px; /* Ajusta solo el padding que deseas */
+            background-color: #2C3E50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 40vw;
+            box-sizing: border-box;
         }
 
         .titulo {
@@ -94,13 +98,27 @@
         .center {
             text-align: center;
         }
+        * {
+            margin: 0; /* Elimina márgenes de todos los elementos */
+            padding: 0; /* Elimina padding de todos los elementos */
+            box-sizing: border-box; /* Mejora el manejo de dimensiones */
+        }
+
+        html, body {
+            margin: 0; /* Asegura que no haya margen en todo el documento */
+            padding: 0;
+            height: 100%; /* Ocupa todo el alto de la ventana */
+        }
+
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <header>
-            <div class="titulo"></div>
-            <asp:Label ID="lblUsuario" runat="server" />
+             <div class="titulo">Nombre del sistema</div>
+             <asp:Label ID="lblUsuario" runat="server" class="titulo" />
+            
+            
         </header>
         <h1>Asignar Turno</h1>
         <label for="lblEspecialidad">Especialidad</label>

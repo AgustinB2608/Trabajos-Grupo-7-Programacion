@@ -6,51 +6,43 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Listar Paciente</title>
-    <style>
-        /* Definición de variables de CSS */
-        <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
-    }
+   <style>
+   body {
+    background-color: #6CB2EB; /* Color azul del fondo */
+    margin: 0;                 /* Elimina los márgenes por defecto del body */
+    font-family: Arial, sans-serif; /* Define una fuente por defecto */
+}
 
-    .header {
+       .header {
         background-color: #2C3E50;
         color: white;
-        padding: 15px 20px;
-        font-size: 1.2rem;
         display: flex;
         justify-content: space-between;
+        padding: 15px 20px;
+        font-size: 1.2rem;
         align-items: center;
     }
 
     .contenedor {
-    max-width: 100%;         /* Ajusta el ancho máximo al 100% del contenedor padre */
-    padding: 20px;           /* Espaciado interno para mayor separación */
-    background-color: #fff;  /* Color de fondo blanco */
-    border-radius: 10px;     /* Bordes redondeados */
-    overflow-x: auto;        /* Agrega scroll horizontal si el contenido es muy ancho */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-}
+        max-width: 800px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    titulo {
-        font-size: 24px;
-        font-weight: bold;
+    .titulo-pagina h1 {
+            font-size: 24px;
+            font-weight: bold;
     }
 
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-
-    .form-grupo {
-        text-align: center;
+    .formulario-eliminacion {
         margin: 20px 0;
+        text-align: center;
     }
 
-    .label {
+    .formulario-eliminacion label {
         font-size: 1rem;
         color: #333;
     }
@@ -80,44 +72,54 @@
         font-size: 1rem;
     }
 
+    .titulo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
     .btn:hover {
         background-color: #2779bd;
     }
 
-    .grid-container {
-        margin: 20px 0;
-    }
-
-    .grid-view {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .grid-view th,
-    .grid-view td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-    }
-
-    .grid-view th {
-        background-color: #3490dc;
-        color: white;
-    }
-
     .mensaje {
-        text-align: center;
-        margin: 20px 0;
-    }
-
-    .mensaje-texto {
-        font-size: 1rem;
-    }
-
-    .boton-volver {
         text-align: center;
         margin-top: 20px;
     }
+
+    .confirmacion {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .info-paciente {
+        margin: 20px 0;
+    }
+
+    /* Contenedor del GridView */
+.grid-container {
+    overflow-x: auto;    /* Agrega scroll horizontal si el contenido excede el ancho */
+    margin-top: 20px;    /* Espacio superior para separación */
+}
+
+/* GridView */
+.grid-view {
+    width: 100%;         /* Hace que el GridView use el 100% del ancho del contenedor */
+    min-width: 900px;    /* Ancho mínimo para evitar que las columnas se compriman demasiado */
+    border-collapse: collapse;
+}
+
+/* Encabezado de la tabla */
+.grid-view th {
+    background-color: #3490dc;
+    color: white;
+    padding: 10px;
+}
+
+/* Celdas de la tabla */
+.grid-view td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
 </style>
 
 </head>
@@ -125,7 +127,7 @@
     <form id="form1" runat="server">
         <!-- Encabezado -->
         <div class="header">
-            <div class="titulo">ABML Medicos</div>
+            <div class="titulo">Listar Pacientes</div>
             <asp:Label ID="lblUsuario" runat="server" />
         </div>
 
