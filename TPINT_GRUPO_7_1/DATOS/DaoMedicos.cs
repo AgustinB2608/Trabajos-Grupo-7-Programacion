@@ -210,5 +210,27 @@ namespace DATOS
             return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosNombMedico", parametros);
         }
 
+        public bool eliminarMedicoYUsuario(string codMedico)
+        {
+            // Primero eliminar el médico
+            if (!eliminarMedico(codMedico))
+            {
+                Console.WriteLine("No se pudo eliminar el médico.");
+                return false;
+            }
+
+            // Crear instancia de DaoUsuarios
+            DaoUsuario daoUsuarios = new DaoUsuario();
+
+            // Llamar a la función eliminarUsuario
+            if (!daoUsuarios.eliminarUsuario(codMedico))
+            {
+                Console.WriteLine("No se pudo eliminar el usuario asociado.");
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

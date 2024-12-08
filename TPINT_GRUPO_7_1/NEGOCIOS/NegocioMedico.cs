@@ -1,110 +1,85 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using DATOS;
 using ENTIDADES;
-using System.Data;
 
 namespace NEGOCIOS
 {
     public class NegocioMedico
     {
-        private DaoMedicos dao;
+        private DaoMedicos daoMedico;
+        private DaoUsuario daoUsuario;
 
-        public NegocioMedico() {
-            // Inicializa una instancia de DaoMedicos para interactuar con la base de datos de medicos
-            dao = new DaoMedicos();
+        public NegocioMedico()
+        {
+            // Inicializa las instancias de los DAO necesarios
+            daoMedico = new DaoMedicos();
+            daoUsuario = new DaoUsuario();
         }
 
         public bool agregarMedico(Medico medico)
         {
-            // Instancia de la clase DaoMedicos para acceder a la base de datos
-             dao = new DaoMedicos();
-
-            // Llama al método agregarMedico de DaoMedicos y devuelve el resultado
-            return dao.agregarMedico(medico);
-
+            return daoMedico.agregarMedico(medico);
         }
 
-        public bool eliminarMedico(string codmedico)
+        public bool eliminarMedico(string codMedico)
         {
-            // Instancia de la clase DaoMedicos para acceder a la base de datos
-            dao = new DaoMedicos();
+            // Primero, elimina el médico de la base de datos
+            bool exitoMedico = daoMedico.eliminarMedico(codMedico);
 
-            // Llama al metodo eliminarMedico de DaoMedicos y almacena el resultado bool
-            bool exito = dao.eliminarMedico(codmedico);
+            // Luego, elimina el usuario asociado al médico
+            if (exitoMedico)
+            {
+                // Usa el mismo `codMedico` para identificar al usuario asociado
+                bool exitoUsuario = daoUsuario.eliminarUsuario(codMedico);
+                if (!exitoUsuario)
+                {
+                    Console.WriteLine("El médico fue eliminado, pero no se pudo eliminar el usuario asociado.");
+                }
+                return exitoUsuario;
+            }
 
-            // Retorno true si fue exitoso si no false
-            return exito;
-
+            return false;
         }
 
         public bool modificarMedico(Medico medico)
         {
-            // Instancia de la clase DaoMedicos para acceder a la base de datos
-            dao = new DaoMedicos();
-           
-
-            // Llama al metodo modificarMedicos de DaoMedicos y almacena el resultado bool
-            bool exito = dao.modificarMedico(medico);
-
-            // Retorno true si fue exitoso si no false
-            return exito;
+            return daoMedico.modificarMedico(medico);
         }
 
         public DataTable listarMedicos()
         {
-            // Instancia de la clase DaoMedicos para acceder a la base de datos
-            dao = new DaoMedicos();
-            //retorna el datatable del metodo listarMedicos de DaoMedicos
-            return dao.listarMedicos();
+            return daoMedico.listarMedicos();
         }
 
         public DataTable listarMedicoEspecifico(string CodMedico)
         {
-            // Instancia de la clase DaoMedicos para acceder a la base de datos
-            dao = new DaoMedicos();
-
-            //retorna el datatable del metodo listarMedicoEspecifico de DaoMedicos
-            return dao.listarMedicoEspecifico(CodMedico);
+            return daoMedico.listarMedicoEspecifico(CodMedico);
         }
 
         public DataTable listarMedicoEspecificoDni(string dni)
         {
-            // Instancia de la clase DaoMedicos para acceder a la base de datos
-            dao = new DaoMedicos();
-
-            //retorna el datatable del metodo listarMedicoEspecificoDni de DaoMedicos
-            return dao.listarMedicoEspecificoDni(dni);
+            return daoMedico.listarMedicoEspecificoDni(dni);
         }
-        
+
         public DataTable RetornarCodMedico(string dni)
         {
-            // Instancia de la clase DaoMedicos para acceder a la base de datos
-            dao = new DaoMedicos();
-
-            //retorna el datatable del metodo RetornarCodMedico de DaoMedicos
-            return dao.RetornarCodMedico(dni);
+            return daoMedico.RetornarCodMedico(dni);
         }
 
         public DataTable MedicosSegunEspecialidad(string especialidad)
         {
-
-            // Llamar al método correspondiente en la capa DAO
-            return dao.MedicosSegunEspecialidad(especialidad);
+            return daoMedico.MedicosSegunEspecialidad(especialidad);
         }
+
         public DataTable HorarioSegunMedico(string medico)
         {
-
-            // Llamar al método correspondiente en la capa DAO
-            return dao.HorariosPorMedico(medico);
+            return daoMedico.HorariosPorMedico(medico);
         }
 
         public DataTable ObtenerTurnosNombMedico(string Nombre)
         {
-            return dao.ObtenerTurnosNombMedico(Nombre);
+            return daoMedico.ObtenerTurnosNombMedico(Nombre);
         }
     }
 }
