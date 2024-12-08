@@ -141,8 +141,6 @@ namespace VISTAS
             }
 
         }
-
-        private string turnoIDSeleccionado;
         protected void btnAusente_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "MarcarAusente")

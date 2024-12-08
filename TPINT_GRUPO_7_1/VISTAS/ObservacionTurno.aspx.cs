@@ -79,12 +79,14 @@ namespace VISTAS
                 
                     lblObservacionVacia.ForeColor=System.Drawing.Color.Green;
                     lblObservacionVacia.Text = "*La observación se guardó correctamente";
+                    txtObservacion.Text = "";
                     lblObservacionVacia.Visible = true;
                 
                 
             }
             else
             {
+                lblObservacionVacia.ForeColor = System.Drawing.Color.Red;
                 lblObservacionVacia.Text = "*La observación no debe estar vacía";
                 lblObservacionVacia.Visible = true;
             }
