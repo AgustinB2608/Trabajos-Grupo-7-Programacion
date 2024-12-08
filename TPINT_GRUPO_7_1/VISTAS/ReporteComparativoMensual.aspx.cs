@@ -107,7 +107,30 @@ namespace VISTAS
                 lblMensaje.Text = "No hubo turnos en el mes seleccionado.";
                 return;
             }
+            DataTable dtAusentes = negR.ObtenerPacientesMes(mes, "A");
+            DataTable dtPresentes = negR.ObtenerPacientesMes(mes, "P");
+
+            // Unir ambos DataTable en uno solo
+            DataTable dtFinal = dtAusentes.Copy(); // Copiamos la estructura y los datos de ausentes
+
+            if (dtPresentes.Rows.Count > 0)
+            {
+                dtFinal.Merge(dtPresentes); // Unimos los datos de presentes
+            }
+
             
+            if (dtFinal.Rows.Count > 0)
+            {
+                grvEstadistica.DataSource = dtFinal;
+                grvEstadistica.DataBind();
+            }
+            else
+            {
+                grvEstadistica.DataSource = null;
+                grvEstadistica.DataBind();
+                lblMensaje.Text = "No se encontraron datos para el mes seleccionado.";
+            }
+
         }
     }
 }

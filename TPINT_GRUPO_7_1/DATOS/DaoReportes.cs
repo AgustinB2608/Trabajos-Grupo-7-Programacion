@@ -29,7 +29,7 @@ namespace DATOS
 
         public DataTable ObtenerPacientesMes(string mes, string estado)
         {
-            string consulta = "EXEC SP_PacientesPresentesoAusentes @mes, @estado";
+            string consulta = "SP_PacientesPresentesoAusentes @mes, @estado";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -82,7 +82,7 @@ namespace DATOS
 
         public DataTable TotalTurnosSegunEstadoyMes(string mes, string estado)
         {
-            string consulta = "EXEC SP_TurnosMesEstado @mes, @estado;";
+            string consulta = "SP_TurnosMesEstado @mes, @estado";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
