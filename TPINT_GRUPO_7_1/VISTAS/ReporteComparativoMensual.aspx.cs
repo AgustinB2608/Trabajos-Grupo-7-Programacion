@@ -29,8 +29,10 @@ namespace VISTAS
             {
                 Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
             }
-
-            CargarMeses();
+            if (!IsPostBack)
+            {
+                CargarMeses();
+            }
         }
 
         /*

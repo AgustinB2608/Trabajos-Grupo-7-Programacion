@@ -230,7 +230,7 @@
         }
 
         #txtBuscar {
-            width: 250px; /* Ajusta este valor según lo necesites */
+            width: 250px;
         }
 
 
