@@ -142,7 +142,7 @@
         <!-- Encabezado -->
         <div class="header">
             <div class="titulo">Clínica médica</div>
-            <asp:Label ID="lblUsuario" runat="server" />
+            <asp:Label ID="lblUsuario" runat="server" class="titulo" />
         </div>
 
         <!-- Contenedor principal -->
