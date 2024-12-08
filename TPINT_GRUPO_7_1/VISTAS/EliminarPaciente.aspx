@@ -7,13 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Eliminar Paciente</title>
     <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
-    }
+   body {
+    background-color: #6CB2EB; /* Color azul del fondo */
+    margin: 0;                 /* Elimina los márgenes por defecto del body */
+    font-family: Arial, sans-serif; /* Define una fuente por defecto */
+}
 
-    .header {
+       .header {
         background-color: #2C3E50;
         color: white;
         display: flex;
@@ -31,6 +31,11 @@
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
+
+    .titulo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
     .titulo-pagina h1 {
         text-align: center;
@@ -90,22 +95,30 @@
         margin: 20px 0;
     }
 
-    .grid-view {
-        width: 100%;
-        border-collapse: collapse;
-    }
+   .grid-container {
+    overflow-x: auto;    /* Agrega scroll horizontal si el contenido excede el ancho */
+    margin-top: 20px;    /* Espacio superior para separación */
+}
 
-    .grid-view th,
-    .grid-view td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-    }
+/* GridView */
+.grid-view {
+    width: 100%;         /* Asegura que el GridView use el 100% del ancho del contenedor */
+    min-width: 900px;    /* Ancho mínimo para evitar columnas demasiado comprimidas */
+    border-collapse: collapse;
+}
 
-    .grid-view th {
-        background-color: #3490dc;
-        color: white;
-    }
+/* Encabezado de la tabla */
+.grid-view th {
+    background-color: #3490dc;
+    color: white;
+    padding: 10px;
+}
+
+/* Celdas de la tabla */
+.grid-view td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
 </style>
 
 </head>
@@ -144,9 +157,11 @@
             </div>
 
             <!-- Información del paciente -->
-            <div class="info-paciente">
-                <asp:GridView ID="gvPacienteInfo" runat="server" CssClass="grid-view" />
-            </div>
+           <div class="info-paciente">
+    <div class="grid-container">
+        <asp:GridView ID="gvPacienteInfo" runat="server" CssClass="grid-view" />
+    </div>
+</div>
         </div>
     </form>
 </body>
