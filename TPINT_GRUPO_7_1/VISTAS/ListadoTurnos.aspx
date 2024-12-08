@@ -31,7 +31,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 120%;
+            width: 100%;
         }
 
         .titulo {
@@ -239,6 +239,7 @@
         <header>
             <div class="titulo">Nombre del sistema</div>
             <asp:Label ID="lblUsuario" runat="server" class="titulo" />
+            
         </header>
         
         <div class="contenedor">
@@ -300,6 +301,10 @@
                      <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" Text="Cancelar" CssClass="aceptar-cancelar-button" />
                  </div>
                </div> 
+
+               
+
+                
 
                
 
