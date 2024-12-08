@@ -91,7 +91,7 @@ namespace DATOS
                 new SqlParameter("@estado", SqlDbType.VarChar) { Value = estado},
             };
 
-            return ds.EjecutarProcedimientoConParametro(consulta, parametros);
+            return ds.EjecutarConsultaConParametros(consulta, parametros);
         }
         
        
