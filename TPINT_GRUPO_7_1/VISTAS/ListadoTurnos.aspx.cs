@@ -43,7 +43,7 @@ namespace VISTAS
         }
         protected void CargarTurnos() //
         {
-
+            
             NegocioTurnos negocioTurnos = new NegocioTurnos();
 
             // Obtenemos los datos desde la capa de negocio
@@ -124,7 +124,7 @@ namespace VISTAS
         protected void lkbPresente_Command(object sender, CommandEventArgs e)
         {
             NegocioTurnos negocioTurnos = new NegocioTurnos();
-
+            lblMensaje2.Text = "";
             //PARA MI: cambiar a como lo hace el resto
             if (e.CommandName == "MarcarPresente")
             {
@@ -169,15 +169,15 @@ namespace VISTAS
                 NegocioTurnos negocioTurnos = new NegocioTurnos();
 
                 // Cambiar el estado del turno en la base de datos
-                negocioTurnos.ModificarEstado("A", turnoIDSeleccionado);
+                if(negocioTurnos.ModificarEstado("A", turnoIDSeleccionado))
+                {
+                    lblMensaje2.ForeColor = System.Drawing.Color.Green;
+                lblMensaje2.Text = "Marcado como ausente";
+                }
 
                 // Recargar los turnos después de la modificación
                 CargarTurnos();
 
-                // Limpiar y ocultar los controles de confirmación
-                lblMensaje2.Visible = false;
-                btnConfirmarEliminar.Visible = false;
-                lblMensaje2.Text = "Marcado como ausente";
             }
             
         }
