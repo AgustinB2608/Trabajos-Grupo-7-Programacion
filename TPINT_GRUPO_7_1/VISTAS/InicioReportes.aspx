@@ -97,13 +97,7 @@
                 NavigateUrl="ReporteComparativoMensual.aspx"
                 Text="Reporte de Asistencia y Ausencia: Comparativo Mensual"></asp:HyperLink>
             <!-- HyperLink 2 -->
-            <asp:HyperLink
-                ID="hlkEstadisticasEspecialidad"
-                runat="server"
-                CssClass="link"
-                NavigateUrl="ReporteMensualEspecialidad.aspx"
-                Text="Reporte Mensual de Asistencia y Ausencia: Especialidad"></asp:HyperLink>
-            <!-- HyperLink 3 -->
+          
             <asp:HyperLink
                 ID="hlkAnalisisDemanda"
                 runat="server"

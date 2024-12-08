@@ -127,7 +127,7 @@
         <!-- Encabezado -->
         <div class="header">
             <div class="titulo">Eliminar Paciente</div>
-            <asp:Label ID="lblUsuario" runat="server" Text="" />
+            <asp:Label ID="lblUsuario" runat="server" Text="" class="titulo" />
         </div>
 
         <!-- Contenedor principal -->
@@ -139,7 +139,7 @@
 
             <!-- Formulario de eliminación -->
             <div class="formulario-eliminacion">
-                <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el código del Paciente o DNI:" />
+                <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el DNI del paciente:" />
                 <br /><br />
                 <asp:TextBox ID="txtEliminar" runat="server" CssClass="textbox" />
                 <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn" OnClick="btnEliminar_Click" />
