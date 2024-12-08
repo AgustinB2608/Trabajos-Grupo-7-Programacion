@@ -37,7 +37,7 @@ namespace DATOS
 
         public DataTable ObtenerTurnos()
         {
-            string consulta = "sp_ObtenerTurnos"; // Nombre del procedimiento que selecciona los campos necesarios
+            string consulta = "SP_ObtenerTurnos"; // Nombre del procedimiento que selecciona los campos necesarios
 
             // Usa el método de la clase Conexion para ejecutar el sp
             return ds.EjecutarConsultaConParametros(consulta, null);

@@ -146,6 +146,13 @@ namespace VISTAS
                 return;
             }
 
+            // Validacion para verificar que el dni ya exista
+            if (negM.verificarDni(txtDni.Text)) 
+            {
+                lblError.Text = "El DNI ya está registrado. Por favor, verifique los datos.";
+                return;
+            }
+
             // Validación de la fecha de nacimiento
             int dia = 0, mes = 0, año = 0;
 

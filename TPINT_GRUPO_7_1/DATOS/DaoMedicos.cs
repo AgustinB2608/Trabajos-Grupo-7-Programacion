@@ -210,6 +210,13 @@ namespace DATOS
             return ds.EjecutarProcedimientoConParametro("SP_ObtenerTurnosNombMedico", parametros);
         }
 
+        public bool VerificarDniExistente(string dni)
+        {
+            DataTable resultado = listarMedicoEspecificoDni(dni);
+            return resultado.Rows.Count > 0; // Devuelve true si hay un médico con ese DNI
+        }
+
+
         public bool eliminarMedicoYUsuario(string codMedico)
         {
             // Primero eliminar el médico

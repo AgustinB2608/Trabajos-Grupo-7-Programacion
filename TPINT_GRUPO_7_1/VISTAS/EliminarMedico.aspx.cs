@@ -87,10 +87,8 @@ namespace VISTAS
         }
 
 
-
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
-
             string medicoEliminar = txtCodigo.Text;
 
             // Eliminar al médico
@@ -99,7 +97,7 @@ namespace VISTAS
             if (exito)
             {
                 // Si la eliminación fue exitosa
-                lblMensaje.Text = "El médico y su usuario han sido eliminado con éxito.";
+                lblMensaje.Text = "El médico y su usuario han sido eliminados con éxito.";
                 lblMensaje2.Text = string.Empty;
 
                 // Ocultar el botón y limpiar campos
@@ -107,7 +105,7 @@ namespace VISTAS
                 txtCodigo.Text = string.Empty;
 
                 // Limpiar el gridview
-                //gvMedicoInfo.DataSource = null;
+                gvMedicoInfo.DataSource = null;
                 gvMedicoInfo.DataBind();
             }
             else
@@ -115,7 +113,7 @@ namespace VISTAS
                 // Si no se pudo eliminar
                 lblMensaje.Text = "No se pudo eliminar el médico. Intente nuevamente.";
             }
-
         }
+
     }
 }

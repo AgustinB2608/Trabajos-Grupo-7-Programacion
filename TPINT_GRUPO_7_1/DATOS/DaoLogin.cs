@@ -26,20 +26,20 @@ namespace DATOS
                 string consulta = "EXEC SP_VerificarUsuario @Legajo, @Contraseña ";
 
 
-                // Parametrización de la consulta
+                // Paso los parametros
                 SqlParameter[] parametros = new SqlParameter[]
                 {
                     new SqlParameter("@Legajo", SqlDbType.Char) { Value = legajo },
                     new SqlParameter("@Contraseña", SqlDbType.NVarChar) { Value = contrasena }
                 };
 
-                // Ejecuta la consulta y obtiene el resultado
+                // Ejecuto la consulta y obtengo el resultado
                 DataTable resultado = conexion.EjecutarConsultaConParametros(consulta, parametros);
 
-                // Verifica si se encontró un usuario que coincida
+                // Verifico si se encontró un usuario que coincida
                 if (resultado.Rows.Count > 0)
                 {
-                    // Crea un objeto Login con los datos obtenidos
+                    // Creo un objeto Login con los datos obtenidos
                     Login usuario = new Login()
                     {
                         Contraseña = resultado.Rows[0]["Contraseña"].ToString(),
@@ -48,7 +48,7 @@ namespace DATOS
                         Apellido = resultado.Rows[0]["Apellido"]?.ToString()
                     };
 
-                    return usuario; // Retorna el usuario encontrado
+                    return usuario; // Retorno el usuario encontrado
                 }
 
                 return null; // Si no se encontró el usuario

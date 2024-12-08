@@ -81,5 +81,10 @@ namespace NEGOCIOS
         {
             return daoMedico.ObtenerTurnosNombMedico(Nombre);
         }
+
+        public bool verificarDni(string dni)
+        {
+            return daoMedico.VerificarDniExistente(dni);
+        }
     }
 }

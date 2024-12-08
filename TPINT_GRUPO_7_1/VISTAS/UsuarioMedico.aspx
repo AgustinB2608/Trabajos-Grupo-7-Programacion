@@ -153,7 +153,7 @@
 
             <asp:Button ID="btnGuardar" runat="server"  Text="Guardar" OnClick="btnGuardar_Click" />
 
-            <asp:HyperLink ID="hlkVolverAtras" runat="server" NavigateUrl="~/AñadirMedico.aspx" CssClass="logout-button">Volver Atras</asp:HyperLink>
+            <asp:HyperLink ID="hlkVolverAtras" runat="server" NavigateUrl="~/ABMLMedicos.aspx" CssClass="logout-button">Volver Atras</asp:HyperLink>
 
             <br />
 
