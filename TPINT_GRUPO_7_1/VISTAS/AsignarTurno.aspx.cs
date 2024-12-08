@@ -18,21 +18,22 @@ namespace VISTAS
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si el usuario está logueado y es administrador
+            if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
+            {
+                string nombre = Session["UsuarioNombre"].ToString(); // Nombre
+                string apellido = Session["UsuarioApellido"].ToString(); // Apellido
+                string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
+
+                lblUsuario.Text = $"{nombre} {apellido}{tipoUsuario}";
+            }
+            else
+            {
+                 Response.Redirect("InicioLogin.aspx"); // Redirigir si no está logueado o no es admin
+            }
             if (!IsPostBack)
             {
-                // Verificar si el usuario está logueado y es administrador
-                if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
-                {
-                    string nombre = Session["UsuarioNombre"].ToString(); // Nombre
-                    string apellido = Session["UsuarioApellido"].ToString(); // Apellido
-                    string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
-
-                    lblUsuario.Text = $"{nombre} {apellido}{tipoUsuario}";
-                }
-                else
-                {
-                    // Response.Redirect("InicioLogin.aspx"); // Redirigir si no está logueado o no es admin
-                }
+                
 
                 InicializarDropDownLists(); // Cargar los dropdowns
 
