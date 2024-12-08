@@ -30,7 +30,7 @@ namespace DATOS
 
         public DataTable ObtenerPacientesMes(string mes, string estado)
         {
-            string consulta = "SP_PacientesPresentesoAusentes @mes, @estado";
+            string consulta = "SP_PacientesPresentesoAusentes";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
