@@ -153,7 +153,6 @@
             <!-- Filtro -->
             <div class="form-grupo">
                 <asp:DropDownList ID="ddlMes" runat="server" CssClass="selector-mes" AutoPostBack="True" OnSelectedIndexChanged="ddlMes_SelectedIndexChanged"></asp:DropDownList>
-                &nbsp;<asp:Button ID="btnMostrarTodos" runat="server" CssClass="btn" Text="Mostrar todos los meses" OnClick="btnMostrarTodos_Click"/>
             </div>
             <div class="mensaje">
                 <asp:Label ID="lblAsistencia" runat="server" CssClass="mensaje-texto" BackColor="#99FF99" >Asistencia</asp:Label>

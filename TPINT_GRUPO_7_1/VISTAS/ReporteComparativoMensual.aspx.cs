@@ -59,44 +59,15 @@ namespace VISTAS
         {
             string mes = ddlMes.SelectedValue;
 
-            
-            int tt = 0; // Total de turnos en el mes
-            int tA = 0; // Total de turnos ausentes
-            int tP = 0; // Total de turnos presentes
+            int total = totalturnosmes(mes);
 
-            // Obtener el total de turnos del mes seleccionado
-            DataTable dt = negR.TotalTurnosMes(mes);
-
-            if (dt.Rows.Count > 0)
+            if (total > 0)
             {
-                tt = int.Parse(dt.Rows[0]["Turnos Totales"].ToString());
-            }
-
-            if (tt > 0)
-            {
-                //total de turnos ausentes (Estado "A")
-                string estado = "A";
-
-                DataTable da = negR.TotalTurnosSegunEstadoyMes(mes, estado);
-
-                if (da.Rows.Count > 0)
-                {
-                    tA = int.Parse(da.Rows[0]["Total"].ToString());
-                }
-
-                //total de turnos presentes (Estado "P")
-                estado = "P";
-
-                da = negR.TotalTurnosSegunEstadoyMes(mes, estado);
-
-                if (da.Rows.Count > 0)
-                {
-                    tP = int.Parse(da.Rows[0]["Total"].ToString());
-                }
-
-                // Calcular los porcentajes solo si `tt` es mayor que 0
-                float resultadoP = (float)((tP * 100f) / tt);
-                float resultadoA = (float)((tA * 100f) / tt);
+                int totalAusentes = totalturnosEstado(mes, "A");
+                int totalPresentes = totalturnosEstado(mes, "P");
+                
+                float resultadoP = (float)((totalPresentes * 100) / total);
+                float resultadoA = (float)((totalAusentes * 100) / total);
 
                 txtAsistencia.Text = resultadoP.ToString("F2") + "%";
                 txtAusencia.Text = resultadoA.ToString("F2") + "%";
@@ -107,10 +78,45 @@ namespace VISTAS
                 lblMensaje.Text = "No hubo turnos en el mes seleccionado.";
                 return;
             }
+
+            datosGv(mes);
+        }
+
+        //funciones
+
+        public int totalturnosmes (string mes)
+        {
+            int tt = 0; // Total de turnos en el mes
+            
+            // Obtener el total de turnos del mes seleccionado
+            DataTable dt = negR.TotalTurnosMes(mes);
+
+            if (dt.Rows.Count > 0)
+            {
+                tt = int.Parse(dt.Rows[0]["Turnos Totales"].ToString());
+            }
+            return tt;
+        }
+
+        public int totalturnosEstado (string mes, string estado)
+        {
+            int total = 0; // Total de turnos
+
+            DataTable da = negR.TotalTurnosSegunEstadoyMes(mes, estado);
+
+            if (da.Rows.Count > 0)
+            {
+                total = int.Parse(da.Rows[0]["Total"].ToString());
+            }
+            return total;
+        }
+
+        public void datosGv(string mes)
+        {
             DataTable dtAusentes = negR.ObtenerPacientesMes(mes, "A");
             DataTable dtPresentes = negR.ObtenerPacientesMes(mes, "P");
 
-            // Unir ambos DataTable en uno solo
+            // Unir DataTable en uno solo
             DataTable dtFinal = dtAusentes.Copy(); // Copiamos la estructura y los datos de ausentes
 
             if (dtPresentes.Rows.Count > 0)
@@ -118,7 +124,7 @@ namespace VISTAS
                 dtFinal.Merge(dtPresentes); // Unimos los datos de presentes
             }
 
-            
+
             if (dtFinal.Rows.Count > 0)
             {
                 grvEstadistica.DataSource = dtFinal;
@@ -130,7 +136,6 @@ namespace VISTAS
                 grvEstadistica.DataBind();
                 lblMensaje.Text = "No se encontraron datos para el mes seleccionado.";
             }
-
         }
     }
 }
