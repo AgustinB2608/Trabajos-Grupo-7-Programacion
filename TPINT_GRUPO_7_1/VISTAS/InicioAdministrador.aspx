@@ -102,7 +102,7 @@
                 </div>
                 <div class="menu-item">
                     <img src="Imgs/prescripcion-medica.jpg" alt="Informe" />
-                    <asp:HyperLink ID="hlkInforme" runat="server" NavigateUrl="~/RealizarInformes.aspx">Reportes</asp:HyperLink>
+                    <asp:HyperLink ID="hlkInforme" runat="server" NavigateUrl="~/InicioReportes.aspx">Reportes</asp:HyperLink>
                 </div>
             </div>
 

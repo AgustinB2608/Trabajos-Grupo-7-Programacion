@@ -93,21 +93,21 @@
                 ID="hlkEstadisticasComparativo"
                 runat="server"
                 CssClass="link"
-                NavigateUrl="EstadisticasComparativoMensual.aspx"
+                NavigateUrl="ReporteComparativoMensual.aspx"
                 Text="Reporte de Asistencia y Ausencia: Comparativo Mensual"></asp:HyperLink>
             <!-- HyperLink 2 -->
             <asp:HyperLink
                 ID="hlkEstadisticasEspecialidad"
                 runat="server"
                 CssClass="link"
-                NavigateUrl="EstadisticaMensualEspecialidad.aspx"
+                NavigateUrl="ReporteMensualEspecialidad.aspx"
                 Text="Reporte Mensual de Asistencia y Ausencia: Especialidad"></asp:HyperLink>
             <!-- HyperLink 3 -->
             <asp:HyperLink
                 ID="hlkAnalisisDemanda"
                 runat="server"
                 CssClass="link"
-                NavigateUrl="AnalisisMensualDemanda.aspx"
+                NavigateUrl="ReporteMensualDemanda.aspx"
                 Text="Reporte Mensual de Demanda por Especialidad"></asp:HyperLink>
             <!-- HyperLink 4 -->
             <!-- HyperLink Volver al Inicio -->
@@ -115,7 +115,7 @@
                 ID="hlkVolverInicio"
                 runat="server"
                 CssClass="link"
-                NavigateUrl="Inicio.aspx"
+                NavigateUrl="InicioAdministrador.aspx"
                 Text="Volver al Inicio"
                 Style="background-color: #0056b3;"></asp:HyperLink>
         </div>
