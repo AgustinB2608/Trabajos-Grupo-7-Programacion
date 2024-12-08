@@ -41,12 +41,6 @@ namespace DATOS
             return ds.EjecutarProcedimientoConParametro(consulta, parametros);
         }
 
-        public DataTable TotalTurnos()//total turnos tabla
-        {
-            string consulta = "SELECT COUNT(CodTurno_TU) AS 'Turnos Totales' FROM Turnos ";
-
-            return ds.EjecutarConsulta(consulta);
-        }
 
         public DataTable TotalTurnosMes(string mes)//total turnos de determinado mes
         {
@@ -78,8 +72,12 @@ namespace DATOS
 
                 return ds.EjecutarConsultaConParametros(consulta, parametros);
             }
+            else
+            {
+                return null;
+            }
 
-            else return null;
+         
         }
 
         public DataTable TotalTurnosSegunEstadoyMes(string mes, string estado)
@@ -94,27 +92,8 @@ namespace DATOS
 
             return ds.EjecutarProcedimientoConParametro(consulta, parametros);
         }
-
-        public DataTable TotalTurnosPorEstadoGlobal()
-        {
-            string consulta = "SELECT EstadoEtapa_TU AS Estado, COUNT(EstadoEtapa_TU) AS Total FROM Turnos "+
-            "GROUP BY EstadoEtapa_TU; ";
-
-            return ds.EjecutarConsulta(consulta);
-        }
-        public DataTable TotalTurnosSegunEstadoGlobal(string estado)
-        {
-            string consulta = "SELECT EstadoEtapa_TU AS '(A)usentes o (P)resentes', COUNT(CodTurno_TU) AS Total "+
-            "FROM Turnos WHERE EstadoEtapa_TU = @estado GROUP BY EstadoEtapa_TU; ";
-
-            SqlParameter[] parametros = new SqlParameter[]
-           {
-                new SqlParameter("@estado", estado)
-           };
-
-            return ds.EjecutarProcedimientoConParametro(consulta, parametros);
-
-        }
+        
+       
 
     }
 }

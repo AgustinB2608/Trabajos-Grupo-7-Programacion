@@ -24,10 +24,6 @@ using DATOS;
             return dao.ObtenerPacientesMes(mes, estado);
         }
 
-        public DataTable TotalTurnos()
-        {
-            return dao.TotalTurnos();
-        }
 
         public DataTable TotalTurnosMes(string mes)
         {
@@ -38,17 +34,6 @@ using DATOS;
         {
             return dao.TotalTurnosSegunEstadoyMes(mes, estado);
         }
-
-        public DataTable TotalTurnosPorEstadoGlobal()
-        {
-            return dao.TotalTurnosPorEstadoGlobal();
-        }
-
-        public DataTable TotalTurnosSegunEstadoGlobal(string estado)
-        {
-            return dao.TotalTurnosSegunEstadoGlobal(estado);
-        }
-
 
     }
 }

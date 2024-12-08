@@ -44,12 +44,6 @@ namespace VISTAS
             ddlMes.Items.Add(new ListItem("Diciembre", "12"));
         }
         
-        protected void btnMostrarTodos_Click(object sender, EventArgs e)
-        {
-            ddlMes.Items.Clear();
-            CargarMeses();
-        }
-
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/InicioReportes.aspx");
