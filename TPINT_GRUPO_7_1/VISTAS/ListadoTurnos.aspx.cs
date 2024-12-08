@@ -133,6 +133,8 @@ namespace VISTAS
 
                //Cambiamos el estado en la bd
                 negocioTurnos.ModificarEstado("P",turnoID);
+                // Recargar los turnos después de la modificación
+                CargarTurnos();
 
                 // Redirigir a ObservacionTurno.aspx con el ID del turno
                 Response.Redirect("ObservacionTurno.aspx?TurnoID=" + turnoID);
