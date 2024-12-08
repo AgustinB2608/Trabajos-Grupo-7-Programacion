@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ENTIDADES;
 
+
 namespace DATOS
 {
     public class DaoReportes
@@ -50,6 +51,7 @@ namespace DATOS
         public DataTable TotalTurnosMes(string mes)//total turnos de determinado mes
         {
             int mesActual = DateTime.Now.Month;
+
             if (int.Parse(mes) < mesActual)
             {
 
@@ -86,8 +88,8 @@ namespace DATOS
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@mes", mes.ToString()),
-                new SqlParameter("@estado", estado.ToString())
+                new SqlParameter("@mes", mes),
+                new SqlParameter("@estado", estado)
             };
 
             return ds.EjecutarProcedimientoConParametro(consulta, parametros);
