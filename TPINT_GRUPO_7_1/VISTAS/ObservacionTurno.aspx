@@ -92,7 +92,6 @@
         }
         .observacionVacia-label {
             font-size: 18px;
-            font-weight: bold;
             margin-bottom: 10px;
             display: block;
             color: red;

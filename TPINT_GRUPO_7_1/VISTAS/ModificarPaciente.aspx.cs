@@ -294,10 +294,7 @@ namespace VISTAS
             filtradoProvincia();
         }
 
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ABMLPacientes.aspx");
-        }
+       
 
         public void filtradoProvincia()
         {
@@ -342,5 +339,9 @@ namespace VISTAS
             }
         }
 
+        protected void btnAtras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMLPacientes.aspx");
+        }
     }
 }

@@ -81,6 +81,8 @@ namespace VISTAS
             }
             else
             {
+                gvPaciente.DataSource = lista;
+                gvPaciente.DataBind();
                 lblMensaje.Text = "No se encontraró el registro del paciente.";
             }
         }

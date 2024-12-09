@@ -228,7 +228,7 @@
                         <%--Botones--%>
                         <div class="btn-container">
                             <asp:Button ID="btnModificar" runat="server" OnClick="btnModificar_Click" Text="Modificar" CssClass="btn" />
-                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-reset" OnClick="btnCancelar_Click" />
+                            <asp:Button ID="btnAtras" runat="server" Text="Atras" CssClass="btn-reset" OnClick="btnAtras_Click" />
                         </div>
                     </div>
 
