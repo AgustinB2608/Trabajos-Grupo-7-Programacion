@@ -269,7 +269,7 @@
                         <%--Botones--%>
                         <div class="form-group">
                             <asp:Label ID="lblProvincia" runat="server" Text="Provincia:" CssClass="form-label"></asp:Label>
-                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged1"></asp:DropDownList>
                         </div>
                         <%--Apellido--%>
                         <div class="form-group">

@@ -105,6 +105,7 @@ namespace VISTAS
                 lblErrorBusqueda.Text = "Por favor, ingrese un Codigo.";
                 return;
             }
+            InicializarDropDownLists();
             //Si la longitud es 4, busca por CODIGO MEDICO
             if (txtBuscar.Text.Length == 4)
             {
@@ -404,9 +405,28 @@ namespace VISTAS
             }
         }
 
-        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        protected void btnModificarUsuario_Click(object sender, EventArgs e)
+        {
+            NegocioMedico med = new NegocioMedico();
+            DataTable dt = med.RetornarCodMedico(txtDni.Text);
+
+            string codmed = dt.Rows.Count > 0 ? dt.Rows[0]["CodMedico"].ToString() : null;
+
+            if (!string.IsNullOrEmpty(codmed))
+            {
+                Session["CodMedico"] = codmed;
+                Response.Redirect("ModificarUsuario.aspx");
+            }
+            else
+            {
+                lblError.Text = "Error al obtener el código del médico. Verifique que el médico fue registrado para modificar correctamente.";
+                
+            }
+        }
+
+        protected void ddlProvincia_SelectedIndexChanged1(object sender, EventArgs e)
+        {
             string provincia = ddlProvincia.SelectedValue;
 
             negL.ObtenerLocalidadesPorProvincia(provincia);
@@ -445,25 +465,6 @@ namespace VISTAS
                 ddlLocalidad.Items.Clear();
                 ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
 
-            }
-        }
-
-        protected void btnModificarUsuario_Click(object sender, EventArgs e)
-        {
-            NegocioMedico med = new NegocioMedico();
-            DataTable dt = med.RetornarCodMedico(txtDni.Text);
-
-            string codmed = dt.Rows.Count > 0 ? dt.Rows[0]["CodMedico"].ToString() : null;
-
-            if (!string.IsNullOrEmpty(codmed))
-            {
-                Session["CodMedico"] = codmed;
-                Response.Redirect("ModificarUsuario.aspx");
-            }
-            else
-            {
-                lblError.Text = "Error al obtener el código del médico. Verifique que el médico fue registrado para modificar correctamente.";
-                
             }
         }
     }
