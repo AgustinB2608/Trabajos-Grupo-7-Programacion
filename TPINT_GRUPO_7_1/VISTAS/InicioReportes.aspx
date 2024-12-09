@@ -8,7 +8,7 @@
     <title>Realizar Informes</title>
     <style>
         body {
-            background-color: #add8e6;
+            background-color: #6CB2EB;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
