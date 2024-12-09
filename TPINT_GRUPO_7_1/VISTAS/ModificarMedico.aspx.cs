@@ -97,6 +97,7 @@ namespace VISTAS
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            ddlSexo.Items.Clear();
             lblExito.Text = "";
             lblErrorBusqueda.Text = "";
             lblError.Text = "";
@@ -175,10 +176,7 @@ namespace VISTAS
             }
         }
 
-        protected void btnCancelar_Click1(object sender, EventArgs e)
-        {
-            Response.Redirect("ABMLMedicos.aspx");
-        }
+       
 
         private void CargarDatosMedicoPorCodigo()
         {
@@ -467,6 +465,11 @@ namespace VISTAS
                 ddlLocalidad.Items.Add(new ListItem("Error al cargar localidades", "0"));
 
             }
+        }
+
+        protected void btnAtras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMLMedicos.aspx");
         }
     }
 }

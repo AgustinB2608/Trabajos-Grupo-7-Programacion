@@ -250,7 +250,7 @@
                         <%-- Aquí cargarás los meses, por ejemplo Enero a Diciembre --%>
                         <div class="btn-container">
                             <asp:Button ID="btnAceptar" runat="server" Text="Guardar" CssClass="btn" OnClick="btnAceptar_Click"  />
-                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click1"  />
+                            <asp:Button ID="btnAtras" runat="server" Text="Atras" CssClass="btn" OnClick="btnAtras_Click"/>
                         </div>
                     </div>
 
