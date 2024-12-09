@@ -74,14 +74,18 @@
              border-radius: 4px; 
              cursor: pointer;
         }
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="header">
-            <span>NovaVital</span>
-            <asp:Label ID="lblUsuario" runat="server" Text="" />
+            <div class="titulo">NovaVital</div>
+            <asp:Label ID="lblUsuario" runat="server" Text="" CssClass="titulo" />
         </div>
 
         <div class="container">

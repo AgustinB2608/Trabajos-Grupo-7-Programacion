@@ -11,17 +11,17 @@
     background-color: #6CB2EB; /* Color azul del fondo */
     margin: 0;                 /* Elimina los márgenes por defecto del body */
     font-family: Arial, sans-serif; /* Define una fuente por defecto */
-}
+   }
 
        .header {
         background-color: #2C3E50;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        padding: 15px 20px;
-        font-size: 1.2rem;
-        align-items: center;
-    }
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            font-weight: bold;
+            align-items: center;
+       }
 
     .contenedor {
         max-width: 800px;

@@ -24,14 +24,13 @@
         }
 
         .header {
-            background-color: var(--color-header);
-            color: var(--color-texto);
+            background-color: #2C3E50;
+            color: white;
             display: flex;
             justify-content: space-between;
             padding: 15px 20px;
             font-weight: bold;
             align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .titulo {
@@ -178,7 +177,7 @@
     <form id="form1" runat="server">
         <div class="header">
             <div class="titulo">NovaVital</div>
-            <asp:Label ID="lblUsuario" runat="server" />
+            <asp:Label ID="lblUsuario" runat="server" class="titulo"  />
         </div>
         
             <h1 style="color: #FFFFFF">Eliminar Médico</h1>

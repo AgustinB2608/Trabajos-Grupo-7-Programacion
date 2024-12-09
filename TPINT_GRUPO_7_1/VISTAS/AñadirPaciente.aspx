@@ -37,12 +37,13 @@
         }
 
         header {
-            display: flex;             
-            justify-content: space-between; 
-            align-items: center;       
-            padding: 20px;         
-            background-color: var(--color-header);
-            color: white;               
+            background-color: #2C3E50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            font-weight: bold;
+            align-items: center;              
         }
 
         #lblUsuario {
@@ -202,7 +203,7 @@
     <form id="form1" runat="server">
         <header>
             <div class="titulo">NovaVital</div>
-            <asp:Label ID="lblUsuario" runat="server" />
+            <asp:Label ID="lblUsuario" runat="server" class="titulo" />
         </header>
 
 	<%--Contenedor Principal--%>
