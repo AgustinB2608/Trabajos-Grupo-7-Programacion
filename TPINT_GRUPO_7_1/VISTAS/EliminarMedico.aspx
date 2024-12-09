@@ -56,15 +56,32 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+    display: flex;
+    align-items: center; /* Asegura la alineación vertical */
+    gap: 10px; /* Espacio entre el label y el textbox */
+    position: relative; /* Para habilitar z-index */
+    z-index: 1; /* Coloca la capa sobre otros elementos */
+        }
+        .formulario-contenedor {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: var(--radio-borde);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
         }
 
-        .form-group label {
+        .form-label {
             font-weight: bold;
-            display: block;
             margin-bottom: 5px;
-            color: black;
+            font-size: 14px;
         }
+
 
         .form-group input[type="text"] {
             width: 100%;
@@ -144,6 +161,16 @@
             color: red;
             background-color: white;
         }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
 
     </style>
 </head>
@@ -153,14 +180,14 @@
             <div class="titulo">NovaVital</div>
             <asp:Label ID="lblUsuario" runat="server" />
         </div>
-        <div class="container">
-            <h1>Eliminar Médico</h1>
-
-            <div class="form-group">
-                <asp:Label ID="lblEliminar" runat="server" Text="Ingresar Codigo del Médico:" Font-Bold="True" Font-Size="Large"></asp:Label>
-                <asp:TextBox ID="txtCodigo" runat="server" Width="219px" />
-            </div>
-
+        
+            <h1 style="color: #FFFFFF">Eliminar Médico</h1>
+            
+            <div class="formulario-contenedor">
+    <div class="form-group">
+        <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el Codigo del médico:" CssClass="form-label"></asp:Label>
+        <asp:TextBox ID="txtCodigo" runat="server" Width="219px"></asp:TextBox>
+    </div>
             <div class="btn-container">
                 <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click" />
                 <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="btn" NavigateUrl="~/ABMLMedicos.aspx">Volver Atras</asp:HyperLink>
