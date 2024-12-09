@@ -54,6 +54,10 @@
             text-align: center;
         }
 
+        .label{
+            color: black;
+        }
+
         .form-group {
     display: flex;
     align-items: center; /* Asegura la alineación vertical */
@@ -183,10 +187,12 @@
             <h1 style="color: #FFFFFF">Eliminar Médico</h1>
             
             <div class="formulario-contenedor">
-    <div class="form-group">
-        <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el Codigo del médico:" CssClass="form-label"></asp:Label>
-        <asp:TextBox ID="txtCodigo" runat="server" Width="219px"></asp:TextBox>
-    </div>
+            <div class="form-group">
+                <strong>
+                <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el Codigo del médico:" CssClass="label"></asp:Label>
+                </strong>
+                <asp:TextBox ID="txtCodigo" runat="server" Width="219px"></asp:TextBox>
+            </div>
             <div class="btn-container">
                 <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click" />
                 <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="btn" NavigateUrl="~/ABMLMedicos.aspx">Volver Atras</asp:HyperLink>
