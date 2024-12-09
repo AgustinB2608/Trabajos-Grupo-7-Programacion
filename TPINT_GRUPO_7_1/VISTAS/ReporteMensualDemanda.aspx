@@ -141,7 +141,7 @@
     <form id="form1" runat="server">
         <!-- Encabezado -->
         <div class="header">
-            <div class="titulo">Clínica médica</div>
+            <div class="titulo">NovaVital</div>
             <asp:Label ID="lblUsuario" runat="server" class="titulo" />
         </div>
 

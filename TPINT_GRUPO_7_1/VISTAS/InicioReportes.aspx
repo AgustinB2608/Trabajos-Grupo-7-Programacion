@@ -83,7 +83,7 @@
 <body>
     <form id="form1" runat="server">
     <header >
-        <div class="titulo">Clínica</div>
+        <div class="titulo">NovaVital</div>
         <asp:Label ID="lblUsuario" runat="server" Text="" class="titulo"/> <%--Nombre de usuario--%>
     </header>
         <div class="contenedor">

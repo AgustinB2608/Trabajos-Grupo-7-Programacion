@@ -76,7 +76,6 @@
     <Content Include="AñadirPaciente.aspx" />
     <Content Include="EliminarMedico.aspx" />
     <Content Include="EliminarPaciente.aspx" />
-    <Content Include="EliminarTurnos.aspx" />
     <Content Include="ReporteComparativoMensual.aspx" />
     <Content Include="imgs\doctor.jpg" />
     <Content Include="imgs\engranaje.png" />
@@ -91,7 +90,6 @@
     <Content Include="ListarPaciente.aspx" />
     <Content Include="ModificarMedico.aspx" />
     <Content Include="ModificarPaciente.aspx" />
-    <Content Include="ModificarTurnos.aspx" />
     <Content Include="ModificarUsuario.aspx" />
     <Content Include="ObservacionTurno.aspx" />
     <Content Include="InicioReportes.aspx" />
@@ -157,13 +155,6 @@
     <Compile Include="EliminarPaciente.aspx.designer.cs">
       <DependentUpon>EliminarPaciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EliminarTurnos.aspx.cs">
-      <DependentUpon>EliminarTurnos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EliminarTurnos.aspx.designer.cs">
-      <DependentUpon>EliminarTurnos.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ReporteComparativoMensual.aspx.cs">
       <DependentUpon>ReporteComparativoMensual.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -219,13 +210,6 @@
     </Compile>
     <Compile Include="ModificarPaciente.aspx.designer.cs">
       <DependentUpon>ModificarPaciente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ModificarTurnos.aspx.cs">
-      <DependentUpon>ModificarTurnos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ModificarTurnos.aspx.designer.cs">
-      <DependentUpon>ModificarTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarUsuario.aspx.cs">
       <DependentUpon>ModificarUsuario.aspx</DependentUpon>

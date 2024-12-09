@@ -80,7 +80,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="header">
-            <span>Menu Administrador</span>
+            <span>NovaVital</span>
             <asp:Label ID="lblUsuario" runat="server" Text="" />
         </div>
 

@@ -166,7 +166,7 @@
     <form id="form1" runat="server">
 
         <header>
-            <div class="titulo">Modificar Paciente</div>
+            <div class="titulo">NovaVital</div>
             <asp:Label ID="lblUsuario" runat="server" Text="" /> <%--Nombre de usuario--%>
         </header>
 

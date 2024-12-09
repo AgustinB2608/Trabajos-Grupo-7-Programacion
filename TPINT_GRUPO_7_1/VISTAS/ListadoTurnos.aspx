@@ -240,7 +240,7 @@
 <body>
     <form id="form1" runat="server">
         <header>
-            <div class="titulo">Nombre del sistema</div>
+            <div class="titulo">NovaVital</div>
             <asp:Label ID="lblUsuario" runat="server" class="titulo" />
             
         </header>

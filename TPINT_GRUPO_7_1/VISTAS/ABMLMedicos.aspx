@@ -82,7 +82,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="header">
-            <div class="titulo">ABML Medicos</div>
+            <div class="titulo">NovaVital</div>
             <asp:Label ID="lblUsuario" runat="server" />
         </div>
 
