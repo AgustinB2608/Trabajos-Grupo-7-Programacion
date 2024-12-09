@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="ABMLMedicos.aspx" />
     <Content Include="ABMLPacientes.aspx" />
+    <Content Include="imgs\clinica.jpg" />
     <Content Include="ReporteMensualDemanda.aspx" />
     <Content Include="AsignarTurno.aspx" />
     <Content Include="AñadirMedico.aspx" />
