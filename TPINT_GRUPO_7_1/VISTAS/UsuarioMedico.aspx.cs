@@ -13,10 +13,22 @@ namespace VISTAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
+            {
+                string nombre = Session["UsuarioNombre"].ToString(); // Nombre
+                string apellido = Session["UsuarioApellido"].ToString(); // Apellido
+                string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
+
+                lblUsuario.Text = $"{nombre} {apellido} {tipoUsuario}";
+            }
+            else
+            {
+                Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
+            }
             if (!IsPostBack)
             {
                 // Validar si hay un código de médico en la sesión
-                if (Session["CodMedico"] != null)
+              /*  if (Session["CodMedico"] != null)
                 {
                     string codmedico = Session["CodMedico"].ToString();
                     txtCodigoMedico.Text = codmedico; // Prellenar el campo con el valor de la sesión
@@ -41,6 +53,7 @@ namespace VISTAS
                     lblMensaje2.Text = "No se encontró un código de médico en la sesión.";
                     btnGuardar.Enabled = false; // Deshabilitar el botón si no hay código
                 }
+              */
             }
         }
 
