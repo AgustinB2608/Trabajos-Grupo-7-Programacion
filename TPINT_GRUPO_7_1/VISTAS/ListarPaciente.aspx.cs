@@ -22,6 +22,7 @@ namespace VISTAS
                 string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
 
                 lblUsuario.Text = $"{nombre} {apellido} {tipoUsuario}";
+                
             }
             else
             {
@@ -30,8 +31,8 @@ namespace VISTAS
 
             if (IsPostBack == false)
             {
-                
-                btnAtras.Visible = false;
+
+                btnAtras.Visible = true;
             }
             else
             {
@@ -45,6 +46,9 @@ namespace VISTAS
             NegocioPacientes negP = new NegocioPacientes();
 
             DataTable lista = negP.listarPacientes();
+
+            txtListar.Text = "";
+            lblMensaje.Text = "";
 
             if (lista != null && lista.Rows.Count > 0)
             {
@@ -77,7 +81,7 @@ namespace VISTAS
             }
             else
             {
-                lblMensaje.Text = "No se encontraron registros de pacientes.";
+                lblMensaje.Text = "No se encontraró el registro del paciente.";
             }
         }
 
