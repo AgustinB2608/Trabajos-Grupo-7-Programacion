@@ -229,6 +229,9 @@
             background-color: #1A252F; /* Cambio de color al pasar el ratón */
         }
 
+        #txtBuscar {
+            width: 250px;
+        }
 
 
 
@@ -252,7 +255,7 @@
 
                         
 
-                        <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" Placeholder="Buscar medico"></asp:TextBox>
+                        <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" Placeholder="Buscar nombre/apellido medico"></asp:TextBox>
 
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="search-button" OnClick="btnBuscar_Click" />
                     </div>

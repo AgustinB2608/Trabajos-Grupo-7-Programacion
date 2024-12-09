@@ -29,8 +29,10 @@ namespace VISTAS
             {
                 Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
             }
-
-            CargarMeses();
+            if (!IsPostBack)
+            {
+                CargarMeses();
+            }
         }
 
         /*
@@ -65,6 +67,7 @@ namespace VISTAS
 
         protected void ddlMes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblMensaje.Text = "";
             string mes = ddlMes.SelectedValue;
 
             int total = totalturnosmes(mes);
@@ -94,6 +97,7 @@ namespace VISTAS
 
         public int totalturnosmes (string mes)
         {
+            
             int tt = 0; // Total de turnos en el mes
             
             // Obtener el total de turnos del mes seleccionado
@@ -108,6 +112,7 @@ namespace VISTAS
 
         public int totalturnosEstado (string mes, string estado)
         {
+            
             int total = 0; // Total de turnos
 
             DataTable da = negR.TotalTurnosSegunEstadoyMes(mes, estado);
@@ -121,6 +126,7 @@ namespace VISTAS
 
         public void datosGv(string mes)
         {
+            
             DataTable dtAusentes = negR.ObtenerPacientesMes(mes, "A");
             DataTable dtPresentes = negR.ObtenerPacientesMes(mes, "P");
 
