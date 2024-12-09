@@ -271,5 +271,10 @@ namespace VISTAS
             }
 
         }
+
+        protected void btnAtras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/inicioAdministrador.aspx");
+        }
     }
 }

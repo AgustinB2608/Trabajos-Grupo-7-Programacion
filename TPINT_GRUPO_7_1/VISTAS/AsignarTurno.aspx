@@ -136,6 +136,23 @@
             padding: 0;
             height: 100%; /* Ocupa todo el alto de la ventana */
         }
+        .back-button {
+            background-color: #555; /* Color base igual que #btnAsignar */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none; /* Quita el subrayado del link */
+            display: inline-block; /* Asegura que se comporte como un botón */
+            text-align: center;
+        }
+
+.back-button:hover {
+    background-color: #45a049; /* Mismo color hover que #btnAsignar */
+}
 
     </style>
 </head>
@@ -182,6 +199,7 @@
 
         <div class="button-container">
             <asp:Button ID="btnAsignar" runat="server" Text="Asignar" OnClick="btnAsignar_Click" />
+            <asp:LinkButton ID="btnAtras" runat="server" CssClass="back-button" OnClick="btnAtras_Click" class="back-button" >Atrás</asp:LinkButton>
         </div>
         <div class="error-message">
             <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" Font-Size="Large" />
