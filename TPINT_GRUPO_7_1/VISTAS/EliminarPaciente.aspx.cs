@@ -35,6 +35,7 @@ namespace VISTAS
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             NegocioPacientes negocioPaciente = new NegocioPacientes();
+           
 
             if (string.IsNullOrWhiteSpace(txtEliminar.Text))
             {
@@ -76,17 +77,19 @@ namespace VISTAS
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
             NegocioPacientes neg = new NegocioPacientes();
+            NegocioTurnos negT = new NegocioTurnos();
             string dniN = txtEliminar.Text;
 
 
             ///avisos sobre si se pudo o no eliminar
             if (neg.eliminarPaciente(dniN))
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Green;
-                lblMensaje.Text = "Paciente eliminado correctamente";
-                gvPacienteInfo.DataSource = null;
-                gvPacienteInfo.DataBind();
-                txtEliminar.Text = "";
+                    lblMensaje.ForeColor = System.Drawing.Color.Green;
+                    lblMensaje.Text = "Paciente eliminado correctamente";
+                    gvPacienteInfo.DataSource = null;
+                    gvPacienteInfo.DataBind();
+                    txtEliminar.Text = "";
+                
             }
             else
             {

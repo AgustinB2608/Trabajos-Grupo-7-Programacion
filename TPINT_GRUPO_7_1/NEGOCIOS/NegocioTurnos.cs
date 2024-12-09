@@ -29,6 +29,8 @@ namespace NEGOCIOS
             // Retornamos true si el turno fue agregado correctamente
             return exito;
         }
+
+
         public DataTable ObtenerTurnos()
         {
             return dao.ObtenerTurnos();

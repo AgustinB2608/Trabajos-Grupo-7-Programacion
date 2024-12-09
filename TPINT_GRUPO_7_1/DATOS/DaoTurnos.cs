@@ -34,7 +34,6 @@ namespace DATOS
 
             return exito > 0;
         }
-
         public DataTable ObtenerTurnos()
         {
             string consulta = "SP_ObtenerTurnos"; // Nombre del procedimiento que selecciona los campos necesarios
@@ -44,7 +43,6 @@ namespace DATOS
 
         }
        
-
         
         public DataTable ObtenerTurnosFiltrados(string especialidad, string estado, string nombreMedico)
         {
