@@ -7,15 +7,42 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Asignar Turno</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0; /* Elimina márgenes predeterminados */
+        :root {
+            --color-fondo: #6CB2EB; /* Color Fondo */
+            --color-header: #2C3E50; /* Color fondo encabezado*/
+            --color-boton: #3490dc; /* Color boton*/
+            --color-boton-hover: #2779bd; /* Color boton 2 hover */
+            --color-textbox: #ddd;
+            --color-error: #ff6347; /* Color de texto de error */
+            --color-fondo-error: #f8d7da; /* Fondo del error */
+            --radio-borde: 8px; /* Radio de borde general */
+        }
+
+        * {
+            margin: 0;
             padding: 0;
-            box-sizing: border-box; /* Manejo correcto de márgenes y rellenos */
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            /*font-family: Arial, sans-serif;*/
+            /*background-color: #f4f4f9;*/
+            /*margin: 0; /* Elimina márgenes predeterminados */
+            /*padding: 0;*/
+            /*box-sizing: border-box; /* Manejo correcto de márgenes y rellenos */
+            background-color: var(--color-fondo);
+            display: flex;
+            flex-direction: column;
         }
         form {
-            max-width: 800px;
+            width: 50%; /* Ancho relativo al viewport */
+            max-width: 1000px; /* Permitir mayor ancho máximo */
+            /*max-width: 800px;*/
             margin: 50px auto;
             background-color: #fff;
             padding: 20px;
@@ -25,14 +52,16 @@
 
         header {
             margin: 0; /* Elimina márgenes del header */
-            padding: 20px; /* Ajusta solo el padding que deseas */
-            background-color: #2C3E50;
-            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 40vw;
+            width: 100vw;
             box-sizing: border-box;
+            
+            background-color: var(--color-header);
+            padding: 20px;
+            color: white;
+        
         }
 
         .titulo {
@@ -113,13 +142,11 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <header>
-             <div class="titulo">Nombre del sistema</div>
+         <header>
+             <div class="titulo">NovaVital</div>
              <asp:Label ID="lblUsuario" runat="server" class="titulo" />
-            
-            
         </header>
+    <form id="form1" runat="server">
         <h1>Asignar Turno</h1>
         <label for="lblEspecialidad">Especialidad</label>
         <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
