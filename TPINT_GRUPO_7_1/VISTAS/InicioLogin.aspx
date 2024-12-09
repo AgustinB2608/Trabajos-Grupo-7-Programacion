@@ -63,15 +63,15 @@
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-            background: #000;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+            margin: 0 auto 10px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            width: 90px;
+            height: 89px;
+            border-radius: 50%; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
         }
 
         .form-control {
@@ -123,23 +123,25 @@
             flex-direction: column;
         }
 
-
         .error-message {
             color: var(--color-error);
             border-radius: 4px;
             font-size: 14px;
         }
+
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <header>
-            <div class="titulo">Nombre del sistema</div>
+            <div class="titulo">NovaVital</div>
         </header>
         
         <div class="contenedor">
             <div class="login">
-                <div class="logo">Logo</div>
+                <div class="logo">
+                    <img src="Imgs/clinica.jpg" alt="Logo"   />
+                </div>
                 
                 <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control" placeholder="Ingrese su legajo" />
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingrese su contraseña" />

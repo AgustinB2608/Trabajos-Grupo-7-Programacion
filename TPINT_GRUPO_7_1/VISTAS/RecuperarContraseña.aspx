@@ -53,15 +53,14 @@
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-            background: #000;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        margin: 0 auto 20px;
+        }
+
+        .logo img {
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 50%; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .form-control {
@@ -112,17 +111,23 @@
             display: flex;
             flex-direction: column;
         }
+        .auto-style1 {
+            width: 85px;
+            height: 0px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <header>
-            <div class="titulo">Nombre del sistema</div>
+            <div class="titulo">NovaVital</div>
         </header>
         
         <div class="contenedor">
             <div class="login">
-                <div class="logo">Logo</div>
+                <div class="logo">
+                    <img src="Imgs/clinica.jpg" alt="Logo" class="auto-style1" />
+                </div>
                 
                 <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Ingrese su DNI" TextMode="Number" />
                 <asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control" placeholder="Ingrese su Legajo" />
