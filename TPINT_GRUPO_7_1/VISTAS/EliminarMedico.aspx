@@ -194,7 +194,7 @@
                 <asp:TextBox ID="txtCodigo" runat="server" Width="219px"></asp:TextBox>
             </div>
             <div class="btn-container">
-                <asp:Button ID="btnEliminar" runat="server" CssClass="btn" Text="Eliminar" OnClick="btnEliminar_Click" />
+                <asp:Button ID="btnBuscar" runat="server" CssClass="btn" Text="Buscar" OnClick="btnBuscar_Click" />
                 <asp:HyperLink ID="hlkEliminar" runat="server" CssClass="btn" NavigateUrl="~/ABMLMedicos.aspx">Volver Atras</asp:HyperLink>
             </div>
 

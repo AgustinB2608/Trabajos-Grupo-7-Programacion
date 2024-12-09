@@ -25,21 +25,7 @@ namespace NEGOCIOS
         public bool eliminarMedico(string codMedico)
         {
             // Primero, elimina el médico de la base de datos
-            bool exitoMedico = daoMedico.eliminarMedico(codMedico);
-
-            // Luego, elimina el usuario asociado al médico
-            if (exitoMedico)
-            {
-                // Usa el mismo `codMedico` para identificar al usuario asociado
-                bool exitoUsuario = daoUsuario.eliminarUsuario(codMedico);
-                if (!exitoUsuario)
-                {
-                    Console.WriteLine("El médico fue eliminado, pero no se pudo eliminar el usuario asociado.");
-                }
-                return exitoUsuario;
-            }
-
-            return false;
+            return daoMedico.eliminarMedico(codMedico);
         }
 
         public bool modificarMedico(Medico medico)

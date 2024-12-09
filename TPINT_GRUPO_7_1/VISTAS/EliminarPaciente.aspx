@@ -142,7 +142,7 @@
                 <asp:Label ID="lblEliminar" runat="server" Text="Ingrese el DNI del paciente:" />
                 <br /><br />
                 <asp:TextBox ID="txtEliminar" runat="server" CssClass="textbox" />
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn" OnClick="btnEliminar_Click" />
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn" OnClick="btnBuscar_Click"/>
                 <asp:Button ID="btnAtras" runat="server" Text="Atrás" CssClass="btn" PostBackUrl="~/ABMLPacientes.aspx" />
             </div>
 

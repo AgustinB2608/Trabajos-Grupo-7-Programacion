@@ -34,18 +34,16 @@ namespace VISTAS
             btnConfirmarEliminar.Visible = false;
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            
-
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
                 // si el TextBox está vacío o solo tiene espacios en blanco
                 lblMensaje.Text = "Por favor, ingrese un codigo.";
             }
-            else
+            else if (txtCodigo.Text.Length == 4)
             {
-                string medicoEliminar = txtCodigo.Text;
+                string medicoEliminar = txtCodigo.Text.Trim();
 
                 // Obtener el médico específico
                 DataTable reg = negocioMedico.listarMedicoEspecifico(medicoEliminar);
@@ -79,30 +77,29 @@ namespace VISTAS
                     lblMensaje2.Text = "¿Está seguro de que desea eliminar este médico?";
                     btnConfirmarEliminar.Visible = true;
                 }
-                else
-                {
-                    lblMensaje.Text = "No se encontraron resultados para el médico.";
-                }
             }
+            else
+            {
+                lblMensaje.Text = "Ingrese un código de médico válido.";
+            }
+              
         }
-
-
+        
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
-            string medicoEliminar = txtCodigo.Text;
-
+            string medicoEliminar = txtCodigo.Text.Trim();
+            lblMensaje2.Text = "";
             // Eliminar al médico
-            bool exito = negocioMedico.eliminarMedico(medicoEliminar);
-
-            if (exito)
+            
+            if (negocioMedico.eliminarMedico(medicoEliminar))
             {
                 // Si la eliminación fue exitosa
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Text = "El médico y su usuario han sido eliminados con éxito.";
-                lblMensaje2.Text = string.Empty;
-
+                
                 // Ocultar el botón y limpiar campos
                 btnConfirmarEliminar.Visible = false;
-                txtCodigo.Text = string.Empty;
+                txtCodigo.Text = "";
 
                 // Limpiar el gridview
                 gvMedicoInfo.DataSource = null;
@@ -110,8 +107,13 @@ namespace VISTAS
             }
             else
             {
+                gvMedicoInfo.DataSource = null;
+                gvMedicoInfo.DataBind();
                 // Si no se pudo eliminar
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "No se pudo eliminar el médico. Intente nuevamente.";
+                txtCodigo.Text = "";
+
             }
         }
 

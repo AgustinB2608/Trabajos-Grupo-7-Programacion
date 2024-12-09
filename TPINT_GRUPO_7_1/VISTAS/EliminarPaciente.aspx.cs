@@ -30,7 +30,9 @@ namespace VISTAS
             btnConfirmarEliminar.Visible = false;
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
+
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
             NegocioPacientes negocioPaciente = new NegocioPacientes();
 
@@ -39,68 +41,65 @@ namespace VISTAS
                 // si el TextBox esta vacío o solo tiene espacios en blanco
                 lblMensaje.Text = "Por favor, ingrese un Dni.";
             }
-            else
-            { 
-                
-            if (txtEliminar.Text.Length == 8)
+            else if (txtEliminar.Text.Length == 8)
             {
-                    ///hablariamos de que se ingresó un DNI
-                    string dniN = txtEliminar.Text;
+                string dniN = txtEliminar.Text;
 
-                    DataTable reg = negocioPaciente.listarPacienteEspecificoDni(dniN);
+                DataTable reg = negocioPaciente.listarPacienteEspecificoDni(dniN);
 
-                    if (reg != null && reg.Rows.Count > 0)
-                    {
-                        gvPacienteInfo.DataSource = reg;
-                        gvPacienteInfo.DataBind();
-
-                        lblMensaje.Text = "¿Está seguro de que desea eliminar este paciente?";
-
-                        btnConfirmarEliminar.Visible = true;
-                        
-                    }
-                    else
-                    {
-                        lblMensaje.Text = "No se encontraron resultados para el paciente.";
-                        txtEliminar.Text = "";
-                    }
-
-                    
-            }
-            else
+                if (reg != null && reg.Rows.Count > 0)
                 {
-                    lblMensaje.Text = "Por favor, ingrese un Dni válido.";
+                    gvPacienteInfo.DataSource = reg;
+                    gvPacienteInfo.DataBind();
+
+                    lblMensaje.Text = "¿Está seguro de que desea eliminar este paciente?";
+
+                    btnConfirmarEliminar.Visible = true;
+
+                }
+                else
+                {
+                    lblMensaje.Text = "No se encontraron resultados para el paciente.";
                     txtEliminar.Text = "";
                 }
 
-            }
-        }
 
+            }
+            else
+            {
+                lblMensaje.Text = "Por favor, ingrese un Dni válido.";
+                txtEliminar.Text = "";
+            }
+
+            
+        }
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
             NegocioPacientes neg = new NegocioPacientes();
             string dniN = txtEliminar.Text;
 
-            bool SeElimino = neg.eliminarPaciente(dniN);
 
             ///avisos sobre si se pudo o no eliminar
-            if (SeElimino)
+            if (neg.eliminarPaciente(dniN))
             {
-                lblMensaje.Text = "Paciente eliminado correctramente";
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "Paciente eliminado correctamente";
                 gvPacienteInfo.DataSource = null;
                 gvPacienteInfo.DataBind();
                 txtEliminar.Text = "";
             }
             else
             {
+                lblMensaje.Text = "";
                 lblMensaje.Text = "Hubo un error al intentar eliminar el paciente.";
                 txtEliminar.Text = "";
+                gvPacienteInfo.DataSource = null;
+                gvPacienteInfo.DataBind();
 
             }
             // Oculta el boton de confirmacion y limpia el mensaje
-            //lblMensaje.Text = " ";
+           
             btnConfirmarEliminar.Visible = false;
         }
-          
     }
 }
