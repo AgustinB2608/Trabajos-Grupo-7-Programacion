@@ -311,7 +311,7 @@
 
                
 
-                <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~/InicioMedico.aspx" CssClass="volver-menu">Volver al inicio</asp:HyperLink>
+                <asp:HyperLink ID="lnkVolverMenu" runat="server" NavigateUrl="~/InicioLogin.aspx" CssClass="volver-menu">Cerrar Sesion</asp:HyperLink>
             </div>
         </div>
     </form>
