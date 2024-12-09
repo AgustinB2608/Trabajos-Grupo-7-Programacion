@@ -30,14 +30,16 @@ namespace VISTAS
             }
 
 
-
+            
             if (!IsPostBack)
             {
+
                 CargarTurnos();
                 CargarEspecialidades();
 
             }
-            //buscar otra forma de declararlo
+
+            
             btnConfirmarEliminar.Visible = false;
             btnCancelar.Visible = false;
         }
@@ -57,7 +59,8 @@ namespace VISTAS
         protected void CargarEspecialidades()
         {
             NegocioEspecialidades negocioEspecialidades = new NegocioEspecialidades();
-            // Obtenemos la lista de especialidades
+            // Obtenemos la lista de objetos del tipo Especialidades, contiene información como el ID de la especialidad y su descripción.
+
             List<Especialidades> listaEspecialidades = negocioEspecialidades.ObtenerNombresEspecialidades();
 
             // Configuramos el DataSource 
@@ -74,6 +77,7 @@ namespace VISTAS
       
         private void FiltrarTurnos()
         {
+            //inicializo valores que voy a usar
             NegocioTurnos negocioTurnos = new NegocioTurnos();
             string especialidadSeleccionada = ddlEspecialidad.SelectedItem.Text;
             string estadoSeleccionado = ddlEstado.SelectedItem.Value;
@@ -121,26 +125,7 @@ namespace VISTAS
 
         //SECCION DE AUSENTE/PRESENTE
 
-        protected void lkbPresente_Command(object sender, CommandEventArgs e)
-        {
-            NegocioTurnos negocioTurnos = new NegocioTurnos();
-            lblMensaje2.Text = "";
-            //PARA MI: cambiar a como lo hace el resto
-            if (e.CommandName == "MarcarPresente")
-            {
-                // Obtener el ID del turno seleccionado 
-                string turnoID = e.CommandArgument.ToString();
-
-               //Cambiamos el estado en la bd
-                negocioTurnos.ModificarEstado("P",turnoID);
-                // Recargar los turnos después de la modificación
-                CargarTurnos();
-
-                // Redirigir a ObservacionTurno.aspx con el ID del turno
-                Response.Redirect("ObservacionTurno.aspx?TurnoID=" + turnoID);
-            }
-
-        }
+        
         protected void btnAusente_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "MarcarAusente")
@@ -180,6 +165,26 @@ namespace VISTAS
 
             }
             
+        }
+        protected void lkbPresente_Command(object sender, CommandEventArgs e)
+        {
+            NegocioTurnos negocioTurnos = new NegocioTurnos();
+            lblMensaje2.Text = "";
+
+            if (e.CommandName == "MarcarPresente")
+            {
+                // Obtener el ID del turno seleccionado 
+                string turnoID = e.CommandArgument.ToString();
+
+                //Cambiamos el estado en la bd
+                negocioTurnos.ModificarEstado("P", turnoID);
+                // Recargar los turnos después de la modificación
+                CargarTurnos();
+
+                // Redirigir a ObservacionTurno.aspx con el ID del turno
+                Response.Redirect("ObservacionTurno.aspx?TurnoID=" + turnoID);
+            }
+
         }
 
         //Cambio de pagina en el listado
