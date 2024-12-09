@@ -28,28 +28,29 @@ namespace VISTAS
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si el usuario está logueado y traer los datos de la sesión (Administrador)
+            if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
+            {
+                string nombre = Session["UsuarioNombre"].ToString(); // Nombre
+                string apellido = Session["UsuarioApellido"].ToString(); // Apellido
+                string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
+
+                lblUsuario.Text = $"{nombre} {apellido}";
+            }
+            else
+            {
+                Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
+            }
+
+            // Validar si ya hay un código de médico registrado en la sesión
+            if (Session["CodMedico"] != null)
+            {
+                string codMedico = Session["CodMedico"].ToString();
+            }
+
             if (!IsPostBack)
             {
-                // Verificar si el usuario está logueado y traer los datos de la sesión (Administrador)
-              /*  if (Session["UsuarioLegajo"] != null && Session["UsuarioTipo"] != null && Session["UsuarioTipo"].ToString() == "A")
-                {
-                    string nombre = Session["UsuarioNombre"].ToString(); // Nombre
-                    string apellido = Session["UsuarioApellido"].ToString(); // Apellido
-                    string tipoUsuario = Session["UsuarioTipo"].ToString(); // Tipo de usuario
-
-                    lblUsuario.Text = $"{nombre} {apellido}";
-                }
-                else
-                {
-                    Response.Redirect("InicioLogin.aspx"); // Redirigir si no es un administrador logueado
-                }
-
-                // Validar si ya hay un código de médico registrado en la sesión
-                if (Session["CodMedico"] != null)
-                {
-                    string codMedico = Session["CodMedico"].ToString();
-                }*/
-
+               
                 // Inicializar los dropdowns
                 InicializarDropDownLists();
             }

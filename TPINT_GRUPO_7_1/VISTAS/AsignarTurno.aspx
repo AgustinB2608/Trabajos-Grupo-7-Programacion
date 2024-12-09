@@ -52,15 +52,13 @@
 
         header {
             margin: 0; /* Elimina márgenes del header */
+            background-color: #2C3E50;
+            color: white;
             display: flex;
             justify-content: space-between;
+            padding: 15px 20px;
+            font-weight: bold;
             align-items: center;
-            width: 100vw;
-            box-sizing: border-box;
-            
-            background-color: var(--color-header);
-            padding: 20px;
-            color: white;
         
         }
 

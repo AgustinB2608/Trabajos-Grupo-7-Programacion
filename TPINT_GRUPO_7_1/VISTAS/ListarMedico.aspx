@@ -14,23 +14,23 @@
     }
 
     .header {
-        background-color: #2C3E50;
-        color: white;
-        padding: 15px 20px;
-        font-size: 1.2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+            background-color: #2C3E50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            font-weight: bold;
+            align-items: center;
     }
 
     .contenedor {
-    max-width: 100%;         /* Ajusta el ancho máximo al 100% del contenedor padre */
-    padding: 20px;           /* Espaciado interno para mayor separación */
-    background-color: #fff;  /* Color de fondo blanco */
-    border-radius: 10px;     /* Bordes redondeados */
-    overflow-x: auto;        /* Agrega scroll horizontal si el contenido es muy ancho */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-}
+        max-width: 100%;         /* Ajusta el ancho máximo al 100% del contenedor padre */
+        padding: 20px;           /* Espaciado interno para mayor separación */
+        background-color: #fff;  /* Color de fondo blanco */
+        border-radius: 10px;     /* Bordes redondeados */
+        overflow-x: auto;        /* Agrega scroll horizontal si el contenido es muy ancho */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+
     }
 
     .titulo {
@@ -124,7 +124,7 @@
         <!-- Encabezado -->
         <div class="header">
             <div class="titulo">NovaVital</div>
-            <asp:Label ID="lblUsuario" runat="server" />
+            <asp:Label ID="lblUsuario" runat="server" class="titulo" />
         </div>
 
         <!-- Contenedor principal -->

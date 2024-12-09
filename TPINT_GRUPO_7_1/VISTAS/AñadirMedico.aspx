@@ -36,12 +36,13 @@
         }
 
         header {
-            display: flex;             
-            justify-content: space-between; 
-            align-items: center;       
-            padding: 20px;         
-            background-color: var(--color-header);
-            color: white;               
+            background-color: #2C3E50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            font-weight: bold;
+            align-items: center;             
         }
 
         #lblUsuario {
@@ -150,7 +151,7 @@
 
         <header>
             <div class="titulo">NovaVital</div>
-            <asp:Label ID="lblUsuario" runat="server" Text="" /> <%--Nombre de usuario--%>
+            <asp:Label ID="lblUsuario" runat="server" Text="" class="titulo" /> <%--Nombre de usuario--%>
         </header>
         <%--Contenedor Principal--%>
         <div class="contenedor">
