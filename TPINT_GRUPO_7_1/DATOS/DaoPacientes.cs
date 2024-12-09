@@ -117,16 +117,6 @@ namespace DATOS
             string consulta = "EXEC SP_RegistrosPacientes";
 
 
-            /*SOLUCIONAR PORQUE NO FUNCIONA CON EL PROCEDIMIENTO ALMACENADO ACTUAL
-            
-            // Si se proporciona un término de búsqueda, agrega condiciones de filtrado
-            List<SqlParameter> parametros = new List<SqlParameter>();
-            if (!string.IsNullOrEmpty(contenido))
-            {
-                consulta += " AND (Nombre_PA LIKE @Contenido OR Apellido_PA LIKE @Contenido OR Dni_PA LIKE @Contenido)";
-                parametros.Add(new SqlParameter("@Contenido", "%" + contenido + "%"));
-            }*/
-
             // Retorna el DataTable utilizando el método EjecutarConsultaConParametros de Conexion
             return ds.EjecutarConsulta(consulta);
         }
