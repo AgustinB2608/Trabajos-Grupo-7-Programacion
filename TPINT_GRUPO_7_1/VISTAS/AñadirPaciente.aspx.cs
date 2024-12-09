@@ -137,7 +137,8 @@ namespace VISTAS
             else
             {
                 lblMensaje.Visible = true;
-                lblMensaje.Text = "Error al agregar el paciente.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Error al agregar el paciente. El dni se encuentra ya registrado";
                 lblMensaje.CssClass = "mensaje-error";
             }
         }

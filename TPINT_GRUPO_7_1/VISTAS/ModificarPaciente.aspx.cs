@@ -132,6 +132,8 @@ namespace VISTAS
                     }
                     // Asigna valores a los TextBox
                     // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
+                    CargarProvincias();
+                    CargarLocalidades();
                     ddlProvincia.Items.RemoveAt(0);
                     ddlProvincia.Items.Insert(0, new ListItem(provincia, obj.Provincia));
                     ddlLocalidad.Items.RemoveAt(0);
@@ -176,6 +178,8 @@ namespace VISTAS
                 lblErrorBusqueda.Text = "Por favor, ingrese solo números.";
                 return; 
             }
+            CargarProvincias();
+            CargarLocalidades();
             //Si la longitud es 8, busca por DNI
             if (txtBuscar.Text.Length == 8 )
             {
@@ -189,6 +193,7 @@ namespace VISTAS
             }
 
             txtBuscar.Text = "";
+
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e) //Boton limpiar campos
@@ -226,14 +231,6 @@ namespace VISTAS
             paciente.Sexo = (ddlSexo.SelectedValue.ToString());
             paciente.Celular = (txtCelular.Text.Trim().ToString());
 
-            //Borrar despues
-            //string datos = $"Nombre: {paciente.Nombre}, Apellido: {paciente.Apellido}, DNI: {paciente.Dni}, " +
-            //               $"Email: {paciente.Email}, Celular: {paciente.Celular}, Direccion: {paciente.Direccion}, " +
-            //               $"Provincia: {paciente.Provincia}, Localidad: {paciente.Localidad}, " +
-            //               $"Nacionalidad: {paciente.Nacionalidad}, " +
-            //               $"Sexo: {paciente.Sexo}, Fecha de Nacimiento: {paciente.FechaNacimiento.ToString()}";
-
-            
             if (negocio.modificarPaciente(paciente)) 
             {
                 lblErrorBusqueda.ForeColor = System.Drawing.Color.Green;
@@ -268,8 +265,6 @@ namespace VISTAS
             txtNacionalidad.Text = "";
             txtCelular.Text = "";
             txtDireccion.Text = "";
-            ///lblError.Text = "";
-            ///lblErrorBusqueda.Text = "";
             
         }
 
@@ -296,6 +291,16 @@ namespace VISTAS
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            filtradoProvincia();
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMLPacientes.aspx");
+        }
+
+        public void filtradoProvincia()
+        {
             string provincia = ddlProvincia.SelectedValue;
 
             ngl.ObtenerLocalidadesPorProvincia(provincia);
@@ -337,9 +342,5 @@ namespace VISTAS
             }
         }
 
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ABMLPacientes.aspx");
-        }
     }
 }
