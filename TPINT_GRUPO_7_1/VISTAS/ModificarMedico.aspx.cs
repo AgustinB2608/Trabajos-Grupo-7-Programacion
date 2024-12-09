@@ -286,14 +286,19 @@ namespace VISTAS
                     reg.Email = medico.Rows[0]["Email"].ToString(); // Asigna el email del medico buscado a email
                     reg.Celular = medico.Rows[0]["Telefono"].ToString(); // Asigna el telefono del medico buscado a celular 
                     reg.Provincia = medico.Rows[0]["Provincia"].ToString(); // Asigna la provincia del medico buscado a provincia
+                    reg.CodProvincia = medico.Rows[0]["CodProvincia"].ToString(); // Asigna la provincia del medico buscado a provincia
                     reg.Localidad = medico.Rows[0]["Localidad"].ToString(); // Asigna la localidad del medico buscado a localidad
+                    reg.CodLocalidad = medico.Rows[0]["CodLocalidad"].ToString(); // Asigna la localidad del medico buscado a localidad
+                    reg.CodEspecialidad = medico.Rows[0]["CodEspecialidad"].ToString(); // Asigna la especialidad del medico buscado a especialidad
                     reg.Direccion = medico.Rows[0]["Direccion"].ToString();// Asigna la direccion del medico buscado a direccion
                     reg.Sexo = medico.Rows[0]["Sexo"].ToString(); // Asigna el sexo del medico buscado
                     reg.FechaNacimiento = medico.Rows[0]["Fecha de Nacimiento"].ToString(); // Asigna la fecha de nacimiento del medico buscado
                     reg.Nacionalidad = medico.Rows[0]["Nacionalidad"].ToString(); // Asigna la nacionalidad del medico buscado
                     reg.Especialidad = medico.Rows[0]["Especialidad"].ToString(); // Asigna la especialidad del medico buscado a especialidad
                     reg.Horario = medico.Rows[0]["Horarios de Atención"].ToString(); // Asigna el horario del medico buscado a Horario
+                    reg.CodHorario = medico.Rows[0]["CodHorario"].ToString(); // Asigna el horario del medico buscado a Horario
                     reg.DiasAtencion = medico.Rows[0]["Dias de Atención"].ToString(); // Asigna el dia del medico buscado a Dia
+                    reg.CodDiasAtencion = medico.Rows[0]["CodAtencion"].ToString(); // Asigna el dia del medico buscado a Dia
 
                     // Remover el primer item del dropdownlist y agregar el valor de la localidad y provincia
                     ddlLocalidad.Items.RemoveAt(0);
