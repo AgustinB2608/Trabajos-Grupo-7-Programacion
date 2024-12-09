@@ -74,10 +74,21 @@
             align-items: center;
             padding: 20px;
             min-height: calc(100vh - 80px);
+            margin-top: -100px;
         }
         .auto-style1 {
             height: 8px;
         }
+
+        .menu-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+        }
+
     </style>
 </head>
 <body>
@@ -88,6 +99,9 @@
     </header>
         <div class="contenedor">
         <div class="container">
+
+
+            <div class="menu-container">
             <div class="title" style="font-weight: bold">Reportes</div>
             <!-- HyperLink 1 -->
             <asp:HyperLink
@@ -113,6 +127,7 @@
                 NavigateUrl="InicioAdministrador.aspx"
                 Text="Volver al Inicio"
                 Style="background-color: #0056b3;"></asp:HyperLink>
+            </div>
         </div>
         </div>
     </form>
