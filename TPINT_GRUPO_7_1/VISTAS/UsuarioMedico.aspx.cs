@@ -28,7 +28,7 @@ namespace VISTAS
             if (!IsPostBack)
             {
                 // Validar si hay un código de médico en la sesión
-              /*  if (Session["CodMedico"] != null)
+                if (Session["CodMedico"] != null)
                 {
                     string codmedico = Session["CodMedico"].ToString();
                     txtCodigoMedico.Text = codmedico; // Prellenar el campo con el valor de la sesión
@@ -53,7 +53,7 @@ namespace VISTAS
                     lblMensaje2.Text = "No se encontró un código de médico en la sesión.";
                     btnGuardar.Enabled = false; // Deshabilitar el botón si no hay código
                 }
-              */
+              
             }
         }
 

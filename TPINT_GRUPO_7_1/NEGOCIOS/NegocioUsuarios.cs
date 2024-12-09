@@ -41,10 +41,7 @@ namespace NEGOCIOS
 
         public bool eliminarUsuario(string codmedico)
         {
-            bool exito = daoUsuario.eliminarUsuario(codmedico);
-
-            return exito;
-
+           return daoUsuario.eliminarUsuario(codmedico);
         }
 
         public string recuperarContraseñaMedico(string dni, string legajo)

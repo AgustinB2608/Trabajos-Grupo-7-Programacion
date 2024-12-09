@@ -82,21 +82,30 @@ namespace VISTAS
             {
                 lblMensaje.Text = "Ingrese un código de médico válido.";
             }
-              
+
         }
-        
+
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
             string medicoEliminar = txtCodigo.Text.Trim();
             lblMensaje2.Text = "";
             // Eliminar al médico
-            
+
             if (negocioMedico.eliminarMedico(medicoEliminar))
             {
                 // Si la eliminación fue exitosa
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
-                lblMensaje.Text = "El médico y su usuario han sido eliminados con éxito.";
-                
+                lblMensaje.Text = "El médico ha sido eliminado con éxito.";
+                if(eliminarUsuario(medicoEliminar))
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Green;
+                    lblMensaje2.Text = "Su usuario ha sido eliminado con éxito.";
+                }
+                else
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblMensaje2.Text = "Su usuario no se ha podido eliminar.";
+                }
                 // Ocultar el botón y limpiar campos
                 btnConfirmarEliminar.Visible = false;
                 txtCodigo.Text = "";
@@ -115,6 +124,14 @@ namespace VISTAS
                 txtCodigo.Text = "";
 
             }
+        }
+
+        public bool eliminarUsuario(string codmedico)
+        {
+            NegocioUsuarios negU = new NegocioUsuarios();
+
+            return negU.eliminarUsuario(codmedico);
+            
         }
 
     }
